@@ -1,0 +1,166 @@
+﻿@* $1$ @model AdminProfileModel #1# *@
+@* *@
+@* @{ *@
+@*     ViewData["Title"] = "Admin Profile"; *@
+@* } *@
+@* *@
+@* <h2 class="mt-5 text-center">Patient Profile</h2> *@
+@* <div class=" container col-md-8"> *@
+@*     <!-- Basic Information Section --> *@
+@*     <h5 class="mt-3"><i class="fas fa-user"></i> Basic Information</h5> *@
+@*     <ul class="list-group mb-4"> *@
+@*         <li class="list-group-item"> *@
+@*             <i class="fas fa-user-circle"></i> Name: @Model.Name *@
+@*         </li> *@
+@*         <li class="list-group-item"> *@
+@*             <i class="fas fa-venus-mars"></i> Gender: @Model.Gender *@
+@*         </li> *@
+@*         <li class="list-group-item"> *@
+@*             <i class="fas fa-calendar-alt"></i> Date of Birth: @Model.DateOfBirth?.ToString("dd/MM/yyyy") *@
+@*         </li> *@
+@*         <li class="list-group-item"> *@
+@*             <i class="fas fa-id-card"></i> National ID/Passport: @Model.NationalIdOrPassport *@
+@*         </li> *@
+@*         <li class="list-group-item"> *@
+@*             <i class="fas fa-phone"></i> Phone: @Model.PhoneNumber *@
+@*         </li> *@
+@*         <li class="list-group-item"> *@
+@*             <i class="fas fa-envelope"></i> Email: @Model.Email *@
+@*             <span class="badge @(Model.IsEmailConfirmed ? "bg-success" : "bg-danger")"> *@
+@*                 @(Model.IsEmailConfirmed ? "Confirmed" : "Not Confirmed") *@
+@*             </span> *@
+@*             <!-- Button to confirm email --> *@
+@*             @if (!Model.IsEmailConfirmed) *@
+@*             { *@
+@*                 <a class="btn btn-link" href=@Url.Action("ConfirmEmailMessage", "Account")> *@
+@*                     <i class="fas fa-envelope-check"></i> Confirm Email *@
+@*                 </a> *@
+@*             } *@
+@*         </li> *@
+@*         <li class="list-group-item"> *@
+@*             <i class="fas fa-shield-alt"></i> Two-Factor Auth: *@
+@*             <span class="badge @(Model.IsTwoFactorEnabled ? "bg-success" : "bg-danger")"> *@
+@*                 @(Model.IsTwoFactorEnabled ? "Enabled" : "Disabled") *@
+@*             </span> *@
+@*             <!-- Button to enable two-factor authentication --> *@
+@*             @if (!Model.IsTwoFactorEnabled) *@
+@*             { *@
+@*                 <a href="@Url.Action("EnableAuthenticator", "Account")" class="btn btn-link"> *@
+@*                     <i class="fas fa-shield-alt"></i> Enable Two-Factor Auth *@
+@*                 </a> *@
+@*             } *@
+@*         </li> *@
+@*     </ul> *@
+@*     <div class="row mb-4 centered-content"> *@
+@*         <a class="btn btn-outline-custom" href=@Url.Action("Edit","Patient", new {Id = @Model.Id})>Edit Profile</a> *@
+@*     </div> *@
+@*     <div class="row mb-4 centered-content"> *@
+@*         <a href=@Url.Action("ForgotPassword","Account") class="btn btn-outline-custom">Forget Password</a> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* *@
+@* *@
+@* *@
+@* <style> *@
+@*     body { *@
+@*         background-color: #f0f4f7; *@
+@*         font-family: 'Arial', sans-serif; *@
+@*     } *@
+@* *@
+@*     .card { *@
+@*         border: none; *@
+@*         border-radius: 16px; *@
+@*         background-color: #ffffff; *@
+@*         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); *@
+@*         transition: box-shadow 0.3s ease; *@
+@*     } *@
+@* *@
+@*         .card:hover { *@
+@*             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); *@
+@*         } *@
+@* *@
+@*     .card-title { *@
+@*         font-weight: 600; *@
+@*         font-size: 1.2rem; *@
+@*         color: #2d3748; *@
+@*     } *@
+@* *@
+@*     .btn-custom { *@
+@*         background-color: rgb(13, 110, 253); *@
+@*         color: white; *@
+@*         border-radius: 8px; *@
+@*         padding: 0.5rem 1.4rem; *@
+@*         font-size: 1rem; *@
+@*     } *@
+@* *@
+@*         .btn-custom:hover { *@
+@*             background-color: rgba(13, 110, 253, 0.9); *@
+@*         } *@
+@* *@
+@*     .icon-circle { *@
+@*         display: flex; *@
+@*         justify-content: center; *@
+@*         align-items: center; *@
+@*         width: 60px; *@
+@*         height: 60px; *@
+@*         border-radius: 50%; *@
+@*         background-color: rgb(13, 110, 253); *@
+@*         color: white; *@
+@*         font-size: 28px; *@
+@*         margin-bottom: 15px; *@
+@*     } *@
+@* *@
+@*     .section-title { *@
+@*         font-weight: 600; *@
+@*         font-size: 1.4rem; *@
+@*         color: rgb(13, 110, 253); *@
+@*         margin: 1.5rem 0 1rem; *@
+@*         text-align: center; *@
+@*     } *@
+@* *@
+@*     .centered-content { *@
+@*         display: flex; *@
+@*         justify-content: center; *@
+@*         align-items: center; *@
+@*         text-align: center; *@
+@*     } *@
+@* *@
+@*     .list-unstyled li { *@
+@*         margin-bottom: 0.4rem; *@
+@*         font-size: 1rem; *@
+@*         color: #4a5568; *@
+@*     } *@
+@* *@
+@*     h2 { *@
+@*         font-size: 2rem; *@
+@*         color: rgb(13, 110, 253); *@
+@*         font-weight: bold; *@
+@*         margin-bottom: 2rem; *@
+@*     } *@
+@* *@
+@*     .card p { *@
+@*         color: #718096; *@
+@*     } *@
+@* *@
+@*     .container { *@
+@*         max-width: 960px; *@
+@*     } *@
+@* *@
+@*     .btn-outline-custom { *@
+@*         background-color: transparent; *@
+@*         border: 1px solid rgb(13, 110, 253); *@
+@*         color: rgb(13, 110, 253); *@
+@*         border-radius: 8px; *@
+@*         padding: 0.6rem 1.4rem; *@
+@*     } *@
+@* *@
+@*         .btn-outline-custom:hover { *@
+@*             background-color: rgb(13, 110, 253); *@
+@*             color: white; *@
+@*         } *@
+@* </style> *@
+@* *@
+@* <!-- Optional: Include Bootstrap JS if needed --> *@
+@* <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> *@
+@* <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> *@

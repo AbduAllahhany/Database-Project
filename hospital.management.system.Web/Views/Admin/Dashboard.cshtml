@@ -1,0 +1,185 @@
+﻿@model hospital.management.system.Web.Models.Admin.AdminDashboardModel
+
+
+<div class="container mt-5">
+    <!-- Dashboard Header -->
+    <div class="row mb-4 text-center">
+        <div class="col">
+            <h2 class="text-primary font-weight-bold">Hospital Admin Dashboard</h2>
+        </div>
+    </div>
+
+    <!-- Cards for Summary Data -->
+    <div class="row">
+        <!-- Total Patients Card (Pastel Blue) -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm rounded-lg" style="background-color: #C1E1FF;">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-secondary">Total Patients</h6>
+                        <p class="display-6 font-weight-bold text-dark">@Model.PatientsCount</p>
+                    </div>
+                    <i class="fas fa-user-injured fa-3x text-muted"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Doctors Card (Pastel Green) -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm rounded-lg" style="background-color: #C8F7C5;">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-secondary">Total Doctors</h6>
+                        <p class="display-6 font-weight-bold text-dark">@Model.DoctorsCount</p>
+                    </div>
+                    <i class="fas fa-user-md fa-3x text-muted"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Nurses Card (Pastel Yellow) -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm rounded-lg" style="background-color: #FFF3CD;">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-secondary">Total Staff</h6>
+                        <p class="display-6 font-weight-bold text-dark">@Model.StaffCount</p>
+                    </div>
+                    <i class="fas fa-user-nurse fa-3x text-muted"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Appointments Card (Light Coral) -->
+        <div class="col-lg-3 col-md-6 mb-4">
+            <div class="card border-0 shadow-sm rounded-lg" style="background-color: #FFDDC1;">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-secondary">Upcoming Appointments</h6>
+                        <p class="display-6 font-weight-bold text-dark">@Model.AppointmentsCount</p>
+                    </div>
+                    <i class="fas fa-calendar-alt fa-3x text-muted"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="row mb-5 text-center">
+        <div class="col-md-12">
+            <a href="~/Patient" class="btn btn-outline-primary rounded-pill m-3 px-4">View All Patients</a>
+            <a href="~/Doctor" class="btn btn-outline-success rounded-pill m-3 px-4">View All Doctors</a>
+            <a href="~/Staff" class="btn btn-outline-warning rounded-pill m-3 px-4">View All Nurses</a>
+            <a href="~/Appointment" class="btn btn-outline-info rounded-pill m-3 px-4">View All Appointments</a>
+            <a href="~/Admin" class="btn btn-outline-primary rounded-pill m-3 px-4">View All Admins</a>
+        </div>
+    </div>
+
+    <!-- Recent Appointments Table -->
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card shadow-sm rounded-lg">
+                <!-- Updated Header Color (Blue Gradient) -->
+                <div class="card-header bg-gradient-primary text-white rounded-top"
+                     style="background: linear-gradient(135deg, #4A90E2, #72C3DC);">
+                    <h3 class="mb-0">UpComing Appointments</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-striped rounded-lg">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Patient</th>
+                            <th scope="col">Doctor</th>
+                            <th scope="col">Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var appointment in Model.upcomingAppointments)
+                        {
+                            <tr>
+                                <td>@appointment.PatientFirstName + @appointment.PatientLastName</td>
+                                <td>@appointment.DoctorFirstName + @appointment.DoctorLastName</td>
+                                <td>@appointment.Date.ToString("g")</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<style>
+    /* Custom Styles for Admin Dashboard */
+    /* Card customizations */
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Button Hover */
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+    /* Table hover row color */
+    .table-hover tbody tr:hover {
+        background-color: #f1f5f9;
+    }
+
+    /* Rounded table corners */
+    .table {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    /* Recent Appointments Header Customization */
+    .bg-gradient-primary {
+        background: linear-gradient(90deg, rgba(52, 144, 220, 1) 0%, rgba(70, 169, 227, 1) 100%);
+    }
+
+    .card-title {
+        font-weight: 600;
+        text-transform: capitalize;
+        letter-spacing: 1px;
+    }
+
+    .card-text {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .card i {
+        opacity: 0.85;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .card:hover i {
+        opacity: 1;
+    }
+
+    h2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        color: #4A5568;
+    }
+
+    /* Table Styling */
+    .table th {
+        font-weight: 600;
+        text-transform: uppercase;
+        color: #2D3748;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #EDF2F7;
+    }
+
+
+</style>

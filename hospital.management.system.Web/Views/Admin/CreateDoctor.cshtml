@@ -1,0 +1,162 @@
+
+@using hospital.management.system.DAL
+@model DoctorCreateModel
+@{
+    ViewData["Title"] = "Create Doctor";
+}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3 class="card-title">Create Doctor</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="CreateDoctor" asp-controller="Admin" method="post" class="needs-validation"
+                          novalidate>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <!-- User Name -->
+                        <div class="mb-3">
+                            <label asp-for="UserName" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                                <input asp-for="UserName" class="form-control" placeholder="Choose a username"/>
+                            </div>
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <!-- First Name -->
+                        <div class="mb-3">
+                            <label asp-for="FirstName" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input asp-for="FirstName" class="form-control" placeholder="Enter your first name"/>
+                            </div>
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="mb-3">
+                            <label asp-for="LastName" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                <input asp-for="LastName" class="form-control" placeholder="Enter your last name"/>
+                            </div>
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input asp-for="Email" type="email" class="form-control"
+                                       placeholder="Enter your email"/>
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                <input asp-for="Address" class="form-control" placeholder="Enter your address"/>
+                            </div>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <!-- SSN -->
+                        <div class="mb-3">
+                            <label asp-for="SSN" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                <input asp-for="SSN" class="form-control" placeholder="Enter your SSN"/>
+                            </div>
+                            <span asp-validation-for="SSN" class="text-danger"></span>
+                        </div>
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <input asp-for="PhoneNumber" class="form-control"
+                                       placeholder="Enter your phone number"/>
+                            </div>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="mb-3">
+                            <label asp-for="Gender" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                                <select asp-for="Gender" class="form-control"
+                                        asp-items="Html.GetEnumSelectList<Gender>()"></select>
+                            </div>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+                        <!-- Specialization -->
+                        <div class="mb-3">
+                            <label asp-for="Specialization" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-user-md"></i></span>
+                                <select asp-for="Specialization" class="form-control">
+                                    @foreach (var specialization in SD.ValidSpecializations)
+                                    {
+                                        <option value="@specialization">@specialization</option>
+                                    }
+                                </select>
+                            </div>
+                            <span asp-validation-for="Specialization" class="text-danger"></span>
+                        </div>
+                        <!-- working hours -->
+                        <div class="mb-3">
+                            <label asp-for="WorkingHours" class="form-label">Working Hours</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                <input asp-for="WorkingHours" class="form-control"
+                                       type="number" min="4" max="8" step="1"
+                                       value="4" id="workingHoursRange" />
+                            </div>
+                            <span asp-validation-for="WorkingHours" class="text-danger"></span>
+                        </div>
+                        <!-- Department -->
+                        <div class="mb-3">
+                            <label asp-for="Specialization" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-hospital"></i></span>
+                                <select asp-for="DepartmentName" class="form-control">
+                                    @foreach (var department in SD.ValidDepartments)
+                                    {
+                                        <option value="@department">@department</option>
+                                    }
+                                </select>
+                            </div>
+                            <span asp-validation-for="DepartmentName" class="text-danger"></span>
+                        </div>
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+
+    <script>
+        // Optional: To update the display value dynamically
+        const rangeInput = document.getElementById("workingHoursRange");
+        rangeInput.addEventListener("input", function () {
+            const display = document.getElementById("workingHoursValue");
+            display.textContent = rangeInput.value;
+        });
+    </script>
+}
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">

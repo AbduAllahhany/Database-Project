@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Confirm Your Email";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3 class="card-title">Email Confirmation</h3>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-text">
+                        @if (Model)
+                        {
+                            <span class="text-success">Your email has been successfully confirmed!</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">There was an error confirming your email. Please try again.</span>
+                        }
+                    </h5>
+                    <p>
+                        @if (Model)
+                        {
+                            <a asp-action="Index" asp-controller="Home" class="btn btn-primary">Go to Home</a>
+                        }
+                        else
+                        {
+                            <a asp-action="ResendConfirmation" asp-controller="Account" class="btn btn-secondary">Resend Confirmation Email</a>
+                        }
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
