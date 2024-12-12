@@ -1,0 +1,58 @@
+@model List<hospital.management.system.Models.Entities.Patient>
+
+@{
+    ViewBag.Title = "Patient List";
+    Layout = "_Layout";
+}
+
+<div class="container mt-5">
+    <h2>@ViewBag.Title</h2>
+    <p class="lead">List of all registered patients in the system.</p>
+
+    <!-- Display patients table -->
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date of Birth</th>
+                <th>Address</th>
+                <th>Appointments</th>
+                <th>Admissions</th>
+                <th>Medical Records</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var patient in Model)
+            {
+                <tr>
+                    <td>@patient.Id</td>
+                    <td>@patient.FirstName</td>
+                    <td>@patient.LastName</td>
+                    <td>@patient.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                    <td>@patient.Address</td>
+                    <td>@patient.Appointments.Count()</td>
+                    <td>@patient.Admissions.Count()</td>
+                    <td>@patient.MedicalRecords.Count()</td>
+                    <td>
+                        <!-- Action buttons (View, Edit, Delete) -->
+                        <a href="@Url.Action("Details", "Patient", new { id = patient.Id })" class="btn btn-info btn-sm">View</a>
+                        <a href="@Url.Action("Edit", "Patient", new { id = patient.Id })" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="@Url.Action("Delete", "Patient", new { id = patient.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No patients found.
+        </div>
+    }
+</div>
