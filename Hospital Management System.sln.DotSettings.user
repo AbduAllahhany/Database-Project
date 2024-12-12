@@ -43,7 +43,7 @@
   &lt;Assembly Path="C:\Program Files\dotnet\packs\Microsoft.AspNetCore.App.Ref\9.0.0\ref\net9.0\Microsoft.Extensions.Identity.Stores.dll" /&gt;&#xD;
   &lt;Assembly Path="C:\Users\abdal\.nuget\packages\microsoft.extensions.identity.stores\9.0.0\lib\net9.0\Microsoft.Extensions.Identity.Stores.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\abdal\AppData\Local\JetBrains\Rider2024.3\resharper-host\temp\Rider\vAny\CoverageData\_Hospital Management System.-298238415\Snapshot\snapshot.utdcvr</s:String>
+	
 	
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=aa40cf3c_002D4446_002D46d9_002D8003_002Ddbfa1621ce3d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;Solution /&gt;&#xD;
