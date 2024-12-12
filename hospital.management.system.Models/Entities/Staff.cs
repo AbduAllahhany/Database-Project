@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using hospital.management.system.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.Models.Entities;
 
-public partial class Staff : BaseEntity
+public partial class Staff:BaseEntity
 {
     [Key]
     public Guid Id { get; set; }

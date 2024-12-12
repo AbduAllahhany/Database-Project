@@ -8,7 +8,7 @@ namespace hospital.management.system.Models.Entities;
 
 [PrimaryKey("PatientId", "Number")]
 [Table("Patient_Phone")]
-[Index("Number", Name = "UQ__Patient___FD291E418083B380", IsUnique = true)]
+[Index("Number", Name = "UQ__Patient___FD291E414AD144B4", IsUnique = true)]
 public partial class PatientPhone
 {
     [Key]

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace hospital.management.system.Models.Entities;
 
 [Table("Emergency_Contact")]
-[Index("Phone", Name = "UQ__Emergenc__B43B145F63FDD8C4", IsUnique = true)]
+[Index("Phone", Name = "UQ__Emergenc__B43B145F0626F054", IsUnique = true)]
 public partial class EmergencyContact
 {
     [Key]

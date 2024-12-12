@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using hospital.management.system.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.Models.Entities;
@@ -24,6 +25,21 @@ public partial class Patient : BaseEntity
 
     [Column("dateOfBirth")]
     public DateOnly DateOfBirth { get; set; }
+
+    [Column("bloodGroup")]
+    [StringLength(10)]
+    [Unicode(false)]
+    public string? BloodGroup { get; set; }
+
+    [Column("allergies")]
+    [StringLength(20)]
+    [Unicode(false)]
+    public string? Allergies { get; set; }
+
+    [Column("chronicDiseases")]
+    [StringLength(30)]
+    [Unicode(false)]
+    public string? ChronicDiseases { get; set; }
 
     [Column("address")]
     [StringLength(50)]

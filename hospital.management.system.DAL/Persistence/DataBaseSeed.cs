@@ -73,7 +73,6 @@ public static class DataBaseSeed
             });
         }
 
-
         await context.SaveChangesAsync();
     }
 

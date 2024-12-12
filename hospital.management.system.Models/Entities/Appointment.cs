@@ -31,6 +31,9 @@ public partial class Appointment
     [Column("date")]
     public DateOnly Date { get; set; }
 
+    [Column("time")]
+    public TimeOnly Time { get; set; }
+
     [ForeignKey("DoctorId")]
     [InverseProperty("Appointments")]
     public virtual Doctor Doctor { get; set; } = null!;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using hospital.management.system.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.Models.Entities;
@@ -30,8 +31,17 @@ public partial class Doctor : BaseEntity
     [Column("departmentId")]
     public Guid? DepartmentId { get; set; }
 
+    [Column("salary", TypeName = "money")]
+    public decimal? Salary { get; set; }
+
     [Column("workingHours")]
     public int WorkingHours { get; set; }
+
+    [Column("startSchedule")]
+    public TimeOnly StartSchedule { get; set; }
+
+    [Column("endSchedule")]
+    public TimeOnly EndSchedule { get; set; }
 
     [ForeignKey("DepartmentId")]
     [InverseProperty("Doctors")]
