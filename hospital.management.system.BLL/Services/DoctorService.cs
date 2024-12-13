@@ -102,6 +102,7 @@ public class DoctorService : IDoctorService
 
     public int CancelingAppointment(DoctorCancelingAppointmentModel model)
     {
+        // dhsajhdkasjhdkjsahdkjsads
         var sql = $@"
             UPDATE Patient_Doctor_Appointment
             SET status = 'Rejected'
