@@ -30,31 +30,31 @@ public class DoctorController : Controller
     
     public IActionResult IdToPendingAppointment()
     {
-        var pendingAppointment = _doctorService.getPendingAppointments(GetUserId());
+        var pendingAppointment = _doctorService.GetPendingAppointments(GetUserId());
         return View(pendingAppointment);
     }
     
     public IActionResult IdToDailyAppointment()
     {
-        var dailyAppointment = _doctorService.getDailyAppointments(GetUserId());
+        var dailyAppointment = _doctorService.GetDailyAppointments(GetUserId());
         return View(dailyAppointment);
     }
     
     public IActionResult IdToUpcomingAppointment()
     {
-        var upcomingAppointment = _doctorService.getUpcomingAppointments(GetUserId());
+        var upcomingAppointment = _doctorService.GetUpcomingAppointments(GetUserId());
         return View(upcomingAppointment);
     }
     
     public IActionResult IdToApproveAppointment()
     {
-        var approveAppointment = _doctorService.approveNextAppointment(GetUserId());
+        var approveAppointment = _doctorService.ApproveNextAppointment(GetUserId());
         return View(approveAppointment);
     }
     
     public IActionResult IdToPostponeAppointment()
     {
-        var postponeAppointment = _doctorService.postponingAppointment(GetUserId());
+        var postponeAppointment = _doctorService.PostponingAppointment(GetUserId());
         return View(postponeAppointment);
     }
     
@@ -65,14 +65,14 @@ public class DoctorController : Controller
             LoggedDoctorId = GetUserId(),
             SelectedPatientId = patientId,             
         };
-        var cancelAppointment = _doctorService.cancelingAppointment(model);
+        var cancelAppointment = _doctorService.CancelingAppointment(model);
         return View(cancelAppointment);
     }
     
     public IActionResult FollowUpAppointment(FollowUpAppointmentModel model)
     {
         model.DoctorId = GetUserId();
-        var followUpAppointment = _doctorService.followUpAppointment(model);
+        var followUpAppointment = _doctorService.FollowUpAppointment(model);
         return View(followUpAppointment);
     }
 }
