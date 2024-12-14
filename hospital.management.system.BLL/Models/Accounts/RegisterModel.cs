@@ -25,7 +25,7 @@ public class RegisterModel
     [Required]
     [Display(Name = "Date of birth")]
     [DateOfBirth]
-    public DateTime DateOfbirth { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    public DateOnly DateOfbirth { get; set; } = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
 
     [Required]
     [DataType(DataType.Password)]

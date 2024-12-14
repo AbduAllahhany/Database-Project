@@ -1,0 +1,89 @@
+@model IEnumerable<hospital.management.system.BLL.Models.Patient.PatientMedicalRecord>
+
+@{
+    ViewData["Title"] = "Medical Record List";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Medical Record List</h2>
+    @if (Model != null && Model.Any())
+    {
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Doctor Name</th>
+                            <th scope="col">Date of Recording</th>
+                            <th scope="col">Prescription</th>
+                            <th scope="col">Diagnostic</th>
+                            <th scope="col" class="text-center">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var record in Model)
+                        {
+                            <tr>
+                                <td>@record.PatientName</td>
+                                <td>@record.DoctorName</td>
+                                <td>@record.DateOfRecording.ToString("MMMM dd, yyyy")</td>
+                                <td>@(string.IsNullOrEmpty(record.Prescription) ? "No prescription available" : record.Prescription)</td>
+                                <td>@(string.IsNullOrEmpty(record.Diagnostic) ? "No diagnostic available" : record.Diagnostic)</td>
+
+                                <td class="text-center">
+                                    <!-- Button to go to the DashBoard, no parameters needed -->
+                                    <a asp-action="DashBoard" asp-controller="Home" class="btn btn-primary btn-sm">Go to DashBoard</a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No Medical Records found.
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this Medical Record?");
+        }
+    </script>
+}
+
+<style>
+    /* Smaller Add New Medical Record Button Styling */
+    .add-new-btn-sm {
+        background-color: #ff6600;
+        color: white;
+        border: none;
+        padding: 5px 12px; /* Reduced padding */
+        font-size: 14px; /* Smaller font */
+        border-radius: 5px; /* Slightly smaller border radius */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .add-new-btn-sm i {
+        margin-right: 5px;
+    }
+
+    .add-new-btn-sm:hover {
+        background-color: #e65c00;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .add-new-btn-sm:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.4);
+    }
+</style>

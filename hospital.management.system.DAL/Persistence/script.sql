@@ -156,4 +156,3 @@ CREATE TABLE Medical_Record (
                                 FOREIGN KEY (DoctorId) REFERENCES Doctor(Id) ON DELETE SET NULL,
                                 FOREIGN KEY (PatientId) REFERENCES Patient(Id) ON DELETE SET NULL
 );
-
