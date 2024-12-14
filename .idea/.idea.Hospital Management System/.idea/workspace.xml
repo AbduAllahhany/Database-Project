@@ -9,23 +9,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c7c0a50-8c45-4b30-8f0d-1b9583d94bfb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/INFORMATION_SCHEMA.NBgcMw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/sys.zb4BAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3/storage_v2/_src_/database/DatabaseProjectTest.sAIldg/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3/storage_v2/_src_/database/DatabaseProjectTest.sAIldg/schema/dbo.sYMBAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3/storage_v2/_src_/database/DatabaseProjectTest.sAIldg/schema/sys.zb4BAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3/storage_v2/_src_/database/DatabaseProjectTest.sAIldg/schema/sys.zb4BAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/b781d916-8190-440a-93e4-c36353e7c0d3/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.DAL/Persistence/ApplicationDbContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.DAL/Persistence/DataBaseSeed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.DAL/Persistence/DataBaseSeed.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Admission.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Appointment.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Bill.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Department.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Doctor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/EmergencyContact.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Insurance.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/MedicalRecord.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Patient.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/PatientPhone.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Room.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Staff.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Visit.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/hospital.management.system.Models.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Models/hospital.management.system.Models.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hospital Management System.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Hospital Management System.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Accounts/RegisterModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Accounts/RegisterModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Doctors/FollowUpAppointmentModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Doctors/FollowUpAppointmentModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/DoctorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/DoctorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IDoctorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IDoctorService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/DoctorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/DoctorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/EnableAuthenticator.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/EnableAuthenticator.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/ForgotPassword.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/ForgotPassword.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/Login.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/Login.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/Register.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/Register.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/ResetPassword.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/ResetPassword.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/VerifyAuthenticatorCode.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Account/VerifyAuthenticatorCode.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +48,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/hospital.management.system.BLL/Services/DoctorService.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/hospital.management.system.Web/Views/Account/Login.cshtml" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -50,21 +63,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.hospital.management.system.Web: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "terminal",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.hospital.management.system.Web: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;edit/register-form&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.hospital.management.system.Web: http">
     <configuration name="hospital.management.system.Web: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/hospital.management.system.Web/hospital.management.system.Web.csproj" />
@@ -106,6 +120,11 @@
       <option name="presentableId" value="Default" />
       <updated>1734035007577</updated>
       <workItem from="1734035012530" duration="389000" />
+      <workItem from="1734043883278" duration="851000" />
+      <workItem from="1734076422570" duration="4066000" />
+      <workItem from="1734081138305" duration="175000" />
+      <workItem from="1734116989819" duration="11930000" />
+      <workItem from="1734133406806" duration="2293000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />

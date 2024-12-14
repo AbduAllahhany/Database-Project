@@ -23,88 +23,84 @@ public class DoctorService : IDoctorService
         this._context = _context;
     }
 
-    public IEnumerable<Doctor> getPendingAppointments(Guid loggedDoctorId)
+    public IEnumerable<Doctor> GetPendingAppointments(Guid loggedDoctorId)
     {
-        //var sql = $@"";
         IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
-            SELECT P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason, A.date
+            SELECT P.firstName + ' ' + P.lastName as 'Full Name', DATEDIFF(year, P.dateOfBirth, GETDATE()) as 'Age', P.bloodGroup, A.reason, A.date, A.time
             FROM Patient P 
             INNER JOIN Appointment A
             ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
-            WHERE A.status = 'Pending'
+            WHERE LOWER(A.status) = 'pending'
             ORDER BY A.date");
         return query.ToList();
     }
 
-    public IEnumerable<Doctor> getDailyAppointments(Guid loggedDoctorId)
+    public IEnumerable<Doctor> GetDailyAppointments(Guid loggedDoctorId)
     {
-        //var sql = ;
         IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
-            SELECT P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason, A.date
+            SELECT P.firstName + ' ' + P.lastName as 'Full Name', DATEDIFF(year, P.dateOfBirth, GETDATE()) as 'Age', P.bloodGroup, A.reason, A.date, A.time
             FROM Patient P 
             INNER JOIN Appointment A
-            ON A.patientId = P.Id AND A.doctorId = {0}
-            WHERE A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
+            ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
+            WHERE LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
             ORDER BY A.date");
         return query.ToList();
     }
     
-    public IEnumerable<Doctor> getUpcomingAppointments(Guid loggedDoctorId)
+    public IEnumerable<Doctor> GetUpcomingAppointments(Guid loggedDoctorId)
     {
-        //var sql = ;
         IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
-            SELECT P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason, A.date
+            SELECT P.firstName + ' ' + P.lastName as 'Full Name', DATEDIFF(year, P.dateOfBirth, GETDATE()) as 'Age', P.bloodGroup, A.reason, A.date, A.time
             FROM Patient P 
             INNER JOIN Appointment A
-            ON A.patientId = P.Id AND A.doctorId = {0}
-            WHERE A.status = 'Pending' AND A.date > CONVERT (date, GETDATE())
+            ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
+            WHERE LOWER(A.status) = 'pending' AND A.date > CONVERT (date, GETDATE())
             ORDER BY A.date");
         return query.ToList();
     }
     
-    public IEnumerable<Doctor> getMonthlyAppointmentSummary(Guid loggedDoctorId)
+    public IEnumerable<Doctor> GetMonthlyAppointmentSummary(Guid loggedDoctorId)
     {
-        //var sql = ;
         IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
             SELECT COUNT(*) AS TotalAppointments,
-                SUM(CASE WHEN status = 'Approved' THEN 1 ELSE 0 END) AS ApprovedAppointments,
-                SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS PendingAppointments,
-                SUM(CASE WHEN status = 'Reject' THEN 1 ELSE 0 END) AS RejectedAppointments
+                SUM(CASE WHEN LOWER(status) = 'approved' THEN 1 ELSE 0 END) AS ApprovedAppointments,
+                SUM(CASE WHEN LOWER(status) = 'pending' THEN 1 ELSE 0 END) AS PendingAppointments,
+                SUM(CASE WHEN LOWER(status) = 'reject' THEN 1 ELSE 0 END) AS RejectedAppointments
             FROM Appointment A
-            WHERE A.doctorId = {0} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())");
+            WHERE A.doctorId = {loggedDoctorId} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())");
         return query.ToList();
     }
     
-    public int approveNextAppointment(Guid loggedDoctorId) 
+    public int ApproveNextAppointment(Guid loggedDoctorId) 
     {
-        //var sql = ;
-        var res = _context.Database.ExecuteSqlRaw($@"
+        var sql = $@"
             UPDATE Appointment
             SET status = 'Approved'
             WHERE Id IN (
 	            SELECT TOP(1) A.Id
 	            FROM Patient P, Appointment A
-	            WHERE A.patientId = P.Id AND A.doctorId = {0} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
-	            ORDER BY A.date
-            )");
+	            WHERE A.patientId = P.Id AND A.doctorId = {0} AND LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
+	            ORDER BY A.date, A.time
+            )";
+        var res = _context.Database.ExecuteSqlRaw(sql, loggedDoctorId);
         return res;
     }
 
-    public int postponingAppointment(Guid loggedDoctorId)
+    public int PostponingAppointment(Guid loggedDoctorId)
     {
-        //var sql = ;
-        var res = _context.Database.ExecuteSqlRaw($@"
+        var sql = $@"
             UPDATE Appointment
             SET date = DATEADD(DAY, 1,date)
             WHERE Id IN (
 	            SELECT A.Id
 	            FROM Patient P, Appointment A
-	            WHERE A.patientId = P.Id AND A.doctorId = {0} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
-            )");
+	            WHERE A.patientId = P.Id AND A.doctorId = {0} AND LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
+            )";
+        var res = _context.Database.ExecuteSqlRaw(sql, loggedDoctorId);
         return res;
     }
 
-    public int cancelingAppointment(DoctorCancelingAppointmentModel model)
+    public int CancelingAppointment(DoctorCancelingAppointmentModel model)
     {
         var sql = $@"
             UPDATE Appointment
@@ -112,31 +108,29 @@ public class DoctorService : IDoctorService
             WHERE Id IN (
 	            SELECT A.Id
 	            FROM Patient P, Appointment A
-	            WHERE A.patientId = {0} AND A.doctorId = {1} AND A.status = 'Pending'
+	            WHERE A.patientId = {0} AND A.doctorId = {1} AND LOWER(A.status) = 'pending'
             )";
         var res = _context.Database.ExecuteSqlRaw(sql, model.SelectedPatientId, model.LoggedDoctorId);
         return res;
     }
 
-    public int followUpAppointment(FollowUpAppointmentModel model)
+    public int FollowUpAppointment(FollowUpAppointmentModel model)
     {
         var sql = $@"
-            INSERT INTO Appointment(patientId, doctorId, reason, date) 
-            VALUES (@p1, @p2, @p3, @p4))";
-        var res = _context.Database.ExecuteSqlRaw(sql, model.PatientId, model.DoctorId, model.Reason, model.AppointmentDate);
+            INSERT INTO Appointment(patientId, doctorId, reason, date, time) 
+            VALUES (@p1, @p2, @p3, @p4, @p5))";
+        var res = _context.Database.ExecuteSqlRaw(sql, model.PatientId, model.DoctorId, model.Reason, model.AppointmentDate, model.AppointmentTime);
         return res;
     }
     
-    // int !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public int getNextAppointmentInfo(Guid loggedDoctorId)
+    public IEnumerable<Doctor> GetNextAppointmentInfo(Guid loggedDoctorId)
     {
-        var sql = $@"            
-	        SELECT TOP(1) P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason
+        IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"            
+	        SELECT TOP(1) P.firstName + ' ' + P.lastName as 'Full Name', DATEDIFF(year, P.dateOfBirth, GETDATE()) as 'Age', A.reason
 	        FROM Patient P, Appointment A
-	        WHERE A.patientId = P.Id AND A.doctorId = {0} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
-	        ORDER BY A.date";
-        var res = _context.Database.ExecuteSqlRaw(sql, loggedDoctorId);
-        return res;
+	        WHERE A.patientId = P.Id AND A.doctorId = {loggedDoctorId} AND LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
+	        ORDER BY A.date");
+        return query.ToList();
     }
 
     public int CreateMedicalRecord(MedicalRecordModel model) 
@@ -148,4 +142,3 @@ public class DoctorService : IDoctorService
         return res;
     }
 }
-
