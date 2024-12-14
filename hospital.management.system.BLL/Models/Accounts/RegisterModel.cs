@@ -22,18 +22,18 @@ public class RegisterModel
     [Required]
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
     [Required]
     [Display(Name = "Date of birth")]
     [DateOfBirth]
     public DateOnly DateOfbirth { get; set; } = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-=======
+//=======
     
     [Required] 
     [NationalID] 
     public string SSN { get; set; }
->>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
+//>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
 
     [Required]
     [DataType(DataType.Password)]
