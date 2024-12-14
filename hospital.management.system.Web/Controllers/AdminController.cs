@@ -243,7 +243,7 @@ public class AdminController : Controller
             IsTwoFactorEnabled = user.TwoFactorEnabled,
             NationalIdOrPassport = user.SSN,
             PhoneNumber = user.PhoneNumber,
-            Name = user.UserName,
+            UserName = user.UserName,
             Gender = user.Gender,
         });
     }

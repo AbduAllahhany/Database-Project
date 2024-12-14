@@ -57,7 +57,6 @@ namespace hospital.management.system.BLL.Services;
                 SSN = "30311151402135" , 
                 UserName = model.UserName,
                 Email = model.Email,
-                SSN = "123458",
                 PasswordHash = model.Password,
                 Gender = Gender.Male,
             };
@@ -234,7 +233,7 @@ namespace hospital.management.system.BLL.Services;
             if (user == null) Result.Failure("error");
             return new ProfileModel
             {
-                Name = user.UserName,
+                UserName = user.UserName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,

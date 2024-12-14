@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="RD-243.21565.191">
-    <data-source name="@." uuid="b781d916-8190-440a-93e4-c36353e7c0d3">
+    <data-source name="@." uuid="f372a7c4-e9a7-44b7-9d0d-d5b74bcdb0ed">
       <database-info product="Microsoft SQL Server" version="16.00.1135" jdbc-version="4.2" driver-name="JetBrains JDBC Driver for SQL Server" driver-version="1.0" dbms="MSSQL" exact-version="16.0.1135" exact-driver-version="1.0">
         <extra-name-characters>$#@</extra-name-characters>
         <identifier-quote-string>&quot;</identifier-quote-string>

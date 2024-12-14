@@ -6,7 +6,7 @@ namespace hospital.management.system.BLL.Models;
 
 public class ProfileModel
 {
-    public string Name { get; set; } = string.Empty;
+    public string UserName { get; set; } = string.Empty;
     public Gender Gender { get; set; }
     public string? NationalIdOrPassport { get; set; } = string.Empty;
     public string? PhoneNumber { get; set; } = string.Empty;

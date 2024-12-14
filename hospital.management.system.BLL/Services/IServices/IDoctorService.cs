@@ -26,6 +26,8 @@ public interface IDoctorService
 
     public int CreateMedicalRecord(MedicalRecordModel model);
 
+    public Task<GetDoctorProfileModel> GetDoctorByUserId(Guid Id);
+
     // public IEnumerable<Doctor> viewPatientHistory();
 
 
