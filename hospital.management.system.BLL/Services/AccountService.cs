@@ -54,6 +54,7 @@ namespace hospital.management.system.BLL.Services;
 
             ApplicationUser newUser = new()
             {
+                SSN = "30311151402135" , 
                 UserName = model.UserName,
                 Email = model.Email,
                 SSN = "123458",

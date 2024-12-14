@@ -1,0 +1,85 @@
+@using hospital.management.system.DAL
+@model IEnumerable< hospital.management.system.BLL.Models.Doctors.DoctorAppoinment>
+
+@{
+    ViewData["Title"] = "Upcoming Appointments";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Upcoming Appointments</h2>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Reason</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var Appointment in Model)
+                        {
+                            <tr>
+                                <td>@Appointment.FullName</td>
+                                <td>@Appointment.Date.ToString("d")</td>
+                                <td>@Appointment.Reason</td>
+                                <td class="text-center">
+                                    <span class="text-warning">
+                                        Pending
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <form method="post">
+                                        <button type="submit" asp-controller="Doctor" asp-action="IdToApproveAppointment" asp-route-id="@Appointment.PatientId" class="btn btn-success btn-sm">Approve</button>
+                                        <button type="submit" asp-controller="Doctor" asp-action="CancelingAppointment" asp-route-id="@Appointment.PatientId" class="btn btn-danger btn-sm">Cancel</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this Appointment?");
+        }
+    </script>
+}
+
+<style>
+    /* Smaller Add New Appointment Button Styling */
+    .add-new-btn-sm {
+        background-color: #ff6600;
+        color: white;
+        border: none;
+        padding: 5px 12px; /* Reduced padding */
+        font-size: 14px; /* Smaller font */
+        border-radius: 5px; /* Slightly smaller border radius */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .add-new-btn-sm i {
+        margin-right: 5px;
+    }
+
+    .add-new-btn-sm:hover {
+        background-color: #e65c00;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .add-new-btn-sm:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.4);
+    }
+</style>

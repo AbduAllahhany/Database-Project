@@ -1,0 +1,101 @@
+@model hospital.management.system.BLL.Models.Patient.PatientRoom
+
+@{
+    ViewData["Title"] = "Room Status";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Room Status</h2>
+    
+    @if (Model != null )
+    {
+        <div class="card mt-4 shadow-lg">
+            <div class="card-header bg-primary text-white text-center">
+                <h4>Room Details for @Model.PatientName</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <h5>Start Date:</h5>
+                        <p>@Model.StartDate.ToString("MMMM dd, yyyy")</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>End Date:</h5>
+                        <p>@(Model.EndDate == default(DateOnly) ? "Currently Admitted" : Model.EndDate.ToString("MMMM dd, yyyy"))</p>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <h5>Room Number:</h5>
+                        <p>@Model.RoomNumber</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Room Type:</h5>
+                        <p>@(string.IsNullOrEmpty(Model.Type) ? "N/A" : Model.Type)</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Status:</h5>
+                        <p>@(Model.Status ? "Occupied" : "Available")</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Cost Per Day:</h5>
+                        <p>@Model.CostPerDay.ToString("C")</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-action="DashBoard" asp-controller="Patient" class="btn btn-secondary">
+                    <i class="fas fa-home"></i> Return to Dashboard
+                </a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No Room found.
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+}
+
+<style>
+    /* Card styling */
+    .card {
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .card-body h5 {
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .card-body p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    .btn-secondary {
+        padding: 10px 20px;
+        font-size: 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+</style>

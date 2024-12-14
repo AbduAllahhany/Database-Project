@@ -27,7 +27,7 @@ public class PatientService : IPatientService
             if(patientId==null || patientId == Guid.Empty) return null;
             
             List<PatientAppointment>  result = _context.Database.SqlQuery<PatientAppointment>(
-                $@"select a.Id,a.status,reason   ,concat(p.firstName,' ',p.lastName) as PatientName , concat(d.firstName,' ',d.lastName) as DoctorName
+                $@"select a.Id,a.status,reason   ,concat(p.firstName,' ',p.lastName) as PatientName , concat(d.firstName,' ',d.lastName) as DoctorName, a.date 
                   from Patient_Doctor_Appointment a ,  Patient p , dbo.Doctor d
                   where a.patientId=p.Id and d.Id = a.doctorId
                   and  a.patientId={patientId}" ).ToList();

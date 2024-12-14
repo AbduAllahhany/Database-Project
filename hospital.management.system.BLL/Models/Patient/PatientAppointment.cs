@@ -18,4 +18,6 @@ public class PatientAppointment
     public string PatientName { get; set; } 
     
     public string DoctorName { get; set; } 
+    
+    public DateOnly Date { get; set; }
 }
