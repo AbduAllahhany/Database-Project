@@ -1,0 +1,81 @@
+@using hospital.management.system.DAL
+@using hospital.management.system.Models.Entities
+@using Microsoft.AspNetCore.Identity
+@model hospital.management.system.BLL.Models.Doctors.FollowUpAppointmentModel
+@inject UserManager<ApplicationUser> userManager
+
+@{
+    var patients = await userManager.GetUsersInRoleAsync(SD.Patient);
+    var patientsUserNames = patients.Select(p => p.UserName);
+    var doctors = await userManager.GetUsersInRoleAsync(SD.Doctor);
+    var doctorsUserNames = doctors.Select(p => p.UserName);
+}
+
+<h2 class="text-center mt-4">Create Follow-up Appointment</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-calendar-plus mr-2"></i> New Follow-up Appointment</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Begin form for creating a follow-up appointment -->
+                    <form asp-controller="Appointment" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <!-- Patient Selection -->
+                        <div class="form-group">
+                            <label for="PatientUserName"><i class="fas fa-user"></i> Patient User Name</label>
+                            <select asp-for="PatientId" class="form-control">
+                                @foreach (var patient in patientsUserNames)
+                                {
+                                    <option value="@patient">@patient</option>
+                                }
+                            </select>
+                        </div>
+
+                        @* <!-- Doctor Selection --> *@
+                        @* <div class="form-group"> *@
+                        @*     <label for="DoctorUserName"><i class="fas fa-user-md"></i> Doctor User Name</label> *@
+                        @*     <select asp-for="DoctorId" class="form-control"> *@
+                        @*         @foreach (var doctor in doctorsUserNames) *@
+                        @*         { *@
+                        @*             <option value="@doctor">@doctor</option> *@
+                        @*         } *@
+                        @*     </select> *@
+                        @* </div> *@
+
+                        <!-- Appointment Date -->
+                        <div class="form-group">
+                            <label asp-for="AppointmentDate"><i class="fas fa-calendar"></i> Appointment Date</label>
+                            <input asp-for="AppointmentDate" class="form-control" type="date" />
+                            <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                        </div>
+
+                        <!-- Reason for Appointment -->
+                        <div class="form-group">
+                            <label for="Reason"><i class="fas fa-info-circle"></i> Reason for Appointment</label>
+                            <textarea asp-for="Reason" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Reason" class="text-danger"></span>
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="text-right">
+                            <button asp-action="FollowUpAppointment" type="submit" class="btn btn-success">
+                                <i class="fas fa-calendar-check"></i> Create Follow-up Appointment
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />

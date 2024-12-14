@@ -1,0 +1,83 @@
+@model List<hospital.management.system.BLL.Models.Patient.PatientBill>
+
+@{
+    ViewData["Title"] = "Patient Bills List";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Patient Bills List</h2>
+    @if (Model != null && Model.Any())
+    {
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Total Amount</th>
+                            <th scope="col">Paid Amount</th>
+                            <th scope="col">Remaining</th>
+                            @* <th scope="col" class="text-center">Actions</th> *@
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var bill in Model)
+                        {
+                            <tr>
+                                <td>@bill.PatientName</td>
+                                <td>@bill.TotalAmount.ToString("C")</td>
+                                <td>@bill.PaidAmount.ToString("C")</td>
+                                <td>@(bill.Remaining.HasValue ? bill.Remaining.Value.ToString("C") : "N/A")</td>
+                                @* <td class="text-center"> *@
+                                @*     @if (bill.Remaining > 0) *@
+                                @*     { *@
+                                @*         <form method="post"> *@
+                                @*             @if (User.IsInRole("Admin")) *@
+                                @*             { *@
+                                @*                 <button type="submit" asp-controller="Bill" *@
+                                @*                         asp-action="Pay" asp-route-id="@bill.Id" *@
+                                @*                         class="btn btn-success btn-sm">Pay</button> *@
+                                @*             } *@
+                                @*             <button type="submit" asp-controller="Bill" *@
+                                @*                     asp-action="Cancel" asp-route-id="@bill.Id" *@
+                                @*                     class="btn btn-danger btn-sm">Cancel</button> *@
+                                @*         </form> *@
+                                @*     } *@
+                                @*     else *@
+                                @*     { *@
+                                @*         <span class="text-muted">No actions available</span> *@
+                                @*     } *@
+                                @* </td> *@
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No bills found.
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+    <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this bill?");
+        }
+    </script>
+}
+
+<style>
+    /* Styling for buttons */
+    .btn-sm {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+</style>

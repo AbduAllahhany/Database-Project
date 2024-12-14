@@ -17,65 +17,66 @@ public class DoctorService : IDoctorService
     private readonly IUnitOfWork unitOfWork;
     private readonly ApplicationDbContext _context;
 
-    public DoctorService(IUnitOfWork _unitOfWork,ApplicationDbContext _context)
+    public DoctorService(IUnitOfWork _unitOfWork, ApplicationDbContext _context)
     {
         unitOfWork = _unitOfWork;
         this._context = _context;
     }
-
-    public IEnumerable<Doctor> getPendingAppointments(Guid loggedDoctorId)
+    // ==> modidfied 
+    public IEnumerable<DoctorAppoinment> getPendingAppointments(Guid loggedDoctorId)
     {
         //var sql = $@"";
-        IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
-            SELECT P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason, A.date
+        IEnumerable<DoctorAppoinment> query = _context.Database.SqlQuery<DoctorAppoinment>($@"
+            SELECT p.Id ,concat(P.firstName , ' ' , P.lastName) as FullName, P.dateOfBirth, A.reason, A.date
             FROM Patient P 
             INNER JOIN Appointment A
             ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
             WHERE A.status = 'Pending'
-            ORDER BY A.date");
-        return query.ToList();
-    }
+            ORDER BY A.date").ToList();
 
-    public IEnumerable<Doctor> getDailyAppointments(Guid loggedDoctorId)
+        return query;
+    }
+    // ==> modidfied 
+    public IEnumerable<DoctorAppoinment> getDailyAppointments(Guid loggedDoctorId)
     {
         //var sql = ;
-        IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
-            SELECT P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason, A.date
+        IEnumerable<DoctorAppoinment> query = _context.Database.SqlQuery<DoctorAppoinment>($@"
+            SELECT p.Id ,concat(P.firstName , ' ' , P.lastName) as FullName, P.dateOfBirth, A.reason, A.date
             FROM Patient P 
             INNER JOIN Appointment A
-            ON A.patientId = P.Id AND A.doctorId = {0}
+            ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
             WHERE A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
-            ORDER BY A.date");
-        return query.ToList();
+            ORDER BY A.date").ToList();
+        return query;
     }
-    
-    public IEnumerable<Doctor> getUpcomingAppointments(Guid loggedDoctorId)
+    // ==> modidfied    
+    public IEnumerable<DoctorAppoinment> getUpcomingAppointments(Guid loggedDoctorId)
     {
         //var sql = ;
-        IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
-            SELECT P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason, A.date
+        IEnumerable<DoctorAppoinment> query = _context.Database.SqlQuery<DoctorAppoinment>($@"
+            SELECT p.Id ,concat(P.firstName , ' ' , P.lastName) as FullName, P.dateOfBirth, A.reason, A.date
             FROM Patient P 
             INNER JOIN Appointment A
-            ON A.patientId = P.Id AND A.doctorId = {0}
+            ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
             WHERE A.status = 'Pending' AND A.date > CONVERT (date, GETDATE())
-            ORDER BY A.date");
-        return query.ToList();
+            ORDER BY A.date").ToList();
+        return query;
     }
-    
-    public IEnumerable<Doctor> getMonthlyAppointmentSummary(Guid loggedDoctorId)
+    // ==>  modidfied 
+    public IEnumerable<DoctorMonthlyAppointmentSummary> getMonthlyAppointmentSummary(Guid loggedDoctorId)
     {
         //var sql = ;
-        IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
+        IEnumerable<DoctorMonthlyAppointmentSummary> query = _context.Database.SqlQuery<DoctorMonthlyAppointmentSummary>($@"
             SELECT COUNT(*) AS TotalAppointments,
                 SUM(CASE WHEN status = 'Approved' THEN 1 ELSE 0 END) AS ApprovedAppointments,
                 SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS PendingAppointments,
                 SUM(CASE WHEN status = 'Reject' THEN 1 ELSE 0 END) AS RejectedAppointments
             FROM Appointment A
-            WHERE A.doctorId = {0} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())");
-        return query.ToList();
+            WHERE A.doctorId = {loggedDoctorId} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())").ToList();
+        return query;
     }
-    
-    public int approveNextAppointment(Guid loggedDoctorId) 
+
+    public int approveNextAppointment(Guid loggedDoctorId)
     {
         //var sql = ;
         var res = _context.Database.ExecuteSqlRaw($@"
@@ -84,7 +85,7 @@ public class DoctorService : IDoctorService
             WHERE Id IN (
 	            SELECT TOP(1) A.Id
 	            FROM Patient P, Appointment A
-	            WHERE A.patientId = P.Id AND A.doctorId = {0} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
+	            WHERE A.patientId = P.Id AND A.doctorId = {loggedDoctorId} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
 	            ORDER BY A.date
             )");
         return res;
@@ -99,7 +100,7 @@ public class DoctorService : IDoctorService
             WHERE Id IN (
 	            SELECT A.Id
 	            FROM Patient P, Appointment A
-	            WHERE A.patientId = P.Id AND A.doctorId = {0} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
+	            WHERE A.patientId = P.Id AND A.doctorId = {loggedDoctorId} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
             )");
         return res;
     }
@@ -126,20 +127,25 @@ public class DoctorService : IDoctorService
         var res = _context.Database.ExecuteSqlRaw(sql, model.PatientId, model.DoctorId, model.Reason, model.AppointmentDate);
         return res;
     }
-    
+
     // int !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public int getNextAppointmentInfo(Guid loggedDoctorId)
+    // ==>  modified 
+    public IEnumerable<DoctorAppoinment> getNextAppointmentInfo(Guid loggedDoctorId)
     {
-        var sql = $@"            
-	        SELECT TOP(1) P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason
+        // string sql = $@"            
+        //  SELECT TOP(1) P.firstName + ' ' + P.lastName as 'Full Name', P.dateOfBirth, A.reason
+        //  FROM Patient P, Appointment A
+        //  WHERE A.patientId = P.Id AND A.doctorId = {loggedDoctorId} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
+        //  ORDER BY A.date";
+        IEnumerable<DoctorAppoinment> res = _context.Database.SqlQuery<DoctorAppoinment>($@"            
+	        SELECT TOP(1) p.Id ,concat(P.firstName , ' ' , P.lastName) as FullName, P.dateOfBirth, A.reason, A.date
 	        FROM Patient P, Appointment A
-	        WHERE A.patientId = P.Id AND A.doctorId = {0} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
-	        ORDER BY A.date";
-        var res = _context.Database.ExecuteSqlRaw(sql, loggedDoctorId);
+	        WHERE A.patientId = P.Id AND A.doctorId = {loggedDoctorId} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
+	        ORDER BY A.date").ToList();
         return res;
     }
 
-    public int CreateMedicalRecord(MedicalRecordModel model) 
+    public int CreateMedicalRecord(MedicalRecordModel model)
     {
         var sql = @"            
             INSERT INTO medical_record(dateOfRecording, diagnostic, prescription, doctorId, patientId)

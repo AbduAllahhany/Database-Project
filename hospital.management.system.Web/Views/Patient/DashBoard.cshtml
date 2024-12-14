@@ -1,0 +1,214 @@
+@model hospital.management.system.BLL.Models.Patient.PatientDashBoardModel 
+<title>Patient Dashboard</title>
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background-color: #f0f4f7;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .card {
+        border: none;
+        border-radius: 16px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title {
+        font-weight: 600;
+        font-size: 1.2rem;
+        color: #2d3748;
+    }
+
+    .btn-custom {
+        background-color: rgb(13, 110, 253);
+        color: white;
+        border-radius: 8px;
+        padding: 0.6rem 1.4rem;
+        font-size: 1rem;
+    }
+
+    .btn-custom:hover {
+        background-color: rgba(13, 110, 253, 0.9);
+    }
+
+    .icon-circle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: rgb(13, 110, 253);
+        color: white;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-weight: 600;
+        font-size: 1.4rem;
+        color: rgb(13, 110, 253);
+        margin: 1.5rem 0 1rem;
+        text-align: center;
+    }
+
+    .centered-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .list-unstyled li {
+        margin-bottom: 0.4rem;
+        font-size: 1rem;
+        color: #4a5568;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: rgb(13, 110, 253);
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+
+    .card p {
+        color: #718096;
+    }
+
+    .container {
+        max-width: 960px;
+    }
+
+    .btn-outline-custom {
+        background-color: transparent;
+        border: 1px solid rgb(13, 110, 253);
+        color: rgb(13, 110, 253);
+        border-radius: 8px;
+        padding: 0.6rem 1.4rem;
+    }
+
+    .btn-outline-custom:hover {
+        background-color: rgb(13, 110, 253);
+        color: white;
+    }
+</style>
+
+<div class="container my-5">
+    <h2 class="text-center">Patient Dashboard</h2>
+
+    <!-- Patient Information -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h5 class="card-title">Patient Information</h5>
+                <ul class="list-unstyled mb-0">
+                    <li><strong>First Name:</strong> @Model.Patient.FirstName</li>
+                    <li><strong>Last Name:</strong> @Model.Patient.LastName</li>
+                    <li><strong>Date of Birth:</strong> @Model.Patient.DateOfBirth.ToShortDateString()</li>
+                    <li><strong>Blood Group:</strong> @(Model.Patient.BloodGroup ?? "N/A")</li>
+                    <li><strong>Address:</strong> @(Model.Patient.Address ?? "N/A")</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card p-4">
+                <h5 class="card-title">Health Details</h5>
+                <ul class="list-unstyled mb-0">
+                    <li><strong>Allergies:</strong> @(Model.Patient.Allergies ?? "None")</li>
+                    <li><strong>Chronic Diseases:</strong> @(Model.Patient.ChronicDiseases ?? "None")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Contacts -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card p-4">
+                <h5 class="card-title">Emergency Contacts</h5>
+                <ul class="list-unstyled mb-0">
+                    @foreach (var contact in Model.EmergencyContacts)
+                    {
+                        <li><strong>@contact.Name:</strong> @contact.Phone (<em>@contact.Relationship</em>)</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Links to Related Data -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-file-medical"></i>
+                </div>
+                <h5 class="card-title">Medical Records</h5>
+                <p>View detailed medical history</p>
+                <a href="@Url.Action("GetPatientMedicalRecord", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Records</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-event"></i>
+                </div>
+                <h5 class="card-title">Appointments</h5>
+                <p>Manage appointments</p>
+                <a href="@Url.Action("GetPatientAppointments", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Appointments</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-receipt"></i>
+                </div>
+                <h5 class="card-title">Bills</h5>
+                <p>Check billing details</p>
+                <a href="@Url.Action("GetPatientBills", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Bills</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-door-open"></i>
+                </div>
+                <h5 class="card-title">Room Status</h5>
+                <p>View current room details</p>
+                <a href="@Url.Action("GetRoomStatus", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Room</a>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+                <h5 class="card-title">Visits</h5>
+                <p>Review past visits</p>
+                <a href="@Url.Action("GetPatientVisits", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Visits</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap 5 JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
