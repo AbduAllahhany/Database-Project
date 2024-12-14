@@ -5,6 +5,7 @@ using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.Web.Controllers;
 
+[Authorize(Roles = SD.Doctor)]
 public class DoctorController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
