@@ -9,23 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c7c0a50-8c45-4b30-8f0d-1b9583d94bfb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.DAL/Persistence/ApplicationDbContext.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.DAL/Persistence/DataBaseSeed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.DAL/Persistence/DataBaseSeed.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Admission.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Appointment.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Bill.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Department.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Doctor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/EmergencyContact.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Insurance.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/MedicalRecord.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Patient.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/PatientPhone.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Room.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Staff.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/Entities/Visit.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Models/hospital.management.system.Models.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Models/hospital.management.system.Models.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/INFORMATION_SCHEMA.NBgcMw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/sys.zb4BAA.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +44,7 @@
     ".NET Launch Settings Profile.hospital.management.system.Web: http.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
