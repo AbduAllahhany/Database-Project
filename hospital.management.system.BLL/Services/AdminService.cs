@@ -1,4 +1,6 @@
 using hospital.management.system.BLL.Models.Admin;
+using hospital.management.system.BLL.Models.Doctors;
+using hospital.management.system.BLL.Models.Patient;
 using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
