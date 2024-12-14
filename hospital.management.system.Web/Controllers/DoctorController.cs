@@ -144,7 +144,7 @@ public class DoctorController : Controller
         }
         catch (Exception ex)
         {
-            // Log exception (optional)
+            // Log exception (optional).....
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
     }
