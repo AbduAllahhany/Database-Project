@@ -8,7 +8,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="3c7c0a50-8c45-4b30-8f0d-1b9583d94bfb" name="Changes" comment="">
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Doctors/DoctorAppoinment.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Doctors/DoctorDashBoardModel.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Doctors/DoctorMonthlyAppointmentSummary.cs" afterDir="false" />
@@ -27,12 +30,15 @@
       <change afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/GetRoomStatus.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.xml" afterDir="false" />
+=======
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/INFORMATION_SCHEMA.NBgcMw.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/dbo.sYMBAA.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources/4956598e-db93-4988-8a63-df3de5eedf72/storage_v2/_src_/database/master.YiqNvw/schema/sys.zb4BAA.meta" beforeDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hospital Management System.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Hospital Management System.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Accounts/RegisterModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Accounts/RegisterModel.cs" afterDir="false" />
@@ -49,7 +55,15 @@
       <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/GetAllPetient.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/GetAllPetient.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/Index.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/Index.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/appsettings.json" afterDir="false" />
+=======
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     </list>
+=======
+    <list default="true" id="3c7c0a50-8c45-4b30-8f0d-1b9583d94bfb" name="Changes" comment="" />
+>>>>>>> b46bea4311e3791df8090cf14f76baf32deb494b
+=======
+    <list default="true" id="3c7c0a50-8c45-4b30-8f0d-1b9583d94bfb" name="Changes" comment="" />
+>>>>>>> edit/register-form
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,6 +76,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+<<<<<<< HEAD
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
@@ -82,6 +97,15 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+=======
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/hospital.management.system.BLL/Services/DoctorService.cs" root0="SKIP_HIGHLIGHTING" />
+<<<<<<< HEAD
+=======
+    <setting file="file://$PROJECT_DIR$/hospital.management.system.Web/Views/Account/Login.cshtml" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" root2="SKIP_HIGHLIGHTING" />
+>>>>>>> edit/register-form
+  </component>
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -93,20 +117,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.hospital.management.system.Web: http.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "terminal",
+    "vue.rearranger.settings.migration": "true"
+=======
+=======
+>>>>>>> edit/register-form
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;.NET Launch Settings Profile.hospital.management.system.Web: http.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+<<<<<<< HEAD
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.23425196&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+=======
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+<<<<<<< HEAD
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+=======
+    &quot;git-widget-placeholder&quot;: &quot;edit/register-form&quot;,
+>>>>>>> edit/register-form
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+<<<<<<< HEAD
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+=======
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+<<<<<<< HEAD
+>>>>>>> b46bea4311e3791df8090cf14f76baf32deb494b
+=======
+>>>>>>> edit/register-form
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
   }
 }</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.hospital.management.system.Web: http">
@@ -150,6 +214,7 @@
       <option name="presentableId" value="Default" />
       <updated>1734035007577</updated>
       <workItem from="1734035012530" duration="389000" />
+<<<<<<< HEAD
       <workItem from="1734035948156" duration="326000" />
       <workItem from="1734036442944" duration="690000" />
       <workItem from="1734046986320" duration="10075000" />
@@ -162,6 +227,17 @@
       <workItem from="1734139309914" duration="4000" />
       <workItem from="1734139393395" duration="1144000" />
       <workItem from="1734141051642" duration="5000" />
+=======
+      <workItem from="1734043883278" duration="851000" />
+      <workItem from="1734076422570" duration="4066000" />
+      <workItem from="1734081138305" duration="175000" />
+<<<<<<< HEAD
+      <workItem from="1734110179414" duration="513000" />
+=======
+      <workItem from="1734116989819" duration="11930000" />
+      <workItem from="1734133406806" duration="2898000" />
+>>>>>>> edit/register-form
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />

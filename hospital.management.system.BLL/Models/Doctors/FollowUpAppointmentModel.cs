@@ -11,5 +11,6 @@ public class FollowUpAppointmentModel
     
     public string Status { get; set; } = "Approved";
     public DateOnly AppointmentDate { get; set; }
+    public TimeOnly AppointmentTime { get; set; }
     public string? Reason { get; set; }
 }

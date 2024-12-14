@@ -41,32 +41,52 @@ public class DoctorController : Controller
     
     public IActionResult IdToPendingAppointment()
     {
+<<<<<<< HEAD
         
         var pendingAppointment = _doctorService.getPendingAppointments(GetUserId());
         return View("IdToPendingAppointment",pendingAppointment);
+=======
+        var pendingAppointment = _doctorService.GetPendingAppointments(GetUserId());
+        return View(pendingAppointment);
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     }
     
     public IActionResult IdToDailyAppointment()
     {
+<<<<<<< HEAD
         var dailyAppointment = _doctorService.getDailyAppointments(GetUserId());
         return View("IdToDailyAppointment",dailyAppointment);
+=======
+        var dailyAppointment = _doctorService.GetDailyAppointments(GetUserId());
+        return View(dailyAppointment);
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     }
     
     public IActionResult IdToUpcomingAppointment()
     {
+<<<<<<< HEAD
         var upcomingAppointment = _doctorService.getUpcomingAppointments(GetUserId());
         return View("IdToUpcomingAppointment",upcomingAppointment);
+=======
+        var upcomingAppointment = _doctorService.GetUpcomingAppointments(GetUserId());
+        return View(upcomingAppointment);
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     }
     
     public IActionResult IdToApproveAppointment()
     {
+<<<<<<< HEAD
         var approveAppointment = _doctorService.approveNextAppointment(GetUserId());
         return View("IdToApproveAppointment",approveAppointment);
+=======
+        var approveAppointment = _doctorService.ApproveNextAppointment(GetUserId());
+        return View(approveAppointment);
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     }
     // ==> what is the view should do ?!!!!!!!!!!!!!!!!!!
     public IActionResult IdToPostponeAppointment()
     {
-        var postponeAppointment = _doctorService.postponingAppointment(GetUserId());
+        var postponeAppointment = _doctorService.PostponingAppointment(GetUserId());
         return View(postponeAppointment);
     }
     
@@ -77,6 +97,7 @@ public class DoctorController : Controller
             LoggedDoctorId = GetUserId(),
             SelectedPatientId = patientId,             
         };
+<<<<<<< HEAD
         var cancelAppointment = _doctorService.cancelingAppointment(model);
         return View("CancelingAppointment",cancelAppointment);
     }
@@ -84,10 +105,15 @@ public class DoctorController : Controller
     public IActionResult FollowUpAppointment()
     {
         return View("FollowUpAppointment");
+=======
+        var cancelAppointment = _doctorService.CancelingAppointment(model);
+        return View(cancelAppointment);
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     }
     public IActionResult FollowUpAppointment(FollowUpAppointmentModel model)
     {
         model.DoctorId = GetUserId();
+<<<<<<< HEAD
         if (!ModelState.IsValid) return RedirectToAction("FollowUpAppointment");
         var followUpAppointment = _doctorService.followUpAppointment(model);
        // return View("FollowUpAppointment",followUpAppointment);
@@ -145,5 +171,9 @@ public class DoctorController : Controller
             // Log exception (optional)
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
+=======
+        var followUpAppointment = _doctorService.FollowUpAppointment(model);
+        return View(followUpAppointment);
+>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
     }
 }
