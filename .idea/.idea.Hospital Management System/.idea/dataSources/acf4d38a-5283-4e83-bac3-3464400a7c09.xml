@@ -12478,6 +12478,7 @@
     <collation id="4148" parent="1" name="Yakut_100_CS_AS_WS_SC_UTF8">
       <Description>Yakut-100, case-sensitive, accent-sensitive, kanatype-insensitive, width-sensitive, supplementary characters, UTF8</Description>
     </collation>
+<<<<<<< HEAD
     <collation id="4149" parent="1" name="Yakut_100_CS_AS_KS_SC_UTF8">
       <Description>Yakut-100, case-sensitive, accent-sensitive, kanatype-sensitive, width-insensitive, supplementary characters, UTF8</Description>
     </collation>
@@ -16562,6 +16563,13 @@
       <Description>Romanian-100, case-insensitive, accent-sensitive, kanatype-insensitive, width-insensitive</Description>
     </collation>
     <database id="5510" parent="1" name="master">
+=======
+    <database id="5510" parent="1" name="DatabaseProjectTest">
+      <ObjectId>5</ObjectId>
+      <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
+    </database>
+    <database id="5511" parent="1" name="master">
+>>>>>>> edit/register-form
       <Current>1</Current>
       <Fingerprint>1.37717/00000000-0000-0000-0000-000000000000@Azmy\SQLEXPRESS</Fingerprint>
       <Grants>1|database||1|connect|G
@@ -16575,6 +16583,7 @@
       <PermissionsCheckSum>7998723517</PermissionsCheckSum>
       <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
     </database>
+<<<<<<< HEAD
     <database id="5511" parent="1" name="tempdb">
       <ObjectId>2</ObjectId>
       <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
@@ -16591,6 +16600,20 @@
       <ObjectId>5</ObjectId>
       <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
     </database>
+=======
+    <database id="5512" parent="1" name="model">
+      <ObjectId>3</ObjectId>
+      <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
+    </database>
+    <database id="5513" parent="1" name="msdb">
+      <ObjectId>4</ObjectId>
+      <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
+    </database>
+    <database id="5514" parent="1" name="tempdb">
+      <ObjectId>2</ObjectId>
+      <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
+    </database>
+>>>>>>> edit/register-form
     <linked-server id="5515" parent="1" name="Azmy\SQLEXPRESS">
       <DataSource>Azmy\SQLEXPRESS</DataSource>
       <Product>SQL Server</Product>
@@ -16781,6 +16804,7 @@
       <ObjectId>267</ObjectId>
       <Type>certificate-mapped-login</Type>
     </login>
+<<<<<<< HEAD
     <assembly id="5551" parent="5510" name="Microsoft.SqlServer.Types">
       <ObjectId>1</ObjectId>
       <Visible>1</Visible>
@@ -16868,11 +16892,63 @@
       <ObjectId>2</ObjectId>
     </role>
     <role id="5567" parent="5510" name="public">
+=======
+    <schema id="5551" parent="5510" name="INFORMATION_SCHEMA">
+      <ObjectId>3</ObjectId>
+    </schema>
+    <schema id="5552" parent="5510" name="db_accessadmin">
+      <ObjectId>16385</ObjectId>
+    </schema>
+    <schema id="5553" parent="5510" name="db_backupoperator">
+      <ObjectId>16389</ObjectId>
+    </schema>
+    <schema id="5554" parent="5510" name="db_datareader">
+      <ObjectId>16390</ObjectId>
+    </schema>
+    <schema id="5555" parent="5510" name="db_datawriter">
+      <ObjectId>16391</ObjectId>
+    </schema>
+    <schema id="5556" parent="5510" name="db_ddladmin">
+      <ObjectId>16387</ObjectId>
+    </schema>
+    <schema id="5557" parent="5510" name="db_denydatareader">
+      <ObjectId>16392</ObjectId>
+    </schema>
+    <schema id="5558" parent="5510" name="db_denydatawriter">
+      <ObjectId>16393</ObjectId>
+    </schema>
+    <schema id="5559" parent="5510" name="db_owner">
+      <ObjectId>16384</ObjectId>
+    </schema>
+    <schema id="5560" parent="5510" name="db_securityadmin">
+      <ObjectId>16386</ObjectId>
+    </schema>
+    <schema id="5561" parent="5510" name="dbo">
+      <Current>1</Current>
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="5562" parent="5510" name="guest">
+      <ObjectId>2</ObjectId>
+    </schema>
+    <schema id="5563" parent="5510" name="sys">
+      <ObjectId>4</ObjectId>
+    </schema>
+    <assembly id="5564" parent="5511" name="Microsoft.SqlServer.Types">
+      <ObjectId>1</ObjectId>
+      <Visible>1</Visible>
+    </assembly>
+    <filegroup id="5565" parent="5511" name="PRIMARY">
+      <DefaultGroup>1</DefaultGroup>
+      <ObjectId>1</ObjectId>
+    </filegroup>
+    <role id="5566" parent="5511" name="public">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>0</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5568" parent="5510" name="sys">
       <AuthType>none</AuthType>
       <ObjectId>4</ObjectId>
@@ -16908,6 +16984,121 @@
       <ObjectId>16386</ObjectId>
     </schema>
     <schema id="5579" parent="5510" name="dbo">
+=======
+    <role id="5567" parent="5511" name="dbo">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>1</ObjectId>
+    </role>
+    <role id="5568" parent="5511" name="guest">
+      <AuthType>none</AuthType>
+      <DefaultSchema>guest</DefaultSchema>
+      <ObjectId>2</ObjectId>
+    </role>
+    <role id="5569" parent="5511" name="INFORMATION_SCHEMA">
+      <AuthType>none</AuthType>
+      <ObjectId>3</ObjectId>
+    </role>
+    <role id="5570" parent="5511" name="sys">
+      <AuthType>none</AuthType>
+      <ObjectId>4</ObjectId>
+    </role>
+    <role id="5571" parent="5511" name="##MS_PolicyEventProcessingLogin##">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>5</ObjectId>
+    </role>
+    <role id="5572" parent="5511" name="##MS_AgentSigningCertificate##">
+      <AuthType>none</AuthType>
+      <ObjectId>6</ObjectId>
+      <Type>certificate-mapped-user</Type>
+    </role>
+    <role id="5573" parent="5511" name="db_owner">
+      <AuthType>none</AuthType>
+      <ObjectId>16384</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5574" parent="5511" name="db_accessadmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16385</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5575" parent="5511" name="db_securityadmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16386</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5576" parent="5511" name="db_ddladmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16387</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5577" parent="5511" name="db_backupoperator">
+      <AuthType>none</AuthType>
+      <ObjectId>16389</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5578" parent="5511" name="db_datareader">
+      <AuthType>none</AuthType>
+      <ObjectId>16390</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5579" parent="5511" name="db_datawriter">
+      <AuthType>none</AuthType>
+      <ObjectId>16391</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5580" parent="5511" name="db_denydatareader">
+      <AuthType>none</AuthType>
+      <ObjectId>16392</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5581" parent="5511" name="db_denydatawriter">
+      <AuthType>none</AuthType>
+      <ObjectId>16393</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <schema id="5582" parent="5511" name="INFORMATION_SCHEMA">
+      <ObjectId>3</ObjectId>
+    </schema>
+    <schema id="5583" parent="5511" name="db_accessadmin">
+      <ObjectId>16385</ObjectId>
+    </schema>
+    <schema id="5584" parent="5511" name="db_backupoperator">
+      <ObjectId>16389</ObjectId>
+    </schema>
+    <schema id="5585" parent="5511" name="db_datareader">
+      <ObjectId>16390</ObjectId>
+    </schema>
+    <schema id="5586" parent="5511" name="db_datawriter">
+      <ObjectId>16391</ObjectId>
+    </schema>
+    <schema id="5587" parent="5511" name="db_ddladmin">
+      <ObjectId>16387</ObjectId>
+    </schema>
+    <schema id="5588" parent="5511" name="db_denydatareader">
+      <ObjectId>16392</ObjectId>
+    </schema>
+    <schema id="5589" parent="5511" name="db_denydatawriter">
+      <ObjectId>16393</ObjectId>
+    </schema>
+    <schema id="5590" parent="5511" name="db_owner">
+      <ObjectId>16384</ObjectId>
+    </schema>
+    <schema id="5591" parent="5511" name="db_securityadmin">
+      <ObjectId>16386</ObjectId>
+    </schema>
+    <schema id="5592" parent="5511" name="dbo">
+>>>>>>> edit/register-form
       <Current>1</Current>
       <Grants>117575457|||0|select|G
 133575514|||0|select|G
@@ -16919,6 +17110,7 @@
       <ObjectId>1</ObjectId>
       <PermissionsCheckSum>5067854233</PermissionsCheckSum>
     </schema>
+<<<<<<< HEAD
     <schema id="5580" parent="5510" name="guest">
       <ObjectId>2</ObjectId>
     </schema>
@@ -16966,20 +17158,37 @@
       <ObjectId>4</ObjectId>
     </schema>
     <routine id="5595" parent="5579" name="sp_MScleanupmergepublisher">
+=======
+    <schema id="5593" parent="5511" name="guest">
+      <ObjectId>2</ObjectId>
+    </schema>
+    <schema id="5594" parent="5511" name="sys">
+      <ObjectId>4</ObjectId>
+    </schema>
+    <routine id="5595" parent="5592" name="sp_MScleanupmergepublisher">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2022-10-08.08:32:51.057</CreatedTimestamp>
       <ModifiedTimestamp>2022-10-08.08:35:15.387</ModifiedTimestamp>
       <ObjectId>2139154666</ObjectId>
       <RoutineType>proc</RoutineType>
       <SourceTextLength>100</SourceTextLength>
     </routine>
+<<<<<<< HEAD
     <routine id="5596" parent="5579" name="sp_MSrepl_startup">
+=======
+    <routine id="5596" parent="5592" name="sp_MSrepl_startup">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2022-10-08.08:32:51.047</CreatedTimestamp>
       <ModifiedTimestamp>2022-10-08.08:35:15.380</ModifiedTimestamp>
       <ObjectId>2123154609</ObjectId>
       <RoutineType>proc</RoutineType>
       <SourceTextLength>83</SourceTextLength>
     </routine>
+<<<<<<< HEAD
     <table id="5597" parent="5579" name="MSreplication_options">
+=======
+    <table id="5597" parent="5592" name="MSreplication_options">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2022-10-08.08:32:51.023</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2022-10-08.08:35:15.373</ModifiedTimestamp>
@@ -16987,7 +17196,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <table id="5598" parent="5579" name="spt_fallback_db">
+=======
+    <table id="5598" parent="5592" name="spt_fallback_db">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2003-04-08.11:18:01.557</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2022-10-08.08:35:15.343</ModifiedTimestamp>
@@ -16995,7 +17208,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <table id="5599" parent="5579" name="spt_fallback_dev">
+=======
+    <table id="5599" parent="5592" name="spt_fallback_dev">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2003-04-08.11:18:02.870</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2022-10-08.08:35:15.350</ModifiedTimestamp>
@@ -17003,7 +17220,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <table id="5600" parent="5579" name="spt_fallback_usg">
+=======
+    <table id="5600" parent="5592" name="spt_fallback_usg">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2003-04-08.11:18:04.180</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2022-10-08.08:35:15.357</ModifiedTimestamp>
@@ -17011,7 +17232,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <table id="5601" parent="5579" name="spt_monitor">
+=======
+    <table id="5601" parent="5592" name="spt_monitor">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-11-25.21:15:55.860</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2024-11-25.21:15:55.867</ModifiedTimestamp>
@@ -17019,7 +17244,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <view id="5602" parent="5579" name="spt_values">
+=======
+    <view id="5602" parent="5592" name="spt_values">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-11-25.21:15:55.847</CreatedTimestamp>
       <ModifiedTimestamp>2024-11-25.21:15:55.860</ModifiedTimestamp>
       <ObjectId>599673184</ObjectId>

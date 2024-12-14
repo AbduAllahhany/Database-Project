@@ -8,6 +8,7 @@ namespace hospital.management.system.BLL.Models.Accounts;
 public class RegisterModel
 {
     [Required]
+    [Display(Name = "Username")]
     public string UserName { get; set; }
 
     [Required] 
@@ -21,11 +22,10 @@ public class RegisterModel
     [Required]
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
-
-    [Required]
-    [Display(Name = "Date of birth")]
-    [DateOfBirth]
-    public DateTime DateOfbirth { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+    
+    [Required] 
+    [NationalID] 
+    public string SSN { get; set; }
 
     [Required]
     [DataType(DataType.Password)]
@@ -33,9 +33,10 @@ public class RegisterModel
 
     [Required]
     [DataType(DataType.Password)]
-    [Compare("Password")]
+    [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
     public string ConfirmPassword { get; set; }
 
+    [Required]
     public Gender Gender { get; set; }
 
 }

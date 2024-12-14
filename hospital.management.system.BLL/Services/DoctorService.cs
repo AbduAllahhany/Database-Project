@@ -40,7 +40,11 @@ public class DoctorService : IDoctorService
         IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
             SELECT P.firstName + ' ' + P.lastName as 'Full Name', DATEDIFF(year, P.dateOfBirth, GETDATE()) as 'Age', P.bloodGroup, A.reason, A.date, A.time
             FROM Patient P 
+<<<<<<< HEAD
             INNER JOIN Patient_Doctor_Appointment A
+=======
+            INNER JOIN Appointment A
+>>>>>>> edit/register-form
             ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
             WHERE LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
             ORDER BY A.date");
@@ -52,7 +56,11 @@ public class DoctorService : IDoctorService
         IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"
             SELECT P.firstName + ' ' + P.lastName as 'Full Name', DATEDIFF(year, P.dateOfBirth, GETDATE()) as 'Age', P.bloodGroup, A.reason, A.date, A.time
             FROM Patient P 
+<<<<<<< HEAD
             INNER JOIN Patient_Doctor_Appointment A
+=======
+            INNER JOIN Appointment A
+>>>>>>> edit/register-form
             ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
             WHERE LOWER(A.status) = 'pending' AND A.date > CONVERT (date, GETDATE())
             ORDER BY A.date");
@@ -74,11 +82,19 @@ public class DoctorService : IDoctorService
     public int ApproveNextAppointment(Guid loggedDoctorId) 
     {
         var sql = $@"
+<<<<<<< HEAD
             UPDATE Patient_Doctor_Appointment
             SET status = 'Approved'
             WHERE Id IN (
 	            SELECT TOP(1) A.Id
 	            FROM Patient P, Patient_Doctor_Appointment A
+=======
+            UPDATE Appointment
+            SET status = 'Approved'
+            WHERE Id IN (
+	            SELECT TOP(1) A.Id
+	            FROM Patient P, Appointment A
+>>>>>>> edit/register-form
 	            WHERE A.patientId = P.Id AND A.doctorId = {0} AND LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
 	            ORDER BY A.date, A.time
             )";
@@ -89,11 +105,19 @@ public class DoctorService : IDoctorService
     public int PostponingAppointment(Guid loggedDoctorId)
     {
         var sql = $@"
+<<<<<<< HEAD
             UPDATE Patient_Doctor_Appointment
             SET date = DATEADD(DAY, 1,date)
             WHERE Id IN (
 	            SELECT A.Id
 	            FROM Patient P, Patient_Doctor_Appointment A
+=======
+            UPDATE Appointment
+            SET date = DATEADD(DAY, 1,date)
+            WHERE Id IN (
+	            SELECT A.Id
+	            FROM Patient P, Appointment A
+>>>>>>> edit/register-form
 	            WHERE A.patientId = P.Id AND A.doctorId = {0} AND LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
             )";
         var res = _context.Database.ExecuteSqlRaw(sql, loggedDoctorId);
@@ -108,7 +132,11 @@ public class DoctorService : IDoctorService
             SET status = 'Rejected'
             WHERE Id IN (
 	            SELECT A.Id
+<<<<<<< HEAD
 	            FROM Patient P, Patient_Doctor_Appointment A
+=======
+	            FROM Patient P, Appointment A
+>>>>>>> edit/register-form
 	            WHERE A.patientId = {0} AND A.doctorId = {1} AND LOWER(A.status) = 'pending'
             )";
         var res = _context.Database.ExecuteSqlRaw(sql, model.SelectedPatientId, model.LoggedDoctorId);
@@ -118,7 +146,11 @@ public class DoctorService : IDoctorService
     public int FollowUpAppointment(FollowUpAppointmentModel model)
     {
         var sql = $@"
+<<<<<<< HEAD
             INSERT INTO Patient_Doctor_Appointment(patientId, doctorId, reason, date, time) 
+=======
+            INSERT INTO Appointment(patientId, doctorId, reason, date, time) 
+>>>>>>> edit/register-form
             VALUES (@p1, @p2, @p3, @p4, @p5))";
         var res = _context.Database.ExecuteSqlRaw(sql, model.PatientId, model.DoctorId, model.Reason, model.AppointmentDate, model.AppointmentTime);
         return res;
@@ -128,7 +160,11 @@ public class DoctorService : IDoctorService
     {
         IQueryable<Doctor> query = _context.Doctors.FromSqlInterpolated($@"            
 	        SELECT TOP(1) P.firstName + ' ' + P.lastName as 'Full Name', DATEDIFF(year, P.dateOfBirth, GETDATE()) as 'Age', A.reason
+<<<<<<< HEAD
 	        FROM Patient P, Patient_Doctor_Appointment A
+=======
+	        FROM Patient P, Appointment A
+>>>>>>> edit/register-form
 	        WHERE A.patientId = P.Id AND A.doctorId = {loggedDoctorId} AND LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
 	        ORDER BY A.date");
         return query.ToList();
@@ -143,4 +179,3 @@ public class DoctorService : IDoctorService
         return res;
     }
 }
-

@@ -15337,6 +15337,7 @@
     <collation id="5101" parent="1" name="Yakut_100_CS_AS_WS_SC_UTF8">
       <Description>Yakut-100, case-sensitive, accent-sensitive, kanatype-insensitive, width-sensitive, supplementary characters, UTF8</Description>
     </collation>
+<<<<<<< HEAD
     <collation id="5102" parent="1" name="Nepali_100_CI_AS">
       <Description>Nepali-100, case-insensitive, accent-sensitive, kanatype-insensitive, width-insensitive</Description>
     </collation>
@@ -16562,6 +16563,18 @@
       <Description>Latin1-General, case-insensitive, accent-sensitive, kanatype-insensitive, width-insensitive for Unicode Data, SQL Server Sort Order 138 on Code Page 1255 for non-Unicode Data</Description>
     </collation>
     <database id="5510" parent="1" name="master">
+=======
+    <database id="5510" parent="1" name="DatabaseProjectTest">
+      <Fingerprint>1.37717/00000000-0000-0000-0000-000000000000@Azmy\SQLEXPRESS</Fingerprint>
+      <Grants>5|database||1|connect|G
+5|database||0|view any column encryption key definition|G
+5|database||0|view any column master key definition|G</Grants>
+      <ObjectId>5</ObjectId>
+      <PermissionsCheckSum>3196235284</PermissionsCheckSum>
+      <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
+    </database>
+    <database id="5511" parent="1" name="master">
+>>>>>>> edit/register-form
       <Current>1</Current>
       <Fingerprint>1.37717/00000000-0000-0000-0000-000000000000@Azmy\SQLEXPRESS</Fingerprint>
       <Grants>1|database||1|connect|G
@@ -16575,6 +16588,7 @@
       <PermissionsCheckSum>7998723517</PermissionsCheckSum>
       <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
     </database>
+<<<<<<< HEAD
     <database id="5511" parent="1" name="model">
       <ObjectId>3</ObjectId>
       <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
@@ -16596,6 +16610,20 @@
       <PermissionsCheckSum>3196235284</PermissionsCheckSum>
       <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
     </database>
+=======
+    <database id="5512" parent="1" name="model">
+      <ObjectId>3</ObjectId>
+      <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
+    </database>
+    <database id="5513" parent="1" name="msdb">
+      <ObjectId>4</ObjectId>
+      <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
+    </database>
+    <database id="5514" parent="1" name="tempdb">
+      <ObjectId>2</ObjectId>
+      <CollationName>SQL_Latin1_General_CP1_CI_AS</CollationName>
+    </database>
+>>>>>>> edit/register-form
     <linked-server id="5515" parent="1" name="Azmy\SQLEXPRESS">
       <DataSource>Azmy\SQLEXPRESS</DataSource>
       <Product>SQL Server</Product>
@@ -16794,44 +16822,101 @@
       <DefaultGroup>1</DefaultGroup>
       <ObjectId>1</ObjectId>
     </filegroup>
+<<<<<<< HEAD
     <role id="5553" parent="5510" name="##MS_AgentSigningCertificate##">
+=======
+    <role id="5553" parent="5510" name="public">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>6</ObjectId>
       <Type>certificate-mapped-user</Type>
     </role>
+<<<<<<< HEAD
     <role id="5554" parent="5510" name="##MS_PolicyEventProcessingLogin##">
       <AuthType>instance</AuthType>
+=======
+    <role id="5554" parent="5510" name="dbo">
+      <AuthType>windows</AuthType>
+>>>>>>> edit/register-form
       <DefaultSchema>dbo</DefaultSchema>
       <ObjectId>5</ObjectId>
     </role>
+<<<<<<< HEAD
     <role id="5555" parent="5510" name="INFORMATION_SCHEMA">
       <AuthType>none</AuthType>
       <ObjectId>3</ObjectId>
     </role>
     <role id="5556" parent="5510" name="db_accessadmin">
+=======
+    <role id="5555" parent="5510" name="guest">
+      <AuthType>none</AuthType>
+      <DefaultSchema>guest</DefaultSchema>
+      <ObjectId>2</ObjectId>
+    </role>
+    <role id="5556" parent="5510" name="INFORMATION_SCHEMA">
+      <AuthType>none</AuthType>
+      <ObjectId>3</ObjectId>
+    </role>
+    <role id="5557" parent="5510" name="sys">
+      <AuthType>none</AuthType>
+      <ObjectId>4</ObjectId>
+    </role>
+    <role id="5558" parent="5510" name="db_owner">
+      <AuthType>none</AuthType>
+      <ObjectId>16384</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5559" parent="5510" name="db_accessadmin">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16385</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5557" parent="5510" name="db_backupoperator">
+=======
+    <role id="5560" parent="5510" name="db_securityadmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16386</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5561" parent="5510" name="db_ddladmin">
+      <AuthType>none</AuthType>
+      <ObjectId>16387</ObjectId>
+      <Type>database-role</Type>
+      <OwnerId>1</OwnerId>
+    </role>
+    <role id="5562" parent="5510" name="db_backupoperator">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16389</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5558" parent="5510" name="db_datareader">
+=======
+    <role id="5563" parent="5510" name="db_datareader">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16390</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5559" parent="5510" name="db_datawriter">
+=======
+    <role id="5564" parent="5510" name="db_datawriter">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16391</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5560" parent="5510" name="db_ddladmin">
       <AuthType>none</AuthType>
       <ObjectId>16387</ObjectId>
@@ -16839,17 +16924,25 @@
       <OwnerId>1</OwnerId>
     </role>
     <role id="5561" parent="5510" name="db_denydatareader">
+=======
+    <role id="5565" parent="5510" name="db_denydatareader">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16392</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5562" parent="5510" name="db_denydatawriter">
+=======
+    <role id="5566" parent="5510" name="db_denydatawriter">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16393</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5563" parent="5510" name="db_owner">
       <AuthType>none</AuthType>
       <ObjectId>16384</ObjectId>
@@ -16883,53 +16976,61 @@
       <ObjectId>4</ObjectId>
     </role>
     <schema id="5569" parent="5510" name="INFORMATION_SCHEMA">
+=======
+    <schema id="5567" parent="5510" name="INFORMATION_SCHEMA">
+>>>>>>> edit/register-form
       <ObjectId>3</ObjectId>
     </schema>
-    <schema id="5570" parent="5510" name="db_accessadmin">
+    <schema id="5568" parent="5510" name="db_accessadmin">
       <ObjectId>16385</ObjectId>
     </schema>
-    <schema id="5571" parent="5510" name="db_backupoperator">
+    <schema id="5569" parent="5510" name="db_backupoperator">
       <ObjectId>16389</ObjectId>
     </schema>
-    <schema id="5572" parent="5510" name="db_datareader">
+    <schema id="5570" parent="5510" name="db_datareader">
       <ObjectId>16390</ObjectId>
     </schema>
-    <schema id="5573" parent="5510" name="db_datawriter">
+    <schema id="5571" parent="5510" name="db_datawriter">
       <ObjectId>16391</ObjectId>
     </schema>
-    <schema id="5574" parent="5510" name="db_ddladmin">
+    <schema id="5572" parent="5510" name="db_ddladmin">
       <ObjectId>16387</ObjectId>
     </schema>
-    <schema id="5575" parent="5510" name="db_denydatareader">
+    <schema id="5573" parent="5510" name="db_denydatareader">
       <ObjectId>16392</ObjectId>
     </schema>
-    <schema id="5576" parent="5510" name="db_denydatawriter">
+    <schema id="5574" parent="5510" name="db_denydatawriter">
       <ObjectId>16393</ObjectId>
     </schema>
-    <schema id="5577" parent="5510" name="db_owner">
+    <schema id="5575" parent="5510" name="db_owner">
       <ObjectId>16384</ObjectId>
     </schema>
-    <schema id="5578" parent="5510" name="db_securityadmin">
+    <schema id="5576" parent="5510" name="db_securityadmin">
       <ObjectId>16386</ObjectId>
     </schema>
-    <schema id="5579" parent="5510" name="dbo">
+    <schema id="5577" parent="5510" name="dbo">
       <Current>1</Current>
+<<<<<<< HEAD
       <Grants>117575457|||0|select|G
 133575514|||0|select|G
 149575571|||0|select|G
 599673184|||0|select|G
 615673241|||0|select|G</Grants>
       <IntrospectionTimestamp>2024-12-13.12:08:51.780</IntrospectionTimestamp>
+=======
+      <IntrospectionTimestamp>2024-12-13.12:08:51.740</IntrospectionTimestamp>
+>>>>>>> edit/register-form
       <LastIntrospectionLocalTimestamp>2024-12-13.08:08:51</LastIntrospectionLocalTimestamp>
       <ObjectId>1</ObjectId>
       <PermissionsCheckSum>5067854233</PermissionsCheckSum>
     </schema>
-    <schema id="5580" parent="5510" name="guest">
+    <schema id="5578" parent="5510" name="guest">
       <ObjectId>2</ObjectId>
     </schema>
-    <schema id="5581" parent="5510" name="sys">
+    <schema id="5579" parent="5510" name="sys">
       <ObjectId>4</ObjectId>
     </schema>
+<<<<<<< HEAD
     <assembly id="5582" parent="5514" name="Microsoft.SqlServer.Types">
       <ObjectId>1</ObjectId>
       <Visible>1</Visible>
@@ -16943,59 +17044,117 @@
       <ObjectId>3</ObjectId>
     </role>
     <role id="5585" parent="5514" name="db_accessadmin">
+=======
+    <assembly id="5580" parent="5511" name="Microsoft.SqlServer.Types">
+      <ObjectId>1</ObjectId>
+      <Visible>1</Visible>
+    </assembly>
+    <filegroup id="5581" parent="5511" name="PRIMARY">
+      <DefaultGroup>1</DefaultGroup>
+      <ObjectId>1</ObjectId>
+    </filegroup>
+    <role id="5582" parent="5511" name="##MS_AgentSigningCertificate##">
+      <AuthType>none</AuthType>
+      <ObjectId>6</ObjectId>
+      <Type>certificate-mapped-user</Type>
+    </role>
+    <role id="5583" parent="5511" name="##MS_PolicyEventProcessingLogin##">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>5</ObjectId>
+    </role>
+    <role id="5584" parent="5511" name="INFORMATION_SCHEMA">
+      <AuthType>none</AuthType>
+      <ObjectId>3</ObjectId>
+    </role>
+    <role id="5585" parent="5511" name="db_accessadmin">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16385</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5586" parent="5514" name="db_backupoperator">
+=======
+    <role id="5586" parent="5511" name="db_backupoperator">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16389</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5587" parent="5514" name="db_datareader">
+=======
+    <role id="5587" parent="5511" name="db_datareader">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16390</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5588" parent="5514" name="db_datawriter">
+=======
+    <role id="5588" parent="5511" name="db_datawriter">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16391</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5589" parent="5514" name="db_ddladmin">
+=======
+    <role id="5589" parent="5511" name="db_ddladmin">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16387</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5590" parent="5514" name="db_denydatareader">
+=======
+    <role id="5590" parent="5511" name="db_denydatareader">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16392</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5591" parent="5514" name="db_denydatawriter">
+=======
+    <role id="5591" parent="5511" name="db_denydatawriter">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16393</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5592" parent="5514" name="db_owner">
+=======
+    <role id="5592" parent="5511" name="db_owner">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16384</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5593" parent="5514" name="db_securityadmin">
+=======
+    <role id="5593" parent="5511" name="db_securityadmin">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>16386</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5594" parent="5514" name="dbo">
       <AuthType>windows</AuthType>
       <DefaultSchema>dbo</DefaultSchema>
@@ -17003,16 +17162,29 @@
       <Type>windows-user</Type>
     </role>
     <role id="5595" parent="5514" name="guest">
+=======
+    <role id="5594" parent="5511" name="dbo">
+      <AuthType>instance</AuthType>
+      <DefaultSchema>dbo</DefaultSchema>
+      <ObjectId>1</ObjectId>
+    </role>
+    <role id="5595" parent="5511" name="guest">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <DefaultSchema>guest</DefaultSchema>
       <ObjectId>2</ObjectId>
     </role>
+<<<<<<< HEAD
     <role id="5596" parent="5514" name="public">
+=======
+    <role id="5596" parent="5511" name="public">
+>>>>>>> edit/register-form
       <AuthType>none</AuthType>
       <ObjectId>0</ObjectId>
       <Type>database-role</Type>
       <OwnerId>1</OwnerId>
     </role>
+<<<<<<< HEAD
     <role id="5597" parent="5514" name="sys">
       <AuthType>none</AuthType>
       <ObjectId>4</ObjectId>
@@ -17050,9 +17222,54 @@
     <schema id="5608" parent="5514" name="dbo">
       <Current>1</Current>
       <IntrospectionTimestamp>2024-12-13.12:08:51.740</IntrospectionTimestamp>
+=======
+    <role id="5597" parent="5511" name="sys">
+      <AuthType>none</AuthType>
+      <ObjectId>4</ObjectId>
+    </role>
+    <schema id="5598" parent="5511" name="INFORMATION_SCHEMA">
+      <ObjectId>3</ObjectId>
+    </schema>
+    <schema id="5599" parent="5511" name="db_accessadmin">
+      <ObjectId>16385</ObjectId>
+    </schema>
+    <schema id="5600" parent="5511" name="db_backupoperator">
+      <ObjectId>16389</ObjectId>
+    </schema>
+    <schema id="5601" parent="5511" name="db_datareader">
+      <ObjectId>16390</ObjectId>
+    </schema>
+    <schema id="5602" parent="5511" name="db_datawriter">
+      <ObjectId>16391</ObjectId>
+    </schema>
+    <schema id="5603" parent="5511" name="db_ddladmin">
+      <ObjectId>16387</ObjectId>
+    </schema>
+    <schema id="5604" parent="5511" name="db_denydatareader">
+      <ObjectId>16392</ObjectId>
+    </schema>
+    <schema id="5605" parent="5511" name="db_denydatawriter">
+      <ObjectId>16393</ObjectId>
+    </schema>
+    <schema id="5606" parent="5511" name="db_owner">
+      <ObjectId>16384</ObjectId>
+    </schema>
+    <schema id="5607" parent="5511" name="db_securityadmin">
+      <ObjectId>16386</ObjectId>
+    </schema>
+    <schema id="5608" parent="5511" name="dbo">
+      <Current>1</Current>
+      <Grants>117575457|||0|select|G
+133575514|||0|select|G
+149575571|||0|select|G
+599673184|||0|select|G
+615673241|||0|select|G</Grants>
+      <IntrospectionTimestamp>2024-12-13.12:08:51.780</IntrospectionTimestamp>
+>>>>>>> edit/register-form
       <LastIntrospectionLocalTimestamp>2024-12-13.08:08:51</LastIntrospectionLocalTimestamp>
       <ObjectId>1</ObjectId>
     </schema>
+<<<<<<< HEAD
     <schema id="5609" parent="5514" name="guest">
       <ObjectId>2</ObjectId>
     </schema>
@@ -17060,20 +17277,184 @@
       <ObjectId>4</ObjectId>
     </schema>
     <routine id="5611" parent="5579" name="sp_MScleanupmergepublisher">
+=======
+    <schema id="5609" parent="5511" name="guest">
+      <ObjectId>2</ObjectId>
+    </schema>
+    <schema id="5610" parent="5511" name="sys">
+      <ObjectId>4</ObjectId>
+    </schema>
+    <table id="5611" parent="5577" name="Admission">
+      <CreatedTimestamp>2024-12-13.02:54:49.910</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.930</ModifiedTimestamp>
+      <ObjectId>1925581898</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5612" parent="5577" name="AspNetRoleClaims">
+      <CreatedTimestamp>2024-12-13.02:54:49.890</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.930</ModifiedTimestamp>
+      <ObjectId>1413580074</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5613" parent="5577" name="AspNetRoles">
+      <CreatedTimestamp>2024-12-13.02:54:49.883</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.930</ModifiedTimestamp>
+      <ObjectId>1237579447</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5614" parent="5577" name="AspNetUserClaims">
+      <CreatedTimestamp>2024-12-13.02:54:49.893</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.933</ModifiedTimestamp>
+      <ObjectId>1461580245</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5615" parent="5577" name="AspNetUserLogins">
+      <CreatedTimestamp>2024-12-13.02:54:49.893</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.933</ModifiedTimestamp>
+      <ObjectId>1509580416</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5616" parent="5577" name="AspNetUserRoles">
+      <CreatedTimestamp>2024-12-13.02:54:49.900</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.933</ModifiedTimestamp>
+      <ObjectId>1557580587</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5617" parent="5577" name="AspNetUserTokens">
+      <CreatedTimestamp>2024-12-13.02:54:49.900</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.900</ModifiedTimestamp>
+      <ObjectId>1621580815</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5618" parent="5577" name="AspNetUsers">
+      <CreatedTimestamp>2024-12-13.02:54:49.887</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.937</ModifiedTimestamp>
+      <ObjectId>1269579561</ObjectId>
+      <LobDataSpaceId>1</LobDataSpaceId>
+    </table>
+    <table id="5619" parent="5577" name="Bill">
+      <CreatedTimestamp>2024-12-13.02:54:49.913</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.937</ModifiedTimestamp>
+      <ObjectId>2005582183</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5620" parent="5577" name="Department">
+      <CreatedTimestamp>2024-12-13.02:54:49.887</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
+      <ObjectId>1301579675</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5621" parent="5577" name="Doctor">
+      <CreatedTimestamp>2024-12-13.02:54:49.907</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.940</ModifiedTimestamp>
+      <ObjectId>1733581214</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5622" parent="5577" name="Emergency_Contact">
+      <CreatedTimestamp>2024-12-13.02:54:49.917</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.943</ModifiedTimestamp>
+      <ObjectId>2069582411</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5623" parent="5577" name="Insurance">
+      <CreatedTimestamp>2024-12-13.02:54:49.917</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.940</ModifiedTimestamp>
+      <ObjectId>2133582639</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5624" parent="5577" name="Medical_Record">
+      <CreatedTimestamp>2024-12-13.02:54:49.923</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.943</ModifiedTimestamp>
+      <ObjectId>178099675</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5625" parent="5577" name="Patient">
+      <CreatedTimestamp>2024-12-13.02:54:49.903</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.943</ModifiedTimestamp>
+      <ObjectId>1669580986</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5626" parent="5577" name="Patient_Doctor_Appointment">
+      <CreatedTimestamp>2024-12-13.02:54:49.923</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.947</ModifiedTimestamp>
+      <ObjectId>258099960</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5627" parent="5577" name="Patient_Phone">
+      <CreatedTimestamp>2024-12-13.02:54:49.920</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.943</ModifiedTimestamp>
+      <ObjectId>66099276</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5628" parent="5577" name="Room">
+      <CreatedTimestamp>2024-12-13.02:54:49.890</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
+      <ObjectId>1349579846</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5629" parent="5577" name="Staff">
+      <CreatedTimestamp>2024-12-13.02:54:49.907</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.950</ModifiedTimestamp>
+      <ObjectId>1829581556</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5630" parent="5577" name="Visit">
+      <CreatedTimestamp>2024-12-13.02:54:49.920</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.947</ModifiedTimestamp>
+      <ObjectId>114099447</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <table id="5631" parent="5577" name="__EFMigrationsHistory">
+      <CreatedTimestamp>2024-12-13.02:54:49.803</CreatedTimestamp>
+      <DataRetentionPeriod>-1</DataRetentionPeriod>
+      <ModifiedTimestamp>2024-12-13.02:54:49.803</ModifiedTimestamp>
+      <ObjectId>1205579333</ObjectId>
+      <LobDataSpaceId>0</LobDataSpaceId>
+    </table>
+    <routine id="5632" parent="5608" name="sp_MScleanupmergepublisher">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2022-10-08.08:32:51.057</CreatedTimestamp>
       <ModifiedTimestamp>2022-10-08.08:35:15.387</ModifiedTimestamp>
       <ObjectId>2139154666</ObjectId>
       <RoutineType>proc</RoutineType>
       <SourceTextLength>100</SourceTextLength>
     </routine>
+<<<<<<< HEAD
     <routine id="5612" parent="5579" name="sp_MSrepl_startup">
+=======
+    <routine id="5633" parent="5608" name="sp_MSrepl_startup">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2022-10-08.08:32:51.047</CreatedTimestamp>
       <ModifiedTimestamp>2022-10-08.08:35:15.380</ModifiedTimestamp>
       <ObjectId>2123154609</ObjectId>
       <RoutineType>proc</RoutineType>
       <SourceTextLength>83</SourceTextLength>
     </routine>
+<<<<<<< HEAD
     <table id="5613" parent="5579" name="MSreplication_options">
+=======
+    <table id="5634" parent="5608" name="MSreplication_options">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2022-10-08.08:32:51.023</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2022-10-08.08:35:15.373</ModifiedTimestamp>
@@ -17081,7 +17462,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <table id="5614" parent="5579" name="spt_fallback_db">
+=======
+    <table id="5635" parent="5608" name="spt_fallback_db">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2003-04-08.11:18:01.557</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2022-10-08.08:35:15.343</ModifiedTimestamp>
@@ -17089,7 +17474,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <table id="5615" parent="5579" name="spt_fallback_dev">
+=======
+    <table id="5636" parent="5608" name="spt_fallback_dev">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2003-04-08.11:18:02.870</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2022-10-08.08:35:15.350</ModifiedTimestamp>
@@ -17097,7 +17486,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <table id="5616" parent="5579" name="spt_fallback_usg">
+=======
+    <table id="5637" parent="5608" name="spt_fallback_usg">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2003-04-08.11:18:04.180</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2022-10-08.08:35:15.357</ModifiedTimestamp>
@@ -17105,7 +17498,11 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <table id="5617" parent="5579" name="spt_monitor">
+=======
+    <table id="5638" parent="5608" name="spt_monitor">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-11-25.21:15:55.860</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
       <ModifiedTimestamp>2024-11-25.21:15:55.867</ModifiedTimestamp>
@@ -17113,12 +17510,17 @@
       <LobDataSpaceId>0</LobDataSpaceId>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </table>
+<<<<<<< HEAD
     <view id="5618" parent="5579" name="spt_values">
+=======
+    <view id="5639" parent="5608" name="spt_values">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-11-25.21:15:55.847</CreatedTimestamp>
       <ModifiedTimestamp>2024-11-25.21:15:55.860</ModifiedTimestamp>
       <ObjectId>599673184</ObjectId>
       <SourceTextLength>161</SourceTextLength>
     </view>
+<<<<<<< HEAD
     <table id="5619" parent="5608" name="Admission">
       <CreatedTimestamp>2024-12-13.02:54:49.910</CreatedTimestamp>
       <DataRetentionPeriod>-1</DataRetentionPeriod>
@@ -17509,40 +17911,67 @@
       <StoredType>int|0s</StoredType>
     </column>
     <column id="5690" parent="5619" name="Id">
+=======
+    <column id="5640" parent="5611" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>1957582012</DefaultConstraintId>
       <DefaultConstraintName>DF__Admission__Id__74AE54BC</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5691" parent="5619" name="startDate">
+=======
+    <column id="5641" parent="5611" name="startDate">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>date|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5692" parent="5619" name="endDate">
+=======
+    <column id="5642" parent="5611" name="endDate">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>date|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5693" parent="5619" name="roomId">
+=======
+    <column id="5643" parent="5611" name="roomId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5694" parent="5619" name="patientId">
+=======
+    <column id="5644" parent="5611" name="patientId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5695" parent="5619" name="DF__Admission__Id__74AE54BC">
+=======
+    <default id="5645" parent="5611" name="DF__Admission__Id__74AE54BC">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1957582012</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5696" parent="5619" name="FK__Admission__roomI__6FE99F9F">
+=======
+    <foreign-key id="5646" parent="5611" name="FK__Admission__roomI__6FE99F9F">
+>>>>>>> edit/register-form
       <ColNames>roomId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.910</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
@@ -17552,7 +17981,11 @@
       <RefTableId>1349579846</RefTableId>
       <RefTableName>Room</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <foreign-key id="5697" parent="5619" name="FK__Admission__patie__70DDC3D8">
+=======
+    <foreign-key id="5647" parent="5611" name="FK__Admission__patie__70DDC3D8">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.910</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
@@ -17562,41 +17995,66 @@
       <RefTableId>1669580986</RefTableId>
       <RefTableName>Patient</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5698" parent="5619" name="PK__Admissio__3214EC077F42FC34">
+=======
+    <index id="5648" parent="5611" name="PK__Admissio__3214EC077F42FC34">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5699" parent="5619" name="IX_Admission_patientId">
+=======
+    <index id="5649" parent="5611" name="IX_Admission_patientId">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5700" parent="5619" name="IX_Admission_roomId">
+=======
+    <index id="5650" parent="5611" name="IX_Admission_roomId">
+>>>>>>> edit/register-form
       <ColNames>roomId</ColNames>
       <Position>3</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5701" parent="5619" name="PK__Admissio__3214EC077F42FC34">
+=======
+    <key id="5651" parent="5611" name="PK__Admissio__3214EC077F42FC34">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.910</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
       <ObjectId>1941581955</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Admissio__3214EC077F42FC34</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5702" parent="5620" name="Id">
+=======
+    <column id="5652" parent="5612" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5703" parent="5620" name="RoleId">
+=======
+    <column id="5653" parent="5612" name="RoleId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5704" parent="5620" name="ClaimType">
       <Position>3</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
@@ -17606,6 +18064,17 @@
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
     <foreign-key id="5706" parent="5620" name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
+=======
+    <column id="5654" parent="5612" name="ClaimType">
+      <Position>3</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <column id="5655" parent="5612" name="ClaimValue">
+      <Position>4</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <foreign-key id="5656" parent="5612" name="FK_AspNetRoleClaims_AspNetRoles_RoleId">
+>>>>>>> edit/register-form
       <ColNames>RoleId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.893</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.893</ModifiedTimestamp>
@@ -17615,30 +18084,47 @@
       <RefTableId>1237579447</RefTableId>
       <RefTableName>AspNetRoles</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5707" parent="5620" name="PK_AspNetRoleClaims">
+=======
+    <index id="5657" parent="5612" name="PK_AspNetRoleClaims">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5708" parent="5620" name="IX_AspNetRoleClaims_RoleId">
+=======
+    <index id="5658" parent="5612" name="IX_AspNetRoleClaims_RoleId">
+>>>>>>> edit/register-form
       <ColNames>RoleId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5709" parent="5620" name="PK_AspNetRoleClaims">
+=======
+    <key id="5659" parent="5612" name="PK_AspNetRoleClaims">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.890</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.890</ModifiedTimestamp>
       <ObjectId>1429580131</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_AspNetRoleClaims</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5710" parent="5621" name="Id">
+=======
+    <column id="5660" parent="5613" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5711" parent="5621" name="Name">
       <Position>2</Position>
       <StoredType>nvarchar(256 char)|0s</StoredType>
@@ -17652,37 +18138,69 @@
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
     <index id="5714" parent="5621" name="PK_AspNetRoles">
+=======
+    <column id="5661" parent="5613" name="Name">
+      <Position>2</Position>
+      <StoredType>nvarchar(256 char)|0s</StoredType>
+    </column>
+    <column id="5662" parent="5613" name="NormalizedName">
+      <Position>3</Position>
+      <StoredType>nvarchar(256 char)|0s</StoredType>
+    </column>
+    <column id="5663" parent="5613" name="ConcurrencyStamp">
+      <Position>4</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <index id="5664" parent="5613" name="PK_AspNetRoles">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5715" parent="5621" name="RoleNameIndex">
+=======
+    <index id="5665" parent="5613" name="RoleNameIndex">
+>>>>>>> edit/register-form
       <ColNames>NormalizedName</ColNames>
       <Condition>[NormalizedName] IS NOT NULL</Condition>
       <Position>2</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5716" parent="5621" name="PK_AspNetRoles">
+=======
+    <key id="5666" parent="5613" name="PK_AspNetRoles">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.883</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.883</ModifiedTimestamp>
       <ObjectId>1253579504</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_AspNetRoles</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5717" parent="5622" name="Id">
+=======
+    <column id="5667" parent="5614" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <SequenceIdentity>1</SequenceIdentity>
       <StoredType>int|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5718" parent="5622" name="UserId">
+=======
+    <column id="5668" parent="5614" name="UserId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5719" parent="5622" name="ClaimType">
       <Position>3</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
@@ -17692,6 +18210,17 @@
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
     <foreign-key id="5721" parent="5622" name="FK_AspNetUserClaims_AspNetUsers_UserId">
+=======
+    <column id="5669" parent="5614" name="ClaimType">
+      <Position>3</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <column id="5670" parent="5614" name="ClaimValue">
+      <Position>4</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <foreign-key id="5671" parent="5614" name="FK_AspNetUserClaims_AspNetUsers_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.893</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.893</ModifiedTimestamp>
@@ -17701,45 +18230,77 @@
       <RefTableId>1269579561</RefTableId>
       <RefTableName>AspNetUsers</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5722" parent="5622" name="PK_AspNetUserClaims">
+=======
+    <index id="5672" parent="5614" name="PK_AspNetUserClaims">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5723" parent="5622" name="IX_AspNetUserClaims_UserId">
+=======
+    <index id="5673" parent="5614" name="IX_AspNetUserClaims_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5724" parent="5622" name="PK_AspNetUserClaims">
+=======
+    <key id="5674" parent="5614" name="PK_AspNetUserClaims">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.893</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.893</ModifiedTimestamp>
       <ObjectId>1477580302</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_AspNetUserClaims</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5725" parent="5623" name="LoginProvider">
+=======
+    <column id="5675" parent="5615" name="LoginProvider">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>nvarchar(450 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5726" parent="5623" name="ProviderKey">
+=======
+    <column id="5676" parent="5615" name="ProviderKey">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>nvarchar(450 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5727" parent="5623" name="ProviderDisplayName">
       <Position>3</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
     <column id="5728" parent="5623" name="UserId">
+=======
+    <column id="5677" parent="5615" name="ProviderDisplayName">
+      <Position>3</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <column id="5678" parent="5615" name="UserId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <foreign-key id="5729" parent="5623" name="FK_AspNetUserLogins_AspNetUsers_UserId">
+=======
+    <foreign-key id="5679" parent="5615" name="FK_AspNetUserLogins_AspNetUsers_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.897</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.897</ModifiedTimestamp>
@@ -17749,7 +18310,11 @@
       <RefTableId>1269579561</RefTableId>
       <RefTableName>AspNetUsers</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5730" parent="5623" name="PK_AspNetUserLogins">
+=======
+    <index id="5680" parent="5615" name="PK_AspNetUserLogins">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>LoginProvider
 ProviderKey</ColNames>
@@ -17757,29 +18322,49 @@ ProviderKey</ColNames>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5731" parent="5623" name="IX_AspNetUserLogins_UserId">
+=======
+    <index id="5681" parent="5615" name="IX_AspNetUserLogins_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5732" parent="5623" name="PK_AspNetUserLogins">
+=======
+    <key id="5682" parent="5615" name="PK_AspNetUserLogins">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.897</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.897</ModifiedTimestamp>
       <ObjectId>1525580473</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_AspNetUserLogins</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5733" parent="5624" name="UserId">
+=======
+    <column id="5683" parent="5616" name="UserId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5734" parent="5624" name="RoleId">
+=======
+    <column id="5684" parent="5616" name="RoleId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <foreign-key id="5735" parent="5624" name="FK_AspNetUserRoles_AspNetUsers_UserId">
+=======
+    <foreign-key id="5685" parent="5616" name="FK_AspNetUserRoles_AspNetUsers_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.900</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.900</ModifiedTimestamp>
@@ -17789,7 +18374,11 @@ ProviderKey</ColNames>
       <RefTableId>1269579561</RefTableId>
       <RefTableName>AspNetUsers</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <foreign-key id="5736" parent="5624" name="FK_AspNetUserRoles_AspNetRoles_RoleId">
+=======
+    <foreign-key id="5686" parent="5616" name="FK_AspNetUserRoles_AspNetRoles_RoleId">
+>>>>>>> edit/register-form
       <ColNames>RoleId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.900</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.900</ModifiedTimestamp>
@@ -17799,7 +18388,11 @@ ProviderKey</ColNames>
       <RefTableId>1237579447</RefTableId>
       <RefTableName>AspNetRoles</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5737" parent="5624" name="PK_AspNetUserRoles">
+=======
+    <index id="5687" parent="5616" name="PK_AspNetUserRoles">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>UserId
 RoleId</ColNames>
@@ -17807,38 +18400,66 @@ RoleId</ColNames>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5738" parent="5624" name="IX_AspNetUserRoles_RoleId">
+=======
+    <index id="5688" parent="5616" name="IX_AspNetUserRoles_RoleId">
+>>>>>>> edit/register-form
       <ColNames>RoleId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5739" parent="5624" name="PK_AspNetUserRoles">
+=======
+    <key id="5689" parent="5616" name="PK_AspNetUserRoles">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.900</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.900</ModifiedTimestamp>
       <ObjectId>1573580644</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_AspNetUserRoles</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5740" parent="5625" name="UserId">
+=======
+    <column id="5690" parent="5617" name="UserId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5741" parent="5625" name="LoginProvider">
+=======
+    <column id="5691" parent="5617" name="LoginProvider">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>nvarchar(450 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5742" parent="5625" name="Name">
+=======
+    <column id="5692" parent="5617" name="Name">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>nvarchar(450 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5743" parent="5625" name="Value">
       <Position>4</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
     <foreign-key id="5744" parent="5625" name="FK_AspNetUserTokens_AspNetUsers_UserId">
+=======
+    <column id="5693" parent="5617" name="Value">
+      <Position>4</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <foreign-key id="5694" parent="5617" name="FK_AspNetUserTokens_AspNetUsers_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.903</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.903</ModifiedTimestamp>
@@ -17848,7 +18469,11 @@ RoleId</ColNames>
       <RefTableId>1269579561</RefTableId>
       <RefTableName>AspNetUsers</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5745" parent="5625" name="PK_AspNetUserTokens">
+=======
+    <index id="5695" parent="5617" name="PK_AspNetUserTokens">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>UserId
 LoginProvider
@@ -17857,28 +18482,45 @@ Name</ColNames>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5746" parent="5625" name="PK_AspNetUserTokens">
+=======
+    <key id="5696" parent="5617" name="PK_AspNetUserTokens">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.903</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.903</ModifiedTimestamp>
       <ObjectId>1637580872</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_AspNetUserTokens</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5747" parent="5626" name="Id">
+=======
+    <column id="5697" parent="5618" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5748" parent="5626" name="SSN">
+=======
+    <column id="5698" parent="5618" name="SSN">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5749" parent="5626" name="Gender">
+=======
+    <column id="5699" parent="5618" name="Gender">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5750" parent="5626" name="UserName">
       <Position>4</Position>
       <StoredType>nvarchar(256 char)|0s</StoredType>
@@ -17896,10 +18538,30 @@ Name</ColNames>
       <StoredType>nvarchar(256 char)|0s</StoredType>
     </column>
     <column id="5754" parent="5626" name="EmailConfirmed">
+=======
+    <column id="5700" parent="5618" name="UserName">
+      <Position>4</Position>
+      <StoredType>nvarchar(256 char)|0s</StoredType>
+    </column>
+    <column id="5701" parent="5618" name="NormalizedUserName">
+      <Position>5</Position>
+      <StoredType>nvarchar(256 char)|0s</StoredType>
+    </column>
+    <column id="5702" parent="5618" name="Email">
+      <Position>6</Position>
+      <StoredType>nvarchar(256 char)|0s</StoredType>
+    </column>
+    <column id="5703" parent="5618" name="NormalizedEmail">
+      <Position>7</Position>
+      <StoredType>nvarchar(256 char)|0s</StoredType>
+    </column>
+    <column id="5704" parent="5618" name="EmailConfirmed">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>bit|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5755" parent="5626" name="PasswordHash">
       <Position>9</Position>
       <StoredType>nvarchar(max)|0s</StoredType>
@@ -17917,95 +18579,178 @@ Name</ColNames>
       <StoredType>nvarchar(max)|0s</StoredType>
     </column>
     <column id="5759" parent="5626" name="PhoneNumberConfirmed">
+=======
+    <column id="5705" parent="5618" name="PasswordHash">
+      <Position>9</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <column id="5706" parent="5618" name="SecurityStamp">
+      <Position>10</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <column id="5707" parent="5618" name="ConcurrencyStamp">
+      <Position>11</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <column id="5708" parent="5618" name="PhoneNumber">
+      <Position>12</Position>
+      <StoredType>nvarchar(max)|0s</StoredType>
+    </column>
+    <column id="5709" parent="5618" name="PhoneNumberConfirmed">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>13</Position>
       <StoredType>bit|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5760" parent="5626" name="TwoFactorEnabled">
+=======
+    <column id="5710" parent="5618" name="TwoFactorEnabled">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>14</Position>
       <StoredType>bit|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5761" parent="5626" name="LockoutEnd">
       <Position>15</Position>
       <StoredType>datetimeoffset|0s</StoredType>
     </column>
     <column id="5762" parent="5626" name="LockoutEnabled">
+=======
+    <column id="5711" parent="5618" name="LockoutEnd">
+      <Position>15</Position>
+      <StoredType>datetimeoffset|0s</StoredType>
+    </column>
+    <column id="5712" parent="5618" name="LockoutEnabled">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>16</Position>
       <StoredType>bit|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5763" parent="5626" name="AccessFailedCount">
+=======
+    <column id="5713" parent="5618" name="AccessFailedCount">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>17</Position>
       <StoredType>int|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <index id="5764" parent="5626" name="PK_AspNetUsers">
+=======
+    <index id="5714" parent="5618" name="PK_AspNetUsers">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5765" parent="5626" name="EmailIndex">
+=======
+    <index id="5715" parent="5618" name="EmailIndex">
+>>>>>>> edit/register-form
       <ColNames>NormalizedEmail</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5766" parent="5626" name="UserNameIndex">
+=======
+    <index id="5716" parent="5618" name="UserNameIndex">
+>>>>>>> edit/register-form
       <ColNames>NormalizedUserName</ColNames>
       <Condition>[NormalizedUserName] IS NOT NULL</Condition>
       <Position>3</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5767" parent="5626" name="PK_AspNetUsers">
+=======
+    <key id="5717" parent="5618" name="PK_AspNetUsers">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.887</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.887</ModifiedTimestamp>
       <ObjectId>1285579618</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK_AspNetUsers</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5768" parent="5627" name="Id">
+=======
+    <column id="5718" parent="5619" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>2037582297</DefaultConstraintId>
       <DefaultConstraintName>DF__Bill__Id__797309D9</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5769" parent="5627" name="date">
       <Position>2</Position>
       <StoredType>datetimeoffset|0s</StoredType>
     </column>
     <column id="5770" parent="5627" name="totalAmount">
+=======
+    <column id="5719" parent="5619" name="date">
+      <Position>2</Position>
+      <StoredType>datetimeoffset|0s</StoredType>
+    </column>
+    <column id="5720" parent="5619" name="totalAmount">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>money|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5771" parent="5627" name="paidAmount">
+=======
+    <column id="5721" parent="5619" name="paidAmount">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>money|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5772" parent="5627" name="remaining">
+=======
+    <column id="5722" parent="5619" name="remaining">
+>>>>>>> edit/register-form
       <Computed>1</Computed>
       <Position>5</Position>
       <StoredType>money|0s</StoredType>
       <DefaultConstraintInline>1</DefaultConstraintInline>
       <DefaultConstraintDefaultExpression>[TotalAmount]-[PaidAmount]</DefaultConstraintDefaultExpression>
     </column>
+<<<<<<< HEAD
     <column id="5773" parent="5627" name="patientId">
       <Position>6</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
     <default id="5774" parent="5627" name="DF__Bill__Id__797309D9">
+=======
+    <column id="5723" parent="5619" name="patientId">
+      <Position>6</Position>
+      <StoredType>uniqueidentifier|0s</StoredType>
+    </column>
+    <default id="5724" parent="5619" name="DF__Bill__Id__797309D9">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.913</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>2037582297</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5775" parent="5627" name="FK__Bill__patientId__74AE54BC">
+=======
+    <foreign-key id="5725" parent="5619" name="FK__Bill__patientId__74AE54BC">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.913</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.913</ModifiedTimestamp>
@@ -18015,130 +18760,218 @@ Name</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefTableName>Patient</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5776" parent="5627" name="PK__Bill__3214EC07FB416F69">
+=======
+    <index id="5726" parent="5619" name="PK__Bill__3214EC07FB416F69">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5777" parent="5627" name="IX_Bill_patientId">
+=======
+    <index id="5727" parent="5619" name="IX_Bill_patientId">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5778" parent="5627" name="PK__Bill__3214EC07FB416F69">
+=======
+    <key id="5728" parent="5619" name="PK__Bill__3214EC07FB416F69">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.913</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.913</ModifiedTimestamp>
       <ObjectId>2021582240</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Bill__3214EC07FB416F69</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5779" parent="5628" name="Id">
+=======
+    <column id="5729" parent="5620" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>1333579789</DefaultConstraintId>
       <DefaultConstraintName>DF__Department__Id__4F7CD00D</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5780" parent="5628" name="description">
+=======
+    <column id="5730" parent="5620" name="description">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(200 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5781" parent="5628" name="name">
+=======
+    <column id="5731" parent="5620" name="name">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5782" parent="5628" name="DF__Department__Id__4F7CD00D">
+=======
+    <default id="5732" parent="5620" name="DF__Department__Id__4F7CD00D">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.890</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1333579789</ObjectId>
     </default>
+<<<<<<< HEAD
     <index id="5783" parent="5628" name="PK__Departme__3214EC078DB5010E">
+=======
+    <index id="5733" parent="5620" name="PK__Departme__3214EC078DB5010E">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5784" parent="5628" name="PK__Departme__3214EC078DB5010E">
+=======
+    <key id="5734" parent="5620" name="PK__Departme__3214EC078DB5010E">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.890</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.890</ModifiedTimestamp>
       <ObjectId>1317579732</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Departme__3214EC078DB5010E</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5785" parent="5629" name="Id">
+=======
+    <column id="5735" parent="5621" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>1765581328</DefaultConstraintId>
       <DefaultConstraintName>DF__Doctor__Id__693CA210</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5786" parent="5629" name="firstName">
+=======
+    <column id="5736" parent="5621" name="firstName">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5787" parent="5629" name="lastName">
+=======
+    <column id="5737" parent="5621" name="lastName">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5788" parent="5629" name="specialization">
+=======
+    <column id="5738" parent="5621" name="specialization">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(50 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5789" parent="5629" name="departmentId">
       <Position>5</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
     <column id="5790" parent="5629" name="salary">
+=======
+    <column id="5739" parent="5621" name="departmentId">
+      <Position>5</Position>
+      <StoredType>uniqueidentifier|0s</StoredType>
+    </column>
+    <column id="5740" parent="5621" name="salary">
+>>>>>>> edit/register-form
       <Position>6</Position>
       <StoredType>money|0s</StoredType>
       <DefaultConstraintId>1781581385</DefaultConstraintId>
       <DefaultConstraintName>DF__Doctor__salary__6A30C649</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5791" parent="5629" name="workingHours">
+=======
+    <column id="5741" parent="5621" name="workingHours">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>int|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5792" parent="5629" name="startSchedule">
+=======
+    <column id="5742" parent="5621" name="startSchedule">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>time|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5793" parent="5629" name="endSchedule">
+=======
+    <column id="5743" parent="5621" name="endSchedule">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>time|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5794" parent="5629" name="UserId">
+=======
+    <column id="5744" parent="5621" name="UserId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>10</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5795" parent="5629" name="DF__Doctor__Id__693CA210">
+=======
+    <default id="5745" parent="5621" name="DF__Doctor__Id__693CA210">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.907</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1765581328</ObjectId>
     </default>
+<<<<<<< HEAD
     <default id="5796" parent="5629" name="DF__Doctor__salary__6A30C649">
+=======
+    <default id="5746" parent="5621" name="DF__Doctor__salary__6A30C649">
+>>>>>>> edit/register-form
       <ColNames>salary</ColNames>
       <DefaultExpression>0.0</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.907</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1781581385</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5797" parent="5629" name="FK__Doctor__departme__534D60F1">
+=======
+    <foreign-key id="5747" parent="5621" name="FK__Doctor__departme__534D60F1">
+>>>>>>> edit/register-form
       <ColNames>departmentId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.907</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.907</ModifiedTimestamp>
@@ -18148,7 +18981,11 @@ Name</ColNames>
       <RefTableId>1301579675</RefTableId>
       <RefTableName>Department</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <foreign-key id="5798" parent="5629" name="FK_Doctor_AspNetUsers_UserId">
+=======
+    <foreign-key id="5748" parent="5621" name="FK_Doctor_AspNetUsers_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.907</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.907</ModifiedTimestamp>
@@ -18157,65 +18994,109 @@ Name</ColNames>
       <RefTableId>1269579561</RefTableId>
       <RefTableName>AspNetUsers</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5799" parent="5629" name="PK__Doctor__3214EC0708B2C4AD">
+=======
+    <index id="5749" parent="5621" name="PK__Doctor__3214EC0708B2C4AD">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5800" parent="5629" name="IX_Doctor_departmentId">
+=======
+    <index id="5750" parent="5621" name="IX_Doctor_departmentId">
+>>>>>>> edit/register-form
       <ColNames>departmentId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5801" parent="5629" name="IX_Doctor_UserId">
+=======
+    <index id="5751" parent="5621" name="IX_Doctor_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <Position>3</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5802" parent="5629" name="PK__Doctor__3214EC0708B2C4AD">
+=======
+    <key id="5752" parent="5621" name="PK__Doctor__3214EC0708B2C4AD">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.907</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.907</ModifiedTimestamp>
       <ObjectId>1749581271</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Doctor__3214EC0708B2C4AD</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5803" parent="5630" name="Id">
+=======
+    <column id="5753" parent="5622" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>2101582525</DefaultConstraintId>
       <DefaultConstraintName>DF__Emergency_Co__Id__7D439ABD</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5804" parent="5630" name="name">
+=======
+    <column id="5754" parent="5622" name="name">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5805" parent="5630" name="phone">
       <Position>3</Position>
       <StoredType>char(11 char)|0s</StoredType>
     </column>
     <column id="5806" parent="5630" name="relationship">
+=======
+    <column id="5755" parent="5622" name="phone">
+      <Position>3</Position>
+      <StoredType>char(11 char)|0s</StoredType>
+    </column>
+    <column id="5756" parent="5622" name="relationship">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5807" parent="5630" name="patientId">
+=======
+    <column id="5757" parent="5622" name="patientId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5808" parent="5630" name="DF__Emergency_Co__Id__7D439ABD">
+=======
+    <default id="5758" parent="5622" name="DF__Emergency_Co__Id__7D439ABD">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.917</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>2101582525</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5809" parent="5630" name="FK__Emergency__patie__7E37BEF6">
+=======
+    <foreign-key id="5759" parent="5622" name="FK__Emergency__patie__7E37BEF6">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.917</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.917</ModifiedTimestamp>
@@ -18225,19 +19106,31 @@ Name</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefTableName>Patient</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5810" parent="5630" name="PK__Emergenc__3214EC073ADB0451">
+=======
+    <index id="5760" parent="5622" name="PK__Emergenc__3214EC073ADB0451">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5811" parent="5630" name="IX_Emergency_Contact_patientId">
+=======
+    <index id="5761" parent="5622" name="IX_Emergency_Contact_patientId">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5812" parent="5630" name="UQ__Emergenc__B43B145F0626F054">
+=======
+    <index id="5762" parent="5622" name="UQ__Emergenc__B43B145F0626F054">
+>>>>>>> edit/register-form
       <ColNames>phone</ColNames>
       <Condition>[phone] IS NOT NULL</Condition>
       <NameSurrogate>1</NameSurrogate>
@@ -18245,61 +19138,101 @@ Name</ColNames>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5813" parent="5630" name="PK__Emergenc__3214EC073ADB0451">
+=======
+    <key id="5763" parent="5622" name="PK__Emergenc__3214EC073ADB0451">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.917</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.917</ModifiedTimestamp>
       <ObjectId>2085582468</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Emergenc__3214EC073ADB0451</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5814" parent="5631" name="Id">
+=======
+    <column id="5764" parent="5623" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>18099105</DefaultConstraintId>
       <DefaultConstraintName>DF__Insurance__Id__01142BA1</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5815" parent="5631" name="providerName">
+=======
+    <column id="5765" parent="5623" name="providerName">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5816" parent="5631" name="policyNumber">
+=======
+    <column id="5766" parent="5623" name="policyNumber">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5817" parent="5631" name="coverageMoney">
+=======
+    <column id="5767" parent="5623" name="coverageMoney">
+>>>>>>> edit/register-form
       <Position>4</Position>
       <StoredType>money|0s</StoredType>
       <DefaultConstraintId>34099162</DefaultConstraintId>
       <DefaultConstraintName>DF__Insurance__cover__02084FDA</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5818" parent="5631" name="expiryDate">
+=======
+    <column id="5768" parent="5623" name="expiryDate">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>date|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5819" parent="5631" name="patientId">
+=======
+    <column id="5769" parent="5623" name="patientId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5820" parent="5631" name="DF__Insurance__Id__01142BA1">
+=======
+    <default id="5770" parent="5623" name="DF__Insurance__Id__01142BA1">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.920</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>18099105</ObjectId>
     </default>
+<<<<<<< HEAD
     <default id="5821" parent="5631" name="DF__Insurance__cover__02084FDA">
+=======
+    <default id="5771" parent="5623" name="DF__Insurance__cover__02084FDA">
+>>>>>>> edit/register-form
       <ColNames>coverageMoney</ColNames>
       <DefaultExpression>0.0</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.920</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>34099162</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5822" parent="5631" name="FK__Insurance__patie__797309D9">
+=======
+    <foreign-key id="5772" parent="5623" name="FK__Insurance__patie__797309D9">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.920</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.920</ModifiedTimestamp>
@@ -18309,37 +19242,58 @@ Name</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefTableName>Patient</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5823" parent="5631" name="PK__Insuranc__3214EC07BC6E5361">
+=======
+    <index id="5773" parent="5623" name="PK__Insuranc__3214EC07BC6E5361">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5824" parent="5631" name="IX_Insurance_patientId">
+=======
+    <index id="5774" parent="5623" name="IX_Insurance_patientId">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5825" parent="5631" name="PK__Insuranc__3214EC07BC6E5361">
+=======
+    <key id="5775" parent="5623" name="PK__Insuranc__3214EC07BC6E5361">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.920</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.920</ModifiedTimestamp>
       <ObjectId>2099048</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Insuranc__3214EC07BC6E5361</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5826" parent="5632" name="Id">
+=======
+    <column id="5776" parent="5624" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>210099789</DefaultConstraintId>
       <DefaultConstraintName>DF__Medical_Reco__Id__0C85DE4D</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5827" parent="5632" name="dateOfRecording">
+=======
+    <column id="5777" parent="5624" name="dateOfRecording">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>date|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5828" parent="5632" name="diagnostic">
       <Position>3</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
@@ -18357,13 +19311,36 @@ Name</ColNames>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
     <default id="5832" parent="5632" name="DF__Medical_Reco__Id__0C85DE4D">
+=======
+    <column id="5778" parent="5624" name="diagnostic">
+      <Position>3</Position>
+      <StoredType>varchar(20 char)|0s</StoredType>
+    </column>
+    <column id="5779" parent="5624" name="prescription">
+      <Position>4</Position>
+      <StoredType>varchar(20 char)|0s</StoredType>
+    </column>
+    <column id="5780" parent="5624" name="doctorId">
+      <Position>5</Position>
+      <StoredType>uniqueidentifier|0s</StoredType>
+    </column>
+    <column id="5781" parent="5624" name="patientId">
+      <Position>6</Position>
+      <StoredType>uniqueidentifier|0s</StoredType>
+    </column>
+    <default id="5782" parent="5624" name="DF__Medical_Reco__Id__0C85DE4D">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.923</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>210099789</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5833" parent="5632" name="FK__Medical_R__docto__02084FDA">
+=======
+    <foreign-key id="5783" parent="5624" name="FK__Medical_R__docto__02084FDA">
+>>>>>>> edit/register-form
       <ColNames>doctorId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.923</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.923</ModifiedTimestamp>
@@ -18373,7 +19350,11 @@ Name</ColNames>
       <RefTableId>1733581214</RefTableId>
       <RefTableName>Doctor</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <foreign-key id="5834" parent="5632" name="FK__Medical_R__patie__02FC7413">
+=======
+    <foreign-key id="5784" parent="5624" name="FK__Medical_R__patie__02FC7413">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.923</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.923</ModifiedTimestamp>
@@ -18383,52 +19364,85 @@ Name</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefTableName>Patient</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5835" parent="5632" name="PK__Medical___3214EC07A123C966">
+=======
+    <index id="5785" parent="5624" name="PK__Medical___3214EC07A123C966">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5836" parent="5632" name="IX_Medical_Record_doctorId">
+=======
+    <index id="5786" parent="5624" name="IX_Medical_Record_doctorId">
+>>>>>>> edit/register-form
       <ColNames>doctorId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5837" parent="5632" name="IX_Medical_Record_patientId">
+=======
+    <index id="5787" parent="5624" name="IX_Medical_Record_patientId">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <Position>3</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5838" parent="5632" name="PK__Medical___3214EC07A123C966">
+=======
+    <key id="5788" parent="5624" name="PK__Medical___3214EC07A123C966">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.923</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.923</ModifiedTimestamp>
       <ObjectId>194099732</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Medical___3214EC07A123C966</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5839" parent="5633" name="Id">
+=======
+    <column id="5789" parent="5625" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>1701581100</DefaultConstraintId>
       <DefaultConstraintName>DF__Patient__Id__656C112C</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5840" parent="5633" name="firstName">
+=======
+    <column id="5790" parent="5625" name="firstName">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5841" parent="5633" name="lastName">
+=======
+    <column id="5791" parent="5625" name="lastName">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5842" parent="5633" name="dateOfBirth">
+=======
+    <column id="5792" parent="5625" name="dateOfBirth">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>date|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5843" parent="5633" name="bloodGroup">
       <Position>5</Position>
       <StoredType>varchar(10 char)|0s</StoredType>
@@ -18446,18 +19460,45 @@ Name</ColNames>
       <StoredType>varchar(50 char)|0s</StoredType>
     </column>
     <column id="5847" parent="5633" name="UserId">
+=======
+    <column id="5793" parent="5625" name="bloodGroup">
+      <Position>5</Position>
+      <StoredType>varchar(10 char)|0s</StoredType>
+    </column>
+    <column id="5794" parent="5625" name="allergies">
+      <Position>6</Position>
+      <StoredType>varchar(20 char)|0s</StoredType>
+    </column>
+    <column id="5795" parent="5625" name="chronicDiseases">
+      <Position>7</Position>
+      <StoredType>varchar(30 char)|0s</StoredType>
+    </column>
+    <column id="5796" parent="5625" name="address">
+      <Position>8</Position>
+      <StoredType>varchar(50 char)|0s</StoredType>
+    </column>
+    <column id="5797" parent="5625" name="UserId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5848" parent="5633" name="DF__Patient__Id__656C112C">
+=======
+    <default id="5798" parent="5625" name="DF__Patient__Id__656C112C">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.903</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1701581100</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5849" parent="5633" name="FK_Patient_AspNetUsers_UserId">
+=======
+    <foreign-key id="5799" parent="5625" name="FK_Patient_AspNetUsers_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.903</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.903</ModifiedTimestamp>
@@ -18466,79 +19507,131 @@ Name</ColNames>
       <RefTableId>1269579561</RefTableId>
       <RefTableName>AspNetUsers</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5850" parent="5633" name="PK__Patient__3214EC073B6DCB54">
+=======
+    <index id="5800" parent="5625" name="PK__Patient__3214EC073B6DCB54">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5851" parent="5633" name="IX_Patient_UserId">
+=======
+    <index id="5801" parent="5625" name="IX_Patient_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <Position>2</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5852" parent="5633" name="PK__Patient__3214EC073B6DCB54">
+=======
+    <key id="5802" parent="5625" name="PK__Patient__3214EC073B6DCB54">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.903</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.903</ModifiedTimestamp>
       <ObjectId>1685581043</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Patient__3214EC073B6DCB54</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5853" parent="5634" name="Id">
+=======
+    <column id="5803" parent="5626" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>290100074</DefaultConstraintId>
       <DefaultConstraintName>DF__Patient_Doct__Id__114A936A</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5854" parent="5634" name="patientId">
+=======
+    <column id="5804" parent="5626" name="patientId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5855" parent="5634" name="doctorId">
+=======
+    <column id="5805" parent="5626" name="doctorId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5856" parent="5634" name="status">
+=======
+    <column id="5806" parent="5626" name="status">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(10 char)|0s</StoredType>
       <DefaultConstraintId>306100131</DefaultConstraintId>
       <DefaultConstraintName>DF__Patient_D__statu__123EB7A3</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5857" parent="5634" name="reason">
       <Position>5</Position>
       <StoredType>varchar(200 char)|0s</StoredType>
     </column>
     <column id="5858" parent="5634" name="date">
+=======
+    <column id="5807" parent="5626" name="reason">
+      <Position>5</Position>
+      <StoredType>varchar(200 char)|0s</StoredType>
+    </column>
+    <column id="5808" parent="5626" name="date">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>date|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5859" parent="5634" name="time">
+=======
+    <column id="5809" parent="5626" name="time">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>time|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5860" parent="5634" name="DF__Patient_Doct__Id__114A936A">
+=======
+    <default id="5810" parent="5626" name="DF__Patient_Doct__Id__114A936A">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.927</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>290100074</ObjectId>
     </default>
+<<<<<<< HEAD
     <default id="5861" parent="5634" name="DF__Patient_D__statu__123EB7A3">
+=======
+    <default id="5811" parent="5626" name="DF__Patient_D__statu__123EB7A3">
+>>>>>>> edit/register-form
       <ColNames>status</ColNames>
       <DefaultExpression>&apos;Pending&apos;</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.927</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>306100131</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5862" parent="5634" name="FK__Patient_D__patie__5AEE82B9">
+=======
+    <foreign-key id="5812" parent="5626" name="FK__Patient_D__patie__5AEE82B9">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.927</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.927</ModifiedTimestamp>
@@ -18548,7 +19641,11 @@ Name</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefTableName>Patient</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <foreign-key id="5863" parent="5634" name="FK__Patient_D__docto__5BE2A6F2">
+=======
+    <foreign-key id="5813" parent="5626" name="FK__Patient_D__docto__5BE2A6F2">
+>>>>>>> edit/register-form
       <ColNames>doctorId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.927</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.927</ModifiedTimestamp>
@@ -18558,41 +19655,69 @@ Name</ColNames>
       <RefTableId>1733581214</RefTableId>
       <RefTableName>Doctor</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5864" parent="5634" name="PK__Patient___3214EC0784C5A62C">
+=======
+    <index id="5814" parent="5626" name="PK__Patient___3214EC0784C5A62C">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5865" parent="5634" name="IX_Patient_Doctor_Appointment_doctorId">
+=======
+    <index id="5815" parent="5626" name="IX_Patient_Doctor_Appointment_doctorId">
+>>>>>>> edit/register-form
       <ColNames>doctorId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5866" parent="5634" name="IX_Patient_Doctor_Appointment_patientId">
+=======
+    <index id="5816" parent="5626" name="IX_Patient_Doctor_Appointment_patientId">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <Position>3</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5867" parent="5634" name="PK__Patient___3214EC0784C5A62C">
+=======
+    <key id="5817" parent="5626" name="PK__Patient___3214EC0784C5A62C">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.923</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.923</ModifiedTimestamp>
       <ObjectId>274100017</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Patient___3214EC0784C5A62C</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5868" parent="5635" name="patientId">
+=======
+    <column id="5818" parent="5627" name="patientId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5869" parent="5635" name="number">
+=======
+    <column id="5819" parent="5627" name="number">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>char(11 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <foreign-key id="5870" parent="5635" name="FK__Patient_P__patie__571DF1D5">
+=======
+    <foreign-key id="5820" parent="5627" name="FK__Patient_P__patie__571DF1D5">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.920</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.920</ModifiedTimestamp>
@@ -18602,7 +19727,11 @@ Name</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefTableName>Patient</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5871" parent="5635" name="PK__Patient___BEA29408F7AA0AAA">
+=======
+    <index id="5821" parent="5627" name="PK__Patient___BEA29408F7AA0AAA">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>patientId
 number</ColNames>
@@ -18610,138 +19739,230 @@ number</ColNames>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5872" parent="5635" name="UQ__Patient___FD291E414AD144B4">
+=======
+    <index id="5822" parent="5627" name="UQ__Patient___FD291E414AD144B4">
+>>>>>>> edit/register-form
       <ColNames>number</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <Position>2</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5873" parent="5635" name="PK__Patient___BEA29408F7AA0AAA">
+=======
+    <key id="5823" parent="5627" name="PK__Patient___BEA29408F7AA0AAA">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.920</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.920</ModifiedTimestamp>
       <ObjectId>82099333</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Patient___BEA29408F7AA0AAA</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5874" parent="5636" name="Id">
+=======
+    <column id="5824" parent="5628" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>1381579960</DefaultConstraintId>
       <DefaultConstraintName>DF__Room__Id__52593CB8</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5875" parent="5636" name="costPerDay">
+=======
+    <column id="5825" parent="5628" name="costPerDay">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>money|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5876" parent="5636" name="roomNumber">
+=======
+    <column id="5826" parent="5628" name="roomNumber">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5877" parent="5636" name="type">
+=======
+    <column id="5827" parent="5628" name="type">
+>>>>>>> edit/register-form
       <Position>4</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
       <DefaultConstraintId>1397580017</DefaultConstraintId>
       <DefaultConstraintName>DF__Room__type__534D60F1</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5878" parent="5636" name="status">
+=======
+    <column id="5828" parent="5628" name="status">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>bit|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5879" parent="5636" name="DF__Room__Id__52593CB8">
+=======
+    <default id="5829" parent="5628" name="DF__Room__Id__52593CB8">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.890</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1381579960</ObjectId>
     </default>
+<<<<<<< HEAD
     <default id="5880" parent="5636" name="DF__Room__type__534D60F1">
+=======
+    <default id="5830" parent="5628" name="DF__Room__type__534D60F1">
+>>>>>>> edit/register-form
       <ColNames>type</ColNames>
       <DefaultExpression>&apos;general&apos;</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.890</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1397580017</ObjectId>
     </default>
+<<<<<<< HEAD
     <index id="5881" parent="5636" name="PK__Room__3214EC07A1950031">
+=======
+    <index id="5831" parent="5628" name="PK__Room__3214EC07A1950031">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5882" parent="5636" name="PK__Room__3214EC07A1950031">
+=======
+    <key id="5832" parent="5628" name="PK__Room__3214EC07A1950031">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.890</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.890</ModifiedTimestamp>
       <ObjectId>1365579903</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Room__3214EC07A1950031</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5883" parent="5637" name="Id">
+=======
+    <column id="5833" parent="5629" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>1861581670</DefaultConstraintId>
       <DefaultConstraintName>DF__Staff__Id__6EF57B66</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5884" parent="5637" name="firstName">
+=======
+    <column id="5834" parent="5629" name="firstName">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5885" parent="5637" name="lastName">
+=======
+    <column id="5835" parent="5629" name="lastName">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5886" parent="5637" name="role">
+=======
+    <column id="5836" parent="5629" name="role">
+>>>>>>> edit/register-form
       <Position>4</Position>
       <StoredType>varchar(20 char)|0s</StoredType>
       <DefaultConstraintId>1877581727</DefaultConstraintId>
       <DefaultConstraintName>DF__Staff__role__6FE99F9F</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5887" parent="5637" name="deptId">
       <Position>5</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
     <column id="5888" parent="5637" name="startSchedule">
+=======
+    <column id="5837" parent="5629" name="deptId">
+      <Position>5</Position>
+      <StoredType>uniqueidentifier|0s</StoredType>
+    </column>
+    <column id="5838" parent="5629" name="startSchedule">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>6</Position>
       <StoredType>time|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5889" parent="5637" name="endSchedule">
+=======
+    <column id="5839" parent="5629" name="endSchedule">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>7</Position>
       <StoredType>time|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5890" parent="5637" name="dayOfWork">
+=======
+    <column id="5840" parent="5629" name="dayOfWork">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>8</Position>
       <StoredType>tinyint|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5891" parent="5637" name="UserId">
+=======
+    <column id="5841" parent="5629" name="UserId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>9</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5892" parent="5637" name="DF__Staff__Id__6EF57B66">
+=======
+    <default id="5842" parent="5629" name="DF__Staff__Id__6EF57B66">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1861581670</ObjectId>
     </default>
+<<<<<<< HEAD
     <default id="5893" parent="5637" name="DF__Staff__role__6FE99F9F">
+=======
+    <default id="5843" parent="5629" name="DF__Staff__role__6FE99F9F">
+>>>>>>> edit/register-form
       <ColNames>role</ColNames>
       <DefaultExpression>&apos;intern&apos;</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>1877581727</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5894" parent="5637" name="FK__Staff__dayOfWork__6C190EBB">
+=======
+    <foreign-key id="5844" parent="5629" name="FK__Staff__dayOfWork__6C190EBB">
+>>>>>>> edit/register-form
       <ColNames>deptId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.910</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
@@ -18751,7 +19972,11 @@ number</ColNames>
       <RefTableId>1301579675</RefTableId>
       <RefTableName>Department</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <foreign-key id="5895" parent="5637" name="FK_Staff_AspNetUsers_UserId">
+=======
+    <foreign-key id="5845" parent="5629" name="FK_Staff_AspNetUsers_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.910</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
@@ -18760,65 +19985,109 @@ number</ColNames>
       <RefTableId>1269579561</RefTableId>
       <RefTableName>AspNetUsers</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5896" parent="5637" name="PK__Staff__3214EC0799EFF6CD">
+=======
+    <index id="5846" parent="5629" name="PK__Staff__3214EC0799EFF6CD">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5897" parent="5637" name="IX_Staff_deptId">
+=======
+    <index id="5847" parent="5629" name="IX_Staff_deptId">
+>>>>>>> edit/register-form
       <ColNames>deptId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5898" parent="5637" name="IX_Staff_UserId">
+=======
+    <index id="5848" parent="5629" name="IX_Staff_UserId">
+>>>>>>> edit/register-form
       <ColNames>UserId</ColNames>
       <Position>3</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5899" parent="5637" name="PK__Staff__3214EC0799EFF6CD">
+=======
+    <key id="5849" parent="5629" name="PK__Staff__3214EC0799EFF6CD">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.910</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.910</ModifiedTimestamp>
       <ObjectId>1845581613</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Staff__3214EC0799EFF6CD</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5900" parent="5638" name="Id">
+=======
+    <column id="5850" parent="5630" name="Id">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
       <DefaultConstraintId>146099561</DefaultConstraintId>
       <DefaultConstraintName>DF__Visit__Id__08B54D69</DefaultConstraintName>
     </column>
+<<<<<<< HEAD
     <column id="5901" parent="5638" name="notes">
       <Position>2</Position>
       <StoredType>varchar(200 char)|0s</StoredType>
     </column>
     <column id="5902" parent="5638" name="patientId">
+=======
+    <column id="5851" parent="5630" name="notes">
+      <Position>2</Position>
+      <StoredType>varchar(200 char)|0s</StoredType>
+    </column>
+    <column id="5852" parent="5630" name="patientId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>3</Position>
       <StoredType>uniqueidentifier|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5903" parent="5638" name="reason">
+=======
+    <column id="5853" parent="5630" name="reason">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StoredType>varchar(200 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5904" parent="5638" name="date">
+=======
+    <column id="5854" parent="5630" name="date">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StoredType>date|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <default id="5905" parent="5638" name="DF__Visit__Id__08B54D69">
+=======
+    <default id="5855" parent="5630" name="DF__Visit__Id__08B54D69">
+>>>>>>> edit/register-form
       <ColNames>Id</ColNames>
       <DefaultExpression>newid()</DefaultExpression>
       <ModifiedTimestamp>2024-12-13.02:54:49.923</ModifiedTimestamp>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>146099561</ObjectId>
     </default>
+<<<<<<< HEAD
     <foreign-key id="5906" parent="5638" name="FK__Visit__patientId__619B8048">
+=======
+    <foreign-key id="5856" parent="5630" name="FK__Visit__patientId__619B8048">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <CreatedTimestamp>2024-12-13.02:54:49.923</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.923</ModifiedTimestamp>
@@ -18828,48 +20097,321 @@ number</ColNames>
       <RefTableId>1669580986</RefTableId>
       <RefTableName>Patient</RefTableName>
     </foreign-key>
+<<<<<<< HEAD
     <index id="5907" parent="5638" name="PK__Visit__3214EC07169C3B2E">
+=======
+    <index id="5857" parent="5630" name="PK__Visit__3214EC07169C3B2E">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>Id</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <index id="5908" parent="5638" name="IX_Visit_patientId">
+=======
+    <index id="5858" parent="5630" name="IX_Visit_patientId">
+>>>>>>> edit/register-form
       <ColNames>patientId</ColNames>
       <Position>2</Position>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5909" parent="5638" name="PK__Visit__3214EC07169C3B2E">
+=======
+    <key id="5859" parent="5630" name="PK__Visit__3214EC07169C3B2E">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.923</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.923</ModifiedTimestamp>
       <ObjectId>130099504</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK__Visit__3214EC07169C3B2E</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
     <column id="5910" parent="5639" name="MigrationId">
+=======
+    <column id="5860" parent="5631" name="MigrationId">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>nvarchar(150 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <column id="5911" parent="5639" name="ProductVersion">
+=======
+    <column id="5861" parent="5631" name="ProductVersion">
+>>>>>>> edit/register-form
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>nvarchar(32 char)|0s</StoredType>
     </column>
+<<<<<<< HEAD
     <index id="5912" parent="5639" name="PK___EFMigrationsHistory">
+=======
+    <index id="5862" parent="5631" name="PK___EFMigrationsHistory">
+>>>>>>> edit/register-form
       <Clustering>1</Clustering>
       <ColNames>MigrationId</ColNames>
       <Position>1</Position>
       <Unique>1</Unique>
       <PartitionDataSpaceId>1</PartitionDataSpaceId>
     </index>
+<<<<<<< HEAD
     <key id="5913" parent="5639" name="PK___EFMigrationsHistory">
+=======
+    <key id="5863" parent="5631" name="PK___EFMigrationsHistory">
+>>>>>>> edit/register-form
       <CreatedTimestamp>2024-12-13.02:54:49.803</CreatedTimestamp>
       <ModifiedTimestamp>2024-12-13.02:54:49.803</ModifiedTimestamp>
       <ObjectId>1221579390</ObjectId>
       <Primary>1</Primary>
       <UnderlyingIndexName>PK___EFMigrationsHistory</UnderlyingIndexName>
     </key>
+<<<<<<< HEAD
+=======
+    <column id="5864" parent="5634" name="optname">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>sysname|0s</StoredType>
+    </column>
+    <column id="5865" parent="5634" name="value">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>bit|0s</StoredType>
+    </column>
+    <column id="5866" parent="5634" name="major_version">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5867" parent="5634" name="minor_version">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5868" parent="5634" name="revision">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5869" parent="5634" name="install_failures">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5870" parent="5635" name="xserver_name">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(30 char)|0s</StoredType>
+    </column>
+    <column id="5871" parent="5635" name="xdttm_ins">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>datetime|0s</StoredType>
+    </column>
+    <column id="5872" parent="5635" name="xdttm_last_ins_upd">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>datetime|0s</StoredType>
+    </column>
+    <column id="5873" parent="5635" name="xfallback_dbid">
+      <Position>4</Position>
+      <StoredType>smallint|0s</StoredType>
+    </column>
+    <column id="5874" parent="5635" name="name">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>varchar(30 char)|0s</StoredType>
+    </column>
+    <column id="5875" parent="5635" name="dbid">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>smallint|0s</StoredType>
+    </column>
+    <column id="5876" parent="5635" name="status">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>smallint|0s</StoredType>
+    </column>
+    <column id="5877" parent="5635" name="version">
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StoredType>smallint|0s</StoredType>
+    </column>
+    <column id="5878" parent="5636" name="xserver_name">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(30 char)|0s</StoredType>
+    </column>
+    <column id="5879" parent="5636" name="xdttm_ins">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>datetime|0s</StoredType>
+    </column>
+    <column id="5880" parent="5636" name="xdttm_last_ins_upd">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>datetime|0s</StoredType>
+    </column>
+    <column id="5881" parent="5636" name="xfallback_low">
+      <Position>4</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5882" parent="5636" name="xfallback_drive">
+      <Position>5</Position>
+      <StoredType>char(2 char)|0s</StoredType>
+    </column>
+    <column id="5883" parent="5636" name="low">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5884" parent="5636" name="high">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5885" parent="5636" name="status">
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StoredType>smallint|0s</StoredType>
+    </column>
+    <column id="5886" parent="5636" name="name">
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+      <StoredType>varchar(30 char)|0s</StoredType>
+    </column>
+    <column id="5887" parent="5636" name="phyname">
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+      <StoredType>varchar(127 char)|0s</StoredType>
+    </column>
+    <column id="5888" parent="5637" name="xserver_name">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>varchar(30 char)|0s</StoredType>
+    </column>
+    <column id="5889" parent="5637" name="xdttm_ins">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>datetime|0s</StoredType>
+    </column>
+    <column id="5890" parent="5637" name="xdttm_last_ins_upd">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>datetime|0s</StoredType>
+    </column>
+    <column id="5891" parent="5637" name="xfallback_vstart">
+      <Position>4</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5892" parent="5637" name="dbid">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>smallint|0s</StoredType>
+    </column>
+    <column id="5893" parent="5637" name="segmap">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5894" parent="5637" name="lstart">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5895" parent="5637" name="sizepg">
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5896" parent="5637" name="vstart">
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5897" parent="5638" name="lastrun">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>datetime|0s</StoredType>
+    </column>
+    <column id="5898" parent="5638" name="cpu_busy">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5899" parent="5638" name="io_busy">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5900" parent="5638" name="idle">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5901" parent="5638" name="pack_received">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5902" parent="5638" name="pack_sent">
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5903" parent="5638" name="connections">
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5904" parent="5638" name="pack_errors">
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5905" parent="5638" name="total_read">
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5906" parent="5638" name="total_write">
+      <NotNull>1</NotNull>
+      <Position>10</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5907" parent="5638" name="total_errors">
+      <NotNull>1</NotNull>
+      <Position>11</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5908" parent="5639" name="name">
+      <Position>1</Position>
+      <StoredType>nvarchar(35 char)|0s</StoredType>
+    </column>
+    <column id="5909" parent="5639" name="number">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5910" parent="5639" name="type">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>nchar(3 char)|0s</StoredType>
+    </column>
+    <column id="5911" parent="5639" name="low">
+      <Position>4</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5912" parent="5639" name="high">
+      <Position>5</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="5913" parent="5639" name="status">
+      <Position>6</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+>>>>>>> edit/register-form
   </database-model>
 </dataSource>
