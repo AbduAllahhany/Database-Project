@@ -6,29 +6,24 @@ namespace hospital.management.system.BLL.Services.IServices;
 
 public interface IDoctorService
 {
-    public IEnumerable<Doctor> getPendingAppointments(Guid loggedDoctorId);
+    public IEnumerable<Doctor> GetPendingAppointments(Guid loggedDoctorId);
 
-    public IEnumerable<Doctor> getUpcomingAppointments(Guid loggedDoctorId);
+    public IEnumerable<Doctor> GetUpcomingAppointments(Guid loggedDoctorId);
     
-    public IEnumerable<Doctor> getDailyAppointments(Guid loggedDoctorId);
+    public IEnumerable<Doctor> GetDailyAppointments(Guid loggedDoctorId);
     
-    public int approveNextAppointment(Guid loggedDoctorId);
-
-    public int postponingAppointment(Guid loggedDoctorId);
-
-    public int cancelingAppointment(DoctorCancelingAppointmentModel model);
+    public IEnumerable<Doctor> GetNextAppointmentInfo(Guid loggedDoctorId);
     
-    public int getNextAppointmentInfo(Guid loggedDoctorId);
+    public IEnumerable<Doctor> GetMonthlyAppointmentSummary(Guid loggedDoctorId);
+    
+    public int ApproveNextAppointment(Guid loggedDoctorId);
 
-    public IEnumerable<Doctor> getMonthlyAppointmentSummary(Guid loggedDoctorId);
+    public int PostponingAppointment(Guid loggedDoctorId);
 
-    public int followUpAppointment(FollowUpAppointmentModel model);
+    public int CancelingAppointment(DoctorCancelingAppointmentModel model);
+
+    public int FollowUpAppointment(FollowUpAppointmentModel model);
 
     public int CreateMedicalRecord(MedicalRecordModel model);
-
-    // public IEnumerable<Doctor> viewPatientHistory();
-
-
-
 }
 
