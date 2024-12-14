@@ -19,5 +19,7 @@ public interface IPatientService
     public List<PatientEmergancyContact> GetPatientEmergancyContacts(Guid patientId);
 
     public List<Patient> GetAllPetient();
+
+    public Task<GetPatientProfileModel> GetPatientByUserId(Guid? Id);
     //public void MarkPatientAppoinment(Appointment appoinment);
 }

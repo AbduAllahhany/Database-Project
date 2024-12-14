@@ -33,7 +33,6 @@
                             </div>
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
-
                         <!-- First Name -->
                         <div class="mb-3">
                             <label asp-for="FirstName" class="form-label"></label>
@@ -43,7 +42,6 @@
                             </div>
                             <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
-
                         <!-- Last Name -->
                         <div class="mb-3">
                             <label asp-for="LastName" class="form-label"></label>
@@ -53,7 +51,6 @@
                             </div>
                             <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
-
                         <!-- Address -->
                         <div class="mb-3">
                             <label asp-for="Address" class="form-label"></label>
@@ -63,7 +60,6 @@
                             </div>
                             <span asp-validation-for="Address" class="text-danger"></span>
                         </div>
-
                         <!-- SSN -->
                         <div class="mb-3">
                             <label asp-for="SSN" class="form-label"></label>
@@ -73,7 +69,6 @@
                             </div>
                             <span asp-validation-for="SSN" class="text-danger"></span>
                         </div>
-
                         <!-- Date of Birth -->
                         <div class="mb-3">
                             <label asp-for="DateOfBirth" class="form-label"></label>
@@ -83,7 +78,6 @@
                             </div>
                             <span asp-validation-for="DateOfBirth" class="text-danger"></span>
                         </div>
-
                         <!-- Phone Number -->
                         <div class="mb-3">
                             <label asp-for="PhoneNumber" class="form-label"></label>
@@ -94,7 +88,6 @@
                             </div>
                             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
-
                         <!-- Gender -->
                         <div class="mb-3">
                             <label asp-for="Gender" class="form-label"></label>
@@ -105,8 +98,16 @@
                             </div>
                             <span asp-validation-for="Gender" class="text-danger"></span>
                         </div>
-
-                        <!-- `odGroup -->
+                        <!-- Date -->
+                        <div class="mb-3">
+                            <label asp-for="DateOfBirth" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                <input asp-for="DateOfBirth" type="date" class="form-control" />
+                            </div>
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <!-- bloodGroup -->
                         <div class="mb-3">
                             <label asp-for="BloodGroup" class="form-label"></label>
                             <div class="input-group">
@@ -116,7 +117,6 @@
                             </div>
                             <span asp-validation-for="BloodGroup" class="text-danger"></span>
                         </div>
-
                         <!-- Allergies -->
                         <div class="mb-3">
                             <label asp-for="Allergies" class="form-label"></label>
@@ -135,7 +135,6 @@
                             </div>
                             <span asp-validation-for="ChronicDiseases" class="text-danger"></span>
                         </div>
-
                         <!-- Submit Button -->
                         <div class="text-center">
                             <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Submit</button>

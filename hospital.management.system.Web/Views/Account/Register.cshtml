@@ -35,7 +35,6 @@
                             </div>
                             <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
-
                         <!-- Last Name -->
                         <div class="mb-3">
                             <label asp-for="LastName" class="form-label"></label>
@@ -45,7 +44,6 @@
                             </div>
                             <span asp-validation-for="LastName" class="text-danger"></span>
                         </div>
-
                         <!-- SSN -->
                         <div class="mb-3">
                             <label asp-for="SSN" class="form-label"></label>
@@ -55,7 +53,6 @@
                             </div>
                             <span asp-validation-for="SSN" class="text-danger"></span>
                         </div>
-
                         <!-- Email -->
                         <div class="mb-3">
                             <label asp-for="Email" class="form-label"></label>
@@ -65,7 +62,6 @@
                             </div>
                             <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
-
                         <!-- Gender -->
                         <div class="mb-3">
                             <label asp-for="Gender" class="form-label"></label>
@@ -75,7 +71,26 @@
                             </div>
                             <span asp-validation-for="Gender" class="text-danger"></span>
                         </div>
-
+                      
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label asp-for="Phone" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <input asp-for="Phone" class="form-control"
+                                       placeholder="Enter your phone number"/>
+                            </div>
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                        <!-- Date -->
+                        <div class="mb-3">
+                            <label asp-for="DateOfBirth" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                <input asp-for="DateOfBirth" type="date" class="form-control" />
+                            </div>
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
                         <!-- Password -->
                         <div class="mb-3">
                             <label asp-for="Password" class="form-label"></label>
@@ -85,7 +100,6 @@
                             </div>
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
-
                         <!-- Confirm Password -->
                         <div class="mb-3">
                             <label asp-for="ConfirmPassword" class="form-label"></label>
@@ -95,6 +109,7 @@
                             </div>
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
+
 
                         <!-- Submit Button -->
                         <div class="text-center">

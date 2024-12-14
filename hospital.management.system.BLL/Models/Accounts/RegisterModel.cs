@@ -22,19 +22,15 @@ public class RegisterModel
     [Required]
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
-//<<<<<<< HEAD
 
     [Required]
     [Display(Name = "Date of birth")]
     [DateOfBirth]
-    public DateOnly DateOfbirth { get; set; } = new DateOnly(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-//=======
+    public DateOnly DateOfBirth { get; set; } = DateOnly.FromDateTime(DateTime.Now);
     
     [Required] 
     [NationalID] 
     public string SSN { get; set; }
-//>>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
-
     [Required]
     [DataType(DataType.Password)]
     public string Password { get; set; }
@@ -46,6 +42,9 @@ public class RegisterModel
 
     [Required]
     public Gender Gender { get; set; }
+    [Required]
+    [EgyptianPhoneNumber]
+    public string Phone { get; set; }
 
 }
 

@@ -144,7 +144,6 @@ public class DoctorService : IDoctorService
 	        ORDER BY A.date").ToList();
         return res;
     }
-
     public int CreateMedicalRecord(MedicalRecordModel model)
     {
         var sql = @"            

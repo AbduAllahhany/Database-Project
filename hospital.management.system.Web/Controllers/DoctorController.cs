@@ -16,20 +16,22 @@ public class DoctorController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
     private readonly IDoctorService _doctorService;
 
     public DoctorController(
         IUnitOfWork unitOfWork,
         ApplicationDbContext context,
+        UserManager<ApplicationUser> userManager,
         IDoctorService DoctorService)
     {
         _unitOfWork = unitOfWork;
         _context = context;
+        _userManager = userManager;
         // _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         _doctorService = DoctorService;
     }
 
-    // ===>>> revise this function 
     private Guid GetUserId()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -63,6 +65,7 @@ public class DoctorController : Controller
         var approveAppointment = _doctorService.approveNextAppointment(GetUserId());
         return View("IdToApproveAppointment", approveAppointment);
     }
+
     // ==> what is the view should do ?!!!!!!!!!!!!!!!!!!
     public IActionResult IdToPostponeAppointment()
     {
@@ -85,6 +88,7 @@ public class DoctorController : Controller
     {
         return View("FollowUpAppointment");
     }
+
     public IActionResult FollowUpAppointment(FollowUpAppointmentModel model)
     {
         model.DoctorId = GetUserId();
@@ -101,7 +105,7 @@ public class DoctorController : Controller
         try
         {
             // Get the logged-in user's (doctor's) ID
-            var id = GetUserId();  // Assuming GetUserId() fetches the currently logged-in doctor's ID
+            var id = GetUserId(); // Assuming GetUserId() fetches the currently logged-in doctor's ID
 
             // Fetch the doctor details using LINQ
             Doctor doctor = _context.Doctors
@@ -115,23 +119,23 @@ public class DoctorController : Controller
             // Fetch related data using LINQ
             var appointments = _context.PatientDoctorAppointments
                 .Where(ap => ap.DoctorId == id)
-                .Include(ap => ap.Patient)  // Assuming Appointment has a related Patient entity
+                .Include(ap => ap.Patient) // Assuming Appointment has a related Patient entity
                 .ToList();
 
             var medicalRecords = _context.MedicalRecords
                 .Where(mr => mr.DoctorId == id)
-                .Include(mr => mr.Patient)  // Assuming MedicalRecord has a related Patient entity
+                .Include(mr => mr.Patient) // Assuming MedicalRecord has a related Patient entity
                 .ToList();
 
             var department = _context.Departments
-                .FirstOrDefault(d => d.Id == doctor.DepartmentId);  // Fetch department details for the doctor
+                .FirstOrDefault(d => d.Id == doctor.DepartmentId); // Fetch department details for the doctor
 
             // Create the DoctorDashBoardModel object
             var doctorDashboard = new DoctorDashBoardModel()
             {
                 DoctorName = $"{doctor.FirstName} {doctor.LastName}",
                 Specialization = doctor.Specialization,
-                DepartmentName = department?.Name,  // Assuming the Department has a Name property
+                DepartmentName = department?.Name, // Assuming the Department has a Name property
                 WorkingHours = doctor.WorkingHours,
                 Appointments = appointments,
                 MedicalRecords = medicalRecords
@@ -146,4 +150,6 @@ public class DoctorController : Controller
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
     }
+
+
 }
