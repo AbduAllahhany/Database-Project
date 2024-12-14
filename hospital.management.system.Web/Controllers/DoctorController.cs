@@ -65,6 +65,7 @@ public class DoctorController : Controller
         var approveAppointment = _doctorService.approveNextAppointment(GetUserId());
         return View("IdToApproveAppointment", approveAppointment);
     }
+
     // ==> what is the view should do ?!!!!!!!!!!!!!!!!!!
     public IActionResult IdToPostponeAppointment()
     {
@@ -87,6 +88,7 @@ public class DoctorController : Controller
     {
         return View("FollowUpAppointment");
     }
+
     public IActionResult FollowUpAppointment(FollowUpAppointmentModel model)
     {
         model.DoctorId = GetUserId();
@@ -103,7 +105,7 @@ public class DoctorController : Controller
         try
         {
             // Get the logged-in user's (doctor's) ID
-            var id = GetUserId();  // Assuming GetUserId() fetches the currently logged-in doctor's ID
+            var id = GetUserId(); // Assuming GetUserId() fetches the currently logged-in doctor's ID
 
             // Fetch the doctor details using LINQ
             Doctor doctor = _context.Doctors
@@ -117,23 +119,23 @@ public class DoctorController : Controller
             // Fetch related data using LINQ
             var appointments = _context.PatientDoctorAppointments
                 .Where(ap => ap.DoctorId == id)
-                .Include(ap => ap.Patient)  // Assuming Appointment has a related Patient entity
+                .Include(ap => ap.Patient) // Assuming Appointment has a related Patient entity
                 .ToList();
 
             var medicalRecords = _context.MedicalRecords
                 .Where(mr => mr.DoctorId == id)
-                .Include(mr => mr.Patient)  // Assuming MedicalRecord has a related Patient entity
+                .Include(mr => mr.Patient) // Assuming MedicalRecord has a related Patient entity
                 .ToList();
 
             var department = _context.Departments
-                .FirstOrDefault(d => d.Id == doctor.DepartmentId);  // Fetch department details for the doctor
+                .FirstOrDefault(d => d.Id == doctor.DepartmentId); // Fetch department details for the doctor
 
             // Create the DoctorDashBoardModel object
             var doctorDashboard = new DoctorDashBoardModel()
             {
                 DoctorName = $"{doctor.FirstName} {doctor.LastName}",
                 Specialization = doctor.Specialization,
-                DepartmentName = department?.Name,  // Assuming the Department has a Name property
+                DepartmentName = department?.Name, // Assuming the Department has a Name property
                 WorkingHours = doctor.WorkingHours,
                 Appointments = appointments,
                 MedicalRecords = medicalRecords
@@ -148,7 +150,7 @@ public class DoctorController : Controller
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> Profile()
     {
@@ -170,5 +172,16 @@ public class DoctorController : Controller
             LastName = res.LastName,
             Gender = user.Gender,
         });
+    }
+
+    public async Task<IActionResult> EditDoctor(DoctorEditModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        var res = await _adminService.DoctorPatientAsync();
+        if (res == 1)
+        {
+            return User.IsInRole(SD.Patient) ? RedirectToAction("Index", "Doctor") : RedirectToAction("Profile");
+        }
+        return View("Error");
     }
 }

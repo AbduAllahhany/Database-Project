@@ -2,4 +2,5 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=30C5C074_002DF97E_002D401C_002DB67B_002D37211136582F_002Fd_003AControllers_002Ff_003ADoctorController_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=3A94412D_002DA8F7_002D40A0_002D956B_002D953B958FDC9D_002Fd_003AServices_002Ff_003ADoctorService_002Ecs/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/PencilsConfiguration/ActualSeverity/@EntryValue">INFO</s:String>
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">C:\Users\abdal\AppData\Local\JetBrains\Rider2024.3\resharper-host\temp\Rider\vAny\CoverageData\_Hospital Management System.-298238415\Snapshot\snapshot.utdcvr</s:String>
 </wpf:ResourceDictionary>

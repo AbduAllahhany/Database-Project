@@ -24,17 +24,20 @@ public class PatientController : Controller
     private readonly ApplicationDbContext _context;
     private readonly IPatientService _patientService;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IAdminService _adminService;
 
     public PatientController(
         IUnitOfWork unitOfWork,
         ApplicationDbContext context,
         IPatientService patientService,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager,
+        IAdminService adminService)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         _context = context ?? throw new ArgumentNullException(nameof(context));
         _patientService = patientService ?? throw new ArgumentNullException(nameof(patientService));
         _userManager = userManager;
+        _adminService = adminService;
     }
 
 
@@ -178,6 +181,23 @@ public class PatientController : Controller
         return View("GetPatientVisits", PatientVisits);
     }
 
+    public async Task<IActionResult> EditPatient()
+    {
+        return View();
+
+    }
+
+    public async Task<IActionResult> EditPatient(PatientEditModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        var res = await _adminService.EditPatientAsync();
+        if (res == 1)
+        {
+            return User.IsInRole(SD.Patient) ? RedirectToAction("Index", "Patient") : RedirectToAction("Profile");
+        }
+
+        return View("Error");
+    }
     public IActionResult GetRoomStatus(Guid patientId)
     {
         PatientRoom RoomStatus = _patientService.GetRoomStatus(patientId);
@@ -185,7 +205,7 @@ public class PatientController : Controller
         //if (RoomStatus == null) return RedirectToAction("Index");
         return View("GetRoomStatus", RoomStatus);
     }
-
+    
     [HttpGet]
     public async Task<IActionResult> Profile()
     {

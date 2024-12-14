@@ -260,7 +260,7 @@ public class AdminService : IAdminService
         return res;
     }
 
-    public async Task<int> EditPatientAsync(AdminEditPatientModel? model)
+    public async Task<int> EditPatientAsync(PatientEditModel? model)
     {
         if (model == null) return 0;
 
@@ -282,8 +282,7 @@ public class AdminService : IAdminService
             model.DateOfBirth, model.Address, patientId);
         return res;
     }
-
-    public async Task<int> EditDoctorAsync(AdminEditDoctorModel? model)
+    public async Task<int> EditDoctorAsync(DoctorEditModel? model)
     {
         if (model == null) return 0;
         Guid? doctorId = model.DoctorId;
@@ -302,8 +301,7 @@ public class AdminService : IAdminService
             model.DateOfBirth, model.Address, doctorId);
         return res;
     }
-
-    public async Task<int> EditStaffAsync(AdminEditStaffModel model)
+    public async Task<int> EditStaffAsync(StaffEditModel model)
     {
         if (model == null) return 0;
         Guid? staffId = model.StaffId;
