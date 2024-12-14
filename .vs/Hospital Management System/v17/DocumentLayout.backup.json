@@ -38,8 +38,7 @@
               "RelativeToolTip": "hospital.management.system.Web\\Controllers\\DoctorController.cs",
               "ViewState": "AgIAAIEAAAAAAAAAAAAAAJQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-14T02:16:53.325Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-14T02:16:53.325Z"
             },
             {
               "$type": "Document",
@@ -49,7 +48,7 @@
               "RelativeDocumentMoniker": "hospital.management.system.BLL\\Models\\Accounts\\RegisterModel.cs",
               "ToolTip": "H:\\Education\\Data base\\A abdallah_hassan project\\Database-Project\\hospital.management.system.BLL\\Models\\Accounts\\RegisterModel.cs",
               "RelativeToolTip": "hospital.management.system.BLL\\Models\\Accounts\\RegisterModel.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAzwCkAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAwCYAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-14T02:16:39.614Z",
               "EditorCaption": ""
@@ -64,8 +63,7 @@
               "RelativeToolTip": "hospital.management.system.BLL\\Services\\IServices\\IDoctorService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-14T02:16:05.797Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-14T02:16:05.797Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "hospital.management.system.BLL\\Services\\DoctorService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-14T02:12:57.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-14T02:12:57.813Z"
             }
           ]
         }

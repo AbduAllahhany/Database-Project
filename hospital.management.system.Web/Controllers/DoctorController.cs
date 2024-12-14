@@ -5,6 +5,7 @@ using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.Web.Controllers;
 
+[Authorize(Roles = SD.Doctor)]
 public class DoctorController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -69,7 +71,7 @@ public class DoctorController : Controller
         var postponeAppointment = _doctorService.postponingAppointment(GetUserId());
         return View(postponeAppointment);
     }
-
+//==> will be checked after inserting data 
     public IActionResult CancelingAppointment(Guid patientId)
     {
         var model = new DoctorCancelingAppointmentModel
@@ -77,6 +79,7 @@ public class DoctorController : Controller
             LoggedDoctorId = GetUserId(),
             SelectedPatientId = patientId,
         };
+        if (patientId == Guid.Empty || patientId == null) return View("Error");
         var cancelAppointment = _doctorService.cancelingAppointment(model);
         return View("CancelingAppointment", cancelAppointment);
     }
@@ -85,6 +88,7 @@ public class DoctorController : Controller
     {
         return View("FollowUpAppointment");
     }
+    [HttpPost]
     public IActionResult FollowUpAppointment(FollowUpAppointmentModel model)
     {
         model.DoctorId = GetUserId();
@@ -104,9 +108,8 @@ public class DoctorController : Controller
             var id = GetUserId();  // Assuming GetUserId() fetches the currently logged-in doctor's ID
 
             // Fetch the doctor details using LINQ
-            Doctor doctor = _context.Doctors
-                .FirstOrDefault(d => d.Id == id);
-
+         //   Doctor doctor = _context.Doctors.FirstOrDefault(d => d.Id == id);
+         Doctor doctor = _context.Doctors.FromSqlInterpolated($@"select * from Doctor where Id ={id}").FirstOrDefault();
             if (doctor == null)
             {
                 return NotFound("Doctor not found");

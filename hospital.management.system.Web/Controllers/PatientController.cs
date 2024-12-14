@@ -11,10 +11,12 @@ using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using hospital.management.system.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.Web.Controllers;
 
+[Authorize(Roles = SD.Patient)]
 public class PatientController : Controller
 {
     
@@ -48,8 +50,8 @@ public class PatientController : Controller
             throw new FormatException("User ID is not a valid GUID.");
         }
         
-        var patientId = (_context.Patients.FirstOrDefault(e=>e.UserId==id));
-        //var patientId =_context.Patients.FromSqlInterpolated($@"select * from Patients where UserId={id}").FirstOrDefault();
+        //var patientId = (_context.Patients.FirstOrDefault(e=>e.UserId==id));
+        var patientId =_context.Patients.FromSqlInterpolated($@"select * from Patient where UserId={id}").FirstOrDefault();
         if (patientId==null || patientId.Id==Guid.Empty)
         {
             throw new InvalidOperationException("Patient is not authenticated or the NameIdentifier claim is missing.");
@@ -78,38 +80,38 @@ public class PatientController : Controller
 
             var id = GetUserId();
             // Fetch patient details using LINQ
-            var patient = _context.Patients
-                .FirstOrDefault(p => p.Id == id);
+
+            var patient = _context.Patients.FromSqlInterpolated($@"select * from patient where id={id}").FirstOrDefault();
+            
 
             if (patient == null)
             {
                 return NotFound("Patient not found");
             }
 
-            // Fetch related data using LINQ
-            var emergencyContacts = _context.EmergencyContacts
-                .Where(ec => ec.PatientId == id)
-                .ToList();
+            
 
+            var emergencyContacts =_context.EmergencyContacts.FromSqlInterpolated($@"select * from Emergency_Contact where PatientId={id}").ToList();
+          
             var medicalRecords = _context.MedicalRecords
-                .Where(mr => mr.PatientId == id)
-                .ToList();
+                .FromSqlInterpolated($@"select * from Medical_Record where PatientId={id}").ToList();
+                
 
+            
             var appointments = _context.PatientDoctorAppointments
-                .Where(ap => ap.PatientId == id)
-                .ToList();
+                .FromSqlInterpolated($@"select * from Patient_Doctor_Appointment where PatientId={id}").ToList();
+               
 
             var bills = _context.Bills
-                .Where(b => b.PatientId == id)
-                .ToList();
+                .FromSqlInterpolated($@"select * from Bill where PatientId = {id}").ToList();
 
             var visits = _context.Visits
-                .Where(v => v.PatientId == id)
-                .ToList();
+                .FromSqlInterpolated($@"select * from Visit where PatientId = {id}").ToList();
+                
 
             var admissions = _context.Admissions
-                .Where(ad => ad.PatientId == id)
-                .ToList();
+                .FromSqlInterpolated($@"select * from Admission where PatientId = {id}").ToList();
+                
 
             // Create a PatientDashboard object
             var patientDashboard = new PatientDashBoardModel()
