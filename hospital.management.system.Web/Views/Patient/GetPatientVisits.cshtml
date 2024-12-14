@@ -9,46 +9,47 @@
     @if (Model != null && Model.Any())
     {
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <table class="table table-bordered table-striped">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Patient Name</th>
-                        <th scope="col">Visit Date</th>
-                        <th scope="col">Reason</th>
-                        <th scope="col">Notes</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var visit in Model)
-                    {
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
                         <tr>
-                            <td>@visit.PatientName</td>
-                            <td>@visit.Date.ToString("MMMM dd, yyyy")</td>
-                            <td>@visit.Reason</td>
-                            <td>@(string.IsNullOrEmpty(visit.Notes) ? "No notes available" : visit.Notes)</td>
-                            <!-- Button to return to Dashboard -->
-                            <div class="mb-4 text-center">
-                                <a asp-action="DashBoard" asp-controller="Patient" class="btn btn-secondary btn-sm">
-                                    <i class="fas fa-home"></i> Return to Dashboard
-                                </a>
-                            </div>
-
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Visit Date</th>
+                            <th scope="col">Reason</th>
+                            <th scope="col">Notes</th>
                         </tr>
-                    }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @foreach (var visit in Model)
+                        {
+                            <tr>
+                                <td>@visit.PatientName</td>
+                                <td>@visit.Date.ToString("MMMM dd, yyyy")</td>
+                                <td>@visit.Reason</td>
+                                <td>@(string.IsNullOrEmpty(visit.Notes) ? "No notes available" : visit.Notes)</td>
+
+
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                    <!-- Button to return to Dashboard -->
+                    <div class="mb-4 text-center">
+                        <a asp-action="DashBoard" asp-controller="Patient" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-home"></i> Return to Dashboard
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     }
     else
     {
-    <div class="alert alert-warning">
-        No Visits found.
-    </div>
+        <div class="alert alert-warning">
+            No Visits found.
+        </div>
     }
 </div>
 

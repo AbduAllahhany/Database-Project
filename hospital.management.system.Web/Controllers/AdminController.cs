@@ -174,10 +174,10 @@ public class AdminController : Controller
         return View(model);
     }
 
-    public IActionResult Appointments()
+    public async Task<IActionResult> Appointments()
     {
-     //   var appointment = await _adminService.GetAllAppointmentsAsync();
-        return View();
+        var appointments = await _adminService.GetAppointmentsAsync();
+        return View(appointments);
     }
 
     public IActionResult CreateAppointment()
@@ -290,6 +290,8 @@ public class AdminController : Controller
         return (res1 == 1 && res2 == 1) ? RedirectToAction("Index", "Patient") : View("Error");
     }
 
+ 
+    
     public async Task<IActionResult> CreateStaff(Guid? PatientId = null)
     {
         if (PatientId == null) return View("Error");

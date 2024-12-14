@@ -54,40 +54,49 @@ namespace hospital.management.system.BLL.Services;
 
             ApplicationUser newUser = new()
             {
-                SSN = "30311151402135" , 
+                SSN = model.SSN,
+                PhoneNumber = model.Phone, 
                 UserName = model.UserName,
                 Email = model.Email,
                 PasswordHash = model.Password,
                 Gender = Gender.Male,
             };
-        
+
 
             var result = await userManager.CreateAsync(newUser, model.Password);
 
             if (!result.Succeeded)
-                return Result.Failure<RegisterResponseModel, DomainError>(new DomainError(result.Errors.Select(e => e.Description)));
+                return Result.Failure<RegisterResponseModel, DomainError>(
+                    new DomainError(result.Errors.Select(e => e.Description)));
             result = await userManager.AddToRoleAsync(newUser, SD.Patient);
             if (!result.Succeeded)
-                return Result.Failure<RegisterResponseModel, DomainError>(new DomainError(result.Errors.Select(e => e.Description)));
+                return Result.Failure<RegisterResponseModel, DomainError>(
+                    new DomainError(result.Errors.Select(e => e.Description)));
 
-            await unitOfWork.Patients.AddAsync(new()
+            var p = new Patient
             {
                 User = newUser,
-                FirstName  = model.FirstName ,
+                DateOfBirth = model.DateOfBirth,
+                FirstName = model.FirstName,
                 LastName = model.LastName,
+            };
+            await unitOfWork.Patients.AddAsync(p);
+            var list = new List<PatientPhone>();
+            list.Add(new PatientPhone()
+            {
+                Patient = p,
+                Number = model.Phone,
             });
             await ConfirmEmailAysnc(newUser.Email);
             await unitOfWork.CompleteAsync();
-           
             await signInManager.SignInAsync(newUser, isPersistent: false);
-           
             return new RegisterResponseModel
             {
                 UserName = model.UserName,
                 Email = model.Email,
             };
         }
-         
+
 
 
         public async Task<Result<LoginResponseModel, DomainError>> LoginAsync(LoginModel model)

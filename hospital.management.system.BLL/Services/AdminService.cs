@@ -35,8 +35,9 @@ public class AdminService : IAdminService
         var res2 = await _userManager.AddToRoleAsync(user, SD.Patient);
         if (!res1.Succeeded || !res2.Succeeded) return 0;
         string? bloodGroupString = Enum.GetName(typeof(BloodGroup), model.BloodGroup);
-        string sqlcommand1 = $"INSERT INTO Patient (firstName,lastName,dateOfBirth,address,bloodGroup,allergies,chronicDiseases,UserId)" +
-                             $@" VALUES (@p0, @p1, @p2,@p3,@p4,@p5,@p6,@p7)";
+        string sqlcommand1 =
+            $"INSERT INTO Patient (firstName,lastName,dateOfBirth,address,bloodGroup,allergies,chronicDiseases,UserId)" +
+            $@" VALUES (@p0, @p1, @p2,@p3,@p4,@p5,@p6,@p7)";
 
         int res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
             model.FirstName,
@@ -356,6 +357,26 @@ public class AdminService : IAdminService
         return count.FirstOrDefault();
     }
 
+    public async Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAppointmentsAsync()
+    {
+        var res = _context.Database.SqlQuery<GetAllAppointmentsResponseModel>
+        ($"""
+
+          select T.Id , T.reason ,T.status, T.date, T.time , T.UserName as [DoctorUsername], A.UserName as [PatientUsername]
+          FROM (
+                  select a.Id as Id, a.date as [date] , a.patientId as pId, a.reason as reason,a.status as [status],a.time as [time],U.UserName as [username]
+                  from Patient_Doctor_Appointment as A, AspNetUsers as U, Doctor as D
+                  where D.UserId = U.Id AND A.DoctorId = D.Id AND LOWER(A.Status) = 'pending'
+          ) as T
+          inner join Patient as p
+          on p.Id = T.pId
+          inner join AspNetUsers A
+          ON p.UserId = A.Id
+          """);
+        var temp = await res.ToListAsync();
+        return await res.ToListAsync();
+    }
+
     public async Task<IEnumerable<AvailableRoomsModel>> GetAvailableRoomsAsync()
     {
         var res = _context.Database
@@ -375,7 +396,7 @@ public class AdminService : IAdminService
                            SET status=@p0
                            where Id = @p1
                            """;
-        bool isAvaialble = false;//not Avaliable
+        bool isAvaialble = false; //not Avaliable
         var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, isAvaialble, Id);
         return res;
     }
