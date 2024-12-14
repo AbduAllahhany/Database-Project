@@ -1,0 +1,71 @@
+@model VisitCreateModel
+@{
+    ViewData["Title"] = "Create Visit Record";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3 class="card-title">Create Visit</h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="CreateVisit" asp-controller="Admin" method="post" class="needs-validation" novalidate>
+                        <input type="hidden" asp-for="PatientId"/>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <!-- Notes -->
+                        <div class="mb-3">
+                            <label asp-for="Reason" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-question-circle"></i></span>
+                                <textarea asp-for="Reason" class="form-control" placeholder="Choose a Reason" ></textarea>
+                            </div>
+                            <span asp-validation-for="Reason" class="text-danger"></span>
+                        </div>
+                        <!-- Notes -->
+                        <div class="mb-3">
+                            <label asp-for="Notes" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-sticky-note"></i></span>
+                                <input asp-for="Notes" class="form-control" placeholder="Enter Notes"/>
+                            </div>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+                        <!-- Date -->
+                        <div class="mb-3">
+                            <label asp-for="Date" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                <input asp-for="Date" type="date" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"/>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+
+    <script>
+        // Optional: To update the display value dynamically
+        const rangeInput = document.getElementById("workingHoursRange");
+        rangeInput.addEventListener("input", function () {
+            const display = document.getElementById("workingHoursValue");
+            display.textContent = rangeInput.value;
+        });
+    </script>
+}
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
 using hospital.management.system.BLL.Filters;
 using hospital.management.system.Models.Enums;
 
@@ -6,35 +7,48 @@ namespace hospital.management.system.BLL.Models.Admin;
 
 public class PatientCreateModel
 {
+
+    [Display(Name = "First Name")]
     [Required]
     [OneWord]
-    public string FirstName { get; set; }
+    public string? FirstName { get; set; }
+
     [Required]
     [OneWord]
-    public string LastName{ get; set; }
-    
-    [Required]
-    [EmailAddress]
-    [UniqueEmail]
-    public string Email { get; set; }
-    
+    [Display(Name = "Last Name")]
+    public string LastName { get; set; }
+
+    [Required] [EmailAddress] public string Email { get; set; }
+
     [Required]
     [EgyptianPhoneNumber]
+    [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
-    [Required]
-    public string Address { get; set; }
+
+    [Required] public string? Address { get; set; }
+
     [Required]
     [NationalID]
-    public string SSN { get; set; }
-    [Required]
-    public Gender Gender { get; set; }
+    [Display(Name = "National ID")]
+    public string? SSN { get; set; }
+
+    [Required] public Gender? Gender { get; set; }
+
     [Required]
     [Username]
-    [UniqueUsername]
-    public string UserName { get; set; }
-    
-   [Required]
-   [DateOfBirth]
-    public DateOnly DateOfBirth { get; set; }
-    
+    [Display(Name = "Username")]
+    public string? UserName { get; set; }
+
+    [Required]
+    [DateOfBirth]
+    [Display(Name = "Date Of Birth")]
+    public DateOnly? DateOfBirth { get; set; }
+
+    [Required]
+    [EnumDataType(typeof(BloodGroup), ErrorMessage = "Invalid blood group.")]
+    public int BloodGroup { get; set; }
+
+    [Required] public string? Allergies { get; set; }
+    [Required] public string? ChronicDiseases { get; set; }
+
 }

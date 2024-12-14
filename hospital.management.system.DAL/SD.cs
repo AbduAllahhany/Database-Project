@@ -28,44 +28,10 @@ public class SD
             "Oncology"
         };
 
-    public static readonly IEnumerable<string> ValidDepartments = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-    {
-        "Emergency",
-        "Cardiology",
-        "Neurology",
-        "Orthopedics",
-        "Pediatrics",
-        "Dermatology",
-        "Psychiatry",
-        "General Surgery",
-        "Radiology",
-        "Anesthesiology",
-        "Oncology",
-        "Gynecology",
-        "Urology",
-        "Nephrology",
-        "Pathology"
-    };
-
-    public static
-        Dictionary<string, Guid> departments = new Dictionary<string, Guid>
-        {
-            { "Emergency", Guid.NewGuid() },
-            { "Cardiology", Guid.NewGuid() },
-            { "Neurology", Guid.NewGuid() },
-            { "Orthopedics", Guid.NewGuid() },
-            { "Pediatrics", Guid.NewGuid() },
-            { "Dermatology", Guid.NewGuid() },
-            { "Psychiatry", Guid.NewGuid() },
-            { "General Surgery", Guid.NewGuid() },
-            { "Radiology", Guid.NewGuid() },
-            { "Anesthesiology", Guid.NewGuid() },
-            { "Oncology", Guid.NewGuid() },
-            { "Gynecology", Guid.NewGuid() },
-            { "Urology", Guid.NewGuid() },
-            { "Nephrology", Guid.NewGuid() },
-            { "Pathology", Guid.NewGuid() }
-        };
+    /// <summary>
+    /// 
+    /// </summary>
+    public static Dictionary<string, Guid> Departments = new Dictionary<string, Guid>();
 
     public const string Success = "Success";
     public const string Error = "Error";

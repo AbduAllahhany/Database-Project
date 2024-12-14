@@ -3,6 +3,7 @@ using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
+using hospital.management.system.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,21 +29,23 @@ public class AdminService : IAdminService
             Email = model.Email,
             PhoneNumber = model.PhoneNumber,
             SSN = model.SSN,
-            Gender = model.Gender,
+            Gender = model.Gender ?? Gender.Male,
         };
-
         var res1 = await _userManager.CreateAsync(user, "Patient_" + model.SSN);
         var res2 = await _userManager.AddToRoleAsync(user, SD.Patient);
         if (!res1.Succeeded || !res2.Succeeded) return 0;
-
-        string sqlcommand1 = $"INSERT INTO Patient (firstName,lastName,dateOfBirth,address,UserId)" +
-                             $@" VALUES (@p0, @p1, @p2,@p3,@p4)";
+        string? bloodGroupString = Enum.GetName(typeof(BloodGroup), model.BloodGroup);
+        string sqlcommand1 = $"INSERT INTO Patient (firstName,lastName,dateOfBirth,address,bloodGroup,allergies,chronicDiseases,UserId)" +
+                             $@" VALUES (@p0, @p1, @p2,@p3,@p4,@p5,@p6,@p7)";
 
         int res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
             model.FirstName,
             model.LastName,
             model.DateOfBirth,
             model.Address,
+            bloodGroupString,
+            model.Allergies,
+            model.ChronicDiseases,
             user.Id);
 
         var query = _context.Patients.FromSql($@"select top(1) * from patient where UserId={user.Id}");
@@ -74,8 +77,8 @@ public class AdminService : IAdminService
         try
         {
             string sqlcommand =
-                $@"INSERT INTO Doctor (firstName,lastName,specialization,departmentId,workingHours,UserId)" +
-                $@"VALUES (@p0, @p1, @p2,@p3,@p4,@p5)";
+                $@"INSERT INTO Doctor (firstName,lastName,specialization,departmentId,workingHours,startSchedule,endSchedule,UserId)" +
+                $@"VALUES (@p0, @p1, @p2,@p3,@p4,@p5,@p6,@p7)";
 
             res = await _context.Database.ExecuteSqlRawAsync(sqlcommand,
                 model.FirstName,
@@ -83,6 +86,8 @@ public class AdminService : IAdminService
                 model.Specialization,
                 model.DepartmentId,
                 model.WorkingHours,
+                model.StartSchedule,
+                model.EndSchedule,
                 user.Id);
         }
         catch
@@ -140,7 +145,7 @@ public class AdminService : IAdminService
     {
         string sqlcommand1 = $@"INSERT INTO  Bill(date,totalAmount,paidAmount,patientId)" +
                              $@" values (@p0, @p1, @p2, @p3)";
-        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.TotalAmount,
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.Date, model.TotalAmount,
             model.PaidAmount,
             model.PatientId);
         return res;
@@ -148,7 +153,8 @@ public class AdminService : IAdminService
 
     public async Task<int> CreateAdmissionAsync(AdmissionCreateModel model)
     {
-        string sqlcommand1 = $@"INSERT INTO  Addmission(startDate,startDate,roomId,patientId)"
+        if (model.StartDate > model.EndDate) return 0;
+        string sqlcommand1 = $@"INSERT INTO  Admission(startDate,endDate,roomId,patientId)"
                              + $@"values (@p0, @p1, @p2, @p3)";
         var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.StartDate,
             model.EndDate,
@@ -160,7 +166,7 @@ public class AdminService : IAdminService
     public async Task<int> CreateInsuranceAsync(InsuranceCreateModel model)
     {
         string sqlcommand1 = $@"INSERT INTO  Insurance(providerName,policyNumber,coverageMoney,expiryDate,patientId)" +
-                             $@" values (@p0, @p1, @p2, @p3)";
+                             $@" values (@p0, @p1, @p2, @p3,@p4)";
         var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.ProviderName,
             model.PolicyNumber,
             model.CoverageMoney,
@@ -209,6 +215,7 @@ public class AdminService : IAdminService
         var usersInRole = await _userManager.GetUsersInRoleAsync(SD.Admin);
         IEnumerable<GetAllAdminsResponseModel> admins = usersInRole.Select(u => new GetAllAdminsResponseModel
         {
+            Id = u.Id,
             UserName = u.UserName,
             Email = u.Email,
             PhoneNumber = u.PhoneNumber,
@@ -219,14 +226,17 @@ public class AdminService : IAdminService
     // new feature => available time for doctor
     public async Task<int> CreateAppointmentAsync(AppointmentAddModel model)
     {
+        var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == model.PatientUserId);
+        var doctor = await _context.Doctors.FirstOrDefaultAsync(p => p.UserId == model.DoctorUserId);
         string sqlcommand1 =
-            $@"INSERT INTO  Patient_Doctor_Appointment (patientId,doctorId,status,reason,date)" +
-            $@" values (@p0, @p1, @p2, @p3,@p4)";
-        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.PatientId,
-            model.DoctorId,
+            $@"INSERT INTO  Patient_Doctor_Appointment (patientId,doctorId,status,reason,date,time)" +
+            $@" values (@p0, @p1, @p2, @p3,@p4,@p5)";
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, patient.Id,
+            doctor.Id,
             model.Status,
+            model.Reason,
             model.Date,
-            model.PatientId);
+            model.Time);
         return res;
     }
 
@@ -262,17 +272,17 @@ public class AdminService : IAdminService
         user.UserName = model.UserName;
         user.Email = model.Email;
         user.SSN = model.SSN;
-        string sqlcommand1 =
+        string sqlcommand =
             $@"Update Patient 
                SET firstName =@p0,lastName=@p1,dateOfBirth=@p2,address = @p3 
                where Id=@p4";
 
-        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.FirstName, model.LastName,
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand, model.FirstName, model.LastName,
             model.DateOfBirth, model.Address, patientId);
-        return 1;
+        return res;
     }
 
-    public async Task<int> EditDoctorAsync(AdminDoctorEditModel? model)
+    public async Task<int> EditDoctorAsync(AdminEditDoctorModel? model)
     {
         if (model == null) return 0;
         Guid? doctorId = model.DoctorId;
@@ -289,7 +299,7 @@ public class AdminService : IAdminService
 
         var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.FirstName, model.LastName,
             model.DateOfBirth, model.Address, doctorId);
-        return 1;
+        return res;
     }
 
     public async Task<int> EditStaffAsync(AdminEditStaffModel model)
@@ -314,7 +324,7 @@ public class AdminService : IAdminService
             model.DateOfBirth,
             model.Address,
             staffId);
-        return 1;
+        return res;
     }
 
     //to be added in other service
@@ -325,7 +335,7 @@ public class AdminService : IAdminService
         return count.FirstOrDefault();
     }
 
-    public async Task<int> GetPateintCountAsync()
+    public async Task<int> GetPatientCountAsync()
     {
         var res = _context.Database.SqlQuery<int>($@"select count(*) from Patient");
         var count = await res.ToListAsync();
@@ -346,29 +356,27 @@ public class AdminService : IAdminService
         return count.FirstOrDefault();
     }
 
-
-    public async Task<IEnumerable<Patient>> Test()
+    public async Task<IEnumerable<AvailableRoomsModel>> GetAvailableRoomsAsync()
     {
-        //not sending query to database => IQueryable
-        //IQueryable<Patient> query = _context.Patients.FromSql($"SELECT * FROM Patient");
-        // return IQueryable of the specific DTO
-        //var res1 = _context.Database.SqlQuery<string>($"SELECT firstName FROM Patient").ToList();
-        //var res2 = _context.Database.SqlQuery<modeltest>(
-        //  $@"SELECT Id,firstName , lastName FROM Patient").ToList();
-        //string sql1 = "INSERT INTO Patient (firstName,lastName,gender,dateOfBirth,address)"
-        //           + $"VALUES (@p0, @p1, @p2,@p3,@p4)";
-        //for delete or insert or update => return number of row affected
-        //var res3 = _context.Database.ExecuteSqlRaw(sql1, "Khattab", "khattab", true, DateTime.Now, "ASaffas");
-        //sending query
-        //var test = _context.Patients.ToList();
-        //string sql2 = "Delete FROM Patient where Id= (@p0)";
-        //var res4 = _context.Database.ExecuteSqlRaw(sql2, 6);
-        //var email = "admin@admin.com";
-        //var user = _userManager.Users.FirstOrDefault(u => u.Email == email);
-        //var user1   = await _userManager.FindByIdAsync(email);
-        //var  patient1 =  _context.Patients.FromSql($@"select *  from patient where UserId={user.Id}");
+        var res = _context.Database
+            .SqlQuery<AvailableRoomsModel>(
+                $"""
+                 select Id , costPerDay as CostPerDay , roomNumber as RoomNumber  ,type as Type
+                 from Room
+                 where status={true}
+                 """);
+        return await res.ToListAsync();
+    }
 
-
-        return null;
+    public async Task<int> ConfirmRoomAsync(Guid? Id)
+    {
+        var sqlcommand1 = $"""
+                           update Room
+                           SET status=@p0
+                           where Id = @p1
+                           """;
+        bool isAvaialble = false;//not Avaliable
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, isAvaialble, Id);
+        return res;
     }
 }

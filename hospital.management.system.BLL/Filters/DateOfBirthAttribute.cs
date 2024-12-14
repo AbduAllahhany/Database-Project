@@ -11,9 +11,9 @@ public class DateOfBirthAttribute : ValidationAttribute
         DateTime minDate = DateTime.MinValue.Date; // Date part of DateTime.MinValue
         DateTime currentDate = DateTime.UtcNow.Date; // Current UTC date without time
 
-        return dateOfBirth.ToDateTime(TimeOnly.MinValue) >= minDate && 
-               dateOfBirth.ToDateTime(TimeOnly.MinValue) <= currentDate;    }
+        return dateOfBirth.ToDateTime(TimeOnly.MinValue) >= minDate &&
+               dateOfBirth.ToDateTime(TimeOnly.MinValue) <= currentDate;
 
-
+    }
 }
 

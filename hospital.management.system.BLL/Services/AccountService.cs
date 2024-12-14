@@ -56,6 +56,7 @@ namespace hospital.management.system.BLL.Services;
             {
                 UserName = model.UserName,
                 Email = model.Email,
+                SSN = "123458",
                 PasswordHash = model.Password,
                 Gender = Gender.Male,
             };
@@ -71,7 +72,7 @@ namespace hospital.management.system.BLL.Services;
 
             await unitOfWork.Patients.AddAsync(new()
             {
-               // User = newUser,
+                User = newUser,
                 FirstName  = model.FirstName ,
                 LastName = model.LastName,
             });

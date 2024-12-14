@@ -1,15 +1,16 @@
+using System.ComponentModel.DataAnnotations;
 using hospital.management.system.Models.Enums;
 
 namespace hospital.management.system.BLL.Models.Admin;
 
 public class AppointmentAddModel
 {
-    public Guid PatientId { get; set; }
-    public Guid DoctorId { get; set; }
+    public Guid? DoctorUserId { get; set; }
+    public Guid? PatientUserId { get; set; }
     public DateOnly Date { get; set; }
-    public DateTime Time { get; set; }
+    public TimeOnly Time { get; set; }
     public string Reason { get; set; }
-    public Status Status { get; set; }
+    public String? Status { get; set; }
 
 
 }

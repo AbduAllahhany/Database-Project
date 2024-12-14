@@ -1,0 +1,108 @@
+@model ChooseRoomModel
+<div class="container mt-5">
+    <h2 class="text-center">Rooms List</h2>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-right mb-3">
+                <form asp-controller="Patient" asp-action="Index" method="get">
+                    <button type="submit" class="btn add-new-btn-sm">
+                        <i class="fas fa-user-plus"></i> Back To patient List
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row justify-content-center">
+
+            <div class="col-md-10">
+                <!-- Table -->
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Room Type</th>
+                        <th scope="col">Cost Per Day</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach (var room in Model.AvailableRooms)
+                    {
+                        <tr>
+                            <td>@room.RoomNumber</td>
+                            <td>@room.Type</td>
+                            <td>@room.CostPerDay</td>
+                            <td>
+                                <!-- Form for each row -->
+                                <form asp-controller="Admin" asp-action="ChooseRoom" method="post">
+                                    <input type="date" name="StartDate" class="form-control" required>
+                                    <td>
+                                        <input type="date" name="EndDate" class="form-control" required>
+                                    </td>
+                                    <td class="text-center">
+                                        <input type="hidden" name="RoomId" value="@room.Id">
+                                        <input type="hidden" name="PatientId" value="@ViewData["PatientId"]">
+                                        <button type="submit" class="btn btn-primary btn-sm">Reserve</button>
+                                    </td>
+                                </form>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function (event) {
+                const startDateInput = this.querySelector('input[name="StartDate"]');
+                const endDateInput = this.querySelector('input[name="EndDate"]');
+
+                if (startDateInput && endDateInput) {
+                    const startDate = new Date(startDateInput.value);
+                    const endDate = new Date(endDateInput.value);
+
+                    if (startDate >= endDate) {
+                        alert('Start date must be earlier than end date.');
+                        event.preventDefault();
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+<style>
+    /* Smaller Add New Admin Button Styling */
+    .add-new-btn-sm {
+        background-color: #ff6600;
+        color: white;
+        border: none;
+        padding: 5px 12px; /* Reduced padding */
+        font-size: 14px; /* Smaller font */
+        border-radius: 5px; /* Slightly smaller border radius */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .add-new-btn-sm i {
+        margin-right: 5px;
+    }
+
+    .add-new-btn-sm:hover {
+        background-color: #e65c00;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .add-new-btn-sm:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.4);
+    }
+</style>

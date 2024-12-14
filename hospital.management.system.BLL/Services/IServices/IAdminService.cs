@@ -5,7 +5,6 @@ namespace hospital.management.system.BLL.Services.IServices;
 
 public interface IAdminService
 {
-    Task<IEnumerable<Patient>> Test();
     public Task<int> CreatePatientAsync(PatientCreateModel model);
     public Task<int> CreateDoctorAsync(DoctorCreateModel model);
     public Task<int> CreateStaffAsync(StaffCreateModel model);
@@ -19,9 +18,10 @@ public interface IAdminService
     public Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAllAppointmentsAsync();
     public Task<int> CreateAppointmentAsync(AppointmentAddModel model);
     public Task<int> EditPatientAsync(AdminEditPatientModel? model);
-    public Task<int> EditDoctorAsync(AdminDoctorEditModel? model);
+    public Task<int> EditDoctorAsync(AdminEditDoctorModel? model);
     public Task<int> EditStaffAsync(AdminEditStaffModel model);
     public Task<int> GetStaffCountAsync();
     public Task<int> GetAppointmentCountAsync();
-
+    public Task<int> ConfirmRoomAsync(Guid? roomId);
+    public Task<IEnumerable<AvailableRoomsModel>> GetAvailableRoomsAsync();
 }

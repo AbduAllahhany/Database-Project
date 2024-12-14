@@ -7,19 +7,30 @@ namespace hospital.management.system.BLL.Models.Admin;
 
 public class DoctorCreateModel
 {
-    [Required] [OneWord] public string FirstName { get; set; }
-    [Required] public string LastName { get; set; }
+    [Required]
+    [OneWord]
+    [Display(Name = "First Name")]
+    public string FirstName { get; set; }
+
+    [Required]
+    [OneWord]
+    [Display(Name = "Last Name")]
+    public string LastName { get; set; }
 
     [Required]
     [EmailAddress]
-    [UniqueEmail]
+    [Display(Name = "Email Address")]
     public string Email { get; set; }
 
-    [Required] [EgyptianPhoneNumber] public string PhoneNumber { get; set; }
-    [Required] public string Address { get; set; }
-    [Required] [NationalID] public string SSN { get; set; }
+    [Required] [EgyptianPhoneNumber] 
+    [Display(Name = "Phone Number")]
+    public string PhoneNumber { get; set; }
+    [Display(Name = "National Id")]
+    [Required] [NationalID] 
+    public string SSN { get; set; }
     [Required] public Gender Gender { get; set; }
-    [Required] [Username] [UniqueUsername] public string UserName { get; set; }
+    [Required] [Username] 
+    [Display(Name = "Username")]public string UserName { get; set; }
 
     [Required]
     [OneWord]
@@ -30,7 +41,14 @@ public class DoctorCreateModel
     [Required(ErrorMessage = "Working hours are required.")]
     public int WorkingHours { get; set; }
 
+    [Required]
+    [Display(Name = "Start Schedule")]
+    public TimeOnly? StartSchedule { get; set; }
+
+    [Required]
+    [Display(Name = "End Schedule")]
+    public TimeOnly? EndSchedule { get; set; }
     public Guid? DepartmentId { get; set; }
     [Required] public string DepartmentName { get; set; }
-    public IEnumerable<string> Departments { get; set; } = SD.ValidDepartments;
+    public IEnumerable<string> Departments { get; set; } = SD.Departments.Keys;
 }
