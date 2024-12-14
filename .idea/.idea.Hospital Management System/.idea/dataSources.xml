@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@." uuid="b781d916-8190-440a-93e4-c36353e7c0d3">
+    <data-source source="LOCAL" name="@." uuid="f372a7c4-e9a7-44b7-9d0d-d5b74bcdb0ed">
       <driver-ref>sqlserver.jb</driver-ref>
       <synchronize>true</synchronize>
       <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
       <jdbc-url>Server=.\SQLEXPRESS</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-<<<<<<< HEAD
-    <data-source source="LOCAL" name="@MAHMOUD" uuid="1ad6f67b-2a1b-4cf6-b3d9-dabbbcf8a5b7">
-=======
-    <data-source source="LOCAL" name="@. [2]" uuid="acf4d38a-5283-4e83-bac3-3464400a7c09">
->>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
-      <driver-ref>sqlserver.jb</driver-ref>
-      <synchronize>true</synchronize>
-      <configured-by-url>true</configured-by-url>
-      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
-<<<<<<< HEAD
-      <jdbc-url>Server=MAHMOUD;DataBase = DatabaseProjectTest;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False</jdbc-url>
-=======
-      <jdbc-url>Server=.\SQLEXPRESS</jdbc-url>
->>>>>>> b84c21a079197baf689b2e900cc3f5fad9e671e3
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

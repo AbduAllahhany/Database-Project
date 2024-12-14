@@ -153,5 +153,16 @@ public class DoctorService : IDoctorService
         var res = _context.Database.ExecuteSqlRaw(sql, model.Diagnostic, model.Prescription, model.LoggedDoctorId, model.SelectedPatientId);
         return res;
     }
+    
+    public async Task<GetDoctorProfileModel> GetDoctorByUserId(Guid doctorId)
+    {
+        var res = await _context.Database.SqlQuery<GetDoctorProfileModel>($@"
+            SELECT TOP(1) firstName AS FirstName, lastName AS LastName 
+            FROM Doctor 
+            WHERE Id = {doctorId}
+            ").ToListAsync();
+        return res.FirstOrDefault() ?? null;
+
+    }
 }
 

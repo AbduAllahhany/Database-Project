@@ -17,15 +17,17 @@ public class DoctorController : Controller
     private readonly IUnitOfWork _unitOfWork;
     private readonly ApplicationDbContext _context;
     private readonly IDoctorService _doctorService;
+    private readonly UserManager<ApplicationUser> _userManager;
 
     public DoctorController(
         IUnitOfWork unitOfWork,
         ApplicationDbContext context,
+        UserManager<ApplicationUser> userManager,
         IDoctorService DoctorService)
     {
         _unitOfWork = unitOfWork;
         _context = context;
-        // _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
+        _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         _doctorService = DoctorService;
     }
 
@@ -145,5 +147,28 @@ public class DoctorController : Controller
             // Log exception (optional)
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
+    }
+    
+    [HttpGet]
+    public async Task<IActionResult> Profile()
+    {
+        var res = await _doctorService.GetDoctorByUserId(GetUserId());
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null) return View("Error");
+        return View(new DoctorProfileModel()
+        {
+            Id = user.Id,
+            //Address = user.Address,
+            //DateOfBirth = user.DateOfbirth,
+            Email = user.Email,
+            IsEmailConfirmed = user.EmailConfirmed,
+            IsTwoFactorEnabled = user.TwoFactorEnabled,
+            NationalIdOrPassport = user.SSN,
+            PhoneNumber = user.PhoneNumber,
+            UserName = user.UserName,
+            FirstName = res.FirstName,
+            LastName = res.LastName,
+            Gender = user.Gender,
+        });
     }
 }

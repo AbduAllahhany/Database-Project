@@ -1,29 +1,39 @@
-﻿ @model AdminProfileModel 
+@model hospital.management.system.BLL.Models.Doctors.DoctorProfileModel
 
 @{
-    ViewData["Title"] = "Admin Profile";
+    ViewData["Title"] = "Doctor Profile";
 }
 
-<h2 class="mt-5 text-center">Patient Profile</h2>
+<h2 class="mt-5 text-center">Doctor Profile</h2>
 <div class=" container col-md-8">
     <!-- Basic Information Section -->
     <h5 class="mt-3"><i class="fas fa-user"></i> Basic Information</h5>
     <ul class="list-group mb-4">
+        
         <li class="list-group-item">
             <i class="fas fa-user-circle"></i> Name: @Model.UserName
         </li>
+
+        <li class="list-group-item">
+            <i class="fas fa-user-circle"></i> First Name: @Model.FirstName
+        </li>
+
+        <li class="list-group-item">
+            <i class="fas fa-user-circle"></i> Last Name: @Model.LastName
+        </li>
+
         <li class="list-group-item">
             <i class="fas fa-venus-mars"></i> Gender: @Model.Gender
         </li>
-        @* <li class="list-group-item"> *@
-        @*     <i class="fas fa-calendar-alt"></i> Date of Birth: @Model.DateOfBirth?.ToString("dd/MM/yyyy") *@
-        @* </li> *@
+
         <li class="list-group-item">
             <i class="fas fa-id-card"></i> National ID/Passport: @Model.NationalIdOrPassport
         </li>
+
         <li class="list-group-item">
             <i class="fas fa-phone"></i> Phone: @Model.PhoneNumber
         </li>
+
         <li class="list-group-item">
             <i class="fas fa-envelope"></i> Email: @Model.Email
             <span class="badge @(Model.IsEmailConfirmed ? "bg-success" : "bg-danger")">
@@ -37,8 +47,9 @@
                 </a>
             }
         </li>
+
         <li class="list-group-item">
-            <i class="fas fa-shield-alt"></i> Two-Factor Auth:
+            <i class="fas fa-shield-alt"></i> Two-Factor Authentication:
             <span class="badge @(Model.IsTwoFactorEnabled ? "bg-success" : "bg-danger")">
                 @(Model.IsTwoFactorEnabled ? "Enabled" : "Disabled")
             </span>
@@ -46,21 +57,20 @@
             @if (!Model.IsTwoFactorEnabled)
             {
                 <a href="@Url.Action("EnableAuthenticator", "Account")" class="btn btn-link">
-                    <i class="fas fa-shield-alt"></i> Enable Two-Factor Auth
+                    <i class="fas fa-shield-alt"></i> Enable Two-Factor Authentication
                 </a>
             }
         </li>
     </ul>
+    
     <div class="row mb-4 centered-content">
         <a class="btn btn-outline-custom" href=@Url.Action("Edit","Admin", new {Id = @Model.Id})>Edit Profile</a>
     </div>
+    
     <div class="row mb-4 centered-content">
         <a href=@Url.Action("ForgotPassword","Account") class="btn btn-outline-custom">Forget Password</a>
     </div>
 </div>
-
-
-
 
 <style>
     body {
@@ -76,9 +86,9 @@
         transition: box-shadow 0.3s ease;
     }
 
-        .card:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
+    .card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
 
     .card-title {
         font-weight: 600;
@@ -94,9 +104,9 @@
         font-size: 1rem;
     }
 
-        .btn-custom:hover {
-            background-color: rgba(13, 110, 253, 0.9);
-        }
+    .btn-custom:hover {
+        background-color: rgba(13, 110, 253, 0.9);
+    }
 
     .icon-circle {
         display: flex;
@@ -155,10 +165,10 @@
         padding: 0.6rem 1.4rem;
     }
 
-        .btn-outline-custom:hover {
-            background-color: rgb(13, 110, 253);
-            color: white;
-        }
+    .btn-outline-custom:hover {
+        background-color: rgb(13, 110, 253);
+        color: white;
+    }
 </style>
 
 <!-- Optional: Include Bootstrap JS if needed -->
