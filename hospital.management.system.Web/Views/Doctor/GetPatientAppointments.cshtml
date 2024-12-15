@@ -26,7 +26,7 @@
                     {
                         <tr>
                             <td>@appointment.DoctorName</td>
-                            <td>@appointment.Date.ToString("g")</td>
+                                    <td>@appointment.Date.ToString("MMMM dd, yyyy")</td>
                             <td>@appointment.Reason</td>
                             <!-- Status Column -->
                             <td class="text-center">
@@ -39,15 +39,15 @@
                                 @if (appointment.Status == "Pending")
                                 {
                                     <form method="post">
-                                        @if (User.IsInRole("Admin"))
+                                       @* @if (User.IsInRole("Admin"))
                                         {
                                             <button type="submit" asp-controller="Appointment" 
                                                     asp-action="Confirm" asp-route-id="@appointment.Id" 
                                                     class="btn btn-success btn-sm">Confirm</button>
                                             <a href="@Url.Action("Edit", "Appointment", new { id = appointment.Id })" 
                                                class="btn btn-primary btn-sm">Edit</a>
-                                        }
-                                        <button type="submit" asp-controller="Appointment" 
+                                        } *@
+                                        <button type="submit" asp-controller="Patient" 
                                                 asp-action="Cancel" asp-route-id="@appointment.Id" 
                                                 class="btn btn-danger btn-sm">Cancel</button>
                                     </form>

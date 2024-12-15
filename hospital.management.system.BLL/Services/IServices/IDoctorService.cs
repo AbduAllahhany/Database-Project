@@ -6,28 +6,29 @@ namespace hospital.management.system.BLL.Services.IServices;
 
 public interface IDoctorService
 {
-    public IEnumerable<DoctorAppoinment> getPendingAppointments(Guid loggedDoctorId);
+    public IEnumerable<DoctorAppoinment> GetPendingAppointments(Guid loggedDoctorId);
 
-    public IEnumerable<DoctorAppoinment> getUpcomingAppointments(Guid loggedDoctorId);
+    public IEnumerable<DoctorAppoinment> GetUpcomingAppointments(Guid loggedDoctorId);
 
-    public IEnumerable<DoctorAppoinment> getDailyAppointments(Guid loggedDoctorId);
+    public IEnumerable<DoctorAppoinment> GetDailyAppointments(Guid loggedDoctorId);
 
-    public int approveNextAppointment(Guid loggedDoctorId);
+    //???????????????????????????????????????
+    public int ApproveNextAppointment(DoctorCancelingAppointmentModel loggedDoctorId);
 
-    public int postponingAppointment(Guid loggedDoctorId);
+    public int PostponingAppointment(Guid loggedDoctorId);
 
-    public int cancelingAppointment(DoctorCancelingAppointmentModel model);
+    public int CancelingAppointment(DoctorCancelingAppointmentModel model);
 
-    public IEnumerable<DoctorAppoinment> getNextAppointmentInfo(Guid loggedDoctorId);
+    public IEnumerable<DoctorAppoinment> GetNextAppointmentInfo(Guid loggedDoctorId);
 
-    public IEnumerable<DoctorMonthlyAppointmentSummary> getMonthlyAppointmentSummary(Guid loggedDoctorId);
+    public IEnumerable<DoctorMonthlyAppointmentSummary> GetMonthlyAppointmentSummary(Guid loggedDoctorId);
 
-    public int followUpAppointment(FollowUpAppointmentModel model);
+    public int FollowUpAppointment(FollowUpAppointmentModel model);
 
     public int CreateMedicalRecord(MedicalRecordModel model);
 
     public Task<GetDoctorProfileModel> GetDoctorByIdAsync(Guid Id);
-    public  Task<int> GetDoctorsCountAsync();
+    //public  Task<int> GetDoctorsCountAsync();
     public  Task<int> EditDoctorAsync(DoctorEditModel? model);
 
     // public IEnumerable<Doctor> viewPatientHistory();
@@ -36,6 +37,8 @@ public interface IDoctorService
     
     public List<DoctorAppoinment> GetDoctorAppointments(Guid doctorId);
     
-    public int deleteDoctor(Guid doctorId);
+    public int DeleteDoctor(Guid doctorId);
+    
+    public Task<int> GetDoctorsCountAsync();
 }
 

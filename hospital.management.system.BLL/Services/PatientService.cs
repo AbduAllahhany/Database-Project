@@ -1,6 +1,4 @@
-﻿
-
-using hospital.management.system.BLL.Models.Patient;
+﻿using hospital.management.system.BLL.Models.Patient;
 using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
@@ -16,7 +14,8 @@ public class PatientService : IPatientService
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public PatientService(IUnitOfWork _unitOfWork, ApplicationDbContext _context,UserManager<ApplicationUser> userManager)
+    public PatientService(IUnitOfWork _unitOfWork, ApplicationDbContext _context,
+        UserManager<ApplicationUser> userManager)
     {
         unitOfWork = _unitOfWork;
         this._context = _context;
@@ -26,7 +25,6 @@ public class PatientService : IPatientService
 
     public List<PatientAppointment> GetPatientAppointments(Guid patientId)
     {
-
         if (patientId == null || patientId == Guid.Empty) return null;
 
         List<PatientAppointment> result = _context.Database.SqlQuery<PatientAppointment>(
@@ -37,8 +35,8 @@ public class PatientService : IPatientService
 
         if (result.Count() == 0) return null;
         return result;
-
     }
+
     public async Task<int> AddPatientPhoneNumberAsync(Guid? patientId, string phoneNumber)
     {
         if (patientId == null) return 0;
@@ -57,16 +55,15 @@ public class PatientService : IPatientService
         return res;
     }
 
-    public async Task<int> GetPatientCountAsync()
+    public async Task<int> GetPatientsCountAsync()
     {
-        var res = _context.Database.SqlQuery<int>($@"select count(*) from Staff");
+        var res = _context.Database.SqlQuery<int>($@"select count(*) from Patient");
         var count = await res.ToListAsync();
         return count.FirstOrDefault();
     }
 
     public List<PatientBill> GetPatientBills(Guid patientId)
     {
-
         if (patientId == null || patientId == Guid.Empty) return null;
 
         List<PatientBill> result = _context.Database.SqlQuery<PatientBill>(
@@ -77,7 +74,6 @@ public class PatientService : IPatientService
 
         if (result.Count() == 0) return null;
         return result;
-
     }
 
     public List<PatientMedicalRecord> GetPatientMedicalRecord(Guid patientId)
@@ -150,28 +146,30 @@ public class PatientService : IPatientService
         return result;
     }
 
+    public int DeletePatient(Guid patientId)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<GetPatientProfileModel> GetPatientById(Guid? Id)
     {
-        var res =  _context.Database.SqlQuery<GetPatientProfileModel>($"""
-                                                                            SELECT Top(1) firstName as FirstName, lastName as LastName, dateOfBirth as Birthdate, 
-                                                                            bloodGroup as BloodGroup, allergies as Allergies,chronicDiseases as ChronicDiseases,
-                                                                            address as Address 
-                                                                            from Patient
-                                                                            where Id = {Id}
-                                                                            """);
+        var res = _context.Database.SqlQuery<GetPatientProfileModel>($"""
+                                                                      SELECT Top(1) firstName as FirstName, lastName as LastName, dateOfBirth as Birthdate, 
+                                                                      bloodGroup as BloodGroup, allergies as Allergies,chronicDiseases as ChronicDiseases,
+                                                                      address as Address 
+                                                                      from Patient
+                                                                      where Id = {Id}
+                                                                      """);
         var temp = await res.ToListAsync();
         return res.FirstOrDefault() ?? null;
     }
 
-
-
     public List<Patient> GetAllPetient()
-        { 
-            List<Patient> patients = _context.Patients.FromSql($@"select * from dbo.Patient").ToList();
-            
-           // if(patients.Count==0) return null;
-            return patients;
-        }
+    {
+        List<Patient> patients = _context.Patients.FromSql($"""select * from dbo.Patient""").ToList();
+
+        return patients;
+    }
 
     public async Task<int> EditPatientAsync(PatientEditModel? model)
     {
@@ -191,21 +189,12 @@ public class PatientService : IPatientService
         return res;
     }
 
-    // public void MarkPatientAppoinment(Appointment appoinment)
-        // {
-        //     string query = $@"INSERT INTO Patient_Doctor_Appointment (patientId, doctorId, status, reason, date) VALUES
-        //                         (@patientId, @doctorId, @status, @reason, @date)"; 
-        //     _context.Database.ExecuteSqlRaw(query, appoinment.PatientId, appoinment.DoctorId, appoinment.Status, appoinment.Reason , appoinment.Date);
-        //     _context.SaveChanges();
-        // }
-    }
-    
- 
- 
 
- 
- 
- 
- 
- 
- 
+    // public void MarkPatientAppoinment(Appointment appoinment)
+    // {
+    //     string query = $@"INSERT INTO Patient_Doctor_Appointment (patientId, doctorId, status, reason, date) VALUES
+    //                         (@patientId, @doctorId, @status, @reason, @date)"; 
+    //     _context.Database.ExecuteSqlRaw(query, appoinment.PatientId, appoinment.DoctorId, appoinment.Status, appoinment.Reason , appoinment.Date);
+    //     _context.SaveChanges();
+    // }
+}

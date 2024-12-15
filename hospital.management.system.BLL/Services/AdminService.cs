@@ -160,15 +160,15 @@ public class AdminService : IAdminService
     {
         var res = _context.Database.SqlQuery<GetUpcomingAppointmentResponseModel>(
             $"""
-             SELECT a.Id,d.firstName as DoctorFirstName, d.lastName as DoctorLastName,p.firstName as PatientFirstName , p.lastName as PatientLastName , a.status,a.date
+             SELECT TOP(3) CONCAT(d.firstName, ' ', d.lastName) AS [DoctorName], CONCAT(p.firstName, ' ', p.lastName) AS [PatientName], a.date, a.time
              FROM Patient_Doctor_Appointment a, Doctor d, Patient p
-             WHERE a.patientId = p.Id AND a.DoctorId = d.Id AND a.Status = {SD.Confirmed}
-             ORDER BY a.date ASC 
+             WHERE a.patientId = p.Id AND a.DoctorId = d.Id AND LOWER(a.Status) = {SD.Pending.ToLower()}
+             ORDER BY a.date, a.time
              """);
         return await res.ToListAsync();
     }
 
-    public async Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAllAppointmentsAsync()
+    public async Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAllAppointmentsByNamesAsync()
     {
         var res = _context.Database.SqlQuery<GetAllAppointmentsResponseModel>(
             $"""
@@ -196,23 +196,19 @@ public class AdminService : IAdminService
     // new feature => available time for doctor
     public async Task<int> CreateAppointmentAsync(AppointmentAddModel model)
     {
-        var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == model.PatientUserId);
-        var doctor = await _context.Doctors.FirstOrDefaultAsync(p => p.UserId == model.DoctorUserId);
         string sqlcommand1 =
             $@"INSERT INTO  Patient_Doctor_Appointment (patientId,doctorId,status,reason,date,time)" +
             $@" values (@p0, @p1, @p2, @p3,@p4,@p5)";
-        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, patient.Id,
-            doctor.Id,
-            model.Status,
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
+            model.PatientUserId,
+            model.DoctorUserId,
+            "Pending".ToLower(),
             model.Reason,
             model.Date,
             model.Time);
         return res;
     }
 
-    //to be added to patient
-
-    //to be added in other service
     public async Task<int> GetAppointmentCountAsync()
     {
         var res = _context.Database.SqlQuery<int>($@"select count(*) from Patient_Doctor_Appointment");
@@ -220,7 +216,7 @@ public class AdminService : IAdminService
         return count.FirstOrDefault();
     }
 
-    public async Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAppointmentsAsync()
+    public async Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAppointmentsByUsernamesAsync()
     {
         var res = _context.Database.SqlQuery<GetAllAppointmentsResponseModel>
         ($"""
@@ -238,16 +234,6 @@ public class AdminService : IAdminService
           """);
         var temp = await res.ToListAsync();
         return await res.ToListAsync();
-    }
-
-    public Task<int> AdminEditPatientAsync(AdminEditPatientModel? model)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<int> AdminEditDoctortAsync(AdminEditDoctorModel? model)
-    {
-        throw new NotImplementedException();
     }
 
     public async Task<IEnumerable<AvailableRoomsModel>> GetAvailableRoomsAsync()
@@ -294,7 +280,6 @@ public class AdminService : IAdminService
         return res;
     }
 
-
     public async Task<int> CreateStaffAsync(StaffCreateModel model)
     {
         var user = new ApplicationUser
@@ -329,4 +314,37 @@ public class AdminService : IAdminService
 
         return res;
     }
+    
+    public async Task<IEnumerable<UsernameIdModel>> GetAllPatientsAsync()
+    {
+        var res = _context.Database.SqlQuery<UsernameIdModel>($"""
+                                                                
+                                                                           SELECT P.Id, A.username 
+                                                                           FROM Patient P, AspNetUsers A 
+                                                                           WHERE P.UserId = A.Id
+                                                               """);
+        return await res.ToListAsync();
+    }
+
+    public async Task<IEnumerable<UsernameIdModel>> GetAllDoctorsAsync()
+    {
+        var res = _context.Database.SqlQuery<UsernameIdModel>($"""
+                                                                
+                                                                           SELECT D.Id, A.username 
+                                                                           FROM Doctor D, AspNetUsers A 
+                                                                           WHERE D.UserId = A.Id
+                                                               """);
+        return await res.ToListAsync();
+    }
+    
+    public Task<int> AdminEditPatientAsync(AdminEditPatientModel? model)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<int> AdminEditDoctortAsync(AdminEditDoctorModel? model)
+    {
+        throw new NotImplementedException();
+    }
+
 }

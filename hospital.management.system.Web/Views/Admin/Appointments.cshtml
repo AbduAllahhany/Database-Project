@@ -1,3 +1,4 @@
+@using hospital.management.system.DAL
 @model IEnumerable<GetAllAppointmentsResponseModel>
 
 @{
@@ -41,7 +42,7 @@
                             <td>@Appointment.Date.ToString()</td>
                             <!-- Status Column -->
                             <td class="text-center">
-                                    <span class="@(Appointment.Status == Status.Pending.ToString() ? "text-warning" : Appointment.Status == Status.Approved.ToString() ? "text-success" : "text-danger")">
+                                    <span class="@(Appointment.Status == SD.Pending ? "text-warning" : Appointment.Status == SD.Approved ? "text-success" : "text-danger")">
                                         @Appointment.Status.ToString()
                                     </span>
                             </td>

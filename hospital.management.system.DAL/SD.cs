@@ -11,8 +11,7 @@ public class SD
     public const string Nurse = "Nurse";
     public const string Doctor = "Doctor";
     public const string Intern = "Intern";
-
-    public const string Confirmed = "Confirmed";
+    public const string Approved = "Approved";
     public const string Pending = "Pending";
     public const string Rejected = "Rejected";
 
@@ -23,14 +22,7 @@ public class SD
             SD.Nurse,
             SD.OfficeBoy,
         };
-
-    public static readonly IEnumerable<string> Roles =
-        new HashSet<string>(StringComparer.OrdinalIgnoreCase)
-        {
-            SD.Intern,
-            SD.Nurse,
-            SD.OfficeBoy,
-        };
+    
 
     public static readonly IEnumerable<string> ValidSpecializations =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase)

@@ -2,11 +2,11 @@
 @model IEnumerable< hospital.management.system.BLL.Models.Doctors.DoctorAppoinment>
 
 @{
-    ViewData["Title"] = "Today's Appointments";
+    ViewData["Title"] = "Upcoming Appointments";
 }
 
 <div class="container mt-5">
-    <h2 class="text-center">Today's Appointments</h2>
+    <h2 class="text-center">Upcoming Appointments</h2>
 
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -18,7 +18,7 @@
                             <th scope="col">Date</th>
                             <th scope="col">Reason</th>
                             <th scope="col">Status</th>
-                            <th scope="col" class="text-center">Actions</th>
+                            @* <th scope="col" class="text-center">Actions</th> *@
                         </tr>
                     </thead>
                     <tbody>
@@ -29,16 +29,14 @@
                                 <td>@Appointment.Date.ToString("d")</td>
                                 <td>@Appointment.Reason</td>
                                 <td class="text-center">
-                                    <span class="text-warning">
-                                        Pending
-                                    </span>
-                                </td>
-                                <td class="text-center">
+                                <td>@Appointment.Status</td>
+                                
+@*                                 <td class="text-center">
                                     <form method="post">
                                         <button type="submit" asp-controller="Doctor" asp-action="IdToApproveAppointment" asp-route-id="@Appointment.PatientId" class="btn btn-success btn-sm">Approve</button>
                                         <button type="submit" asp-controller="Doctor" asp-action="CancelingAppointment" asp-route-id="@Appointment.PatientId" class="btn btn-danger btn-sm">Cancel</button>
                                     </form>
-                                </td>
+                                </td> *@
                             </tr>
                         }
                     </tbody>

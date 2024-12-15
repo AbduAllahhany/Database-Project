@@ -46,11 +46,11 @@
                                 <td>@patient.Allergies</td>
                                 <td>@patient.ChronicDiseases</td>
                                 <td class="text-center">
-                                    <a href="@Url.Action("GetPatientMedicalRecord", "Patient", new { patientId = patient.Id })" class="btn btn-info btn-sm">Medical Records</a>
-                                    <a href="@Url.Action("GetPatientAppointments", "Patient", new { patientId = patient.Id })" class="btn btn-primary btn-sm">Appointments</a>
-                                    <a href="@Url.Action("GetPatientVisits", "Patient", new { patientId = patient.Id })" class="btn btn-secondary btn-sm">Visits</a>
-                                    <a href="@Url.Action("Edit", "Patient", new { id = patient.Id })" class="btn btn-success btn-sm">Edit</a>
-                                    <a href="@Url.Action("deletePatient", "Patient", new { patientId = patient.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
+                                    <a href="@Url.Action("PatientMedicalRecord", "Patient", new { Id = patient.Id })" class="btn btn-info btn-sm">Medical Records</a>
+                                    <a href="@Url.Action("PatientAppointments", "Patient", new { Id = patient.Id })" class="btn btn-primary btn-sm">Appointments</a>
+                                    <a href="@Url.Action("PatientVisits", "Patient", new { Id = patient.Id })" class="btn btn-secondary btn-sm">Visits</a>
+                                    <a href="@Url.Action("Edit", "Patient", new { Id = patient.Id })" class="btn btn-success btn-sm">Edit</a>
+                                    <a href="@Url.Action("DeletePatient", "Patient", new { Id = patient.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
                                 </td>
                             </tr>
                         }
@@ -64,62 +64,62 @@
     @section Scripts {
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
         <script>
-        function confirmDelete() {
-            return confirm("Are you sure you want to delete this patient?");
-        }
+            function confirmDelete() {
+                return confirm("Are you sure you want to delete this patient?");
+            }
         </script>
     }
 
     <style>
-    /* Smaller Add New Patient Button Styling */
-    .add-new-btn-sm {
-        background-color: #ff6600;
-        color: white;
-        border: none;
-        padding: 5px 12px; /* Reduced padding */
-        font-size: 14px; /* Smaller font */
-        border-radius: 5px; /* Slightly smaller border radius */
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
+        /* Smaller Add New Patient Button Styling */
+        .add-new-btn-sm {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 5px 12px; /* Reduced padding */
+            font-size: 14px; /* Smaller font */
+            border-radius: 5px; /* Slightly smaller border radius */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
 
-    .add-new-btn-sm i {
-        margin-right: 5px; 
-    }
+        .add-new-btn-sm i {
+            margin-right: 5px;
+        }
 
-    .add-new-btn-sm:hover {
-        background-color: #e65c00;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+        .add-new-btn-sm:hover {
+            background-color: #e65c00;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-    .add-new-btn-sm:focus {
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.4);
-    }
+        .add-new-btn-sm:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.4);
+        }
 
-    /* Center and Style Header */
-    .table thead th {
-        text-align: center; /* Center-align text */
-        vertical-align: middle;
-    }
+        /* Center and Style Header */
+        .table thead th {
+            text-align: center; /* Center-align text */
+            vertical-align: middle;
+        }
 
-    /* Allow column widths to fit content */
-    .auto-adjust-table {
-        table-layout: auto; /* Automatically adjust column widths to fit content */
-        width: 100%; /* Ensure the table spans the container width */
-    }
+        /* Allow column widths to fit content */
+        .auto-adjust-table {
+            table-layout: auto; /* Automatically adjust column widths to fit content */
+            width: 100%; /* Ensure the table spans the container width */
+        }
 
-    .auto-adjust-table th,
-    .auto-adjust-table td {
-        white-space: nowrap; /* Prevent text wrapping for better alignment */
-    }
+        .auto-adjust-table th,
+        .auto-adjust-table td {
+            white-space: nowrap; /* Prevent text wrapping for better alignment */
+        }
     </style>
 }
 else
 {
     <div class="container mt-5">
-    <div class="alert alert-warning">
-        No patients found.
-    </div>
+        <div class="alert alert-warning">
+            No patients found.
+        </div>
     </div>
 }
 

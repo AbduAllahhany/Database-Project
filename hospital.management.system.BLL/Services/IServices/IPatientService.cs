@@ -17,13 +17,12 @@ public interface IPatientService
     public PatientRoom GetRoomStatus(Guid patientId);
     public ViewInsurance GetViewInsurance(Guid patientId);
     public List<PatientEmergancyContact> GetPatientEmergancyContacts(Guid patientId);
-    public int deletePatient(Guid patientId);
+    public int DeletePatient(Guid patientId);
     public List<Patient> GetAllPetient();
-
     public Task<GetPatientProfileModel> GetPatientById(Guid? Id);
-    public Task<int> GetPatientCountAsync();
+    public Task<int> GetPatientsCountAsync();
     public Task<int> AddPatientPhoneNumberAsync(Guid? patientId, string phoneNumber);
-
     public Task<int> EditPatientAsync(PatientEditModel? model);
+   
     //public void MarkPatientAppoinment(Appointment appoinment);
 }

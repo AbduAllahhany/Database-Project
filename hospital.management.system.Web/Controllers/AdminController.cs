@@ -1,15 +1,12 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
-using hospital.management.system.BLL.Models.Admin;
-using hospital.management.system.BLL.Models.Staff;
 using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
-using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
 using hospital.management.system.Web.Models.Admin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace hospital.management.system.Web.Controllers;
 
@@ -20,7 +17,6 @@ public class AdminController : Controller
     private readonly IPatientService _patientService;
     private readonly IDoctorService _doctorService;
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly ApplicationDbContext _context;
     private readonly IStaffService _staffService;
     private IUnitOfWork _unitOfWork;
 
@@ -29,7 +25,6 @@ public class AdminController : Controller
         IPatientService patientService,
         IDoctorService doctorService,
         UserManager<ApplicationUser> userManager,
-        ApplicationDbContext context,
         IStaffService staffService)
     {
         _adminService = adminService;
@@ -37,7 +32,6 @@ public class AdminController : Controller
         _doctorService = doctorService;
         _userManager = userManager;
         _unitOfWork = unitOfWork;
-        _context = context;
         _staffService = staffService;
     }
 
@@ -57,8 +51,8 @@ public class AdminController : Controller
             upcomingAppointments = upcomingAppointments,
             AppointmentsCount = await _adminService.GetAppointmentCountAsync(),
             StaffCount = await _staffService.GetStaffCountAsync(),
-            PatientsCount = await _patientService.GetPatientCountAsync(),
-            DoctorsCount = await _doctorService.GetDoctorsCountAsync(),
+            PatientsCount = await _patientService.GetPatientsCountAsync(),
+            DoctorsCount = await _doctorService.GetDoctorsCountAsync()
         };
         return View(model);
     }
@@ -74,7 +68,7 @@ public class AdminController : Controller
     public async Task<IActionResult> CreatePatient(PatientCreateModel model)
     {
         if (!ModelState.IsValid) return View(model);
-        int res = await _adminService.CreatePatientAsync(model);
+        var res = await _adminService.CreatePatientAsync(model);
         return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
     }
 
@@ -89,10 +83,10 @@ public class AdminController : Controller
     public async Task<IActionResult> CreateDoctor(DoctorCreateModel model)
     {
         if (!ModelState.IsValid) return View(model);
-        Guid deptid = SD.Departments[model.DepartmentName];
+        var deptid = SD.Departments[model.DepartmentName];
         model.DepartmentId = deptid;
-        int res = await _adminService.CreateDoctorAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Doctor") : View("Error");
+        var res = await _adminService.CreateDoctorAsync(model);
+        return res == 1 ? RedirectToAction("Doctors", "Admin") : View("Error");
     }
 
     [HttpGet]
@@ -101,7 +95,7 @@ public class AdminController : Controller
         if (PatientId == null) return View("Error");
         var model = new BillCreateModel
         {
-            PatientId = PatientId,
+            PatientId = PatientId
         };
         return View(model);
     }
@@ -121,7 +115,7 @@ public class AdminController : Controller
         if (PatientId == null) return View("Error");
         var model = new VisitCreateModel
         {
-            PatientId = PatientId,
+            PatientId = PatientId
         };
         return View(model);
     }
@@ -140,7 +134,7 @@ public class AdminController : Controller
         if (PatientId == null) return View("Error");
         var model = new InsuranceCreateModel
         {
-            PatientId = PatientId,
+            PatientId = PatientId
         };
         return View();
     }
@@ -155,10 +149,7 @@ public class AdminController : Controller
 
     public async Task<IActionResult> Edit(string Id = null)
     {
-        if (Id == null)
-        {
-            Id = User.FindFirstValue(ClaimTypes.Name);
-        }
+        if (Id == null) Id = User.FindFirstValue(ClaimTypes.Name);
 
         var user = await _userManager.FindByIdAsync(Id);
         if (user == null) return View("Error");
@@ -171,22 +162,25 @@ public class AdminController : Controller
             //DateOfBirth = user.DateOfbirth,
             Gender = user.Gender,
             UserName = user.UserName,
-            PhoneNumber = user.PhoneNumber,
+            PhoneNumber = user.PhoneNumber
         };
         if (model.Id == User.FindFirstValue(ClaimTypes.Name))
             return RedirectToAction("Profile", "Admin");
         return View(model);
     }
 
-    public async Task<IActionResult> Appointments()
+    public async Task<IActionResult> CreateAppointment()
     {
-        var appointments = await _adminService.GetAppointmentsAsync();
-        return View(appointments);
-    }
+        var patients = await _adminService.GetAllPatientsAsync();
+        var doctors = await _adminService.GetAllDoctorsAsync();
 
-    public IActionResult CreateAppointment()
-    {
-        return View();
+
+        var model = new AppointmentModel
+        {
+            PatientUsernameId = patients,
+            DoctorUsernameId = doctors,
+        };
+        return View(model);
     }
 
     [HttpPost]
@@ -201,7 +195,7 @@ public class AdminController : Controller
             Date = model.Date,
             Time = model.Time,
             Reason = model.Reason,
-            Status = Status.Pending.ToString(),
+            Status = SD.Pending
         });
         return RedirectToAction("Appointments", "Admin");
     }
@@ -248,7 +242,7 @@ public class AdminController : Controller
             NationalIdOrPassport = user.SSN,
             PhoneNumber = user.PhoneNumber,
             UserName = user.UserName,
-            Gender = user.Gender,
+            Gender = user.Gender
         });
     }
 
@@ -262,7 +256,7 @@ public class AdminController : Controller
         var model = new ChooseRoomModel
         {
             PatientId = Id,
-            AvailableRooms = rooms,
+            AvailableRooms = rooms
         };
         return View(model);
     }
@@ -278,7 +272,6 @@ public class AdminController : Controller
             ModelState.AddModelError("date", "Start date cannot be greater than the end date");
             model.AvailableRooms = await _adminService.GetAvailableRoomsAsync();
             return View(model);
-
         }
 
         var admissionModel = new AdmissionCreateModel
@@ -286,15 +279,13 @@ public class AdminController : Controller
             RoomId = model.RoomId,
             PatientId = model.PatientId,
             EndDate = model.EndDate,
-            StartDate = model.StartDate,
+            StartDate = model.StartDate
         };
         var res2 = await _adminService.CreateAdmissionAsync(admissionModel);
         var res1 = await _adminService.ConfirmRoomAsync(model.RoomId);
 
-        return (res1 == 1 && res2 == 1) ? RedirectToAction("Index", "Patient") : View("Error");
-
+        return res1 == 1 && res2 == 1 ? RedirectToAction("Index", "Patient") : View("Error");
     }
-
 
     [HttpGet]
     public async Task<IActionResult> Staff()
@@ -302,8 +293,6 @@ public class AdminController : Controller
         var res = await _staffService.GetAllTask();
         return View(res);
     }
-
-
 
     [HttpGet]
     public IActionResult CreateStaff()
@@ -315,7 +304,6 @@ public class AdminController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateStaff(StaffCreateModel model)
     {
-
         if (!ModelState.IsValid) return View(model);
         var deptId = SD.Departments[model.DepartmentName];
         model.DepartmentId = deptId;
@@ -336,7 +324,7 @@ public class AdminController : Controller
             StartSchedule = staff.StartSchedule,
             FirstName = staff.FirstName,
             LastName = staff.LastName,
-            DayOfWork = staff.DayOfWork,
+            DayOfWork = staff.DayOfWork
         };
         return View(model);
     }
@@ -348,5 +336,23 @@ public class AdminController : Controller
         if (model.Id == null) return View("Error");
         var res = await _adminService.AdminEditStaffAsync(model);
         return res == 1 ? RedirectToAction("Staff", "Admin") : View("Error");
+    }
+
+    public IActionResult Doctors()
+    {
+        IEnumerable<Doctor> doctors = _doctorService.GetAllDoctors();
+        return !doctors.IsNullOrEmpty() ? View(doctors) : View("Error");
+    }
+
+    public async Task<IActionResult> Appointments()
+    {
+        var appointments = await _adminService.GetAppointmentsByUsernamesAsync();
+        return !appointments.IsNullOrEmpty() ? View(appointments) : View("Error");
+    }
+
+    public IActionResult Patients()
+    {
+        IEnumerable<Patient> patients = _patientService.GetAllPetient();
+        return !patients.IsNullOrEmpty() ? View(patients) : View("Error");
     }
 }

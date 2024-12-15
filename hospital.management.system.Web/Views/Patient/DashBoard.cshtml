@@ -158,7 +158,7 @@
                 </div>
                 <h5 class="card-title">Medical Records</h5>
                 <p>View detailed medical history</p>
-                <a href="@Url.Action("GetPatientMedicalRecord", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Records</a>
+                <a href="@Url.Action("PatientMedicalRecord", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Records</a>
             </div>
         </div>
 
@@ -180,7 +180,7 @@
                 </div>
                 <h5 class="card-title">Bills</h5>
                 <p>Check billing details</p>
-                <a href="@Url.Action("GetPatientBills", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Bills</a>
+                <a href="@Url.Action("PatientBills", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Bills</a>
             </div>
         </div>
     </div>
@@ -193,7 +193,7 @@
                 </div>
                 <h5 class="card-title">Room Status</h5>
                 <p>View current room details</p>
-                <a href="@Url.Action("GetRoomStatus", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Room</a>
+                <a href="@Url.Action("RoomStatus", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Room</a>
             </div>
         </div>
 
@@ -204,7 +204,7 @@
                 </div>
                 <h5 class="card-title">Visits</h5>
                 <p>Review past visits</p>
-                <a href="@Url.Action("GetPatientVisits", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Visits</a>
+                <a href="@Url.Action("PatientVisits", "Patient", new { patientId = Model.Patient.Id })" class="btn btn-custom">View Visits</a>
             </div>
         </div>
     </div>

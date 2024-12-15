@@ -1,0 +1,74 @@
+﻿@model hospital.management.system.BLL.Models.Doctors.MedicalRecordModel
+
+@using hospital.management.system.DAL
+@using hospital.management.system.Models.Entities
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> userManager
+
+@{
+    var patients = await userManager.GetUsersInRoleAsync(SD.Patient);
+    var patientsUserNames = patients.Select(p => new { p.UserName, p.Id });
+}
+
+<h2 class="text-center mt-4">Create Medical Record</h2>
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-notes-medical mr-2"></i> New Medical Record</h4>
+                </div>
+                <div class="card-body">
+                    <!-- Begin form for creating a medical record -->
+                    <form asp-controller="Doctor" asp-action="SaveMedicalRecord" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <!-- Patient Selection -->
+                        <div class="form-group">
+                            <label for="SelectedPatientId"><i class="fas fa-user"></i> Select Patient</label>
+                            <select asp-for="SelectedPatientId" class="form-control">
+                                @foreach (var patient in patientsUserNames)
+                                {
+                                    <option value="@patient.Id">@patient.UserName</option>
+                                }
+                            </select>
+                        </div>
+                       @* <!-- Date -->
+                        <div class="form-group">
+                            <label asp-for="dateOfRecording"><i class="fas fa-calendar"></i> Medical Recording Date</label>
+                            <input asp-for="dateOfRecording" class="form-control" type="date" />
+                            <span asp-validation-for="dateOfRecording" class="text-danger"></span>
+                        </div>*@
+                        <!-- Diagnostic -->
+                        <div class="form-group">
+                            <label asp-for="Diagnostic"><i class="fas fa-diagnoses"></i> Diagnostic</label>
+                            <textarea asp-for="Diagnostic" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Diagnostic" class="text-danger"></span>
+                        </div>
+
+                        <!-- Prescription -->
+                        <div class="form-group">
+                            <label asp-for="Prescription"><i class="fas fa-prescription"></i> Prescription</label>
+                            <textarea asp-for="Prescription" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Prescription" class="text-danger"></span>
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Save Medical Record
+                            </button>
+                            <a asp-action="SaveMedicalRecord" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include FontAwesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />

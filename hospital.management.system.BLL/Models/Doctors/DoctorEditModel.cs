@@ -5,7 +5,7 @@ namespace hospital.management.system.BLL.Models.Doctors;
 
 public class DoctorEditModel
 {
-    public string? Id { get; set; }
+    public Guid Id { get; set; }
         
     public string Address { get; set; }
     
