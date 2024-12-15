@@ -41,7 +41,7 @@ public class PatientController : Controller
     }
 
 
-    private Guid GetUserId()
+    private Guid GetPatientId()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -85,7 +85,7 @@ public class PatientController : Controller
     public IActionResult DashBoard()
     {
 
-        var id = GetUserId();
+        var id = GetPatientId();
         // Fetch patient details using LINQ
 
         var patient = _context.Patients.FromSqlInterpolated($@"select * from patient where id={id}").FirstOrDefault();
@@ -95,16 +95,11 @@ public class PatientController : Controller
         {
             return NotFound("Patient not found");
         }
-
-
-
         var emergencyContacts = _context.EmergencyContacts
             .FromSqlInterpolated($@"select * from Emergency_Contact where PatientId={id}").ToList();
 
         var medicalRecords = _context.MedicalRecords
             .FromSqlInterpolated($@"select * from Medical_Record where PatientId={id}").ToList();
-
-
 
         var appointments = _context.PatientDoctorAppointments
             .FromSqlInterpolated($@"select * from Patient_Doctor_Appointment where PatientId={id}").ToList();
@@ -150,7 +145,7 @@ public class PatientController : Controller
     {
         // add role
 
-        List<PatientAppointment> PatientDoctorAppoinment = _patientService.GetPatientAppointments(GetUserId());
+        List<PatientAppointment> PatientDoctorAppoinment = _patientService.GetPatientAppointments(GetPatientId());
 
         // if(PatientDoctorAppoinment == null) return RedirectToAction("Index");
         return View("GetPatientAppointments", PatientDoctorAppoinment);
@@ -159,7 +154,7 @@ public class PatientController : Controller
 // ==>> view will be changed 
     public IActionResult GetPatientBills()
     {
-        List<PatientBill> PatientBills = _patientService.GetPatientBills(GetUserId());
+        List<PatientBill> PatientBills = _patientService.GetPatientBills(GetPatientId());
 
         // if (PatientBills == null) return RedirectToAction("Index");
         return View("GetPatientBills", PatientBills);
@@ -167,7 +162,7 @@ public class PatientController : Controller
 
     public IActionResult GetPatientMedicalRecord()
     {
-        List<PatientMedicalRecord> PatientMedicalRecord = _patientService.GetPatientMedicalRecord(GetUserId());
+        List<PatientMedicalRecord> PatientMedicalRecord = _patientService.GetPatientMedicalRecord(GetPatientId());
 
         //if (PatientMedicalRecord == null) return RedirectToAction("Index");
         return View("GetPatientMedicalRecord", PatientMedicalRecord);
@@ -181,16 +176,37 @@ public class PatientController : Controller
         return View("GetPatientVisits", PatientVisits);
     }
 
-    public async Task<IActionResult> EditPatient()
+    [HttpGet]
+    public async Task<IActionResult> Edit(Guid? Id = null)
     {
-        return View();
+        if (Id == null)
+        {
+            Id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        }
 
+        var patient = await _patientService.GetPatientById(GetPatientId());
+
+        var user = await _userManager.FindByIdAsync(Id.ToString());
+        if (user == null) return View("Error");
+        var model = new PatientEditModel()
+        {
+            Id = Id,
+            FirstName = patient.FirstName,
+            LastName = patient.LastName,
+            PhoneNumber = user.PhoneNumber,
+            Address = patient.Address,
+            DateOfBirth = patient.Birthdate,
+            UserName = user.UserName,
+        };
+        if (model.Id.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+            return View(model);
+        return View("Error");
     }
 
-    public async Task<IActionResult> EditPatient(PatientEditModel model)
+    public async Task<IActionResult> Edit(PatientEditModel model)
     {
         if (!ModelState.IsValid) return View(model);
-        var res = await _adminService.EditPatientAsync();
+        var res = await _patientService.EditPatientAsync(model);
         if (res == 1)
         {
             return User.IsInRole(SD.Patient) ? RedirectToAction("Index", "Patient") : RedirectToAction("Profile");
@@ -198,6 +214,7 @@ public class PatientController : Controller
 
         return View("Error");
     }
+
     public IActionResult GetRoomStatus(Guid patientId)
     {
         PatientRoom RoomStatus = _patientService.GetRoomStatus(patientId);
@@ -205,7 +222,7 @@ public class PatientController : Controller
         //if (RoomStatus == null) return RedirectToAction("Index");
         return View("GetRoomStatus", RoomStatus);
     }
-    
+
     [HttpGet]
     public async Task<IActionResult> Profile()
     {
@@ -213,7 +230,7 @@ public class PatientController : Controller
         if (user == null) return View("Error");
 
 
-        var res = await _patientService.GetPatientByUserId(GetUserId());
+        var res = await _patientService.GetPatientById(GetPatientId());
         if (res == null) return View("Error");
         return View(new PatientProfileModel()
         {

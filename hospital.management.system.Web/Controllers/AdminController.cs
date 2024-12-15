@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Claims;
 using hospital.management.system.BLL.Models.Admin;
+using hospital.management.system.BLL.Models.Staff;
 using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
@@ -20,6 +21,7 @@ public class AdminController : Controller
     private readonly IDoctorService _doctorService;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly ApplicationDbContext _context;
+    private readonly IStaffService _staffService;
     private IUnitOfWork _unitOfWork;
 
     public AdminController(IUnitOfWork unitOfWork,
@@ -27,7 +29,8 @@ public class AdminController : Controller
         IPatientService patientService,
         IDoctorService doctorService,
         UserManager<ApplicationUser> userManager,
-        ApplicationDbContext context)
+        ApplicationDbContext context,
+        IStaffService staffService)
     {
         _adminService = adminService;
         _patientService = patientService;
@@ -35,6 +38,7 @@ public class AdminController : Controller
         _userManager = userManager;
         _unitOfWork = unitOfWork;
         _context = context;
+        _staffService = staffService;
     }
 
     [HttpGet]
@@ -52,9 +56,9 @@ public class AdminController : Controller
         {
             upcomingAppointments = upcomingAppointments,
             AppointmentsCount = await _adminService.GetAppointmentCountAsync(),
-            StaffCount = await _adminService.GetStaffCountAsync()
-            // PatientsCount = , 
-            //DoctorCount = ,
+            StaffCount = await _staffService.GetStaffCountAsync(),
+            PatientsCount = await _patientService.GetPatientCountAsync(),
+            DoctorsCount = await _doctorService.GetDoctorsCountAsync(),
         };
         return View(model);
     }
@@ -288,18 +292,61 @@ public class AdminController : Controller
         var res1 = await _adminService.ConfirmRoomAsync(model.RoomId);
 
         return (res1 == 1 && res2 == 1) ? RedirectToAction("Index", "Patient") : View("Error");
+
     }
 
- 
-    
-    public async Task<IActionResult> CreateStaff(Guid? PatientId = null)
+
+    [HttpGet]
+    public async Task<IActionResult> Staff()
     {
-        if (PatientId == null) return View("Error");
-        throw new NotImplementedException();
+        var res = await _staffService.GetAllTask();
+        return View(res);
     }
 
-    public async Task<IActionResult> EditStaff(Guid id)
+
+
+    [HttpGet]
+    public IActionResult CreateStaff()
     {
-        throw new NotImplementedException();
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateStaff(StaffCreateModel model)
+    {
+
+        if (!ModelState.IsValid) return View(model);
+        var deptId = SD.Departments[model.DepartmentName];
+        model.DepartmentId = deptId;
+        var res = await _adminService.CreateStaffAsync(model);
+        return res == 1 ? RedirectToAction("Staff", "Admin") : View("Error");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> EditStaff(Guid? Id = null)
+    {
+        if (Id == null) return View("Error");
+        var staff = await _staffService.GetStaffByIdAsync(Id);
+        var model = new AdminEditStaffModel()
+        {
+            Id = Id.Value,
+            role = staff.Role,
+            EndSchedule = staff.EndSchedule,
+            StartSchedule = staff.StartSchedule,
+            FirstName = staff.FirstName,
+            LastName = staff.LastName,
+            DayOfWork = staff.DayOfWork,
+        };
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditStaff(AdminEditStaffModel model)
+    {
+        if (model.Id == null) return View("Error");
+        var res = await _adminService.AdminEditStaffAsync(model);
+        return res == 1 ? RedirectToAction("Staff", "Admin") : View("Error");
     }
 }

@@ -25,7 +25,7 @@ public class StaffController : Controller
     }
 
 
-    private Guid GetUserId()
+    private Guid GetStaffId()
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -60,7 +60,7 @@ public class StaffController : Controller
         try
         {
             // Get the logged-in staff's ID
-            var staffId = GetUserId();
+            var staffId = GetStaffId();
 
             // Fetch staff details using LINQ
             Staff staff = _context.Staff

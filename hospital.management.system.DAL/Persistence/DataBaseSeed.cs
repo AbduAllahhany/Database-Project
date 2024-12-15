@@ -13,7 +13,7 @@ public static class DataBaseSeed
         UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole<Guid>> roleManager)
     {
-      
+
         if (!context.Rooms.Any())
         {
             var roomTypes = new[] { "Single", "Double", "VIP", "Suite" }; // Room types
@@ -185,13 +185,11 @@ public static class DataBaseSeed
                 EmailConfirmed = true,
                 Gender = Gender.Male,
             };
-            var keyValues = context.Departments.ToDictionary(d => d.Name, d => d.Id);
-            SD.Departments = keyValues;
             await userManager.CreateAsync(doctor, "Admin123.?");
 
             await userManager.AddToRoleAsync(admin, SD.Admin);
             await userManager.AddToRoleAsync(doctor, SD.Doctor);
-            
+
 
             context.Doctors.Add(new Doctor()
             {
@@ -208,6 +206,9 @@ public static class DataBaseSeed
             });
             await context.SaveChangesAsync();
         }
+
+        var keyValues = context.Departments.ToDictionary(d => d.Name, d => d.Id);
+        SD.Departments = keyValues;
     }
 
     public static async Task SeedDatabaseAsync(IServiceProvider services)

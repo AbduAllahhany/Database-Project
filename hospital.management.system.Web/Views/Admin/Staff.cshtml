@@ -1,0 +1,127 @@
+@using CSharpFunctionalExtensions
+@using hospital.management.system.DAL
+@model IEnumerable<hospital.management.system.BLL.Models.Staff.StaffModel>
+
+@{
+    ViewData["Title"] = "Staffs List";
+}
+
+@if (Model != null && Model.Any())
+{
+    <div class="container mt-5">
+        <h2 class="text-center">Staffs List</h2>
+
+        <!-- Add New Staff Button -->
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10 text-right mb-3">
+                    <form asp-controller="Admin" asp-action="CreateStaff" method="get">
+                        <button type="submit" class="btn add-new-btn-sm">
+                            <i class="fas fa-user-plus"></i> Add Staff
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <table class="table table-bordered table-striped auto-adjust-table">
+                        <thead class="thead-dark text-center">
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Day Of Work</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Start Schedule</th>
+                            <th scope="col">End Schedule</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var Staff in Model)
+                        {
+                            <tr>
+                                <td>@Staff.FirstName</td>
+                                <td>@Staff.LastName</td>
+                                <td>@Staff.Role.ToString()</td>
+                                <td>@Staff.DayOfWork</td>
+                                <td>@Staff.StartSchedule</td>
+                                <td>@Staff.EndSchedule</td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("EditStaff", "Admin", new { id = Staff.Id })"
+                                       class="btn btn-success btn-sm">Edit</a>
+                                    <a href="@Url.Action("DeleteStaff", "Staff", new { StaffId = Staff.Id })"
+                                       class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Are you sure you want to delete this Staff?');">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+        <script>
+            function confirmDelete() {
+                return confirm("Are you sure you want to delete this Staff?");
+            }
+        </script>
+    }
+
+    <style>
+        /* Smaller Add New Staff Button Styling */
+        .add-new-btn-sm {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 5px 12px; /* Reduced padding */
+            font-size: 14px; /* Smaller font */
+            border-radius: 5px; /* Slightly smaller border radius */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .add-new-btn-sm i {
+            margin-right: 5px;
+        }
+
+        .add-new-btn-sm:hover {
+            background-color: #e65c00;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-new-btn-sm:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.4);
+        }
+
+        /* Center and Style Header */
+        .table thead th {
+            text-align: center; /* Center-align text */
+            vertical-align: middle;
+        }
+
+        /* Allow column widths to fit content */
+        .auto-adjust-table {
+            table-layout: auto; /* Automatically adjust column widths to fit content */
+            width: 100%; /* Ensure the table spans the container width */
+        }
+
+        .auto-adjust-table th,
+        .auto-adjust-table td {
+            white-space: nowrap; /* Prevent text wrapping for better alignment */
+        }
+    </style>
+}
+else
+{
+    <div class="container mt-5">
+        <div class="alert alert-warning">
+            No Staffs found.
+        </div>
+    </div>
+}
+

@@ -9,24 +9,27 @@ using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.BLL.Services;
+
 [Authorize(Roles = SD.Doctor)]
 public class DoctorService : IDoctorService
 {
     private readonly IUnitOfWork unitOfWork;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public DoctorService(IUnitOfWork _unitOfWork, ApplicationDbContext _context)
+    public DoctorService(IUnitOfWork _unitOfWork, ApplicationDbContext _context,UserManager<ApplicationUser> userManager)
     {
         unitOfWork = _unitOfWork;
         this._context = _context;
+        _userManager = userManager;
     }
-    // ==> modidfied 
+
     public IEnumerable<DoctorAppoinment> getPendingAppointments(Guid loggedDoctorId)
     {
-        //var sql = $@"";
         IEnumerable<DoctorAppoinment> query = _context.Database.SqlQuery<DoctorAppoinment>($@"
             SELECT p.Id as PatientId ,concat(P.firstName , ' ' , P.lastName) as FullName, DATEDIFF(YEAR, p.dateOfBirth, GETDATE()) as dateOfBirth, A.reason, A.date
             FROM Patient P 
@@ -37,6 +40,13 @@ public class DoctorService : IDoctorService
 
         return query;
     }
+    public async Task<int> GetDoctorsCountAsync()
+    {
+        var res = _context.Database.SqlQuery<int>($@"select count(*) from Doctor");
+        var count = await res.ToListAsync();
+        return count.FirstOrDefault();
+    }
+
     // ==> modidfied 
     public IEnumerable<DoctorAppoinment> getDailyAppointments(Guid loggedDoctorId)
     {
@@ -50,6 +60,7 @@ public class DoctorService : IDoctorService
             ORDER BY A.date").ToList();
         return query;
     }
+
     // ==> modidfied    
     public IEnumerable<DoctorAppoinment> getUpcomingAppointments(Guid loggedDoctorId)
     {
@@ -63,17 +74,20 @@ public class DoctorService : IDoctorService
             ORDER BY A.date").ToList();
         return query;
     }
+
     // ==>  modidfied 
     public IEnumerable<DoctorMonthlyAppointmentSummary> getMonthlyAppointmentSummary(Guid loggedDoctorId)
     {
         //var sql = ;
-        IEnumerable<DoctorMonthlyAppointmentSummary> query = _context.Database.SqlQuery<DoctorMonthlyAppointmentSummary>($@"
+        IEnumerable<DoctorMonthlyAppointmentSummary> query = _context.Database
+            .SqlQuery<DoctorMonthlyAppointmentSummary>($@"
             SELECT COUNT(*) AS TotalAppointments,
                 SUM(CASE WHEN status = 'Approved' THEN 1 ELSE 0 END) AS ApprovedAppointments,
                 SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS PendingAppointments,
                 SUM(CASE WHEN status = 'Reject' THEN 1 ELSE 0 END) AS RejectedAppointments
             FROM Patient_Doctor_Appointment A
-            WHERE A.doctorId = {loggedDoctorId} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())").ToList();
+            WHERE A.doctorId = {loggedDoctorId} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())")
+            .ToList();
         return query;
     }
 
@@ -91,8 +105,8 @@ public class DoctorService : IDoctorService
                   AND A.status = 'Pending' 
                   AND A.date = CONVERT(date, GETDATE())
         )";
-    
-        var res = _context.Database.ExecuteSqlRaw(sql,  loggedDoctorId);
+
+        var res = _context.Database.ExecuteSqlRaw(sql, loggedDoctorId);
         return res;
     }
 
@@ -129,7 +143,8 @@ public class DoctorService : IDoctorService
         var sql = $@"
             INSERT INTO Patient_Doctor_Appointment(patientId, doctorId, reason, date) 
             VALUES (@p1, @p2, @p3, @p4))";
-        var res = _context.Database.ExecuteSqlRaw(sql, model.PatientId, model.DoctorId, model.Reason, model.AppointmentDate);
+        var res = _context.Database.ExecuteSqlRaw(sql, model.PatientId, model.DoctorId, model.Reason,
+            model.AppointmentDate);
         return res;
     }
 
@@ -137,7 +152,7 @@ public class DoctorService : IDoctorService
     // ==>  modified 
     public IEnumerable<DoctorAppoinment> getNextAppointmentInfo(Guid loggedDoctorId)
     {
- 
+
         IEnumerable<DoctorAppoinment> res = _context.Database.SqlQuery<DoctorAppoinment>($@"            
 	        SELECT TOP(1) p.Id as PatientId ,concat(P.firstName , ' ' , P.lastName) as FullName,  DATEDIFF(YEAR, p.dateOfBirth, GETDATE()) as dateOfBirth, A.reason, A.date
 	        FROM Patient P, Patient_Doctor_Appointment A
@@ -151,11 +166,11 @@ public class DoctorService : IDoctorService
         var sql = @"            
             INSERT INTO medical_record(dateOfRecording, diagnostic, prescription, doctorId, patientId)
             VALUES (CONVERT (date, GETDATE()), @p1, @p2, @p3, @p4)";
-        var res = _context.Database.ExecuteSqlRaw(sql, model.Diagnostic, model.Prescription, model.LoggedDoctorId, model.SelectedPatientId);
+        var res = _context.Database.ExecuteSqlRaw(sql, model.Diagnostic, model.Prescription, model.LoggedDoctorId,
+            model.SelectedPatientId);
         return res;
     }
-    
-    public async Task<GetDoctorProfileModel> GetDoctorByUserId(Guid doctorId)
+    public async Task<GetDoctorProfileModel> GetDoctorByIdAsync(Guid doctorId)
     {
         var res = await _context.Database.SqlQuery<GetDoctorProfileModel>($@"
             SELECT TOP(1) firstName AS FirstName, lastName AS LastName 
@@ -165,5 +180,23 @@ public class DoctorService : IDoctorService
         return res.FirstOrDefault() ?? null;
 
     }
+    public async Task<int> EditDoctorAsync(DoctorEditModel? model)
+    {
+        if (model == null) return 0;
+        
+        if (model.Id == null) return 0;
+        var user = await _userManager.FindByIdAsync(model.Id.ToString());
+        //update 
+        user.UserName = model.UserName;
+        string sqlcommand1 =
+            $"""
+             Update Doctor 
+             SET firstName =@p0,lastName=@p1
+             where UserId=@p2
+             """;
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.FirstName, model.LastName, model.Id);
+        return res;
+    }
+    
 }
 

@@ -5,6 +5,7 @@ using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.BLL.Services;
@@ -13,11 +14,13 @@ public class PatientService : IPatientService
 {
     private readonly IUnitOfWork unitOfWork;
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
 
-    public PatientService(IUnitOfWork _unitOfWork, ApplicationDbContext _context)
+    public PatientService(IUnitOfWork _unitOfWork, ApplicationDbContext _context,UserManager<ApplicationUser> userManager)
     {
         unitOfWork = _unitOfWork;
         this._context = _context;
+        _userManager = userManager;
     }
 
 
@@ -35,6 +38,30 @@ public class PatientService : IPatientService
         if (result.Count() == 0) return null;
         return result;
 
+    }
+    public async Task<int> AddPatientPhoneNumberAsync(Guid? patientId, string phoneNumber)
+    {
+        if (patientId == null) return 0;
+        var temp = await _context.PatientPhones
+            .FromSql($@"select * from PatientPhone where PatientId = {patientId}")
+            .ToListAsync();
+        var patientPhones = temp.Select(p => p.Number).ToList();
+
+        if (patientPhones.Contains(phoneNumber) || patientPhones.Count < 3)
+            return 0;
+
+        string sqlcommand1 =
+            $@"INSERT INTO Patient_Phone VALUES (@p0 ,@p1)";
+
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, patientId, phoneNumber);
+        return res;
+    }
+
+    public async Task<int> GetPatientCountAsync()
+    {
+        var res = _context.Database.SqlQuery<int>($@"select count(*) from Staff");
+        var count = await res.ToListAsync();
+        return count.FirstOrDefault();
     }
 
     public List<PatientBill> GetPatientBills(Guid patientId)
@@ -123,7 +150,7 @@ public class PatientService : IPatientService
         return result;
     }
 
-    public async Task<GetPatientProfileModel> GetPatientByUserId(Guid? Id)
+    public async Task<GetPatientProfileModel> GetPatientById(Guid? Id)
     {
         var res =  _context.Database.SqlQuery<GetPatientProfileModel>($"""
                                                                             SELECT Top(1) firstName as FirstName, lastName as LastName, dateOfBirth as Birthdate, 
@@ -145,8 +172,26 @@ public class PatientService : IPatientService
            // if(patients.Count==0) return null;
             return patients;
         }
-        
-        // public void MarkPatientAppoinment(Appointment appoinment)
+
+    public async Task<int> EditPatientAsync(PatientEditModel? model)
+    {
+        if (model == null) return 0;
+        Guid? patientId = model.Id;
+        if (patientId == null) return 0;
+        var user = await _userManager.FindByIdAsync(model.Id.ToString());
+        //update 
+        user.UserName = model.UserName;
+        user.PhoneNumber = model.PhoneNumber;
+        string sqlcommand =
+            $@"Update Patient 
+                   SET firstName =@p0,lastName=@p1,dateOfBirth=@p2,address = @p3 
+                   where Id=@p4";
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand, model.FirstName, model.LastName,
+            model.DateOfBirth, model.Address, patientId);
+        return res;
+    }
+
+    // public void MarkPatientAppoinment(Appointment appoinment)
         // {
         //     string query = $@"INSERT INTO Patient_Doctor_Appointment (patientId, doctorId, status, reason, date) VALUES
         //                         (@patientId, @doctorId, @status, @reason, @date)"; 
@@ -154,6 +199,7 @@ public class PatientService : IPatientService
         //     _context.SaveChanges();
         // }
     }
+    
  
  
 
