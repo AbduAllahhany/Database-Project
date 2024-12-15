@@ -10,6 +10,7 @@ public class PatientEditModel
     public string Address { get; set; }
     
     [Username]
+    [UniqueUsername]
     public string UserName { get; set; }
     
     [Display(Name = "First Name")]
@@ -18,6 +19,7 @@ public class PatientEditModel
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
     
+    [UniqueEmail]
     [DataType(DataType.EmailAddress)]
     public string Email { get; set; }
       
@@ -26,6 +28,7 @@ public class PatientEditModel
     [Required]
     public DateOnly DateOfBirth { get; set; }
         
+    [UniquePhoneNumber]
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
     

@@ -9,10 +9,12 @@ public class RegisterModel
 {
     [Required]
     [Display(Name = "Username")]
+    [UniqueUsername]
     public string UserName { get; set; }
 
     [Required] 
     [EmailAddress] 
+    [UniqueEmail]
     public string Email { get; set; }
 
     [Required]

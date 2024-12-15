@@ -10,6 +10,7 @@ public class DoctorEditModel
     public string Address { get; set; }
     
     [Username]
+    [UniqueUsername]
     public string UserName { get; set; }
     
     [Display(Name = "First Name")]
@@ -19,6 +20,7 @@ public class DoctorEditModel
     public string LastName { get; set; }
     
     [DataType(DataType.EmailAddress)]
+    [UniqueEmail]
     public string Email { get; set; }
       
     [DateOfBirth]
@@ -27,6 +29,8 @@ public class DoctorEditModel
     public DateOnly DateOfBirth { get; set; }
         
     [Display(Name = "Phone Number")]
+    [EgyptianPhoneNumber]
+    [UniquePhoneNumber]
     public string PhoneNumber { get; set; }
     
     [Required]
