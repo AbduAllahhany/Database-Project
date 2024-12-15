@@ -18,10 +18,14 @@ public class PatientCreateModel
     [Display(Name = "Last Name")]
     public string LastName { get; set; }
 
-    [Required] [EmailAddress] public string Email { get; set; }
+    [Required] 
+    [EmailAddress] 
+    [UniqueEmail]
+    public string Email { get; set; }
 
     [Required]
     [EgyptianPhoneNumber]
+    [UniquePhoneNumber]
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
 
@@ -36,6 +40,7 @@ public class PatientCreateModel
 
     [Required]
     [Username]
+    [UniqueUsername]
     [Display(Name = "Username")]
     public string? UserName { get; set; }
 

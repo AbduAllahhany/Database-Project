@@ -154,6 +154,13 @@ public class DoctorService : IDoctorService
         var res = _context.Database.ExecuteSqlRaw(sql, model.Diagnostic, model.Prescription, model.LoggedDoctorId, model.SelectedPatientId);
         return res;
     }
+
+    public int deleteDoctor(Guid doctorId)
+    {
+        var sql = $@"DELETE FROM Doctor WHERE Id = @p0";
+        var res = _context.Database.ExecuteSqlRaw(sql, doctorId);
+        return res;
+    }
     
     public async Task<GetDoctorProfileModel> GetDoctorByUserId(Guid doctorId)
     {
@@ -164,6 +171,28 @@ public class DoctorService : IDoctorService
             ").ToListAsync();
         return res.FirstOrDefault() ?? null;
 
+    }
+    
+    public List<Doctor> GetAllDoctors()
+    { 
+        List<Doctor> doctors = _context.Doctors.FromSql($@"select * from dbo.doctor").ToList();
+            
+        // if(patients.Count==0) return null;
+        return doctors;
+    }
+
+    public List<DoctorAppoinment> GetDoctorAppointments(Guid doctorId)
+    {
+        if(doctorId==null || doctorId == Guid.Empty) return null;
+            
+        List<DoctorAppoinment>  result = _context.Database.SqlQuery<DoctorAppoinment>(
+            $@"select a.Id,a.status,reason   ,concat(p.firstName,' ',p.lastName) as PatientName , concat(d.firstName,' ',d.lastName) as DoctorName, a.date 
+                  from Patient_Doctor_Appointment a ,  Patient p , dbo.Doctor d
+                  where a.patientId = p.Id and d.Id = a.doctorId
+                  and  a.doctorId = {doctorId}").ToList();
+
+        if(result.Count()==0) return null;
+        return result;
     }
 }
 

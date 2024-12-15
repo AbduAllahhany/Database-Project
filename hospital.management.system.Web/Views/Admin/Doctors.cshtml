@@ -1,0 +1,125 @@
+@model IEnumerable<hospital.management.system.Models.Entities.Doctor>
+
+@{
+    ViewData["Title"] = "Doctors List";
+}
+
+@if (Model != null && Model.Any())
+{
+    <div class="container mt-5">
+        <h2 class="text-center">Doctors List</h2>
+
+        <!-- Add New Doctor Button -->
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-10 text-right mb-3">
+                    <form asp-controller="Admin" asp-action="CreateDoctor" method="get">
+                        <button type="submit" class="btn add-new-btn-sm">
+                            <i class="fas fa-user-plus"></i> Add Doctor
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <table class="table table-bordered table-striped auto-adjust-table">
+                        <thead class="thead-dark text-center">
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Specialization</th>
+                            <th scope="col">Start Schedule</th>
+                            <th scope="col">End Schedule</th>
+                            <th scope="col">Salary</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var doctor in Model)
+                        {
+                            <tr>
+                                <td>@doctor.FirstName</td>
+                                <td>@doctor.LastName</td>
+                                <td>@doctor.Department</td>
+                                <td>@doctor.Specialization</td>
+                                <td>@doctor.StartSchedule</td>
+                                <td>@doctor.EndSchedule</td>
+                                <td>@doctor.Salary</td>
+                                <td class="text-center">
+                                    <a href="@Url.Action("GetDoctorAppointments", "Doctor", new { DoctorId = doctor.Id })" class="btn btn-secondary btn-sm">Appointments</a>
+                                    <a href="@Url.Action("Edit", "Doctor", new { id = doctor.Id })" class="btn btn-danger btn-sm">Edit</a>
+                                    <a href="@Url.Action("deleteDoctor", "Doctor", new { DoctorId = doctor.Id })" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to delete this Doctor?');">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section Scripts {
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- FontAwesome -->
+        <script>
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this Doctor?");
+        }
+        </script>
+    }
+
+    <style>
+    /* Smaller Add New Doctor Button Styling */
+    .add-new-btn-sm {
+        background-color: #ff6600;
+        color: white;
+        border: none;
+        padding: 5px 12px; /* Reduced padding */
+        font-size: 14px; /* Smaller font */
+        border-radius: 5px; /* Slightly smaller border radius */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .add-new-btn-sm i {
+        margin-right: 5px; 
+    }
+
+    .add-new-btn-sm:hover {
+        background-color: #e65c00;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .add-new-btn-sm:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(255, 102, 0, 0.4);
+    }
+
+    /* Center and Style Header */
+    .table thead th {
+        text-align: center; /* Center-align text */
+        vertical-align: middle;
+    }
+
+    /* Allow column widths to fit content */
+    .auto-adjust-table {
+        table-layout: auto; /* Automatically adjust column widths to fit content */
+        width: 100%; /* Ensure the table spans the container width */
+    }
+
+    .auto-adjust-table th,
+    .auto-adjust-table td {
+        white-space: nowrap; /* Prevent text wrapping for better alignment */
+    }
+    </style>
+}
+else
+{
+    <div class="container mt-5">
+    <div class="alert alert-warning">
+        No Doctors found.
+    </div>
+    </div>
+}
+

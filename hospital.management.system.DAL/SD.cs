@@ -12,6 +12,8 @@ public class SD
     public const string Intern = "Intern";
 
     public const string Confirmed = "Confirmed";
+    public const string Pending = "Pending";
+    public const string Rejected = "Rejected";
 
     public static readonly IEnumerable<string> ValidSpecializations =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase)

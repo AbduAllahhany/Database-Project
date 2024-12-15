@@ -19,17 +19,23 @@ public class DoctorCreateModel
 
     [Required]
     [EmailAddress]
+    [UniqueEmail]
     [Display(Name = "Email Address")]
     public string Email { get; set; }
+    
 
     [Required] [EgyptianPhoneNumber] 
     [Display(Name = "Phone Number")]
+    [UniquePhoneNumber]
     public string PhoneNumber { get; set; }
+    
     [Display(Name = "National Id")]
     [Required] [NationalID] 
     public string SSN { get; set; }
+    
     [Required] public Gender Gender { get; set; }
     [Required] [Username] 
+    [UniqueUsername]
     [Display(Name = "Username")]public string UserName { get; set; }
 
     [Required]
@@ -48,7 +54,9 @@ public class DoctorCreateModel
     [Required]
     [Display(Name = "End Schedule")]
     public TimeOnly? EndSchedule { get; set; }
+    
     public Guid? DepartmentId { get; set; }
-    [Required] public string DepartmentName { get; set; }
+    
+    public string? DepartmentName { get; set; }
     public IEnumerable<string> Departments { get; set; } = SD.Departments.Keys;
 }

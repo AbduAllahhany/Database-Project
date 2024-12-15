@@ -30,7 +30,10 @@ public interface IDoctorService
 
     // public IEnumerable<Doctor> viewPatientHistory();
 
-
-
+    public List<Doctor> GetAllDoctors();
+    
+    public List<DoctorAppoinment> GetDoctorAppointments(Guid doctorId);
+    
+    public int deleteDoctor(Guid doctorId);
 }
 
