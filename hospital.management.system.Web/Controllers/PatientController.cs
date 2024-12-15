@@ -191,7 +191,7 @@ public class PatientController : Controller
         return View("Error");
     }
 
-    [Authorize(Roles = SD.Admin)]
+   // [Authorize(Roles = SD.Admin)]
     public IActionResult RoomStatus(Guid patientId)
     {
         PatientRoom RoomStatus = _patientService.GetRoomStatus(patientId);
@@ -250,7 +250,11 @@ public class PatientController : Controller
         var res = _patientService.DeletePatient(patientId);
         return res == 1 ? RedirectToAction("patients", "Admin") : View("Error");
     }
-
+    public IActionResult Cancel(Guid id)
+    {
+        var res = _context.Database.ExecuteSqlRaw("delete from Patient_Doctor_Appointment where Id=(@p0)" , id);
+        return View("Cancel",res);
+    }
     // no view 
     // public IActionResult GetPatientInsurance(Guid patientId)
     // {

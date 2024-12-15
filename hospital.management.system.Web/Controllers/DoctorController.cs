@@ -39,7 +39,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = "Doctor")]
+   // [Authorize(Roles = "Doctor")]
     public IActionResult Appointments()
     {
         // add role
@@ -51,7 +51,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Doctor + "," + SD.Admin)]
+  //  [Authorize(Roles = SD.Doctor + "," + SD.Admin)]
     public IActionResult PendingAppointment()
     {
 
@@ -60,7 +60,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
+    //[Authorize(Roles = SD.Doctor)]
     public IActionResult DailyAppointment()
     {
         var dailyAppointment = _doctorService.GetDailyAppointments(GetDoctorId());
@@ -68,7 +68,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
+   // [Authorize(Roles = SD.Doctor)]
     public IActionResult UpcomingAppointment()
     {
         var upcomingAppointment = _doctorService.GetUpcomingAppointments(GetDoctorId());
@@ -76,7 +76,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
+  //  [Authorize(Roles = SD.Doctor)]
     public IActionResult ApproveAppointment(Guid id)
     {
 
@@ -88,20 +88,23 @@ public class DoctorController : Controller
         if (id == Guid.Empty || id == null) return View("Error");
         var approveAppointment = _doctorService.ApproveNextAppointment(model);
         return View("ApproveAppointment", approveAppointment);
+
+        
     }
 
     // ==> what is the view should do ?!!!!!!!!!!!!!!!!!!
     // ===> this action doesn't work  
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
-    public IActionResult PostponeAppointment()
+   // [Authorize(Roles = SD.Doctor)]
+   /*
+   public IActionResult PostponeAppointment()
     {
         var postponeAppointment = _doctorService.PostponingAppointment(GetDoctorId());
         return View(postponeAppointment);
     }
-
+*/
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
+   // [Authorize(Roles = SD.Doctor)]
     public IActionResult CancelingAppointment(Guid id)
     {
         var model = new DoctorCancelingAppointmentModel
@@ -115,27 +118,30 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
+   // [Authorize(Roles = SD.Doctor)]
     public IActionResult FollowUpAppointment()
     {
         return View("FollowUpAppointment");
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
-    public IActionResult FollowUpAppointment(FollowUpAppointmentModel model)
+    // //[Authorize(Roles = SD.Doctor)]
+  /*
+    public IActionResult SaveFollowUpAppointment(FollowUpAppointmentModel model)
     {
+        
         model.DoctorId = GetDoctorId();
         if (!ModelState.IsValid) return RedirectToAction("FollowUpAppointment");
+        model.PatientId= _context.Patients.FirstOrDefault(e=>e.UserId==model.PatientId).Id;
         var followUpAppointment = _doctorService.FollowUpAppointment(model);
         // return View("FollowUpAppointment",followUpAppointment);
         // return View("FollowUpAppointment",followUpAppointment);
 
         return RedirectToAction("DashBoard");
     }
-
+*/
     [Authorize]
-    [Authorize(Roles = SD.Admin)]
+    //[Authorize(Roles = SD.Admin)]
     public IActionResult DeleteDoctor(Guid doctorId)
     {
         var res = _doctorService.DeleteDoctor(doctorId);
@@ -143,7 +149,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Admin)]
+    // [Authorize(Roles = SD.Admin)]
     public IActionResult DashBoard()
     {
         try
@@ -152,16 +158,19 @@ public class DoctorController : Controller
             var id = GetDoctorId(); // Assuming GetUserId() fetches the currently logged-in doctor's ID
 
             // Fetch the doctor details using LINQ
-            var doctor = _context.Doctors
-                .FirstOrDefault(d => d.Id == id);
-
-            if (doctor == null) return NotFound("Doctor not found");
+            //   Doctor doctor = _context.Doctors.FirstOrDefault(d => d.Id == id);
+            Doctor doctor = _context.Doctors.FromSqlInterpolated($@"select * from Doctor where Id ={id}")
+                .FirstOrDefault();
+            if (doctor == null)
+            {
+                return NotFound("Doctor not found");
+            }
 
             // Fetch related data using LINQ
             var appointments = _context.PatientDoctorAppointments
                 .Where(ap => ap.DoctorId == id)
                 .Include(ap => ap.Patient) // Assuming Appointment has a related Patient entity
-                .ToList();
+                .Take(3).ToList();
 
             var medicalRecords = _context.MedicalRecords
                 .Where(mr => mr.DoctorId == id)
@@ -187,13 +196,13 @@ public class DoctorController : Controller
         }
         catch (Exception ex)
         {
-            // Log exception (optional).....
+            // Log exception (optional)
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Admin)]
+    //[Authorize(Roles = SD.Admin)]
     public async Task<IActionResult> Profile()
     {
         var res = await _doctorService.GetDoctorByIdAsync(GetDoctorId());
@@ -217,7 +226,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
+    //[Authorize(Roles = SD.Doctor)]
     public async Task<IActionResult> Edit(Guid? Id = null)
     {
         if (Id == null) Id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
@@ -240,7 +249,7 @@ public class DoctorController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    [Authorize(Roles = SD.Doctor)]
+   // [Authorize(Roles = SD.Doctor)]
     public async Task<IActionResult> Edit(DoctorEditModel model)
     {
         if (!ModelState.IsValid) return View(model);
@@ -252,27 +261,26 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
+    //[Authorize(Roles = SD.Doctor)]
+
+    [HttpGet]
+   // [Authorize(Roles = SD.Doctor)]
     public IActionResult AddMedicalRecord()
     {
         return View("AddMedicalRecord");
     }
-
-    [HttpGet]
-    [Authorize(Roles = SD.Doctor)]
     public IActionResult SaveMedicalRecord(MedicalRecordModel model)
     {
         model.LoggedDoctorId = GetDoctorId();
         if (!ModelState.IsValid) return RedirectToAction("AddMedicalRecord");
         model.SelectedPatientId = _context.Patients.FirstOrDefault(e => e.UserId == model.SelectedPatientId).Id;
         var SaveChanges = _doctorService.CreateMedicalRecord(model);
-        if (SaveChanges > 0) return RedirectToAction("DashBoard");
+        if(SaveChanges>0) return RedirectToAction("DashBoard");
         else return RedirectToAction("AddMedicalRecord");
 
     }
-
     [HttpPost]
-    [Authorize(Roles = SD.Doctor)]
+    //[Authorize(Roles = SD.Doctor)]
     public IActionResult SaveFollowUpAppointment(FollowUpAppointmentModel model)
     {
         model.DoctorId = GetDoctorId();

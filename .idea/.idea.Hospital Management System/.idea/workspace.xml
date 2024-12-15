@@ -4,54 +4,21 @@
     <projectFile profileName="http">hospital.management.system.Web/hospital.management.system.Web.csproj</projectFile>
     <projectFile profileName="https">hospital.management.system.Web/hospital.management.system.Web.csproj</projectFile>
   </component>
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c52a343b-6e6f-4dc9-8472-0545830d8bcb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Staff/StaffEditModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Staff/StaffModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Admin/CreateStaff.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Admin/EditStaff.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Admin/Staff.cshtml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/Edit.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="6133a3e0-9a0b-418a-ade3-073275c47a6d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.local.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/dataSources.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/shelf/Uncommitted_changes_before_Update_at_14_12_2024_23_12_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/shelf/Uncommitted_changes_before_Update_at_14_12_2024_23_12__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/shelf/Uncommitted_changes_before_Update_at_14_12_2024_23_31_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/shelf/Uncommitted_changes_before_Update_at_14_12_2024_23_31__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hospital Management System/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Hospital Management System/DesignTimeBuild/.dtbcache.v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Hospital Management System/FileContentIndex/3b7363cf-11a5-433c-a3c0-56bee809a6f9.vsidx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Hospital Management System/v17/.futdcache.v2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Hospital Management System/v17/.suo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Hospital Management System/v17/DocumentLayout.backup.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/Hospital Management System/v17/DocumentLayout.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/hospital management system.metadata.v9.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/hospital management system.projects.v9.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vs/ProjectEvaluation/hospital management system.strings.v9.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Admin/AdminEditStaffModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Admin/AdminEditStaffModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Admin/StaffCreateModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Admin/StaffCreateModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Staff/StaffDashboardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Models/Staff/StaffDashboardModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/AccountService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/AccountService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/AdminService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/AdminService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hospital Management System.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Hospital Management System.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/DoctorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/DoctorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IAdminService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IAdminService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IDoctorService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IDoctorService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IPatientService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IPatientService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IStaffService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/IServices/IStaffService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/PatientService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/PatientService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.BLL/Services/StaffService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.BLL/Services/StaffService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.DAL/SD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.DAL/SD.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/AdminController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/AdminController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/DoctorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/DoctorController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/PatientController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/PatientController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/StaffController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Controllers/StaffController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/EditDoctor.cshtml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/EditPatient.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/Edit.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/Profile.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/Profile.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/AddMedicalRecord.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/AddMedicalRecord.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/ApproveAppointment.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/ApproveAppointment.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/PendingAppointment.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/PendingAppointment.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/UpcomingAppointment.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Doctor/UpcomingAppointment.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/DashBoard.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/hospital.management.system.Web/Views/Patient/DashBoard.cshtml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,11 +29,6 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Edit-Features" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -81,48 +43,25 @@
     &quot;accountId&quot;: &quot;0fb8fd83-e208-4ee9-b88e-3e8657c422f1&quot;
   }
 }</component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/hospital.management.system.BLL/Services/DoctorService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/hospital.management.system.Web/Controllers/DoctorController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
-  </component>
-  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2qEX2qmZuBdkvwl4k4PlC6d3ArV" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2qGl53oYQbD19o3FD4iNO4FIA4V" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Launch Settings Profile.hospital.management.system.Web: http.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "XThreadsFramesViewSplitterKey": "0.41732284",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "terminal",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Launch Settings Profile.hospital.management.system.Web: http.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.hospital.management.system.Web: http">
     <configuration name="hospital.management.system.Web: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/hospital.management.system.Web/hospital.management.system.Web.csproj" />
@@ -158,37 +97,20 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c52a343b-6e6f-4dc9-8472-0545830d8bcb" name="Changes" comment="" />
-      <created>1734228506188</created>
+      <changelist id="6133a3e0-9a0b-418a-ade3-073275c47a6d" name="Changes" comment="" />
+      <created>1734296607258</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1734228506188</updated>
-      <workItem from="1734228509013" duration="351000" />
-      <workItem from="1734228883400" duration="1806000" />
-      <workItem from="1734230718290" duration="678000" />
-      <workItem from="1734232374118" duration="22234000" />
+      <updated>1734296607258</updated>
+      <workItem from="1734296611222" duration="112000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'" />
   </component>
 </project>

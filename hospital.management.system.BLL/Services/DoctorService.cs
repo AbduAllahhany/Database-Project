@@ -92,16 +92,14 @@ public class DoctorService : IDoctorService
     /// <returns></returns>
     public int ApproveNextAppointment(DoctorCancelingAppointmentModel model)
     {
-        var sql = $"""
-                   
-                               UPDATE Patient_Doctor_Appointment
-                               SET status = 'Approved'
-                               WHERE Id IN (
-                   	            SELECT A.Id
-                   	            FROM Patient P, Patient_Doctor_Appointment A
-                   	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND A.status = 'Pending'
-                               )
-                   """;
+        var sql = $@"
+            UPDATE Patient_Doctor_Appointment
+            SET status = 'Approved'
+            WHERE Id IN (
+	            SELECT A.Id
+	            FROM Patient P, Patient_Doctor_Appointment A
+	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND A.status = 'Pending'
+            )";
         var res = _context.Database.ExecuteSqlRaw(sql, model.SelectedPatientId, model.LoggedDoctorId);
         return res;
     }
@@ -125,17 +123,14 @@ public class DoctorService : IDoctorService
 
     public int CancelingAppointment(DoctorCancelingAppointmentModel model)
     {
-
-        var sql = $"""
-                   
-                               UPDATE Patient_Doctor_Appointment
-                               SET status = 'Rejected'
-                               WHERE Id IN (
-                   	            SELECT A.Id
-                   	            FROM Patient P, Patient_Doctor_Appointment A
-                   	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND A.status = 'Pending'
-                               )
-                   """;
+        var sql = $@"
+            UPDATE Patient_Doctor_Appointment
+            SET status = 'Rejected'
+            WHERE Id IN (
+	            SELECT A.Id
+	            FROM Patient P, Patient_Doctor_Appointment A
+	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND A.status = 'Pending'
+            )";
         var res = _context.Database.ExecuteSqlRaw(sql, model.SelectedPatientId, model.LoggedDoctorId);
         return res;
     }
@@ -217,7 +212,7 @@ public class DoctorService : IDoctorService
         if (doctorId == null || doctorId == Guid.Empty) return null;
 
         List<DoctorAppoinment> result = _context.Database.SqlQuery<DoctorAppoinment>(
-            $@"select a.Id,a.status,reason   ,concat(p.firstName,' ',p.lastName) as PatientName , concat(d.firstName,' ',d.lastName) as DoctorName, a.date 
+            $@"select A.Id as AppId,p.Id as PatientId ,concat(P.firstName , ' ' , P.lastName) as FullName,  DATEDIFF(YEAR, p.dateOfBirth, GETDATE()) as dateOfBirth, A.reason, A.date, A.status
                   from Patient_Doctor_Appointment a ,  Patient p , dbo.Doctor d
                   where a.patientId = p.Id and d.Id = a.doctorId
                   and  a.doctorId = {doctorId}").ToList();
