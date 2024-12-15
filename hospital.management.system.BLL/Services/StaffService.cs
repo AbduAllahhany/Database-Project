@@ -47,9 +47,8 @@ public class StaffService : IStaffService
     public async Task<StaffModel> GetStaffByIdAsync(Guid? Id)
     {
         var res = _context.Database.SqlQuery<StaffModel>($"""
-                                                          SELECT Top(1) firstName as FirstName, lastName as LastName,phoneNumber as PhoneNumber,
-                                                          startSchedule as StartSchedule, endSchedule as EndSchedule,
-                                                          dayOfWork as DayOfWork
+                                                          SELECT Top(1) Id as Id ,firstName as FirstName, lastName as LastName,
+                                                          startSchedule as StartSchedule, endSchedule as EndSchedule, role As Role,dayOfWork As DayOfWork
                                                           from Staff
                                                           where Id = {Id} 
                                                           """);
@@ -68,7 +67,8 @@ public class StaffService : IStaffService
     public async Task<IEnumerable<StaffModel>> GetAllTask()
     {
         var res = _context.Database.SqlQuery<StaffModel>($"""
-                            select Id as Id,firstName as FirstName, lastName as LastName, role as Role, endSchedule as EndSchedule, startSchedule as StartSchedule,dayOfWork as DayOfWork
+                            select Id as Id,firstName as FirstName, lastName as LastName, role as Role, endSchedule as EndSchedule, 
+                                   startSchedule as StartSchedule,dayOfWork as DayOfWork
                             from Staff
                             """);
         var temp = await res.ToListAsync();

@@ -24,6 +24,14 @@ public class SD
             SD.OfficeBoy,
         };
 
+    public static readonly IEnumerable<string> Roles =
+        new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            SD.Intern,
+            SD.Nurse,
+            SD.OfficeBoy,
+        };
+
     public static readonly IEnumerable<string> ValidSpecializations =
         new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
