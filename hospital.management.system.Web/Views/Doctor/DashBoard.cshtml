@@ -80,6 +80,90 @@
             </div>
         </div>
     </div>
+    <!-- Links to Related Data -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+                <h5 class="card-title">Pending Appointments</h5>
+                <p>View pending appointments</p>
+                <a href="@Url.Action("PendingAppointment", "Doctor")" class="btn btn-custom">View Pending</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-day"></i>
+                </div>
+                <h5 class="card-title">Daily Appointments</h5>
+                <p>View today's appointments</p>
+                <a href="@Url.Action("DailyAppointment", "Doctor")" class="btn btn-custom">View Daily</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-event"></i>
+                </div>
+                <h5 class="card-title">Upcoming Appointments</h5>
+                <p>Manage upcoming appointments</p>
+                <a href="@Url.Action("UpcomingAppointment", "Doctor")" class="btn btn-custom">View Upcoming</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <h5 class="card-title">Follow-Up Appointments</h5>
+                <p>Schedule follow-up appointments</p>
+                <a href="@Url.Action("FollowUpAppointment", "Doctor")" class="btn btn-custom">Add Follow-Up</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-journal-plus"></i>
+                </div>
+                <h5 class="card-title">Add Medical Record</h5>
+                <p>Record new medical information</p>
+                <a href="@Url.Action("AddMedicalRecord", "Doctor")" class="btn btn-custom">Add Record</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-clipboard-data"></i>
+                </div>
+                <h5 class="card-title">Total Appointments</h5>
+                <p>View all appointments</p>
+                <a href="@Url.Action("Appointments", "Doctor")" class="btn btn-custom">View All</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-journal"></i>
+                </div>
+                <h5 class="card-title">View Medical Records</h5>
+                <p>Access all medical records</p>
+                <a href="@Url.Action("ViewMedicalRecords", "Doctor")" class="btn btn-custom">View Records</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Bootstrap 5 JS and Popper.js -->

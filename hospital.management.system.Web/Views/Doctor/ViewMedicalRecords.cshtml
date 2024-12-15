@@ -1,0 +1,45 @@
+@model List<hospital.management.system.Models.Entities.MedicalRecord>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Medical Records</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Date of Recording</th>
+                <th>Diagnostic</th>
+                <th>Prescription</th>
+                <th>Doctor</th>
+                <th>Patient</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (Model != null && Model.Any())
+            {
+                int index = 1;
+                foreach (var record in Model)
+                {
+                    <tr>
+                        <td>@index</td>
+                        <td>@record.DateOfRecording.ToShortDateString()</td>
+                        <td>@record.Diagnostic</td>
+                        <td>@record.Prescription</td>
+                        <td>@(record.Doctor != null ? $"{record.Doctor.FirstName} {record.Doctor.LastName}" : "N/A")</td>
+                        <td>@(record.Patient != null ? $"{record.Patient.FirstName} {record.Patient.LastName}" : "N/A")</td>
+
+                    </tr>
+                    index++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No records available</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

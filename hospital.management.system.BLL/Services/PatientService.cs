@@ -148,8 +148,11 @@ public class PatientService : IPatientService
 
     public int DeletePatient(Guid patientId)
     {
-        throw new NotImplementedException();
+        var sql = $@"DELETE FROM Patient WHERE Id = @p0";
+        var res = _context.Database.ExecuteSqlRaw(sql, patientId);
+        return res;
     }
+
 
     public async Task<GetPatientProfileModel> GetPatientById(Guid? Id)
     {

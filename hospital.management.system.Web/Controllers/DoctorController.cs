@@ -39,7 +39,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-   // [Authorize(Roles = "Doctor")]
+    // [Authorize(Roles = "Doctor")]
     public IActionResult Appointments()
     {
         // add role
@@ -51,7 +51,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-  //  [Authorize(Roles = SD.Doctor + "," + SD.Admin)]
+    //  [Authorize(Roles = SD.Doctor + "," + SD.Admin)]
     public IActionResult PendingAppointment()
     {
 
@@ -68,7 +68,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-   // [Authorize(Roles = SD.Doctor)]
+    // [Authorize(Roles = SD.Doctor)]
     public IActionResult UpcomingAppointment()
     {
         var upcomingAppointment = _doctorService.GetUpcomingAppointments(GetDoctorId());
@@ -76,7 +76,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-  //  [Authorize(Roles = SD.Doctor)]
+    //  [Authorize(Roles = SD.Doctor)]
     public IActionResult ApproveAppointment(Guid id)
     {
 
@@ -89,22 +89,22 @@ public class DoctorController : Controller
         var approveAppointment = _doctorService.ApproveNextAppointment(model);
         return View("ApproveAppointment", approveAppointment);
 
-        
+
     }
 
     // ==> what is the view should do ?!!!!!!!!!!!!!!!!!!
     // ===> this action doesn't work  
     [HttpGet]
-   // [Authorize(Roles = SD.Doctor)]
-   /*
-   public IActionResult PostponeAppointment()
-    {
-        var postponeAppointment = _doctorService.PostponingAppointment(GetDoctorId());
-        return View(postponeAppointment);
-    }
-*/
+    // [Authorize(Roles = SD.Doctor)]
+    /*
+    public IActionResult PostponeAppointment()
+     {
+         var postponeAppointment = _doctorService.PostponingAppointment(GetDoctorId());
+         return View(postponeAppointment);
+     }
+ */
     [HttpGet]
-   // [Authorize(Roles = SD.Doctor)]
+    // [Authorize(Roles = SD.Doctor)]
     public IActionResult CancelingAppointment(Guid id)
     {
         var model = new DoctorCancelingAppointmentModel
@@ -118,7 +118,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-   // [Authorize(Roles = SD.Doctor)]
+    // [Authorize(Roles = SD.Doctor)]
     public IActionResult FollowUpAppointment()
     {
         return View("FollowUpAppointment");
@@ -126,20 +126,20 @@ public class DoctorController : Controller
 
     [HttpGet]
     // //[Authorize(Roles = SD.Doctor)]
-  /*
-    public IActionResult SaveFollowUpAppointment(FollowUpAppointmentModel model)
-    {
-        
-        model.DoctorId = GetDoctorId();
-        if (!ModelState.IsValid) return RedirectToAction("FollowUpAppointment");
-        model.PatientId= _context.Patients.FirstOrDefault(e=>e.UserId==model.PatientId).Id;
-        var followUpAppointment = _doctorService.FollowUpAppointment(model);
-        // return View("FollowUpAppointment",followUpAppointment);
-        // return View("FollowUpAppointment",followUpAppointment);
+    /*
+      public IActionResult SaveFollowUpAppointment(FollowUpAppointmentModel model)
+      {
 
-        return RedirectToAction("DashBoard");
-    }
-*/
+          model.DoctorId = GetDoctorId();
+          if (!ModelState.IsValid) return RedirectToAction("FollowUpAppointment");
+          model.PatientId= _context.Patients.FirstOrDefault(e=>e.UserId==model.PatientId).Id;
+          var followUpAppointment = _doctorService.FollowUpAppointment(model);
+          // return View("FollowUpAppointment",followUpAppointment);
+          // return View("FollowUpAppointment",followUpAppointment);
+
+          return RedirectToAction("DashBoard");
+      }
+  */
     [Authorize]
     //[Authorize(Roles = SD.Admin)]
     public IActionResult DeleteDoctor(Guid doctorId)
@@ -147,6 +147,7 @@ public class DoctorController : Controller
         var res = _doctorService.DeleteDoctor(doctorId);
         return res == 1 ? RedirectToAction("Doctors", "Admin") : View("Error");
     }
+
 
     [HttpGet]
     // [Authorize(Roles = SD.Admin)]
@@ -249,7 +250,7 @@ public class DoctorController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-   // [Authorize(Roles = SD.Doctor)]
+    // [Authorize(Roles = SD.Doctor)]
     public async Task<IActionResult> Edit(DoctorEditModel model)
     {
         if (!ModelState.IsValid) return View(model);
@@ -264,21 +265,23 @@ public class DoctorController : Controller
     //[Authorize(Roles = SD.Doctor)]
 
     [HttpGet]
-   // [Authorize(Roles = SD.Doctor)]
+    // [Authorize(Roles = SD.Doctor)]
     public IActionResult AddMedicalRecord()
     {
         return View("AddMedicalRecord");
     }
+
     public IActionResult SaveMedicalRecord(MedicalRecordModel model)
     {
         model.LoggedDoctorId = GetDoctorId();
         if (!ModelState.IsValid) return RedirectToAction("AddMedicalRecord");
         model.SelectedPatientId = _context.Patients.FirstOrDefault(e => e.UserId == model.SelectedPatientId).Id;
         var SaveChanges = _doctorService.CreateMedicalRecord(model);
-        if(SaveChanges>0) return RedirectToAction("DashBoard");
+        if (SaveChanges > 0) return RedirectToAction("DashBoard");
         else return RedirectToAction("AddMedicalRecord");
 
     }
+
     [HttpPost]
     //[Authorize(Roles = SD.Doctor)]
     public IActionResult SaveFollowUpAppointment(FollowUpAppointmentModel model)
@@ -291,6 +294,26 @@ public class DoctorController : Controller
         // return View("FollowUpAppointment",followUpAppointment);
 
         return RedirectToAction("DashBoard");
+    }
+
+    public IActionResult DoctorSummary()
+    {
+        Guid doctorId = GetDoctorId();
+        DoctorMonthlyAppointmentSummary
+            summary = _doctorService.GetMonthlyAppointmentSummary(doctorId).FirstOrDefault();
+        return View("DoctorSummary", summary);
+    }
+
+    public IActionResult ViewMedicalRecords()
+    {
+        Guid doctorId = GetDoctorId();
+        List<MedicalRecord> medicalrecord = _context.MedicalRecords
+            .FromSqlInterpolated($@"select * from Medical_Record where doctorId = {doctorId}").ToList();
+        medicalrecord = _context.MedicalRecords
+            .Where(mr => mr.DoctorId == doctorId)
+            .Include(mr => mr.Patient) // Assuming MedicalRecord has a related Patient entity
+            .ToList();
+        return View("ViewMedicalRecords", medicalrecord);
     }
 
 }
