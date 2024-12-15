@@ -1,15 +1,13 @@
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
 using hospital.management.system.BLL.Filters;
 using hospital.management.system.DAL;
-using hospital.management.system.Models.Enums;
 
-namespace hospital.management.system.BLL.Models.Admin;
+namespace hospital.management.system.BLL.Models.Staff;
 
-public class StaffCreateModel
+public class StaffEditModel
 {
+    public Guid Id { get; set; }
     [Display(Name = "First Name")] public string FirstName { get; set; }
-
     [Display(Name = "Last Name")] public string LastName { get; set; }
     public string Email { get; set; }
     [Display(Name = "Phone Number")] public string PhoneNumber { get; set; }
@@ -21,7 +19,4 @@ public class StaffCreateModel
     [Display(Name = "EndSchedule")] public TimeOnly EndSchedule { get; set; }
     [Display(Name = "Day of Work")] public byte DayOfWork { get; set; }
     public string Username { get; set; }
-    [Display(Name = "Dempartment Name")] public string DepartmentName { get; set; }
-    public Guid DepartmentId { get; set; }
-    public string SSN { get; set; }
 }

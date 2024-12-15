@@ -20,6 +20,10 @@ public interface IPatientService
     public int deletePatient(Guid patientId);
     public List<Patient> GetAllPetient();
 
-    public Task<GetPatientProfileModel> GetPatientByUserId(Guid? Id);
+    public Task<GetPatientProfileModel> GetPatientById(Guid? Id);
+    public Task<int> GetPatientCountAsync();
+    public Task<int> AddPatientPhoneNumberAsync(Guid? patientId, string phoneNumber);
+
+    public Task<int> EditPatientAsync(PatientEditModel? model);
     //public void MarkPatientAppoinment(Appointment appoinment);
 }

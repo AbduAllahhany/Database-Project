@@ -251,7 +251,6 @@ namespace hospital.management.system.BLL.Services;
 
             };
         }
-        
         private string GetLink(string ActionName, object? prams)
         {
             var context = httpContextAccessor.HttpContext;

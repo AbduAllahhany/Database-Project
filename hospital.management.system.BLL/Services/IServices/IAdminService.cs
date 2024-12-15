@@ -1,4 +1,6 @@
 using hospital.management.system.BLL.Models.Admin;
+using hospital.management.system.BLL.Models.Doctors;
+using hospital.management.system.BLL.Models.Patient;
 using hospital.management.system.Models.Entities;
 
 namespace hospital.management.system.BLL.Services.IServices;
@@ -17,13 +19,13 @@ public interface IAdminService
     public Task<IEnumerable<GetAllAdminsResponseModel>> GetAllAdminsAsync();
     public Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAllAppointmentsAsync();
     public Task<int> CreateAppointmentAsync(AppointmentAddModel model);
-    public Task<int> EditPatientAsync(AdminEditPatientModel? model);
-    public Task<int> EditDoctorAsync(AdminEditDoctorModel? model);
-    public Task<int> EditStaffAsync(AdminEditStaffModel model);
-    public Task<int> GetStaffCountAsync();
+    //public Task<int> EditStaffAsync(StaffEditModel model);
     public Task<int> GetAppointmentCountAsync();
     public Task<int> ConfirmRoomAsync(Guid? roomId);
     public Task<IEnumerable<AvailableRoomsModel>> GetAvailableRoomsAsync();
     public Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAppointmentsAsync();
-
+    public Task<int> AdminEditPatientAsync(AdminEditPatientModel? model);
+    public Task<int> AdminEditDoctortAsync(AdminEditDoctorModel? model);
+    public Task<int> AdminEditStaffAsync(AdminEditStaffModel model);
+    
 }
