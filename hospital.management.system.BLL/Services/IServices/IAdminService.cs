@@ -21,7 +21,13 @@ public interface IAdminService
     public Task<int> EditDoctorAsync(AdminEditDoctorModel? model);
     public Task<int> EditStaffAsync(AdminEditStaffModel model);
     public Task<int> GetStaffCountAsync();
+    public Task<int> GetpatientsCountAsync();
+    public Task<int> GetDoctorsCountAsync();
     public Task<int> GetAppointmentCountAsync();
     public Task<int> ConfirmRoomAsync(Guid? roomId);
     public Task<IEnumerable<AvailableRoomsModel>> GetAvailableRoomsAsync();
+    public Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAppointmentsAsync();
+    public Task<IEnumerable<UsernameIdModel>> GetAllPatientsAsync();
+    public Task<IEnumerable<UsernameIdModel>> GetAllDoctorsAsync();
+    
 }

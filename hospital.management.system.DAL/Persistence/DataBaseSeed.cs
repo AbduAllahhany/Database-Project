@@ -134,7 +134,7 @@ public static class DataBaseSeed
             context.Departments.AddRange(departments);
             await context.SaveChangesAsync();
         }
-
+        
         if (!userManager.Users.Any())
         {
             await roleManager.CreateAsync(new IdentityRole<Guid>
@@ -176,7 +176,7 @@ public static class DataBaseSeed
                 Gender = Gender.Male,
             };
             await userManager.CreateAsync(admin, "Admin123.?");
-
+            
             var doctor = new ApplicationUser
             {
                 UserName = "doctor",
@@ -185,8 +185,6 @@ public static class DataBaseSeed
                 EmailConfirmed = true,
                 Gender = Gender.Male,
             };
-            var keyValues = context.Departments.ToDictionary(d => d.Name, d => d.Id);
-            SD.Departments = keyValues;
             await userManager.CreateAsync(doctor, "Admin123.?");
 
             await userManager.AddToRoleAsync(admin, SD.Admin);
@@ -208,6 +206,8 @@ public static class DataBaseSeed
             });
             await context.SaveChangesAsync();
         }
+        var keyValues = context.Departments.ToDictionary(d => d.Name, d => d.Id);
+        SD.Departments = keyValues;
     }
 
     public static async Task SeedDatabaseAsync(IServiceProvider services)

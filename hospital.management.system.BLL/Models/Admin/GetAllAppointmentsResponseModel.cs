@@ -8,7 +8,7 @@ public class GetAllAppointmentsResponseModel
     public string? PatientUsername { get; set; }
     public string? DoctorUsername { get; set; }
     [Required]
-    public Status? Status { get; set; }
+    public string? Status { get; set; }
     [Required]
     public string? Reason { get; set; }
     [Required]

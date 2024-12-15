@@ -17,7 +17,7 @@ public interface IPatientService
     public PatientRoom GetRoomStatus(Guid patientId);
     public ViewInsurance GetViewInsurance(Guid patientId);
     public List<PatientEmergancyContact> GetPatientEmergancyContacts(Guid patientId);
-
+    public int deletePatient(Guid patientId);
     public List<Patient> GetAllPetient();
     //public void MarkPatientAppoinment(Appointment appoinment);
 }

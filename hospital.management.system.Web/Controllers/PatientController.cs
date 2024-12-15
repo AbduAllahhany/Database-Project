@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using hospital.management.system.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.Web.Controllers;
@@ -57,19 +58,7 @@ public class PatientController : Controller
         return patientId.Id;
     }
 
-    // =>>> view will be changed 
-    // GET
-    public IActionResult Index()
-    {
-        List<Patient> patients = _patientService.GetAllPetient();
-
-        // Check if patients data is null or empty
-       // if (patients == null || !patients.Any())  return Content("No patient Exist"); // Or show a message indicating no patients found
-        
-
-        // Pass the list of patients to the view
-        return View("Index", patients);
-    }
+    
 // method dash board 
 
 // ==> modify links's paramter 
@@ -130,7 +119,6 @@ public class PatientController : Controller
     
     public IActionResult GetAllPetient()
     {
-        
         List<Patient> patients = _patientService.GetAllPetient();
         return View("GetAllPetient",patients );
     }
@@ -177,6 +165,14 @@ public class PatientController : Controller
         
         //if (RoomStatus == null) return RedirectToAction("Index");
         return View("GetRoomStatus",RoomStatus);
+    }
+
+    [Authorize]
+    [Authorize(Roles = SD.Admin)]
+    public IActionResult deletePatient(Guid patientId)
+    {
+        var res = _patientService.deletePatient(patientId);
+        return res == 1 ? RedirectToAction("patients", "Admin") : View("Error");
     }
     
    // no view 

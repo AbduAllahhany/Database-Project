@@ -121,15 +121,20 @@ public class PatientService : IPatientService
             if(result.Count()==0) return null;
             return result;
         }
-
-
-
+        
         public List<Patient> GetAllPetient()
         { 
             List<Patient> patients = _context.Patients.FromSql($@"select * from dbo.Patient").ToList();
             
            // if(patients.Count==0) return null;
             return patients;
+        }
+
+        public int deletePatient(Guid patientId)
+        {
+            var sql = $@"DELETE FROM Patient WHERE Id = @p0";
+            var res = _context.Database.ExecuteSqlRaw(sql, patientId);
+            return res;
         }
         
         // public void MarkPatientAppoinment(Appointment appoinment)

@@ -55,7 +55,7 @@
             <div class="card border-0 shadow-sm rounded-lg" style="background-color: #FFDDC1;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
-                        <h6 class="text-secondary">Upcoming Appointments</h6>
+                        <h6 class="text-secondary">Total Appointments</h6>
                         <p class="display-6 font-weight-bold text-dark">@Model.AppointmentsCount</p>
                     </div>
                     <i class="fas fa-calendar-alt fa-3x text-muted"></i>
@@ -67,10 +67,10 @@
     <!-- Navigation Buttons -->
     <div class="row mb-5 text-center">
         <div class="col-md-12">
-            <a href="~/Patient" class="btn btn-outline-primary rounded-pill m-3 px-4">View All Patients</a>
-            <a href="~/Doctor" class="btn btn-outline-success rounded-pill m-3 px-4">View All Doctors</a>
-            <a href="~/Staff" class="btn btn-outline-warning rounded-pill m-3 px-4">View All Nurses</a>
-            <a href="~/Appointment" class="btn btn-outline-info rounded-pill m-3 px-4">View All Appointments</a>
+            <a href="~/Admin/Patients" class="btn btn-outline-primary rounded-pill m-3 px-4">View All Patients</a>
+            <a href="~/Admin/Doctors" class="btn btn-outline-success rounded-pill m-3 px-4">View All Doctors</a>
+            @* <a href="~/Staff" class="btn btn-outline-warning rounded-pill m-3 px-4">View All Nurses</a> *@
+            <a href="~/Admin/Appointments" class="btn btn-outline-info rounded-pill m-3 px-4">View All Appointments</a>
             <a href="~/Admin" class="btn btn-outline-primary rounded-pill m-3 px-4">View All Admins</a>
         </div>
     </div>
@@ -82,24 +82,26 @@
                 <!-- Updated Header Color (Blue Gradient) -->
                 <div class="card-header bg-gradient-primary text-white rounded-top"
                      style="background: linear-gradient(135deg, #4A90E2, #72C3DC);">
-                    <h3 class="mb-0">UpComing Appointments</h3>
+                    <h3 class="mb-0">Top 3 Upcoming Appointments</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-hover table-striped rounded-lg">
                         <thead class="thead-light">
                         <tr>
-                            <th scope="col">Patient</th>
-                            <th scope="col">Doctor</th>
+                            <th scope="col">Patient Name</th>
+                            <th scope="col">Doctor Name</th>
                             <th scope="col">Date</th>
+                            <th scope="col">Time</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach (var appointment in Model.upcomingAppointments)
                         {
                             <tr>
-                                <td>@appointment.PatientFirstName + @appointment.PatientLastName</td>
-                                <td>@appointment.DoctorFirstName + @appointment.DoctorLastName</td>
-                                <td>@appointment.Date.ToString("g")</td>
+                                <td>@appointment.PatientName</td>
+                                <td>@appointment.DoctorName</td>
+                                <td>@appointment.Date.ToString()</td>
+                                <td>@appointment.Time.ToString()</td>
                             </tr>
                         }
                         </tbody>

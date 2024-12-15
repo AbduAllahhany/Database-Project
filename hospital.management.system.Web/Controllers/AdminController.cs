@@ -9,6 +9,7 @@ using hospital.management.system.Web.Models.Admin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace hospital.management.system.Web.Controllers;
 
@@ -43,18 +44,38 @@ public class AdminController : Controller
         var model = await _adminService.GetAllAdminsAsync();
         return View(model);
     }
-
+    
+    // =>>> view will be changed 
+    // GET
+    public IActionResult Patients()
+    {
+        IEnumerable<Patient> patients = _patientService.GetAllPetient();
+        return !patients.IsNullOrEmpty() ? View(patients) : View("Error");
+    }
+    
+    public IActionResult Doctors()
+    {
+        IEnumerable<Doctor> doctors = _doctorService.GetAllDoctors();
+        return !doctors.IsNullOrEmpty() ? View(doctors) : View("Error");
+    }
+    
+    public async Task<IActionResult> Appointments()
+    {
+        var appointments = await _adminService.GetAppointmentsAsync();
+        return !appointments.IsNullOrEmpty() ? View(appointments) : View("Error");
+    }
+    
     [HttpGet]
     public async Task<IActionResult> Dashboard()
     {
         var upcomingAppointments = await _adminService.GetUpcomingAppointmentAsync();
         var model = new AdminDashboardModel
         {
-            upcomingAppointments = upcomingAppointments,
+            upcomingAppointments = await _adminService.GetUpcomingAppointmentAsync(),
             AppointmentsCount = await _adminService.GetAppointmentCountAsync(),
-            StaffCount = await _adminService.GetStaffCountAsync()
-            // PatientsCount = , 
-            //DoctorCount = ,
+            StaffCount = await _adminService.GetStaffCountAsync(),
+            PatientsCount = await _adminService.GetpatientsCountAsync(),
+            DoctorsCount = await _adminService.GetDoctorsCountAsync(),
         };
         return View(model);
     }
@@ -71,7 +92,7 @@ public class AdminController : Controller
     {
         if (!ModelState.IsValid) return View(model);
         int res = await _adminService.CreatePatientAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
     }
 
     [HttpGet]
@@ -88,7 +109,7 @@ public class AdminController : Controller
         Guid deptid = SD.Departments[model.DepartmentName];
         model.DepartmentId = deptid;
         int res = await _adminService.CreateDoctorAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Doctor") : View("Error");
+        return res == 1 ? RedirectToAction("Doctors", "Admin") : View("Error");
     }
 
     [HttpGet]
@@ -174,22 +195,32 @@ public class AdminController : Controller
         return View(model);
     }
 
-    public IActionResult Appointments()
+    [HttpGet]
+    public async Task<IActionResult> CreateAppointment()
     {
-     //   var appointment = await _adminService.GetAllAppointmentsAsync();
-        return View();
-    }
-
-    public IActionResult CreateAppointment()
-    {
-        return View();
+        var patients = await _adminService.GetAllPatientsAsync();
+        var doctors = await _adminService.GetAllDoctorsAsync();
+        
+        var model = new AppointmentModel
+        {
+            PatientUsernameId = patients,
+            DoctorUsernameId = doctors,
+        };
+        return View(model);
     }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateAppointment(AppointmentModel model)
     {
-        if (!ModelState.IsValid) return View(model);
+        if (!ModelState.IsValid)
+        {
+            var patients = await _adminService.GetAllPatientsAsync();
+            var doctors = await _adminService.GetAllDoctorsAsync();
+            model.PatientUsernameId = patients;
+            model.DoctorUsernameId = doctors;
+            return View(model);
+        }
         await _adminService.CreateAppointmentAsync(new AppointmentAddModel()
         {
             PatientUserId = model.PatientUserId,
@@ -197,7 +228,6 @@ public class AdminController : Controller
             Date = model.Date,
             Time = model.Time,
             Reason = model.Reason,
-            Status = Status.Pending.ToString(),
         });
         return RedirectToAction("Appointments", "Admin");
     }

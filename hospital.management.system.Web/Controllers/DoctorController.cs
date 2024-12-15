@@ -5,6 +5,7 @@ using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -39,6 +40,17 @@ public class DoctorController : Controller
         // return id;
         Doctor DoctorId = _context.Doctors.FirstOrDefault(e => e.UserId == id);
         return DoctorId.Id;
+    }
+    
+    [HttpGet] // getall 
+    public IActionResult GetDoctorAppointments()
+    {
+        // add role
+       
+        List<DoctorAppoinment> PatientDoctorAppoinment = _doctorService.GetDoctorAppointments(GetUserId());
+       
+        // if(PatientDoctorAppoinment == null) return RedirectToAction("Index");
+        return View("GetDoctorAppointments",PatientDoctorAppoinment);
     }
 
     public IActionResult IdToPendingAppointment()
@@ -96,6 +108,14 @@ public class DoctorController : Controller
         // return View("FollowUpAppointment",followUpAppointment);
 
         return RedirectToAction("DashBoard");
+    }
+
+    [Authorize]
+    [Authorize(Roles = SD.Admin)]
+    public IActionResult deleteDoctor(Guid doctorId)
+    {
+        var res = _doctorService.deleteDoctor(doctorId);
+        return res == 1 ? RedirectToAction("Doctors", "Admin") : View("Error");
     }
 
     public IActionResult DashBoard()
