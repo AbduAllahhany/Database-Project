@@ -154,6 +154,11 @@ public static class DataBaseSeed
             });
             await roleManager.CreateAsync(new IdentityRole<Guid>
             {
+                Name = SD.OfficeBoy,
+                NormalizedName = SD.Intern.ToUpper(),
+            });
+            await roleManager.CreateAsync(new IdentityRole<Guid>
+            {
                 Name = SD.SuperAdmin,
                 NormalizedName = SD.SuperAdmin.ToUpper(),
             });
@@ -186,11 +191,9 @@ public static class DataBaseSeed
                 Gender = Gender.Male,
             };
             await userManager.CreateAsync(doctor, "Admin123.?");
-
             await userManager.AddToRoleAsync(admin, SD.Admin);
             await userManager.AddToRoleAsync(doctor, SD.Doctor);
             
-
             context.Doctors.Add(new Doctor()
             {
                 User = doctor,
@@ -208,6 +211,32 @@ public static class DataBaseSeed
         }
         var keyValues = context.Departments.ToDictionary(d => d.Name, d => d.Id);
         SD.Departments = keyValues;
+        
+        // var doctor = new ApplicationUser
+        // {
+        //     UserName = "doctor",
+        //     SSN = "123456",
+        //     Email = "Doctor@admin.com",
+        //     EmailConfirmed = true,
+        //     Gender = Gender.Male,
+        // };
+        // await userManager.CreateAsync(doctor, "Admin123.?");
+        // await userManager.AddToRoleAsync(doctor, SD.Doctor);
+        //     
+        // await context.SaveChangesAsync();
+        // context.Doctors.Add(new Doctor()
+        // {
+        //     User = doctor,
+        //     FirstName = "Doctor",
+        //     LastName = "Doctor",
+        //     WorkingHours = 4,
+        //     Salary = default,
+        //     Specialization = "test",
+        //     DepartmentId = SD.Departments.FirstOrDefault().Value,
+        //     EndSchedule = default,
+        //     StartSchedule = default,
+        // });
+        // await context.SaveChangesAsync();
     }
 
     public static async Task SeedDatabaseAsync(IServiceProvider services)

@@ -1,4 +1,5 @@
 ﻿
+using hospital.management.system.BLL.Models.Admin;
 using hospital.management.system.BLL.Models.Doctors;
 using hospital.management.system.Models.Entities;
 
@@ -21,6 +22,8 @@ public interface IDoctorService
 
     public IEnumerable<DoctorAppoinment> GetNextAppointmentInfo(Guid loggedDoctorId);
 
+    public Task<IEnumerable<UsernameIdModel>> GetApprovedPatientsAsync(Guid? loggedDoctorId);
+    
     public IEnumerable<DoctorMonthlyAppointmentSummary> GetMonthlyAppointmentSummary(Guid loggedDoctorId);
 
     public int FollowUpAppointment(FollowUpAppointmentModel model);
@@ -35,7 +38,7 @@ public interface IDoctorService
 
     public List<Doctor> GetAllDoctors();
     
-    public List<DoctorAppoinment> GetDoctorAppointments(Guid doctorId);
+    public List<DoctorAppoinment> GetDoctorAppointments(Guid? doctorId);
     
     public int DeleteDoctor(Guid doctorId);
     

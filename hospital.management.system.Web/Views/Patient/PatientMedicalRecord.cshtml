@@ -19,7 +19,6 @@
                             <th scope="col">Date of Recording</th>
                             <th scope="col">Prescription</th>
                             <th scope="col">Diagnostic</th>
-                            <th scope="col" class="text-center">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -31,11 +30,6 @@
                                 <td>@record.DateOfRecording.ToString("MMMM dd, yyyy")</td>
                                 <td>@(string.IsNullOrEmpty(record.Prescription) ? "No prescription available" : record.Prescription)</td>
                                 <td>@(string.IsNullOrEmpty(record.Diagnostic) ? "No diagnostic available" : record.Diagnostic)</td>
-
-                                <td class="text-center">
-                                    <!-- Button to go to the DashBoard, no parameters needed -->
-                                    <a asp-action="DashBoard" asp-controller="Patient" class="btn btn-primary btn-sm">Go to DashBoard</a>
-                                </td>
                             </tr>
                         }
                         </tbody>
@@ -50,6 +44,17 @@
             No Medical Records found.
         </div>
     }
+    <div class="mb-4 text-center">
+        <button class="btn btn-secondary btn-sm" onclick="goBack()">
+            <i class="fas fa-home"></i>
+            Go Back
+        </button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </div>
 </div>
 
 @section Scripts {

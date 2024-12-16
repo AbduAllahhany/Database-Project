@@ -69,7 +69,7 @@ public class AdminController : Controller
     {
         if (!ModelState.IsValid) return View(model);
         var res = await _adminService.CreatePatientAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
     }
 
     [HttpGet]
@@ -106,7 +106,27 @@ public class AdminController : Controller
     {
         if (!ModelState.IsValid) return View(model);
         var res = await _adminService.CreateBillAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
+    }
+    
+    [HttpGet]
+    public IActionResult CreateEmergencyContact(Guid? PatientId = null)
+    {
+        if (PatientId == null) return View("Error");
+        var model = new EmergencyContactCreateModel
+        {
+            PatientId = PatientId
+        };
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateEmergencyContact(EmergencyContactCreateModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        var res = await _adminService.CreateEmergencyContactAsync(model);
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
     }
 
     [HttpGet]
@@ -126,7 +146,7 @@ public class AdminController : Controller
     {
         if (!ModelState.IsValid) return View(model);
         var res = await _adminService.CreateVisitAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
     }
 
     public IActionResult CreateInsurance(Guid? PatientId = null)
@@ -144,7 +164,7 @@ public class AdminController : Controller
     {
         if (!ModelState.IsValid) return View(model);
         var res = await _adminService.CreateInsuranceAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
     }
 
     public async Task<IActionResult> Edit(string Id = null)
@@ -168,13 +188,12 @@ public class AdminController : Controller
             return RedirectToAction("Profile", "Admin");
         return View(model);
     }
-
+    
     public async Task<IActionResult> CreateAppointment()
     {
         var patients = await _adminService.GetAllPatientsAsync();
         var doctors = await _adminService.GetAllDoctorsAsync();
-
-
+        
         var model = new AppointmentModel
         {
             PatientUsernameId = patients,
@@ -200,6 +219,8 @@ public class AdminController : Controller
         return RedirectToAction("Appointments", "Admin");
     }
 
+    
+    
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(AdminEditModel model)
@@ -284,14 +305,7 @@ public class AdminController : Controller
         var res2 = await _adminService.CreateAdmissionAsync(admissionModel);
         var res1 = await _adminService.ConfirmRoomAsync(model.RoomId);
 
-        return res1 == 1 && res2 == 1 ? RedirectToAction("Index", "Patient") : View("Error");
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Staff()
-    {
-        var res = await _staffService.GetAllTask();
-        return View(res);
+        return res1 == 1 && res2 == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
     }
 
     [HttpGet]
@@ -355,4 +369,18 @@ public class AdminController : Controller
         IEnumerable<Patient> patients = _patientService.GetAllPetient();
         return !patients.IsNullOrEmpty() ? View(patients) : View("Error");
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> Staff()
+    {
+        var res = await _staffService.GetAllTask();
+        return View(res);
+    }
+    
+    public IActionResult DeleteStaff(Guid staffId)
+    {
+        var res = _adminService.DeleteStaff(staffId);
+        return res == 1 ? RedirectToAction("Staff", "Admin") : View("Error");
+    }
+
 }

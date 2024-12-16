@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using hospital.management.system.BLL.Models.Admin;
 using hospital.management.system.BLL.Models.Doctors;
 using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
@@ -38,7 +39,7 @@ public class DoctorService : IDoctorService
             FROM Patient P 
             INNER JOIN Patient_Doctor_Appointment A
             ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
-            WHERE A.status = 'Pending' and A.date >= CONVERT (date, GETDATE())
+            WHERE LOWER(A.status) = 'pending' and A.date >= CONVERT (date, GETDATE())
             ORDER BY A.date").ToList();
 
         return query;
@@ -64,7 +65,7 @@ public class DoctorService : IDoctorService
             FROM Patient P 
             INNER JOIN Patient_Doctor_Appointment A
             ON A.patientId = P.Id AND A.doctorId = {loggedDoctorId}
-            WHERE A.status = 'Pending' AND A.date > CONVERT (date, GETDATE())
+            WHERE LOWER(A.status) = 'pending' AND A.date > CONVERT (date, GETDATE())
             ORDER BY A.date").ToList();
         return query;
     }
@@ -75,9 +76,9 @@ public class DoctorService : IDoctorService
         IEnumerable<DoctorMonthlyAppointmentSummary> query = _context.Database
             .SqlQuery<DoctorMonthlyAppointmentSummary>($@"
             SELECT COUNT(*) AS TotalAppointments,
-                SUM(CASE WHEN status = 'Approved' THEN 1 ELSE 0 END) AS ApprovedAppointments,
-                SUM(CASE WHEN status = 'Pending' THEN 1 ELSE 0 END) AS PendingAppointments,
-                SUM(CASE WHEN status = 'Reject' THEN 1 ELSE 0 END) AS RejectedAppointments
+                SUM(CASE WHEN LOWER(status) = 'approved' THEN 1 ELSE 0 END) AS ApprovedAppointments,
+                SUM(CASE WHEN LOWER(status) = 'pending' THEN 1 ELSE 0 END) AS PendingAppointments,
+                SUM(CASE WHEN LOWER(status) = 'rejected' THEN 1 ELSE 0 END) AS RejectedAppointments
             FROM Patient_Doctor_Appointment A
             WHERE A.doctorId = {loggedDoctorId} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())")
             .ToList();
@@ -98,7 +99,7 @@ public class DoctorService : IDoctorService
             WHERE Id IN (
 	            SELECT A.Id
 	            FROM Patient P, Patient_Doctor_Appointment A
-	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND A.status = 'Pending'
+	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND LOWER(A.status) = 'pending'
             )";
         var res = _context.Database.ExecuteSqlRaw(sql, model.SelectedPatientId, model.LoggedDoctorId);
         return res;
@@ -114,7 +115,7 @@ public class DoctorService : IDoctorService
                                FROM Patient P, Patient_Doctor_Appointment A
                                WHERE A.patientId = P.Id 
                                  AND A.doctorId = @p0
-                                 AND A.status = 'Pending' 
+                                 AND LOWER(A.status) = 'pending' 
                                  AND A.date = CONVERT(date, GETDATE()) )
                    """;
         var res = _context.Database.ExecuteSqlRaw(sql, loggedDoctorId);
@@ -129,7 +130,7 @@ public class DoctorService : IDoctorService
             WHERE Id IN (
 	            SELECT A.Id
 	            FROM Patient P, Patient_Doctor_Appointment A
-	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND A.status = 'Pending'
+	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND LOWER(A.status) = 'pending'
             )";
         var res = _context.Database.ExecuteSqlRaw(sql, model.SelectedPatientId, model.LoggedDoctorId);
         return res;
@@ -158,7 +159,7 @@ public class DoctorService : IDoctorService
         IEnumerable<DoctorAppoinment> res = _context.Database.SqlQuery<DoctorAppoinment>($@"            
 	        SELECT TOP(1) A.Id as AppId,p.Id as PatientId ,concat(P.firstName , ' ' , P.lastName) as FullName,  DATEDIFF(YEAR, p.dateOfBirth, GETDATE()) as dateOfBirth, A.reason, A.date , A.status
 	        FROM Patient P, Patient_Doctor_Appointment A
-	        WHERE A.patientId = P.Id AND A.doctorId = {loggedDoctorId} AND A.status = 'Pending' AND A.date = CONVERT (date, GETDATE())
+	        WHERE A.patientId = P.Id AND A.doctorId = {loggedDoctorId} AND LOWER(A.status) = 'pending' AND A.date = CONVERT (date, GETDATE())
 	        ORDER BY A.date").ToList();
         return res;
     }
@@ -166,12 +167,11 @@ public class DoctorService : IDoctorService
     public int CreateMedicalRecord(MedicalRecordModel model)
     {
         var sql = $"""
-                               
-                               INSERT INTO medical_record(dateOfRecording, diagnostic, prescription, doctorId, patientId)
-                               VALUES (CONVERT (date, GETDATE()),@p0, @p1, @p2, @p3)
+                       INSERT INTO medical_record(dateOfRecording, diagnostic, prescription, doctorId, patientId)
+                       VALUES (CONVERT (date, GETDATE()),@p0, @p1, @p2, @p3)
                    """;
         var res = _context.Database.ExecuteSqlRaw(sql, model.Diagnostic, model.Prescription, model.LoggedDoctorId,
-            model.SelectedPatientId);
+        model.SelectedPatientId);
         return res;
     }
 
@@ -207,7 +207,7 @@ public class DoctorService : IDoctorService
         return doctors;
     }
 
-    public List<DoctorAppoinment> GetDoctorAppointments(Guid doctorId)
+    public List<DoctorAppoinment> GetDoctorAppointments(Guid? doctorId)
     {
         if (doctorId == null || doctorId == Guid.Empty) return null;
 
@@ -239,6 +239,22 @@ public class DoctorService : IDoctorService
         return res;
     }
 
-
+    public async Task<IEnumerable<UsernameIdModel>> GetApprovedPatientsAsync(Guid? loggedDoctorId)
+    {
+        var res = _context.Database.SqlQuery<UsernameIdModel>(
+        $@"                                                                
+            select T.pId as Id, A.UserName as [Username]
+            FROM (
+                 select a.Id as Id, a.date as [date] , a.patientId as pId, a.reason as reason,a.status as [status],a.time as [time],U.UserName as [username]
+                 from Patient_Doctor_Appointment as A, AspNetUsers as U, Doctor as D
+                 where D.UserId = U.Id AND A.doctorId = D.Id AND D.Id = {loggedDoctorId} AND LOWER(A.Status) = 'approved'
+            ) as T
+            inner join Patient as p
+            on p.Id = T.pId
+            inner join AspNetUsers A
+            ON p.UserId = A.Id
+           ");
+        return await res.ToListAsync();
+    }
 }
 

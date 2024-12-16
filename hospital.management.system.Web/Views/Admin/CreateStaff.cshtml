@@ -14,6 +14,7 @@
                     <h3 class="card-title">Create Staff</h3>
                 </div>
                 <div class="card-body">
+                    
                     <form asp-action="CreateStaff" asp-controller="Admin" method="post" class="needs-validation"
                           novalidate>
                         <div asp-validation-summary="All" class="text-danger"></div>
@@ -77,7 +78,7 @@
 
                         <!-- Department -->
                         <div class="mb-3">
-                            <label  class="form-label">Department</label>
+                            <label class="form-label">Department</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-hospital"></i></span>
                                 <select asp-for="DepartmentName" class="form-control">
@@ -118,7 +119,7 @@
                             <label asp-for="StartSchedule" class="form-label"></label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-clock"></i></span>
-                                <input asp-for="StartSchedule" type="time" class="form-control" />
+                                <input asp-for="StartSchedule" type="time" class="form-control"/>
                             </div>
                             <span asp-validation-for="StartSchedule" class="text-danger"></span>
                         </div>
@@ -127,7 +128,7 @@
                             <label asp-for="EndSchedule" class="form-label"></label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-clock"></i></span>
-                                <input asp-for="EndSchedule" type="time" class="form-control" />
+                                <input asp-for="EndSchedule" type="time" class="form-control"/>
                             </div>
                             <span asp-validation-for="EndSchedule" class="text-danger"></span>
                         </div>

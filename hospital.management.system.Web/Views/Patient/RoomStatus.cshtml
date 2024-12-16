@@ -23,22 +23,20 @@
                         <h5>End Date:</h5>
                         <p>@(Model.EndDate == default(DateOnly) ? "Currently Admitted" : Model.EndDate.ToString("MMMM dd, yyyy"))</p>
                     </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5>Room Number:</h5>
                         <p>@Model.RoomNumber</p>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-6">
                         <h5>Room Type:</h5>
                         <p>@(string.IsNullOrEmpty(Model.Type) ? "N/A" : Model.Type)</p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5>Status:</h5>
                         <p>@(Model.Status ? "Occupied" : "Available")</p>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-6">
                         <h5>Cost Per Day:</h5>
                         <p>@Model.CostPerDay.ToString("C")</p>

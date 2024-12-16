@@ -55,13 +55,10 @@ public class StaffController : Controller
         return View();
     }
 
-    public IActionResult StaffDashboard()
+    public IActionResult StaffDashboard(Guid staffId)
     {
         try
-        {
-            // Get the logged-in staff's ID
-            var staffId = GetStaffId();
-
+        { ;
             // Fetch staff details using LINQ
             Staff staff = _context.Staff
                 .FirstOrDefault(s => s.Id == staffId);

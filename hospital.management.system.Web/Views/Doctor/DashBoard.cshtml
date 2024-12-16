@@ -51,35 +51,35 @@
     </div>
 
     <!-- Medical Records Section -->
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <div class="card p-4 text-center">
-                <div class="icon-circle">
-                    <i class="bi bi-file-earmark-medical"></i>
-                </div>
-                <h5 class="card-title">Medical Records</h5>
-
-                @if (Model.MedicalRecords.Any())
-                {
-                    <ul class="list-unstyled mb-0">
-                        @foreach (var medicalRecord in Model.MedicalRecords)
-                        {
-                            <li>
-                                <strong>Patient:</strong> @medicalRecord.Patient.FirstName <br />
-                                <strong>Date:</strong> @medicalRecord.DateOfRecording.ToShortDateString() <br />
-                                <strong>Details:</strong> @medicalRecord.Prescription
-                            </li>
-                            <hr />
-                        }
-                    </ul>
-                }
-                else
-                {
-                    <p>No medical records available.</p>
-                }
-            </div>
-        </div>
-    </div>
+    @* <div class="row mb-4"> *@
+    @*     <div class="col-md-12"> *@
+    @*         <div class="card p-4 text-center"> *@
+    @*             <div class="icon-circle"> *@
+    @*                 <i class="bi bi-file-earmark-medical"></i> *@
+    @*             </div> *@
+    @*             <h5 class="card-title">Medical Records</h5> *@
+    @* *@
+    @*             @if (Model.MedicalRecords.Any()) *@
+    @*             { *@
+    @*                 <ul class="list-unstyled mb-0"> *@
+    @*                     @foreach (var medicalRecord in Model.MedicalRecords) *@
+    @*                     { *@
+    @*                         <li> *@
+    @*                             <strong>Patient:</strong> @medicalRecord.Patient.FirstName <br /> *@
+    @*                             <strong>Date:</strong> @medicalRecord.DateOfRecording.ToShortDateString() <br /> *@
+    @*                             <strong>Details:</strong> @medicalRecord.Prescription *@
+    @*                         </li> *@
+    @*                         <hr /> *@
+    @*                     } *@
+    @*                 </ul> *@
+    @*             } *@
+    @*             else *@
+    @*             { *@
+    @*                 <p>No medical records available.</p> *@
+    @*             } *@
+    @*         </div> *@
+    @*     </div> *@
+    @* </div> *@
     <!-- Links to Related Data -->
     <div class="row mb-4">
         <div class="col-md-4">
@@ -124,7 +124,7 @@
                 </div>
                 <h5 class="card-title">Follow-Up Appointments</h5>
                 <p>Schedule follow-up appointments</p>
-                <a href="@Url.Action("FollowUpAppointment", "Doctor")" class="btn btn-custom">Add Follow-Up</a>
+                <a href="@Url.Action("AddFollowUpAppointment", "Doctor")" class="btn btn-custom">Add Follow-Up</a>
             </div>
         </div>
 
@@ -151,6 +151,7 @@
         </div>
     </div>
 
+    
     <div class="row mb-4">
         <div class="col-md-6">
             <div class="card p-4 text-center">
@@ -162,8 +163,17 @@
                 <a href="@Url.Action("ViewMedicalRecords", "Doctor")" class="btn btn-custom">View Records</a>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-journal"></i>
+                </div>
+                <h5 class="card-title">View Appointments Monthly Summary</h5>
+                <p>Show Appointments Summary At The Last Month</p>
+                <a href="@Url.Action("DoctorSummary", "Doctor")" class="btn btn-custom">View Summary</a>
+            </div>
+        </div>
     </div>
-
 </div>
 
 <!-- Bootstrap 5 JS and Popper.js -->

@@ -13,32 +13,43 @@
             <div class="col-md-10">
                 <table class="table table-bordered table-striped">
                     <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Patient Name</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Reason</th>
-                            <th scope="col">Status</th>
+                    <tr>
+                        <th scope="col">Patient Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Status</th>
                         @*      <th scope="col" class="text-center">Actions</th> *@
-                        </tr>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach (var Appointment in Model)
-                        {
-                            <tr>
-                                <td>@Appointment.FullName</td>
-                                <td>@Appointment.Date.ToString("d")</td>
-                                <td>@Appointment.Reason</td>
-                                <td>@Appointment.Status</td>
-@*                                 <td class="text-center">
+                    @foreach (var Appointment in Model)
+                    {
+                        <tr>
+                            <td>@Appointment.FullName</td>
+                            <td>@Appointment.Date.ToString("d")</td>
+                            <td>@Appointment.Reason</td>
+                            <td>@Appointment.Status</td>
+                            @*                                 <td class="text-center">
                                     <form method="post">
                                         <button type="submit" asp-controller="Doctor" asp-action="IdToApproveAppointment" asp-route-id="@Appointment.PatientId" class="btn btn-success btn-sm">Approve</button>
                                         <button type="submit" asp-controller="Doctor" asp-action="CancelingAppointment" asp-route-id="@Appointment.PatientId" class="btn btn-danger btn-sm">Cancel</button>
                                     </form>
                                 </td> *@
-                            </tr>
-                        }
+                        </tr>
+                    }
                     </tbody>
                 </table>
+                <div class="mb-4 text-center">
+                    <button class="btn btn-secondary btn-sm" onclick="goBack()">
+                        <i class="fas fa-home"></i>
+                        Go Back
+                    </button>
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+                </div>
             </div>
         </div>
     </div>

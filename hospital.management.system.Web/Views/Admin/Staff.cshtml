@@ -50,14 +50,27 @@
                                 <td class="text-center">
                                     <a href="@Url.Action("EditStaff", "Admin", new { id = Staff.Id })"
                                        class="btn btn-success btn-sm">Edit</a>
-                                    <a href="@Url.Action("DeleteStaff", "Staff", new { StaffId = Staff.Id })"
+                                    <a href="@Url.Action("DeleteStaff", "Admin", new { StaffId = Staff.Id })"
                                        class="btn btn-danger btn-sm"
                                        onclick="return confirm('Are you sure you want to delete this Staff?');">Delete</a>
+                                    <a href="@Url.Action("StaffDashboard", "Staff", new { staffId = Staff.Id })"
+                                       class="btn btn-danger btn-sm">Details</a>
                                 </td>
                             </tr>
                         }
                         </tbody>
                     </table>
+                    <div class="mb-4 text-center">
+                        <button class="btn btn-secondary btn-sm" onclick="goBack()">
+                            <i class="fas fa-home"></i>
+                            Go Back
+                        </button>
+                        <script>
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>

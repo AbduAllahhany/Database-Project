@@ -248,7 +248,7 @@ public class PatientController : Controller
     public IActionResult DeletePatient(Guid patientId)
     {
         var res = _patientService.DeletePatient(patientId);
-        return res == 1 ? RedirectToAction("patients", "Admin") : View("Error");
+        return res >= 1 ? RedirectToAction("patients", "Admin") : View("Error");
     }
     public IActionResult Cancel(Guid id)
     {

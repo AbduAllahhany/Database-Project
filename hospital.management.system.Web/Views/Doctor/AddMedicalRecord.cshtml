@@ -5,11 +5,6 @@
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> userManager
 
-@{
-    var patients = await userManager.GetUsersInRoleAsync(SD.Patient);
-    var patientsUserNames = patients.Select(p => new { p.UserName, p.Id });
-}
-
 <h2 class="text-center mt-4">Create Medical Record</h2>
 
 <div class="container mt-4">
@@ -21,16 +16,17 @@
                 </div>
                 <div class="card-body">
                     <!-- Begin form for creating a medical record -->
-                    <form asp-controller="Doctor" asp-action="SaveMedicalRecord" method="post">
+                    <form asp-controller="Doctor" asp-action="AddMedicalRecord" method="post">
                         <div asp-validation-summary="All" class="text-danger"></div>
+                        <input type="hidden" asp-for="LoggedDoctorId" value=@Model.LoggedDoctorId/>
 
                         <!-- Patient Selection -->
                         <div class="form-group">
                             <label for="SelectedPatientId"><i class="fas fa-user"></i> Select Patient</label>
                             <select asp-for="SelectedPatientId" class="form-control">
-                                @foreach (var patient in patientsUserNames)
+                                @foreach (var patient in Model.PatientUsernameId)
                                 {
-                                    <option value="@patient.Id">@patient.UserName</option>
+                                    <option value="@patient.Id">@patient.Username</option>
                                 }
                             </select>
                         </div>
@@ -48,22 +44,30 @@
                         </div>
 
                         <!-- Prescription -->
-                        <div class="form-group">
+                        <div class="form-group mb-4">
                             <label asp-for="Prescription"><i class="fas fa-prescription"></i> Prescription</label>
                             <textarea asp-for="Prescription" class="form-control" rows="3"></textarea>
                             <span asp-validation-for="Prescription" class="text-danger"></span>
                         </div>
 
                         <!-- Submit button -->
-                        <div class="text-right">
+                        <div class="text-right mb-3">
                             <button type="submit" class="btn btn-success">
                                 <i class="fas fa-save"></i> Save Medical Record
                             </button>
-                            <a asp-action="SaveMedicalRecord" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Cancel
-                            </a>
                         </div>
                     </form>
+                </div>
+                <div class="mb-3 ms-3">
+                    <button class="btn btn-secondary btn-sm" onclick="goBack()">
+                        <i class="fas fa-home"></i>
+                        Cancel
+                    </button>
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
                 </div>
             </div>
         </div>

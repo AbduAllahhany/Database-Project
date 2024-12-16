@@ -41,7 +41,8 @@ public class AdminService : IAdminService
             $"INSERT INTO Patient (firstName,lastName,dateOfBirth,address,bloodGroup,allergies,chronicDiseases,UserId)" +
             $@" VALUES (@p0, @p1, @p2,@p3,@p4,@p5,@p6,@p7)";
 
-        int res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
+        int res = await _context.Database.ExecuteSqlRawAsync(
+            sqlcommand1,
             model.FirstName,
             model.LastName,
             model.DateOfBirth,
@@ -288,7 +289,6 @@ public class AdminService : IAdminService
             Email = model.Email,
             SSN = model.SSN,
             PhoneNumber = model.PhoneNumber,
-
         };
 
         var res1 = await _userManager.CreateAsync(user, "Staff_" + model.SSN);
@@ -306,7 +306,7 @@ public class AdminService : IAdminService
             model.FirstName,
             model.LastName,
             model.Role,
-            SD.Departments[model.DepartmentName],
+            model.DepartmentId,
             model.StartSchedule,
             model.EndSchedule,
             model.DayOfWork,
@@ -324,6 +324,13 @@ public class AdminService : IAdminService
                                                                            WHERE P.UserId = A.Id
                                                                """);
         return await res.ToListAsync();
+    }
+
+    public int DeleteStaff(Guid staffId)
+    {
+        var sql = $"""DELETE FROM Staff WHERE Id = @p0""";
+        var res = _context.Database.ExecuteSqlRaw(sql, staffId);
+        return res;
     }
 
     public async Task<IEnumerable<UsernameIdModel>> GetAllDoctorsAsync()

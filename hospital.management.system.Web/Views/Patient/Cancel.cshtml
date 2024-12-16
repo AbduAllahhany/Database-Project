@@ -17,10 +17,21 @@
 
                 <!-- Button to return to Dashboard -->
                 <div class="mb-4 text-center">
-                    <a asp-action="PatientAppointments" asp-controller="Patient" class="btn btn-secondary btn-sm">
-                        <i class="fas fa-home"></i> Return to Appoinments
-                    </a>
+                    <button class="btn btn-secondary btn-sm" onclick="goBack()">
+                        <i class="fas fa-home"></i>
+                        Go Back
+                    </button>
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
                 </div>
+                @* <div class="mb-4 text-center"> *@
+                @*     <a asp-action="PatientAppointments" asp-controller="Patient" class="btn btn-secondary btn-sm"> *@
+                @*         <i class="fas fa-home"></i> Return to Appoinments *@
+                @*     </a> *@
+                @* </div> *@
             </div>
         </div>
     </div>

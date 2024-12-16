@@ -83,8 +83,7 @@ public class PatientService : IPatientService
         List<PatientMedicalRecord> result = _context.Database.SqlQuery<PatientMedicalRecord>(
             $@"select concat(p.firstName,' ',p.lastName) as PatientName ,concat(d.firstName,' ',d.lastName) as DoctorName , m.prescription , m.diagnostic , m.dateOfRecording 
                 from dbo.Medical_Record m , dbo.Patient p , dbo.Doctor d
-                where m.patientId=p.Id and m.doctorId = d.Id
-                and m.patientId={patientId}").ToList();
+                where m.patientId = p.Id and m.doctorId = d.Id and m.patientId = {patientId}").ToList();
 
         if (result.Count() == 0) return null;
         return result;
@@ -152,8 +151,7 @@ public class PatientService : IPatientService
         var res = _context.Database.ExecuteSqlRaw(sql, patientId);
         return res;
     }
-
-
+    
     public async Task<GetPatientProfileModel> GetPatientById(Guid? Id)
     {
         var res = _context.Database.SqlQuery<GetPatientProfileModel>($"""

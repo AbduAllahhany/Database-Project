@@ -13,39 +13,64 @@
             <div class="col-md-10">
                 <table class="table table-bordered table-striped">
                     <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Patient Name</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Reason</th>
-                            <th scope="col">Status</th>
-                            <th scope="col" class="text-center">Actions</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">Patient Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Reason</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" class="text-center">Actions</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach (var Appointment in Model)
-                        {
-                            <tr>
-                                <td>@Appointment.FullName</td>
-                                <td>@Appointment.Date.ToString("dd MMM yyyy")</td> <!-- Date formatting -->
-                                <td>@Appointment.Reason</td>
-                                <td>@Appointment.Status</td>
-                                <td class="text-center">
-                                    <!-- Separate form for Approve -->
-                                    <form asp-controller="Doctor" asp-action="ApproveAppointment" method="get">
-                                        <input type="hidden" name="id" value="@Appointment.PatientId" />
-                                        <button type="submit" class="btn btn-success btn-sm">Approve</button>
-                                    </form>
+                    @foreach (var Appointment in Model)
+                    {
+                        <tr>
+                            <td>@Appointment.FullName</td>
+                            <td>@Appointment.Date.ToString("dd MMM yyyy")</td> <!-- Date formatting -->
+                            <td>@Appointment.Reason</td>
+                            <td>@Appointment.Status</td>
+                            <td class="text-center">
+                                <!-- Separate form for Approve -->
 
-                                    <!-- Separate form for Cancel -->
-                                    <form asp-controller="Doctor" asp-action="CancelingAppointment" method="get">
-                                        <input type="hidden" name="id" value="@Appointment.PatientId" />
-                                        <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        }
+                                @* <a href="@Url.Action("ApproveAppointment", "Doctor")" class="btn btn-info btn-sm">Approve</a> *@
+                                @* <a href="@Url.Action("CancelingAppointment", "Doctor")" class="btn btn-primary btn-sm">Cancel</a> *@
+                                    
+                                @* <form asp-controller="Doctor" asp-action="ApproveAppointment" method="get"> *@
+                                @*     <input type="hidden" name="id" value="@Appointment.PatientId" /> *@
+                                @*     <button type="submit" class="btn btn-success btn-sm">Approve</button> *@
+                                @* </form> *@
+                                @*      *@
+                                @* <!-- Separate form for Cancel --> *@
+                                @* <form asp-controller="Doctor" asp-action="CancelingAppointment" method="get"> *@
+                                @*     <input type="hidden" name="id" value="@Appointment.PatientId" /> *@
+                                @*     <button type="submit" class="btn btn-danger btn-sm">Cancel</button> *@
+                                @* </form> *@
+
+                                <form asp-controller="Doctor" asp-action="ApproveAppointment" method="get" class="d-inline">
+                                    <input type="hidden" name="id" value="@Appointment.PatientId" />
+                                    <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                                </form>
+
+                                <form asp-controller="Doctor" asp-action="CancelingAppointment" method="get" class="d-inline">
+                                    <input type="hidden" name="id" value="@Appointment.PatientId" />
+                                    <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
+                <div class="mb-4 text-center">
+                    <button class="btn btn-secondary btn-sm" onclick="goBack()">
+                        <i class="fas fa-home"></i>
+                        Go Back
+                    </button>
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+                </div>
             </div>
         </div>
     </div>

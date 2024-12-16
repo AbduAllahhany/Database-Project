@@ -1,5 +1,6 @@
 ﻿
 using hospital.management.system.BLL.Models.Staff;
+using hospital.management.system.Models.Entities;
 
 namespace hospital.management.system.BLL.Services.IServices;
 

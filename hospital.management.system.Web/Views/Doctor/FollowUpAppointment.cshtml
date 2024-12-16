@@ -4,13 +4,6 @@
 @model hospital.management.system.BLL.Models.Doctors.FollowUpAppointmentModel
 @inject UserManager<ApplicationUser> userManager
 
-@{
-    var patients = await userManager.GetUsersInRoleAsync(SD.Patient);
-    var patientsUserNames = patients.Select(p => new { p.UserName , p.Id});
-    var doctors = await userManager.GetUsersInRoleAsync(SD.Doctor);
-    var doctorsUserNames = doctors.Select(p => p.UserName);
-}
-
 <h2 class="text-center mt-4">Create Follow-up Appointment</h2>
 
 <div class="container mt-4">
@@ -20,32 +13,90 @@
                 <div class="card-header bg-primary text-white">
                     <h4 class="mb-0"><i class="fas fa-calendar-plus mr-2"></i> New Follow-up Appointment</h4>
                 </div>
+                @* <div class="card-body"> *@
+                @*     <!-- Begin form for creating a follow-up appointment --> *@
+                @*     <form asp-controller="Doctor" method="post"> *@
+                @*         <div asp-validation-summary="All" class="text-danger"></div> *@
+                @* *@
+                @*         <!-- Patient Selection --> *@
+                @*         <div class="form-group"> *@
+                @*             <label for="PatientUserName"><i class="fas fa-user"></i> Patient User Name</label> *@
+                @*             <select asp-for="PatientId" class="form-control"> *@
+                @*                 @foreach (var patient in patientsUserNames) *@
+                @*                 { *@
+                @*                     <option value="@patient.Id">@patient.UserName</option> *@
+                @*                 } *@
+                @*             </select> *@
+                @*         </div> *@
+                @* *@
+                @*         $1$ <!-- Doctor Selection --> #1# *@
+                @*         $1$ <div class="form-group"> #1# *@
+                @*         $1$     <label for="DoctorUserName"><i class="fas fa-user-md"></i> Doctor User Name</label> #1# *@
+                @*         $1$     <select asp-for="DoctorId" class="form-control"> #1# *@
+                @*         $1$         @foreach (var doctor in doctorsUserNames) #1# *@
+                @*         $1$         { #1# *@
+                @*         $1$             <option value="@doctor">@doctor</option> #1# *@
+                @*         $1$         } #1# *@
+                @*         $1$     </select> #1# *@
+                @*         $1$ </div> #1# *@
+                @* *@
+                @*         <!-- Appointment Date --> *@
+                @*         <div class="form-group"> *@
+                @*             <label asp-for="AppointmentDate"><i class="fas fa-calendar"></i> Appointment Date</label> *@
+                @*             <input asp-for="AppointmentDate" class="form-control" type="date" /> *@
+                @*             <span asp-validation-for="AppointmentDate" class="text-danger"></span> *@
+                @*         </div> *@
+                @*         <div class="form-group"> *@
+                @*             <label asp-for="AppointmentTime"><i class="fas fa-clock"></i> Appointment Time</label> *@
+                @*             <input asp-for="AppointmentTime" class="form-control" type="time" /> *@
+                @*             <span asp-validation-for="AppointmentTime" class="text-danger"></span> *@
+                @*         </div> *@
+                @* *@
+                @*         <!-- Reason for Appointment --> *@
+                @*         <div class="form-group"> *@
+                @*             <label for="Reason"><i class="fas fa-info-circle"></i> Reason for Appointment</label> *@
+                @*             <textarea asp-for="Reason" class="form-control" rows="3"></textarea> *@
+                @*             <span asp-validation-for="Reason" class="text-danger"></span> *@
+                @*         </div> *@
+                @* *@
+                @*         <!-- Submit button --> *@
+                @*         <div class="text-right"> *@
+                @*             <button asp-action="SaveFollowUpAppointment" type="submit" class="btn btn-success"> *@
+                @*                 <i class="fas fa-calendar-check"></i> Create Follow-up Appointment *@
+                @*             </button> *@
+                @*             $1$ <a asp-action="Index" class="btn btn-secondary"> #1# *@
+                @*             $1$     <i class="fas fa-arrow-left"></i> Cancel #1# *@
+                @*             $1$ </a> #1# *@
+                @*         </div> *@
+                @*     </form> *@
+                @*     <div class="mb-4"> *@
+                @*         <button class="btn btn-secondary btn-sm" onclick="goBack()"> *@
+                @*             <i class="fas fa-home"></i> *@
+                @*             Cancel *@
+                @*         </button> *@
+                @*         <script> *@
+                @*             function goBack() { *@
+                @*                 window.history.back(); *@
+                @*             } *@
+                @*         </script> *@
+                @*     </div> *@
+                @* </div> *@
                 <div class="card-body">
                     <!-- Begin form for creating a follow-up appointment -->
                     <form asp-controller="Doctor" method="post">
                         <div asp-validation-summary="All" class="text-danger"></div>
+                        <input type="hidden" asp-for="DoctorId" value=@Model.DoctorId/>
 
                         <!-- Patient Selection -->
                         <div class="form-group">
                             <label for="PatientUserName"><i class="fas fa-user"></i> Patient User Name</label>
                             <select asp-for="PatientId" class="form-control">
-                                @foreach (var patient in patientsUserNames)
+                                @foreach (var patient in Model.PatientUsernameId)
                                 {
-                                    <option value="@patient.Id">@patient.UserName</option>
+                                    <option value="@patient.Id">@patient.Username</option>
                                 }
                             </select>
                         </div>
-
-                        @* <!-- Doctor Selection --> *@
-                        @* <div class="form-group"> *@
-                        @*     <label for="DoctorUserName"><i class="fas fa-user-md"></i> Doctor User Name</label> *@
-                        @*     <select asp-for="DoctorId" class="form-control"> *@
-                        @*         @foreach (var doctor in doctorsUserNames) *@
-                        @*         { *@
-                        @*             <option value="@doctor">@doctor</option> *@
-                        @*         } *@
-                        @*     </select> *@
-                        @* </div> *@
 
                         <!-- Appointment Date -->
                         <div class="form-group">
@@ -60,22 +111,29 @@
                         </div>
 
                         <!-- Reason for Appointment -->
-                        <div class="form-group">
+                        <div class="form-group mb-4"> <!-- Added mb-4 for extra spacing -->
                             <label for="Reason"><i class="fas fa-info-circle"></i> Reason for Appointment</label>
                             <textarea asp-for="Reason" class="form-control" rows="3"></textarea>
                             <span asp-validation-for="Reason" class="text-danger"></span>
                         </div>
 
                         <!-- Submit button -->
-                        <div class="text-right">
-                            <button asp-action="SaveFollowUpAppointment" type="submit" class="btn btn-success">
+                        <div class="text-right mb-3"> <!-- Added mb-3 for spacing between buttons -->
+                            <button asp-action="AddFollowUpAppointment" type="submit" class="btn btn-success me-2">
                                 <i class="fas fa-calendar-check"></i> Create Follow-up Appointment
                             </button>
-                            <a asp-action="Index" class="btn btn-secondary">
-                                <i class="fas fa-arrow-left"></i> Cancel
-                            </a>
                         </div>
                     </form>
+                </div>
+                <div class="text-right mb-3 ms-3">
+                    <button class="btn btn-secondary btn-sm" onclick="goBack()">
+                        <i class="fas fa-home"></i> Cancel
+                    </button>
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
                 </div>
             </div>
         </div>

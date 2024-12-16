@@ -40,12 +40,13 @@ public class DoctorController : Controller
 
     [HttpGet]
     // [Authorize(Roles = "Doctor")]
-    public IActionResult Appointments()
+    public IActionResult Appointments(Guid? doctorId = null)
     {
         // add role
-
-        List<DoctorAppoinment> PatientDoctorAppoinment = _doctorService.GetDoctorAppointments(GetDoctorId());
-
+        if(doctorId == null)
+            doctorId = GetDoctorId();
+        List<DoctorAppoinment> PatientDoctorAppoinment = _doctorService.GetDoctorAppointments(doctorId);
+        
         // if(PatientDoctorAppoinment == null) return RedirectToAction("Index");
         return View("Appointments", PatientDoctorAppoinment);
     }
@@ -160,7 +161,7 @@ public class DoctorController : Controller
 
             // Fetch the doctor details using LINQ
             //   Doctor doctor = _context.Doctors.FirstOrDefault(d => d.Id == id);
-            Doctor doctor = _context.Doctors.FromSqlInterpolated($@"select * from Doctor where Id ={id}")
+            Doctor doctor = _context.Doctors.FromSqlInterpolated($@"select * from Doctor where Id = {id}")
                 .FirstOrDefault();
             if (doctor == null)
             {
@@ -243,7 +244,8 @@ public class DoctorController : Controller
             UserName = user.UserName
         };
         if (model.Id.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
-            return View(model);
+            return RedirectToAction("Profile", "Doctor");
+            // return View(model);
 
         return View("Error");
     }
@@ -264,37 +266,78 @@ public class DoctorController : Controller
     [HttpGet]
     //[Authorize(Roles = SD.Doctor)]
 
-    [HttpGet]
-    // [Authorize(Roles = SD.Doctor)]
-    public IActionResult AddMedicalRecord()
-    {
-        return View("AddMedicalRecord");
-    }
+    // [HttpGet]
+    // // [Authorize(Roles = SD.Doctor)]
+    // public IActionResult AddMedicalRecord()
+    // {
+    //     return View("AddMedicalRecord");
+    // }
 
-    public IActionResult SaveMedicalRecord(MedicalRecordModel model)
+    // public async Task<IActionResult> SaveMedicalRecord(MedicalRecordModel model)
+    // {
+    //     model.LoggedDoctorId = GetDoctorId();
+    //     if (!ModelState.IsValid) return RedirectToAction("AddMedicalRecord");
+    //     model.SelectedPatientId = _context.Patients.FirstOrDefault(e => e.UserId == model.SelectedPatientId).Id;
+    //     var SaveChanges = _doctorService.CreateMedicalRecord(model);
+    //     if (SaveChanges > 0) return RedirectToAction("DashBoard");
+    //     else return RedirectToAction("AddMedicalRecord");
+    // }
+
+    [HttpGet]
+    public async Task<IActionResult> AddMedicalRecord()
     {
-        model.LoggedDoctorId = GetDoctorId();
-        if (!ModelState.IsValid) return RedirectToAction("AddMedicalRecord");
-        model.SelectedPatientId = _context.Patients.FirstOrDefault(e => e.UserId == model.SelectedPatientId).Id;
+        var approvedPatients = await _doctorService.GetApprovedPatientsAsync(GetDoctorId());
+        var model = new MedicalRecordModel
+        {
+            LoggedDoctorId = GetDoctorId(),
+            PatientUsernameId = approvedPatients,
+        };
+        return View("AddMedicalRecord", model);
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> AddMedicalRecord(MedicalRecordModel model)
+    {
+        if (!ModelState.IsValid) return View("AddMedicalRecord", model);
         var SaveChanges = _doctorService.CreateMedicalRecord(model);
         if (SaveChanges > 0) return RedirectToAction("DashBoard");
-        else return RedirectToAction("AddMedicalRecord");
-
+        else return View("Error");
     }
-
-    [HttpPost]
-    //[Authorize(Roles = SD.Doctor)]
-    public IActionResult SaveFollowUpAppointment(FollowUpAppointmentModel model)
+    
+    [HttpGet]
+    public async Task<IActionResult> AddFollowUpAppointment()
     {
-        model.DoctorId = GetDoctorId();
-        if (!ModelState.IsValid) return RedirectToAction("FollowUpAppointment");
-        model.PatientId = _context.Patients.FirstOrDefault(e => e.UserId == model.PatientId).Id;
-        var followUpAppointment = _doctorService.FollowUpAppointment(model);
-        // return View("FollowUpAppointment",followUpAppointment);
-        // return View("FollowUpAppointment",followUpAppointment);
-
-        return RedirectToAction("DashBoard");
+        var approvedPatients = await _doctorService.GetApprovedPatientsAsync(GetDoctorId());
+        var model = new FollowUpAppointmentModel
+        {
+            DoctorId = GetDoctorId(),
+            PatientUsernameId = approvedPatients,
+        };
+        return View("FollowUpAppointment", model);
     }
+    
+    [HttpPost]
+    public async Task<IActionResult> AddFollowUpAppointment(FollowUpAppointmentModel model)
+    {
+        if (!ModelState.IsValid) return View("FollowUpAppointment", model);
+        var followUpAppointment = _doctorService.FollowUpAppointment(model);
+        if (followUpAppointment > 0) return RedirectToAction("DashBoard");
+        else return View("Error");
+    }
+
+    // [HttpPost]
+    // //[Authorize(Roles = SD.Doctor)]
+    // public IActionResult SaveFollowUpAppointment(FollowUpAppointmentModel model)
+    // {
+    //     model.DoctorId = GetDoctorId();
+    //     if (!ModelState.IsValid) return RedirectToAction("FollowUpAppointment");
+    //     model.PatientId = _context.Patients.FirstOrDefault(e => e.UserId == model.PatientId).Id;
+    //     var followUpAppointment = _doctorService.FollowUpAppointment(model);
+    //     // return View("FollowUpAppointment",followUpAppointment);
+    //     // return View("FollowUpAppointment",followUpAppointment);
+    //
+    //     return RedirectToAction("DashBoard");
+    // }
 
     public IActionResult DoctorSummary()
     {
@@ -308,7 +351,7 @@ public class DoctorController : Controller
     {
         Guid doctorId = GetDoctorId();
         List<MedicalRecord> medicalrecord = _context.MedicalRecords
-            .FromSqlInterpolated($@"select * from Medical_Record where doctorId = {doctorId}").ToList();
+            .FromSqlInterpolated($@"select TOP(3) from Medical_Record where doctorId = {doctorId}").ToList();
         medicalrecord = _context.MedicalRecords
             .Where(mr => mr.DoctorId == doctorId)
             .Include(mr => mr.Patient) // Assuming MedicalRecord has a related Patient entity

@@ -26,7 +26,7 @@
                     {
                         <tr>
                             <td>@appointment.DoctorName</td>
-                                    <td>@appointment.Date.ToString("MMMM dd, yyyy")</td>
+                            <td>@appointment.Date.ToString("MMMM dd, yyyy")</td>
                             <td>@appointment.Reason</td>
                             <!-- Status Column -->
                             <td class="text-center">
@@ -36,10 +36,10 @@
                                 </span>
                             </td>
                             <td class="text-center">
-                                @if (appointment.Status == "Pending")
+                                @if (appointment.Status.ToLower() == "pending")
                                 {
                                     <form method="post">
-                                       @* @if (User.IsInRole("Admin"))
+                                        @* @if (User.IsInRole("Admin"))
                                         {
                                             <button type="submit" asp-controller="Appointment" 
                                                     asp-action="Confirm" asp-route-id="@appointment.Id" 
@@ -49,7 +49,8 @@
                                         } *@
                                         <button type="submit" asp-controller="Patient" 
                                                 asp-action="Cancel" asp-route-id="@appointment.Id" 
-                                                class="btn btn-danger btn-sm">Cancel</button>
+                                                class="btn btn-danger btn-sm">Cancel
+                                            </button>
                                     </form>
                                 }
                                 else
@@ -71,6 +72,17 @@
         No Appoinments found.
     </div>
     }
+    <div class="mb-4 text-center">
+        <button class="btn btn-secondary btn-sm" onclick="goBack()">
+            <i class="fas fa-home"></i>
+            Go Back
+        </button>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+    </div>
 </div>
 
 @section Scripts {

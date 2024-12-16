@@ -48,7 +48,7 @@
                                 <td>@doctor.EndSchedule</td>
                                 <td>@doctor.Salary</td>
                                 <td class="text-center">
-                                    <a href="@Url.Action("GetDoctorAppointments", "Doctor", new { DoctorId = doctor.Id })" class="btn btn-secondary btn-sm">Appointments</a>
+                                    <a href="@Url.Action("Appointments", "Doctor", new { DoctorId = doctor.Id })" class="btn btn-secondary btn-sm">Appointments</a>
                                     <a href="@Url.Action("Edit", "Doctor", new { id = doctor.Id })" class="btn btn-danger btn-sm">Edit</a>
                                     <a href="@Url.Action("deleteDoctor", "Doctor", new { DoctorId = doctor.Id })" class="btn btn-success btn-sm" onclick="return confirm('Are you sure you want to delete this Doctor?');">Delete</a>
                                 </td>
@@ -56,6 +56,17 @@
                         }
                         </tbody>
                     </table>
+                    <div class="mb-4 text-center">
+                        <button class="btn btn-secondary btn-sm" onclick="goBack()">
+                            <i class="fas fa-home"></i>
+                            Go Back
+                        </button>
+                        <script>
+                            function goBack() {
+                                window.history.back();
+                            }
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>

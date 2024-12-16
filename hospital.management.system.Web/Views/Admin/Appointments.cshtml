@@ -42,14 +42,25 @@
                             <td>@Appointment.Date.ToString()</td>
                             <!-- Status Column -->
                             <td class="text-center">
-                                    <span class="@(Appointment.Status == SD.Pending ? "text-warning" : Appointment.Status == SD.Approved ? "text-success" : "text-danger")">
-                                        @Appointment.Status.ToString()
-                                    </span>
+                                <span class="@(Appointment.Status == SD.Pending ? "text-warning" : Appointment.Status == SD.Approved ? "text-success" : "text-danger")">
+                                    @Appointment.Status.ToString()
+                                </span>
                             </td>
                         </tr>
                     }
                     </tbody>
                 </table>
+                <div class="mb-4 text-center">
+                    <button class="btn btn-secondary btn-sm" onclick="goBack()">
+                        <i class="fas fa-home"></i>
+                        Go Back
+                    </button>
+                    <script>
+                        function goBack() {
+                            window.history.back();
+                        }
+                    </script>
+                </div>
             </div>
         </div>
     </div>
