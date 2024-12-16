@@ -18,7 +18,7 @@ public class AdminController : Controller
     private readonly IDoctorService _doctorService;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IStaffService _staffService;
-    private IUnitOfWork _unitOfWork;
+    private readonly IUnitOfWork _unitOfWork;
 
     public AdminController(IUnitOfWork unitOfWork,
         IAdminService adminService,
@@ -61,6 +61,21 @@ public class AdminController : Controller
     public IActionResult CreatePatient()
     {
         return View();
+    }
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(AdminCreateModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        var res = await _adminService.AdminCreateAsync(model);
+        return res == 1 ? RedirectToAction(nameof(Index)) : View("Error");
     }
 
     [HttpPost]
@@ -106,7 +121,7 @@ public class AdminController : Controller
     {
         if (!ModelState.IsValid) return View(model);
         var res = await _adminService.CreateBillAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
     }
 
     [HttpGet]
@@ -126,7 +141,7 @@ public class AdminController : Controller
     {
         if (!ModelState.IsValid) return View(model);
         var res = await _adminService.CreateVisitAsync(model);
-        return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
     }
 
     public IActionResult CreateInsurance(Guid? PatientId = null)
@@ -147,25 +162,21 @@ public class AdminController : Controller
         return res == 1 ? RedirectToAction("Index", "Patient") : View("Error");
     }
 
-    public async Task<IActionResult> Edit(string Id = null)
+    [HttpGet]
+    public async Task<IActionResult> Edit(Guid? Id = null)
     {
-        if (Id == null) Id = User.FindFirstValue(ClaimTypes.Name);
-
-        var user = await _userManager.FindByIdAsync(Id);
+        string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (Id == null) Id = Guid.Parse(userId);
+        var user = await _userManager.FindByIdAsync(Id.Value.ToString());
         if (user == null) return View("Error");
         var model = new AdminEditModel()
         {
             Id = Id,
             SSN = user.SSN,
-            //Address = user.Address,
             Email = user.Email,
-            //DateOfBirth = user.DateOfbirth,
-            Gender = user.Gender,
             UserName = user.UserName,
             PhoneNumber = user.PhoneNumber
         };
-        if (model.Id == User.FindFirstValue(ClaimTypes.Name))
-            return RedirectToAction("Profile", "Admin");
         return View(model);
     }
 
@@ -204,8 +215,9 @@ public class AdminController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(AdminEditModel model)
     {
+        if (model == null) return View("Error");
         if (!ModelState.IsValid) return View(model);
-        var user = await _userManager.FindByIdAsync(model.Id);
+        var user = await _userManager.FindByIdAsync(model.Id.Value.ToString());
         if (user == null) return View("Error");
 
         user.UserName = model.UserName;
@@ -213,16 +225,12 @@ public class AdminController : Controller
         user.Email = model.Email;
         user.NormalizedEmail = model.Email.ToUpper();
         user.NormalizedUserName = model.UserName.ToUpper();
-        //user.Address = model.Address;
-        user.Gender = model.Gender;
-        //user.DateOfbirth = model.DateOfBirth;
         user.SSN = model.SSN;
-        user.Gender = model.Gender;
 
         await _userManager.UpdateAsync(user);
         await _unitOfWork.CompleteAsync();
-        if (model.Id == User.FindFirstValue(ClaimTypes.Name))
-            return RedirectToAction("Dashboard", "Admin");
+        if (model.Id.Value.ToString() == User.FindFirstValue(ClaimTypes.Name))
+            return RedirectToAction("Profile", "Admin");
         return RedirectToAction("Index");
     }
 
@@ -310,34 +318,7 @@ public class AdminController : Controller
         var res = await _adminService.CreateStaffAsync(model);
         return res == 1 ? RedirectToAction("Staff", "Admin") : View("Error");
     }
-
-    [HttpGet]
-    public async Task<IActionResult> EditStaff(Guid? Id = null)
-    {
-        if (Id == null) return View("Error");
-        var staff = await _staffService.GetStaffByIdAsync(Id);
-        var model = new AdminEditStaffModel()
-        {
-            Id = Id.Value,
-            role = staff.Role,
-            EndSchedule = staff.EndSchedule,
-            StartSchedule = staff.StartSchedule,
-            FirstName = staff.FirstName,
-            LastName = staff.LastName,
-            DayOfWork = staff.DayOfWork
-        };
-        return View(model);
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> EditStaff(AdminEditStaffModel model)
-    {
-        if (model.Id == null) return View("Error");
-        var res = await _adminService.AdminEditStaffAsync(model);
-        return res == 1 ? RedirectToAction("Staff", "Admin") : View("Error");
-    }
-
+    
     public IActionResult Doctors()
     {
         IEnumerable<Doctor> doctors = _doctorService.GetAllDoctors();
@@ -350,9 +331,106 @@ public class AdminController : Controller
         return !appointments.IsNullOrEmpty() ? View(appointments) : View("Error");
     }
 
+    [HttpGet]
     public IActionResult Patients()
     {
         IEnumerable<Patient> patients = _patientService.GetAllPetient();
         return !patients.IsNullOrEmpty() ? View(patients) : View("Error");
     }
+
+    [HttpGet]
+    public async Task<IActionResult> EditPatient(Guid? Id = null)
+    {
+        if (Id == null) return View("Error");
+        var user = await _patientService.GetUserByIdAsync(Id.Value);
+        if (user == null) return View("Error");
+        var temp = await _patientService.PatientProfileDataByIdAsync(Id);
+        var model = new AdminEditPatientModel()
+        {
+            PatientId = Id.Value,
+            PhoneNumber = user.PhoneNumber,
+            Email = user.Email,
+            UserId = user.Id,
+            DateOfBirth = temp.DateOfBirth,
+            ChronicDiseases = temp.ChronicDiseases,
+            Address = temp.Address,
+            Allergies = temp.Allergies,
+            BloodGroup = temp.BloodGroup,
+            FirstName = temp.FirstName,
+            LastName = temp.LastName,
+            UserName = user.UserName,
+        };
+        return View(model);
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditPatient(AdminEditPatientModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        var res = await _adminService.AdminEditPatientAsync(model);
+        return res == 1 ? RedirectToAction("Patients", "Admin") : View("Error");
+    }
+    [HttpGet]
+    public async Task<IActionResult> EditDoctor(Guid? Id = null)
+    {
+        if (Id == null) return View("Error");
+        var user = await _doctorService.GetUserByIdAsync(Id.Value);
+        if (user == null) return View("Error");
+        var temp = await _doctorService.DocotorProfileDataByIdAsync(Id.Value);
+        var model = new AdminEditDoctorModel()
+        {
+            DoctorId = Id.Value,
+            PhoneNumber = user.PhoneNumber,
+            Email = user.Email,
+            UserId = user.Id,
+            FirstName = temp.FirstName,
+            LastName = temp.LastName,
+            UserName = user.UserName,
+            StartSchedule = temp.StartSchedule,
+            EndSchedule = temp.EndSchedule
+        };
+        return View(model);
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditDoctor(AdminEditDoctorModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        var res = await _adminService.AdminEditDoctorAsync(model);
+        return res == 1 ? RedirectToAction("Doctors", "Admin") : View("Error");
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> EditStaff(Guid? Id = null)
+    {
+        if (Id == null) return View("Error");
+        var staffUser = await _staffService.GetUserByIdAsync(Id);
+        var staff = await _staffService.GetStaffByIdAsync(Id);
+        var model = new AdminEditStaffModel()
+        {
+            StaffId = Id.Value,
+            EndSchedule = staff.EndSchedule,
+            StartSchedule = staff.StartSchedule,
+            FirstName = staff.FirstName,
+            LastName = staff.LastName,
+            DayOfWork = staff.DayOfWork,
+            PhoneNumber = staffUser.PhoneNumber,
+            Email = staffUser.Email,
+            UserId = staff.UserId,
+            UserName = staffUser.UserName,
+
+        };
+        return View(model);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditStaff(AdminEditStaffModel model)
+    {
+        if (model.StaffId == null) return View("Error");
+        var res = await _adminService.AdminEditStaffAsync(model);
+        return res == 1 ? RedirectToAction("Staff", "Admin") : View("Error");
+    }
+
+
 }

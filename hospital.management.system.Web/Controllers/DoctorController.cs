@@ -206,23 +206,23 @@ public class DoctorController : Controller
     //[Authorize(Roles = SD.Admin)]
     public async Task<IActionResult> Profile()
     {
-        var res = await _doctorService.GetDoctorByIdAsync(GetDoctorId());
+        var res = await _doctorService.DocotorProfileDataByIdAsync(GetDoctorId());
+        if(res == null) return View("Error");
         var user = await _userManager.GetUserAsync(User);
         if (user == null) return View("Error");
         return View(new DoctorProfileModel()
         {
             Id = user.Id,
-            //Address = user.Address,
-            //DateOfBirth = user.DateOfbirth,
             Email = user.Email,
             IsEmailConfirmed = user.EmailConfirmed,
             IsTwoFactorEnabled = user.TwoFactorEnabled,
             NationalIdOrPassport = user.SSN,
             PhoneNumber = user.PhoneNumber,
             UserName = user.UserName,
-            FirstName = res.FirstName,
-            LastName = res.LastName,
-            Gender = user.Gender
+            Name = res.FirstName + " " + res.LastName,
+            Gender = user.Gender,
+            DepartmentName = res.DepartmentName,
+            Specialization = res.Specialization
         });
     }
 
@@ -231,18 +231,18 @@ public class DoctorController : Controller
     public async Task<IActionResult> Edit(Guid? Id = null)
     {
         if (Id == null) Id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        var Doctor = await _doctorService.GetDoctorByIdAsync(GetDoctorId());
+        var Doctor = await _doctorService.DocotorProfileDataByIdAsync(GetDoctorId());
 
         var user = await _userManager.FindByIdAsync(Id.ToString());
         if (user == null) return View("Error");
         var model = new DoctorEditModel()
         {
-            Id = Id.Value,
+            UserId = Id.Value,
             FirstName = Doctor.FirstName,
             LastName = Doctor.LastName,
             UserName = user.UserName
         };
-        if (model.Id.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+        if (model.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
             return View(model);
 
         return View("Error");
@@ -256,7 +256,7 @@ public class DoctorController : Controller
         if (!ModelState.IsValid) return View(model);
         var res = await _doctorService.EditDoctorAsync(model);
         if (res == 1)
-            return User.IsInRole(SD.Doctor) ? RedirectToAction("Index", "Profile") : RedirectToAction("Profile");
+          return RedirectToAction(nameof(Profile));
 
         return View("Error");
     }

@@ -27,7 +27,7 @@ public interface IDoctorService
 
     public int CreateMedicalRecord(MedicalRecordModel model);
 
-    public Task<GetDoctorProfileModel> GetDoctorByIdAsync(Guid Id);
+    public Task<GetDoctorProfileModel> DocotorProfileDataByIdAsync(Guid Id);
     //public  Task<int> GetDoctorsCountAsync();
     public  Task<int> EditDoctorAsync(DoctorEditModel? model);
 
@@ -40,5 +40,6 @@ public interface IDoctorService
     public int DeleteDoctor(Guid doctorId);
     
     public Task<int> GetDoctorsCountAsync();
+    public Task<ApplicationUser> GetUserByIdAsync(Guid docotorId);
 }
 

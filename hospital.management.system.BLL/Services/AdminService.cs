@@ -15,12 +15,34 @@ public class AdminService : IAdminService
 {
     private readonly ApplicationDbContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IPatientService _patientService;
+    private readonly IDoctorService _doctorService;
 
     public AdminService(ApplicationDbContext context,
-        UserManager<ApplicationUser> userManager)
+        UserManager<ApplicationUser> userManager,
+        IPatientService patientService,
+        IDoctorService doctorService)
     {
         _context = context;
         _userManager = userManager;
+        _patientService = patientService;
+        _doctorService = doctorService;
+    }
+
+    public async Task<int> AdminCreateAsync(AdminCreateModel model)
+    {
+        var user = new ApplicationUser
+        {
+            UserName = model.UserName,
+            Email = model.Email,
+            SSN = model.SSN,
+            PhoneNumber = model.PhoneNumber,
+            Gender = model.Gender,
+        };
+        var res1 = await _userManager.CreateAsync(user, "Admin_" + model.SSN);
+        var res2 = await _userManager.AddToRoleAsync(user, SD.Admin);
+        if (!res1.Succeeded || !res2.Succeeded) return 0;
+        return (res1 == res2) ? 1 : 0;
     }
 
     public async Task<int> CreatePatientAsync(PatientCreateModel model)
@@ -260,26 +282,6 @@ public class AdminService : IAdminService
         return res;
     }
 
-    public async Task<int> AdminEditStaffAsync(AdminEditStaffModel model)
-    {
-        if (model == null) return 0;
-        string sqlcommand1 =
-            $"""
-             Update Staff SET firstName =@p0,lastName=@p1,role=@p2,
-                                             startSchedule=@p3, endSchedule=@p4,dayOfWork=@p5
-                                             where Id=@p6
-             """;
-        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
-            model.FirstName,
-            model.LastName,
-            model.role,
-            model.StartSchedule,
-            model.EndSchedule,
-            model.DayOfWork,
-            model.Id);
-        return res;
-    }
-
     public async Task<int> CreateStaffAsync(StaffCreateModel model)
     {
         var user = new ApplicationUser
@@ -314,7 +316,7 @@ public class AdminService : IAdminService
 
         return res;
     }
-    
+
     public async Task<IEnumerable<UsernameIdModel>> GetAllPatientsAsync()
     {
         var res = _context.Database.SqlQuery<UsernameIdModel>($"""
@@ -336,15 +338,129 @@ public class AdminService : IAdminService
                                                                """);
         return await res.ToListAsync();
     }
-    
-    public Task<int> AdminEditPatientAsync(AdminEditPatientModel? model)
+
+    public async Task<int> AdminEditPatientAsync(AdminEditPatientModel model)
     {
-        throw new NotImplementedException();
+        if (model == null || model.PatientId == Guid.Empty)
+            return 0;
+        var patientUser = await _userManager.FindByIdAsync(model.UserId.ToString());
+        if (patientUser == null) return 0;
+        patientUser.UserName = model.UserName;
+        patientUser.Email = model.Email;
+        patientUser.NormalizedEmail = model.Email.ToUpper();
+        patientUser.NormalizedUserName = model.UserName.ToUpper();
+        patientUser.PhoneNumber = model.PhoneNumber;
+        var identityResultres = await _userManager.UpdateAsync(patientUser);
+        if (!identityResultres.Succeeded) return 0;
+        string sqlcommand1 =
+            $"""
+             Update Patient SET firstName =@p0,lastName=@p1,
+                                dateOfBirth=@p2,bloodGroup=@p3,
+                                chronicDiseases=@p4,allergies=@p5,address=@p6
+                                where Id=@p7
+             """;
+
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
+            model.FirstName,
+            model.LastName,
+            model.DateOfBirth,
+            model.BloodGroup,
+            model.Allergies,
+            model.ChronicDiseases,
+            model.Address,
+            model.PatientId);
+        return res;
     }
 
-    public Task<int> AdminEditDoctortAsync(AdminEditDoctorModel? model)
+    public async Task<int> AdminEditDoctortAsync(AdminEditDoctorModel model)
     {
-        throw new NotImplementedException();
+        if (model == null || model.DoctorId == Guid.Empty)
+            return 0;
+        var doctortUser = await _userManager.FindByIdAsync(model.UserId.ToString());
+        if (doctortUser == null) return 0;
+        doctortUser.UserName = model.UserName;
+        doctortUser.Email = model.Email;
+        doctortUser.NormalizedEmail = model.Email.ToUpper();
+        doctortUser.NormalizedUserName = model.UserName.ToUpper();
+        doctortUser.PhoneNumber = model.PhoneNumber;
+        var identityResultRes = await _userManager.UpdateAsync(doctortUser);
+        if (!identityResultRes.Succeeded) return 0;
+        string sqlcommand1 =
+            $"""
+             Update Doctor SET firstName =@p0,lastName=@p1,
+                                salary=@p2,workingHours=@p3, 
+                                startSchedule=@p4,endSchedule=@p5,
+                                where Id=@p6
+             """;
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
+            model.FirstName,
+            model.LastName,
+            model.Salary,
+            model.WorkingHours,
+            model.StartSchedule,
+            model.EndSchedule,
+            model.DoctorId);
+        return res;
     }
+
+    public async Task<int> AdminEditStaffAsync(AdminEditStaffModel model)
+    {
+        if (model == null || model.StaffId == Guid.Empty)
+            return 0;
+        var staffUser = await _userManager.FindByIdAsync(model.UserId.ToString());
+        if (staffUser == null) return 0;
+        staffUser.UserName = model.UserName;
+        staffUser.Email = model.Email;
+        staffUser.NormalizedEmail = model.Email.ToUpper();
+        staffUser.NormalizedUserName = model.UserName.ToUpper();
+        staffUser.PhoneNumber = model.PhoneNumber;
+        var identityResultRes = await _userManager.UpdateAsync(staffUser);
+        if (!identityResultRes.Succeeded) return 0;
+        string sqlcommand1 =
+            $"""
+             Update Staff SET firstName =@p0,lastName=@p1,
+                                dayOfWork=@p2, 
+                                startSchedule=@p3,endSchedule=@p4
+                                where Id=@p5
+             """;
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
+            model.FirstName,
+            model.LastName,
+            model.DayOfWork,
+            model.StartSchedule,
+            model.EndSchedule,
+            model.StaffId);
+        return res;
+    }
+    public async Task<int> AdminEditDoctorAsync(AdminEditDoctorModel model)
+    {
+        if (model == null || model.DoctorId == Guid.Empty)
+            return 0;
+        var staffUser = await _userManager.FindByIdAsync(model.UserId.ToString());
+        if (staffUser == null) return 0;
+        staffUser.UserName = model.UserName;
+        staffUser.Email = model.Email;
+        staffUser.NormalizedEmail = model.Email.ToUpper();
+        staffUser.NormalizedUserName = model.UserName.ToUpper();
+        staffUser.PhoneNumber = model.PhoneNumber;
+        var identityResultRes = await _userManager.UpdateAsync(staffUser);
+        if (!identityResultRes.Succeeded) return 0;
+        string sqlcommand1 =
+            $"""
+             Update Doctor SET firstName =@p0,lastName=@p1,
+                                workingHours=@p2, 
+                                startSchedule=@p3,endSchedule=@p4
+                                where Id=@p5
+             """;
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
+            model.FirstName,
+            model.LastName,
+            model.WorkingHours,
+            model.StartSchedule,
+            model.EndSchedule,
+            model.DoctorId);
+        return res;
+    }
+
 
 }

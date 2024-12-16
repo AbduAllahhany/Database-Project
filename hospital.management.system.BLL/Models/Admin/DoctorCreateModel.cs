@@ -19,14 +19,14 @@ public class DoctorCreateModel
 
     [Required]
     [EmailAddress]
-    [UniqueEmail]
+    [UniqueEmail("")]
     [Display(Name = "Email Address")]
     public string Email { get; set; }
     
 
     [Required] [EgyptianPhoneNumber] 
     [Display(Name = "Phone Number")]
-    [UniquePhoneNumber]
+    [UniquePhoneNumber("")]
     public string PhoneNumber { get; set; }
     
     [Display(Name = "National Id")]
@@ -35,7 +35,7 @@ public class DoctorCreateModel
     
     [Required] public Gender Gender { get; set; }
     [Required] [Username] 
-    [UniqueUsername]
+    [UniqueUsername("")]
     [Display(Name = "Username")]public string UserName { get; set; }
 
     [Required]

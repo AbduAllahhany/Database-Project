@@ -19,6 +19,8 @@ public interface IAdminService
     public Task<IEnumerable<GetAllAdminsResponseModel>> GetAllAdminsAsync();
     public Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAllAppointmentsByNamesAsync();
 
+    public Task<int> AdminCreateAsync(AdminCreateModel model);
+
     public Task<int> CreateAppointmentAsync(AppointmentAddModel model);
 
     //public Task<int> EditStaffAsync(StaffEditModel model);
@@ -26,10 +28,12 @@ public interface IAdminService
     public Task<int> ConfirmRoomAsync(Guid? roomId);
     public Task<IEnumerable<AvailableRoomsModel>> GetAvailableRoomsAsync();
     public Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAppointmentsByUsernamesAsync();
-    public Task<int> AdminEditPatientAsync(AdminEditPatientModel? model);
-    public Task<int> AdminEditDoctortAsync(AdminEditDoctorModel? model);
+    public Task<int> AdminEditPatientAsync(AdminEditPatientModel model);
+    public Task<int> AdminEditDoctortAsync(AdminEditDoctorModel model);
     public Task<int> AdminEditStaffAsync(AdminEditStaffModel model);
     public Task<IEnumerable<UsernameIdModel>> GetAllPatientsAsync();
     public Task<IEnumerable<UsernameIdModel>> GetAllDoctorsAsync();
+    public Task<int> AdminEditDoctorAsync(AdminEditDoctorModel model);
+
 
 }

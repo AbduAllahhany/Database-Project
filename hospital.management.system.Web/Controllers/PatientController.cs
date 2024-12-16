@@ -165,20 +165,19 @@ public class PatientController : Controller
 
     [HttpGet]
     [Authorize(Roles = SD.Patient)]
-    public async Task<IActionResult> Edit(Guid? Id = null)
+    public async Task<IActionResult> Edit()
     {
-        if (Id == null)
-        {
-            Id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        }
 
-        var patient = await _patientService.GetPatientById(GetPatientId());
+        Guid Id = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+
+        var patient = await _patientService.PatientProfileDataByIdAsync(GetPatientId());
 
         var user = await _userManager.FindByIdAsync(Id.ToString());
         if (user == null) return View("Error");
         var model = new PatientEditModel()
         {
-            Id = Id,
+            UserId = Id,
             FirstName = patient.FirstName,
             LastName = patient.LastName,
             PhoneNumber = user.PhoneNumber,
@@ -186,12 +185,12 @@ public class PatientController : Controller
             DateOfBirth = patient.DateOfBirth,
             UserName = user.UserName,
         };
-        if (model.Id.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
+        if (model.UserId.ToString() == User.FindFirstValue(ClaimTypes.NameIdentifier))
             return View(model);
         return View("Error");
     }
 
-   // [Authorize(Roles = SD.Admin)]
+    // [Authorize(Roles = SD.Admin)]
     public IActionResult RoomStatus(Guid patientId)
     {
         PatientRoom RoomStatus = _patientService.GetRoomStatus(patientId);
@@ -209,7 +208,7 @@ public class PatientController : Controller
         var res = await _patientService.EditPatientAsync(model);
         if (res == 1)
         {
-            return User.IsInRole(SD.Patient) ? RedirectToAction("Index", "Patient") : RedirectToAction("Profile");
+            return User.IsInRole(SD.Patient) ? RedirectToAction("Profile", "Patient") : RedirectToAction("Profile");
         }
 
         return View("Error");
@@ -222,7 +221,9 @@ public class PatientController : Controller
         if (user == null) return View("Error");
 
 
-        var res = await _patientService.GetPatientById(GetPatientId());
+        var res = await _patientService.PatientProfileDataByIdAsync(GetPatientId());
+        var emgerencyContacnt = _patientService.GetPatientEmergancyContacts(GetPatientId());
+        var insurancre = _patientService.GetViewInsurance(GetPatientId());
         if (res == null) return View("Error");
         return View(new PatientProfileModel()
         {
@@ -240,6 +241,9 @@ public class PatientController : Controller
             UserName = user.UserName,
             Allergies = res.Allergies,
             Name = res.FirstName + " " + res.LastName,
+            EmergencyContactNumber = emgerencyContacnt?.FirstOrDefault().Phone,
+            InsurancePoviderName = insurancre?.ProviderName,
+            CoverageMoney = insurancre?.CoverageMoney?.ToString(),
         });
     }
 

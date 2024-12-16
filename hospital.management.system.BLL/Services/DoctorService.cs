@@ -190,15 +190,26 @@ public class DoctorService : IDoctorService
         return count.FirstOrDefault();
     }
 
-    public async Task<GetDoctorProfileModel> GetDoctorByIdAsync(Guid doctorId)
+    public async Task<GetDoctorProfileModel> DocotorProfileDataByIdAsync(Guid doctorId)
     {
         var res = await _context.Database.SqlQuery<GetDoctorProfileModel>($@"
-            SELECT TOP(1) firstName AS FirstName, lastName AS LastName 
-            FROM Doctor 
-            WHERE Id = {doctorId}
+            SELECT TOP(1) firstName AS FirstName, lastName AS LastName ,
+            salary ,workingHours, startSchedule, endSchedule,specialization,dept.name as [DepartmentName]
+            FROM Doctor do ,Department dept
+            WHERE do.Id = {doctorId} AND departmentId=dept.Id
             ").ToListAsync();
         return res.FirstOrDefault() ?? null;
+    }
 
+    public async Task<ApplicationUser> GetUserByIdAsync(Guid docotorId)
+    {
+        var userId = await _context.Database.SqlQuery<Guid>($"""
+                                                             select UserId from dbo.Doctor
+                                                             where Id = {docotorId} 
+                                                             """).ToListAsync();
+        if (userId == null) return null;
+        var user = await _userManager.FindByIdAsync(userId.FirstOrDefault().ToString());
+        return user;
     }
 
     public List<Doctor> GetAllDoctors()
@@ -225,17 +236,18 @@ public class DoctorService : IDoctorService
     {
         if (model == null) return 0;
 
-        if (model.Id == null) return 0;
-        var user = await _userManager.FindByIdAsync(model.Id.ToString());
+        if (model.UserId == null) return 0;
+        var user = await _userManager.FindByIdAsync(model.UserId.ToString());
         //update 
         user.UserName = model.UserName;
+        user.PhoneNumber = model.PhoneNumber;
         string sqlcommand1 =
             $"""
              Update Doctor 
              SET firstName =@p0,lastName=@p1
              where UserId=@p2
              """;
-        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.FirstName, model.LastName, model.Id);
+        var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1, model.FirstName, model.LastName, model.UserId);
         return res;
     }
 

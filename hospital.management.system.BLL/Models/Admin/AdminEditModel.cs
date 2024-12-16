@@ -6,31 +6,30 @@ namespace hospital.management.system.BLL.Models.Admin;
 
 public class AdminEditModel
 {
-    public string? Id { get; set; }
-        
-   // public string Address { get; set; }
-        
+    public Guid? Id { get; set; }
+
     [Display(Name = "National Id Or Passpart")]
     [NationalID(ErrorMessage = "Please enter a valid SSN")]
     public string SSN { get; set; }
-      
+
     [DateOfBirth]
     [Display(Name = "Date of Birth")]
     [Required]
     public DateOnly DateOfBirth { get; set; }
-        
-    [Display(Name = "User Name")]
+
+    [Display(Name = "Username")]
     [Username]
+    [UniqueUsername("")]
     public string UserName { get; set; }
-        
+
     [Display(Name = "Email")]
     [DataType(DataType.EmailAddress)]
+    [UniqueEmail]
     public string Email { get; set; }
-        
-    [Display(Name = "Phone Number")]
 
+    [UniquePhoneNumber("")]
+    [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
-        
-    public Gender Gender { get; set; }
-    
+
+
 }

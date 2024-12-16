@@ -1,6 +1,6 @@
 @using hospital.management.system.Models.Enums
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model hospital.management.system.BLL.Models.Patient.PatientEditModel 
+@model AdminEditPatientModel 
 @{
     ViewData["Title"] = "Edit Patient";
 }
@@ -10,12 +10,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header text-center">
-                    <h3 class="card-title">Edit Patient</h3>
+                    <h3 class="card-title">Edit User</h3>
                 </div>
                 <div class="card-body">
-                    <form asp-action="Edit" asp-controller="Patient" method="post" class="needs-validation" novalidate>
+                    <form asp-action="EditPatient" asp-controller="Admin" method="post" class="needs-validation" novalidate>
                         <div asp-validation-summary="All" class="text-danger"></div>
-                        <input type="hidden" asp-for=UserId value=@Model.UserId />
+
+                        <input type="hidden" asp-for=PatientId value=@Model.PatientId />
+                        <input type="hidden" asp-for="UserId" value=@Model.UserId />
                         <!-- User Name -->
                         <div class="mb-3">
                             <label asp-for="UserName" class="form-label"></label>
@@ -34,7 +36,7 @@
                             </div>
                             <span asp-validation-for="FirstName" class="text-danger"></span>
                         </div>
-                        <!-- Second Name -->
+                        <!-- Last Name -->
                         <div class="mb-3">
                             <label asp-for="LastName" class="form-label"></label>
                             <div class="input-group">
@@ -42,6 +44,15 @@
                                 <input asp-for="LastName" class="form-control" placeholder="Choose a username" />
                             </div>
                             <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Enter your email" />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                         <!-- Address -->
                         <div class="mb-3">
@@ -69,6 +80,34 @@
                                 <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number" />
                             </div>
                             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <!-- bloodGroup -->
+                        <div class="mb-3">
+                            <label asp-for="BloodGroup" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-tint"></i></span>
+                                <select asp-for="BloodGroup" class="form-control"
+                                        asp-items="Html.GetEnumSelectList<BloodGroup>()"></select>
+                            </div>
+                            <span asp-validation-for="BloodGroup" class="text-danger"></span>
+                        </div>
+                        <!-- Allergies -->
+                        <div class="mb-3">
+                            <label asp-for="Allergies" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-allergies"></i></span>
+                                <input asp-for="Allergies" class="form-control"/>
+                            </div>
+                            <span asp-validation-for="Allergies" class="text-danger"></span>
+                        </div>
+                        <!-- ChronicDiseases  -->
+                        <div class="mb-3">
+                            <label asp-for="ChronicDiseases" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-heartbeat"></i></span>
+                                <input asp-for="ChronicDiseases" class="form-control"/>
+                            </div>
+                            <span asp-validation-for="ChronicDiseases" class="text-danger"></span>
                         </div>
                         <!-- Submit Button -->
                         <div class="text-center">

@@ -154,10 +154,10 @@ public class PatientService : IPatientService
     }
 
 
-    public async Task<GetPatientProfileModel> GetPatientById(Guid? Id)
+    public async Task<GetPatientProfileModel> PatientProfileDataByIdAsync(Guid? Id)
     {
         var res = _context.Database.SqlQuery<GetPatientProfileModel>($"""
-                                                                      SELECT Top(1) firstName as FirstName, lastName as LastName, dateOfBirth as Birthdate, 
+                                                                      SELECT Top(1) firstName as FirstName, lastName as LastName, dateOfBirth as dateOfBirth, 
                                                                       bloodGroup as BloodGroup, allergies as Allergies,chronicDiseases as ChronicDiseases,
                                                                       address as Address 
                                                                       from Patient
@@ -166,7 +166,7 @@ public class PatientService : IPatientService
         var temp = await res.ToListAsync();
         return res.FirstOrDefault() ?? null;
     }
-
+   
     public List<Patient> GetAllPetient()
     {
         List<Patient> patients = _context.Patients.FromSql($"""select * from dbo.Patient""").ToList();
@@ -177,19 +177,33 @@ public class PatientService : IPatientService
     public async Task<int> EditPatientAsync(PatientEditModel? model)
     {
         if (model == null) return 0;
-        Guid? patientId = model.Id;
+        Guid? patientId = model.UserId;
         if (patientId == null) return 0;
-        var user = await _userManager.FindByIdAsync(model.Id.ToString());
+        var user = await _userManager.FindByIdAsync(model.UserId.ToString());
         //update 
         user.UserName = model.UserName;
         user.PhoneNumber = model.PhoneNumber;
+        await _context.SaveChangesAsync();
+       
         string sqlcommand =
             $@"Update Patient 
                    SET firstName =@p0,lastName=@p1,dateOfBirth=@p2,address = @p3 
-                   where Id=@p4";
+                   where UserId=@p4";
         var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand, model.FirstName, model.LastName,
             model.DateOfBirth, model.Address, patientId);
         return res;
+    }
+
+    public async Task<ApplicationUser> GetUserByIdAsync(Guid patientId)
+    {
+        var userId = await _context.Database.SqlQuery<Guid>($"""
+                                                             select UserId from dbo.Patient
+                                                             where Id = {patientId}
+                                                             
+                                                             """).ToListAsync();
+        if (userId == null) return null;
+        var user = await _userManager.FindByIdAsync(userId.FirstOrDefault().ToString());
+        return user;
     }
 
 
