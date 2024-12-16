@@ -33,7 +33,7 @@
                             <th scope="col">Allergies</th>
                             <th scope="col">Chronic Diseases</th>
                             <th scope="col">Actions</th>
-                            <th scope="col">Creation</th>
+                            @* <th scope="col">Creation</th> *@
                         </tr>
                         </thead>
                         <tbody>
@@ -47,19 +47,19 @@
                                 <td>@patient.Allergies</td>
                                 <td>@patient.ChronicDiseases</td>
                                 <td class="text-center">
-                                    <a href="@Url.Action("PatientMedicalRecord", "Patient", new { Id = patient.Id })" class="btn btn-info btn-sm">Medical Records</a>
-                                    <a href="@Url.Action("PatientAppointments", "Patient", new { Id = patient.Id })" class="btn btn-primary btn-sm">Appointments</a>
-                                    <a href="@Url.Action("PatientVisits", "Patient", new { Id = patient.Id })" class="btn btn-secondary btn-sm">Visits</a>
+                                    <a href="@Url.Action("PatientActions", "Admin", new { Id = patient.Id })" class="btn btn-info btn-sm">Actions</a>
+                                    @* <a href="@Url.Action("PatientAppointments", "Patient", new { Id = patient.Id })" class="btn btn-primary btn-sm">Appointments</a> *@
+                                    @* <a href="@Url.Action("PatientVisits", "Patient", new { Id = patient.Id })" class="btn btn-secondary btn-sm">Visits</a> *@
                                     <a href="@Url.Action("EditPatient", "Admin", new { Id = patient.Id })" class="btn btn-success btn-sm">Edit</a>
                                     <a href="@Url.Action("DeletePatient", "Patient", new { patientId = patient.Id })" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
                                 </td>
-                                <td class="text-center">
-                                    <a href="@Url.Action("CreateVisit", "Admin", new { PatientId = patient.Id })" class="btn btn-info btn-sm">Create Visit</a>
-                                    <a href="@Url.Action("CreateBill", "Admin", new { PatientId = patient.Id })" class="btn btn-primary btn-sm">Create Bill</a>
-                                    <a href="@Url.Action("ChooseRoom", "Admin", new { Id = patient.Id })" class="btn btn-secondary btn-sm">Create Admission</a>
-                                    <a href="@Url.Action("CreateInsurance", "Admin", new { PatientId = patient.Id })" class="btn btn-success btn-sm">Create Insurance</a>
-                                    <a href="@Url.Action("CreateEmergencyContact", "Admin", new { PatientId = patient.Id })" class="btn btn-success btn-sm">Create E_contact</a>
-                                </td>
+                                @* <td class="text-center"> *@
+                                @*     <a href="@Url.Action("CreateVisit", "Admin", new { PatientId = patient.Id })" class="btn btn-info btn-sm">Create Visit</a> *@
+                                @*     <a href="@Url.Action("CreateBill", "Admin", new { PatientId = patient.Id })" class="btn btn-primary btn-sm">Create Bill</a> *@
+                                @*     <a href="@Url.Action("ChooseRoom", "Admin", new { Id = patient.Id })" class="btn btn-secondary btn-sm">Create Admission</a> *@
+                                @*     <a href="@Url.Action("CreateInsurance", "Admin", new { PatientId = patient.Id })" class="btn btn-success btn-sm">Create Insurance</a> *@
+                                @*     <a href="@Url.Action("CreateEmergencyContact", "Admin", new { PatientId = patient.Id })" class="btn btn-success btn-sm">Create E_contact</a> *@
+                                @* </td> *@
                             </tr>
                         }
                         </tbody>

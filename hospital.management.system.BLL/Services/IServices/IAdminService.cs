@@ -12,10 +12,10 @@ public interface IAdminService
     public Task<int> CreateAppointmentAsync(AppointmentAddModel model);
 
     public Task<IEnumerable<GetUpcomingAppointmentResponseModel>> GetUpcomingAppointmentAsync();
-
+    
     // public Task<int> GetAppointmentCountAsync();
     public Task<IEnumerable<UsernameIdModel>> GetAllPatientsAsync();
-
+    public PatientActionsModel GetPatientById(Guid patientId);
     public Task<IEnumerable<UsernameIdModel>> GetAllDoctorsAsync();
 
     // public Task<IEnumerable<UsernameIdModel>> GetAllStaffAsync();

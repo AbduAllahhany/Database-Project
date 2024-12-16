@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
+using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
 using hospital.management.system.Web.Models.Admin;
 using Microsoft.AspNetCore.Authorization;
@@ -19,6 +20,7 @@ public class AdminController : Controller
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IStaffService _staffService;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ApplicationDbContext _context;
 
     public AdminController(IUnitOfWork unitOfWork,
         IAdminService adminService,
@@ -55,6 +57,14 @@ public class AdminController : Controller
             DoctorsCount = await _doctorService.GetDoctorsCountAsync()
         };
         return View(model);
+    }
+    
+    [HttpGet]
+    public IActionResult PatientActions(Guid Id)
+    {
+        var model = _adminService.GetPatientById(Id);
+        return View("PatientActions", model); // Pass patient object to the view
+        // return View();
     }
 
     [HttpGet]

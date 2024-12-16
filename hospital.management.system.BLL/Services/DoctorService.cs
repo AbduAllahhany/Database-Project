@@ -78,7 +78,8 @@ public class DoctorService : IDoctorService
             SELECT COUNT(*) AS TotalAppointments,
                 SUM(CASE WHEN LOWER(status) = 'approved' THEN 1 ELSE 0 END) AS ApprovedAppointments,
                 SUM(CASE WHEN LOWER(status) = 'pending' THEN 1 ELSE 0 END) AS PendingAppointments,
-                SUM(CASE WHEN LOWER(status) = 'rejected' THEN 1 ELSE 0 END) AS RejectedAppointments
+                SUM(CASE WHEN LOWER(status) = 'rejected' THEN 1 ELSE 0 END) AS RejectedAppointments,
+                SUM(CASE WHEN LOWER(status) = 'completed' THEN 1 ELSE 0 END) AS CompletedAppointments
             FROM Patient_Doctor_Appointment A
             WHERE A.doctorId = {loggedDoctorId} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())")
             .ToList();

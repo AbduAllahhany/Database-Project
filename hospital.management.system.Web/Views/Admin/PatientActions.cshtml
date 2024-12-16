@@ -1,0 +1,392 @@
+﻿@* @model PatientActionsModel *@
+@* *@
+@* <div class="container my-5"> *@
+@*     <h2 class="text-center">Patients Actions</h2> *@
+@* *@
+@*     <!-- Patient Information --> *@
+@*     <div class="row mb-4"> *@
+@*         <div class="col-md-4"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-person"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Patient Information</h5> *@
+@*                 <ul class="list-unstyled mb-0"> *@
+@*                     <li><strong>Name:</strong> @(Model.FirstName + ' ' + Model.LastName)</li> *@
+@*                     <li><strong>Date Of Birth:</strong> @Model.DateOfBirth</li> *@
+@*                     <li><strong>BloodGroup :</strong> @Model.BloodGroup</li> *@
+@*                     <li><strong>Chronic Diseases :</strong> @Model.ChronicDiseases</li> *@
+@*                 </ul> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* *@
+@*     <!-- Links to Related Data --> *@
+@*     <div class="row mb-4"> *@
+@*         <div class="col-md-4"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-clock-history"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Medical Records</h5> *@
+@*                 <p>View Patient's Medical Records</p> *@
+@*                 <a href="@Url.Action("PatientMedicalRecord", "Patient", new { Id = Model.Id })" class="btn btn-info btn-sm">View Medical Records</a> *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*         <div class="col-md-4"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-calendar-day"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Visits</h5> *@
+@*                 <p>View Patient's Visits</p> *@
+@*                 <a href="@Url.Action("PatientVisits", "Patient", new { Id = Model.Id })" class="btn btn-secondary btn-sm">View Visits</a> *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*         <div class="col-md-4"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-calendar-day"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Appointments</h5> *@
+@*                 <p>View Patient's Appointments</p> *@
+@*                 <a href="@Url.Action("PatientAppointments", "Patient", new { Id = Model.Id })" class="btn btn-secondary btn-sm">View Appointments</a> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* *@
+@*     <div class="row mb-4"> *@
+@*         <div class="col-md-4"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-calendar-event"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Creating a visit</h5> *@
+@*                 <p>Creating a Visit For a Patient</p> *@
+@*                 <a href="@Url.Action("CreateVisit", "Admin", new { PatientId = Model.Id })" class="btn btn-info btn-sm">Create</a> *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*         <div class="col-md-4"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-arrow-repeat"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Creating A Bill</h5> *@
+@*                 <p>Creating a Bill For a Patient</p> *@
+@*                 <a href="@Url.Action("CreateBill", "Admin", new { PatientId = Model.Id })" class="btn btn-primary btn-sm">Create</a> *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*         <div class="col-md-4"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-journal-plus"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Creating An Admission</h5> *@
+@*                 <p>Creating an Admission For a Patient</p> *@
+@*                 <a href="@Url.Action("ChooseRoom", "Admin", new { Id = Model.Id })" class="btn btn-secondary btn-sm">Create</a> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* *@
+@* *@
+@*     <div class="row mb-4"> *@
+@*         <div class="col-md-4"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-clipboard-data"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Creating An Insurance</h5> *@
+@*                 <p>Creating an Insurance For a Patient</p> *@
+@*                 <a href="@Url.Action("CreateInsurance", "Admin", new { PatientId = Model.Id })" class="btn btn-success btn-sm">Create</a> *@
+@*             </div> *@
+@*         </div> *@
+@* *@
+@*         <div class="col-md-6"> *@
+@*             <div class="card p-4 text-center"> *@
+@*                 <div class="icon-circle"> *@
+@*                     <i class="bi bi-journal"></i> *@
+@*                 </div> *@
+@*                 <h5 class="card-title">Creating An Emergency contact</h5> *@
+@*                 <p>Creating an Emergency contact For a Patient</p> *@
+@*                 <a href="@Url.Action("CreateEmergencyContact", "Admin", new { PatientId = Model.Id })" class="btn btn-success btn-sm">Create</a> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
+@* *@
+@* <!-- Bootstrap 5 JS and Popper.js --> *@
+@* <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> *@
+@* *@
+@* <style> *@
+@*     body { *@
+@*         background-color: #f0f4f7; *@
+@*         font-family: 'Arial', sans-serif; *@
+@*     } *@
+@* *@
+@*     .card { *@
+@*         border: none; *@
+@*         border-radius: 16px; *@
+@*         background-color: #ffffff; *@
+@*         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05); *@
+@*         transition: box-shadow 0.3s ease; *@
+@*     } *@
+@* *@
+@*     .card:hover { *@
+@*         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); *@
+@*     } *@
+@* *@
+@*     .card-title { *@
+@*         font-weight: 600; *@
+@*         font-size: 1.2rem; *@
+@*         color: #2d3748; *@
+@*     } *@
+@* *@
+@*     .btn-custom { *@
+@*         background-color: rgb(13, 110, 253); *@
+@*         color: white; *@
+@*         border-radius: 8px; *@
+@*         padding: 0.6rem 1.4rem; *@
+@*         font-size: 1rem; *@
+@*     } *@
+@* *@
+@*     .btn-custom:hover { *@
+@*         background-color: rgba(13, 110, 253, 0.9); *@
+@*     } *@
+@* *@
+@*     .icon-circle { *@
+@*         display: flex; *@
+@*         justify-content: center; *@
+@*         align-items: center; *@
+@*         width: 60px; *@
+@*         height: 60px; *@
+@*         border-radius: 50%; *@
+@*         background-color: rgb(13, 110, 253); *@
+@*         color: white; *@
+@*         font-size: 28px; *@
+@*         margin-bottom: 15px; *@
+@*     } *@
+@* *@
+@*     .section-title { *@
+@*         font-weight: 600; *@
+@*         font-size: 1.4rem; *@
+@*         color: rgb(13, 110, 253); *@
+@*         margin: 1.5rem 0 1rem; *@
+@*         text-align: center; *@
+@*     } *@
+@* *@
+@*     .centered-content { *@
+@*         display: flex; *@
+@*         justify-content: center; *@
+@*         align-items: center; *@
+@*         text-align: center; *@
+@*     } *@
+@* *@
+@*     .list-unstyled li { *@
+@*         margin-bottom: 0.4rem; *@
+@*         font-size: 1rem; *@
+@*         color: #4a5568; *@
+@*     } *@
+@* *@
+@*     h2 { *@
+@*         font-size: 2rem; *@
+@*         color: rgb(13, 110, 253); *@
+@*         font-weight: bold; *@
+@*         margin-bottom: 2rem; *@
+@*     } *@
+@* *@
+@*     .card p { *@
+@*         color: #718096; *@
+@*     } *@
+@* *@
+@*     .container { *@
+@*         max-width: 960px; *@
+@*     } *@
+@* *@
+@*     .btn-outline-custom { *@
+@*         background-color: transparent; *@
+@*         border: 1px solid rgb(13, 110, 253); *@
+@*         color: rgb(13, 110, 253); *@
+@*         border-radius: 8px; *@
+@*         padding: 0.6rem 1.4rem; *@
+@*     } *@
+@* *@
+@*     .btn-outline-custom:hover { *@
+@*         background-color: rgb(13, 110, 253); *@
+@*         color: white; *@
+@*     } *@
+@* </style> *@
+
+@model PatientActionsModel
+
+<div class="container my-5">
+    <h2 class="text-center">Patients Actions</h2>
+
+    <!-- Patient Information -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-person"></i>
+                </div>
+                <h5 class="card-title">Patient Information</h5>
+                <ul class="list-unstyled mb-0">
+                    <li><strong>Name:</strong> @(Model.FirstName + ' ' + Model.LastName)</li>
+                    <li><strong>Date Of Birth:</strong> @Model.DateOfBirth</li>
+                    <li><strong>Blood Group:</strong> @Model.BloodGroup</li>
+                    <li><strong>Chronic Diseases:</strong> @Model.ChronicDiseases</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Links to Related Data -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-clock-history"></i>
+                </div>
+                <h5 class="card-title">Medical Records</h5>
+                <p>View Patient's Medical Records</p>
+                <a href="@Url.Action("PatientMedicalRecord", "Patient", new { Id = Model.Id })" class="btn btn-custom">View Medical Records</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-day"></i>
+                </div>
+                <h5 class="card-title">Visits</h5>
+                <p>View Patient's Visits</p>
+                <a href="@Url.Action("PatientVisits", "Patient", new { Id = Model.Id })" class="btn btn-custom">View Visits</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-event"></i>
+                </div>
+                <h5 class="card-title">Appointments</h5>
+                <p>View Patient's Appointments</p>
+                <a href="@Url.Action("PatientAppointments", "Patient", new { Id = Model.Id })" class="btn btn-custom">View Appointments</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-calendar-event"></i>
+                </div>
+                <h5 class="card-title">Creating a Visit</h5>
+                <p>Creating a Visit For a Patient</p>
+                <a href="@Url.Action("CreateVisit", "Admin", new { PatientId = Model.Id })" class="btn btn-custom">Create</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-arrow-repeat"></i>
+                </div>
+                <h5 class="card-title">Creating A Bill</h5>
+                <p>Creating a Bill For a Patient</p>
+                <a href="@Url.Action("CreateBill", "Admin", new { PatientId = Model.Id })" class="btn btn-custom">Create</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-journal-plus"></i>
+                </div>
+                <h5 class="card-title">Creating An Admission</h5>
+                <p>Creating an Admission For a Patient</p>
+                <a href="@Url.Action("ChooseRoom", "Admin", new { Id = Model.Id })" class="btn btn-custom">Create</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Options -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-clipboard-data"></i>
+                </div>
+                <h5 class="card-title">Creating An Insurance</h5>
+                <p>Creating an Insurance For a Patient</p>
+                <a href="@Url.Action("CreateInsurance", "Admin", new { PatientId = Model.Id })" class="btn btn-custom">Create</a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-4 text-center">
+                <div class="icon-circle">
+                    <i class="bi bi-journal"></i>
+                </div>
+                <h5 class="card-title">Emergency Contact</h5>
+                <p>Creating an Emergency Contact For a Patient</p>
+                <a href="@Url.Action("CreateEmergencyContact", "Admin", new { PatientId = Model.Id })" class="btn btn-custom">Create</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-custom {
+        background-color: #0d6efd;
+        color: #fff;
+        border-radius: 10px;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        font-weight: bold;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-custom:hover {
+        background-color: #0a58ca;
+        transform: scale(1.05);
+    }
+
+    .icon-circle {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: #0d6efd;
+        color: white;
+        font-size: 30px;
+        margin: 0 auto 15px;
+    }
+
+    .card {
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    }
+
+    h5.card-title {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #343a40;
+    }
+
+    p {
+        color: #6c757d;
+    }
+</style>

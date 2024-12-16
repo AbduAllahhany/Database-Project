@@ -29,6 +29,15 @@ public class AdminService : IAdminService
         _doctorService = doctorService;
     }
 
+    public PatientActionsModel GetPatientById(Guid patientId)
+    {
+        IEnumerable<PatientActionsModel> query = _context.Database.SqlQuery<PatientActionsModel>($@"
+            SELECT TOP(1) Id, firstName [FirstName], lastName [LastName], dateOfBirth [DateOfBirth], bloodGroup [BloodGroup], chronicDiseases [ChronicDiseases]
+            FROM Patient            
+            WHERE Id = {patientId}").ToList();
+        return query.FirstOrDefault();
+    }
+    
     public async Task<int> AdminCreateAsync(AdminCreateModel model)
     {
         var user = new ApplicationUser

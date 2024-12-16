@@ -9,9 +9,9 @@
     </div>
 
     <!-- Summary Cards -->
-    <div class="row">
+    <div class="row text-center">
         <!-- Total Appointments Card -->
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mx-auto">
             <div class="card border-0 shadow-sm rounded-lg" style="background-color: #C1E1FF;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
@@ -24,7 +24,7 @@
         </div>
 
         <!-- Approved Appointments Card -->
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mx-auto">
             <div class="card border-0 shadow-sm rounded-lg" style="background-color: #C8F7C5;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
@@ -37,7 +37,7 @@
         </div>
 
         <!-- Pending Appointments Card -->
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mx-auto">
             <div class="card border-0 shadow-sm rounded-lg" style="background-color: #FFF3CD;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
@@ -50,7 +50,7 @@
         </div>
 
         <!-- Rejected Appointments Card -->
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mx-auto">
             <div class="card border-0 shadow-sm rounded-lg" style="background-color: #FFDDC1;">
                 <div class="card-body d-flex justify-content-between align-items-center">
                     <div>
@@ -58,6 +58,19 @@
                         <p class="display-6 font-weight-bold text-dark">@Model.RejectedAppointments</p>
                     </div>
                     <i class="fas fa-times-circle fa-3x text-muted"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completed Appointments Card -->
+        <div class="col-lg-2 col-md-4 col-sm-6 mb-4 mx-auto">
+            <div class="card border-0 shadow-sm rounded-lg" style="background-color: #D1C4E9;">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-secondary">Completed Appointments</h6>
+                        <p class="display-6 font-weight-bold text-dark">@Model.CompletedAppointments</p>
+                    </div>
+                    <i class="fas fa-check-square fa-3x text-muted"></i>
                 </div>
             </div>
         </div>
@@ -103,6 +116,10 @@
                         <tr>
                             <td>Rejected Appointments</td>
                             <td>@Model.RejectedAppointments</td>
+                        </tr>
+                        <tr>
+                            <td>Completed Appointments</td>
+                            <td>@Model.CompletedAppointments</td>
                         </tr>
                         </tbody>
                     </table>
