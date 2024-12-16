@@ -48,11 +48,11 @@ public class StaffService : IStaffService
     {
         var res = _context.Database.SqlQuery<StaffModel>($"""
                                                           SELECT Top(1) Id as Id ,firstName as FirstName, lastName as LastName,
-                                                          startSchedule as StartSchedule, endSchedule as EndSchedule, role As Role,dayOfWork As DayOfWork
+                                                          startSchedule as StartSchedule, endSchedule as EndSchedule, role As Role,dayOfWork As DayOfWork,UserID
                                                           from Staff
                                                           where Id = {Id} 
                                                           """);
-        
+
         var temp = await res.ToListAsync();
         return res.FirstOrDefault() ?? null;
     }
@@ -67,12 +67,24 @@ public class StaffService : IStaffService
     public async Task<IEnumerable<StaffModel>> GetAllTask()
     {
         var res = _context.Database.SqlQuery<StaffModel>($"""
-                            select Id as Id,firstName as FirstName, lastName as LastName, role as Role, endSchedule as EndSchedule, 
-                                   startSchedule as StartSchedule,dayOfWork as DayOfWork
-                            from Staff
-                            """);
+                                                          select Id as Id,firstName as FirstName, lastName as LastName, role as Role, endSchedule as EndSchedule, 
+                                                                 startSchedule as StartSchedule,dayOfWork as DayOfWork,UserID
+                                                          from Staff
+                                                          """);
         var temp = await res.ToListAsync();
         return temp ?? null;
     }
+
+    public async Task<ApplicationUser> GetUserByIdAsync(Guid? staffId = null)
+    {
+        var userId = await _context.Database.SqlQuery<Guid>($"""
+                                                             select UserId from dbo.Staff
+                                                             where Id = {staffId}
+                                                             """).ToListAsync();
+        if (userId == null) return null;
+        var user = await _userManager.FindByIdAsync(userId.FirstOrDefault().ToString());
+        return user;
+    }
+
 }
 

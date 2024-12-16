@@ -9,6 +9,7 @@ public interface IStaffService
     public Task<int> EditStaffAsync(StaffEditModel model);
     public Task<int> GetStaffCountAsync();
     public Task<StaffModel> GetStaffByIdAsync(Guid? Id);
-    public  Task<IEnumerable<StaffModel>> GetAllTask();
+    public Task<IEnumerable<StaffModel>> GetAllTask();
+    public Task<ApplicationUser> GetUserByIdAsync(Guid? staffId = null);
 }
 

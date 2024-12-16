@@ -9,12 +9,13 @@ public class RegisterModel
 {
     [Required]
     [Display(Name = "Username")]
-    [UniqueUsername]
+    [UniqueUsername("")]
+    [Username]
     public string UserName { get; set; }
 
     [Required] 
     [EmailAddress] 
-    [UniqueEmail]
+    [UniqueEmail("")]
     public string Email { get; set; }
 
     [Required]
@@ -31,7 +32,7 @@ public class RegisterModel
     public DateOnly DateOfBirth { get; set; } = DateOnly.FromDateTime(DateTime.Now);
     
     [Required] 
-    [NationalID] 
+    [NationalID]
     public string SSN { get; set; }
     [Required]
     [DataType(DataType.Password)]

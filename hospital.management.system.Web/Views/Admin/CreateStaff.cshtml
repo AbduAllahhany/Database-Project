@@ -109,8 +109,8 @@
                             <label asp-for="DayOfWork" class="form-label"></label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
-                                <select asp-for="DayOfWork" class="form-control"
-                                        asp-items="Html.GetEnumSelectList<DayOfWeek>()"></select>
+                                <select asp-for="DayOfWork" class="form-control" asp-items="Html.GetEnumSelectList<DayOfWeek>()"></select>
+
                             </div>
                             <span asp-validation-for="DayOfWork" class="text-danger"></span>
                         </div>

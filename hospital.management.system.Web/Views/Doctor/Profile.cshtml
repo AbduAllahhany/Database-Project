@@ -5,21 +5,16 @@
 }
 
 <h2 class="mt-5 text-center">Doctor Profile</h2>
-<div class=" container col-md-8">
+<div class="container col-md-8">
     <!-- Basic Information Section -->
     <h5 class="mt-3"><i class="fas fa-user"></i> Basic Information</h5>
     <ul class="list-group mb-4">
-        
         <li class="list-group-item">
             <i class="fas fa-user-circle"></i> Name: @Model.UserName
         </li>
 
         <li class="list-group-item">
-            <i class="fas fa-user-circle"></i> First Name: @Model.FirstName
-        </li>
-
-        <li class="list-group-item">
-            <i class="fas fa-user-circle"></i> Last Name: @Model.LastName
+            <i class="fas fa-user-circle"></i> Full Name: @Model.Name
         </li>
 
         <li class="list-group-item">
@@ -39,7 +34,6 @@
             <span class="badge @(Model.IsEmailConfirmed ? "bg-success" : "bg-danger")">
                 @(Model.IsEmailConfirmed ? "Confirmed" : "Not Confirmed")
             </span>
-            <!-- Button to confirm email -->
             @if (!Model.IsEmailConfirmed)
             {
                 <a class="btn btn-link" href=@Url.Action("ConfirmEmailMessage", "Account")>
@@ -53,7 +47,6 @@
             <span class="badge @(Model.IsTwoFactorEnabled ? "bg-success" : "bg-danger")">
                 @(Model.IsTwoFactorEnabled ? "Enabled" : "Disabled")
             </span>
-            <!-- Button to enable two-factor authentication -->
             @if (!Model.IsTwoFactorEnabled)
             {
                 <a href="@Url.Action("EnableAuthenticator", "Account")" class="btn btn-link">
@@ -61,14 +54,22 @@
                 </a>
             }
         </li>
+
+        <li class="list-group-item">
+            <i class="fas fa-hospital"></i> Department: @Model.DepartmentName
+        </li>
+
+        <li class="list-group-item">
+            <i class="fas fa-stethoscope"></i> Specialization: @Model.Specialization
+        </li>
     </ul>
-    
+
     <div class="row mb-4 centered-content">
-        <a class="btn btn-outline-custom" href=@Url.Action("Edit","Doctor", new {Id = @Model.Id})>Edit Profile</a>
+        <a class="btn btn-outline-custom" href=@Url.Action("Edit", "Doctor", new { Id = @Model.Id })>Edit Profile</a>
     </div>
-    
+
     <div class="row mb-4 centered-content">
-        <a href=@Url.Action("ForgotPassword","Account") class="btn btn-outline-custom">Forget Password</a>
+        <a href=@Url.Action("ForgotPassword", "Account") class="btn btn-outline-custom">Forget Password</a>
     </div>
 </div>
 
@@ -171,6 +172,5 @@
     }
 </style>
 
-<!-- Optional: Include Bootstrap JS if needed -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

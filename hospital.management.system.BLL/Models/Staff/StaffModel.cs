@@ -11,10 +11,10 @@ public class StaffModel
     [Display(Name = "Last Name")] public string LastName { get; set; }
 
     [ValidRole(SD.Nurse, SD.Intern, SD.OfficeBoy)]
-    public string Role { get; set; }
+    public string? Role { get; set; }
 
     [Display(Name = "StartSchedule")] public TimeOnly StartSchedule { get; set; }
     [Display(Name = "EndSchedule")] public TimeOnly EndSchedule { get; set; }
     [Display(Name = "Day of Work")] public byte DayOfWork { get; set; }
-
+    [Required] public Guid UserId { get; set; }
 }

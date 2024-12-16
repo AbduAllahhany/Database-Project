@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <form asp-action="Edit" asp-controller="Doctor" method="post" class="needs-validation" novalidate>
                         <div asp-validation-summary="All" class="text-danger"></div>
-                        <input type="hidden" asp-for=Id value=@Model.Id />
+                        <input type="hidden" asp-for=UserId value=@Model.UserId />
                         <!-- User Name -->
                         <div class="mb-3">
                             <label asp-for="UserName" class="form-label"></label>
@@ -42,6 +42,16 @@
                                 <input asp-for="LastName" class="form-control" placeholder="Enter your Last Name" />
                             </div>
                             <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                <input asp-for="PhoneNumber" class="form-control" placeholder="Enter your phone number" />
+                            </div>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                         </div>
                         <!-- Submit Button -->
                         <div class="text-center">

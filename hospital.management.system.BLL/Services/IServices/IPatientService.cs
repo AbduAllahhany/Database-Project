@@ -19,10 +19,10 @@ public interface IPatientService
     public List<PatientEmergancyContact> GetPatientEmergancyContacts(Guid patientId);
     public int DeletePatient(Guid patientId);
     public List<Patient> GetAllPetient();
-    public Task<GetPatientProfileModel> GetPatientById(Guid? Id);
+    public Task<GetPatientProfileModel> PatientProfileDataByIdAsync(Guid? Id);
     public Task<int> GetPatientsCountAsync();
     public Task<int> AddPatientPhoneNumberAsync(Guid? patientId, string phoneNumber);
     public Task<int> EditPatientAsync(PatientEditModel? model);
-   
+    public Task<ApplicationUser> GetUserByIdAsync(Guid userId);
     //public void MarkPatientAppoinment(Appointment appoinment);
 }

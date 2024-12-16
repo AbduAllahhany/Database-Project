@@ -20,12 +20,12 @@ public class PatientCreateModel
 
     [Required] 
     [EmailAddress] 
-    [UniqueEmail]
+    [UniqueEmail("")]
     public string Email { get; set; }
 
     [Required]
     [EgyptianPhoneNumber]
-    [UniquePhoneNumber]
+    [UniquePhoneNumber("")]
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
 
@@ -40,7 +40,7 @@ public class PatientCreateModel
 
     [Required]
     [Username]
-    [UniqueUsername]
+    [UniqueUsername("")]
     [Display(Name = "Username")]
     public string? UserName { get; set; }
 
