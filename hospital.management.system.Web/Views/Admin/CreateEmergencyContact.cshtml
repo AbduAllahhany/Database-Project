@@ -12,14 +12,19 @@
                     <h3 class="card-title">Create Emergency Contact</h3>
                 </div>
                 <div class="card-body">
-                    <form asp-action="CreateEmergencyContact" asp-controller="Admin" method="post" class="needs-validation" novalidate>
-                        <input type="hidden" asp-for="PatientId" />
+                    <form asp-action="CreateEmergencyContact" asp-controller="Admin" method="post"
+                          class="needs-validation" novalidate>
+                        <input type="hidden" asp-for="PatientId"/>
                         <div asp-validation-summary="All" class="text-danger"></div>
 
                         <!-- Name -->
                         <div class="mb-3">
                             <label asp-for="Name" class="form-label"></label>
-                            <input asp-for="Name" class="form-control" placeholder="Enter Full Name" />
+                            <div class="input-group">
+
+                                <span class="input-group-text"><i class="fas fa-user-circle"></i></span>
+                                <input asp-for="Name" class="form-control" placeholder="Enter Full Name"/>
+                            </div>
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
 
@@ -28,15 +33,19 @@
                             <label asp-for="Phone" class="form-label"></label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                <input asp-for="Phone" class="form-control" placeholder="Enter Phone Number" />
+                                <input asp-for="Phone" class="form-control" placeholder="Enter Phone Number"/>
                             </div>
                             <span asp-validation-for="Phone" class="text-danger"></span>
                         </div>
-
+                        
                         <!-- Relationship -->
                         <div class="mb-3">
                             <label asp-for="RelationShip" class="form-label"></label>
-                            <input asp-for="RelationShip" class="form-control" placeholder="Enter Relationship (e.g., Spouse, Parent)" />
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-users"></i></span>
+                                <input asp-for="RelationShip" class="form-control"
+                                       placeholder="Enter Relationship (e.g., Spouse, Parent)"/>
+                            </div>
                             <span asp-validation-for="RelationShip" class="text-danger"></span>
                         </div>
 
@@ -52,7 +61,7 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScriptsPartial"/>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 }
 

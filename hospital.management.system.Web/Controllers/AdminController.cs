@@ -450,18 +450,6 @@ public class AdminController : Controller
         IEnumerable<Doctor> doctors = _doctorService.GetAllDoctors();
         return !doctors.IsNullOrEmpty() ? View(doctors) : View("Error");
     }
-
-    public async Task<IActionResult> Appointments()
-    {
-        var appointments = await _adminService.GetAppointmentsByUsernamesAsync();
-        return !appointments.IsNullOrEmpty() ? View(appointments) : View("Error");
-    }
-
-    public IActionResult Patients()
-    {
-        IEnumerable<Patient> patients = _patientService.GetAllPetient();
-        return !patients.IsNullOrEmpty() ? View(patients) : View("Error");
-    }
     
     public IActionResult DeleteStaff(Guid staffId)
     {
