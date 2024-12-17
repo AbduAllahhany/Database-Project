@@ -43,7 +43,7 @@
                             <!-- Status Column -->
                             <td class="text-center">
                                 <span class="@(Appointment.Status == SD.Pending ? "text-warning" : Appointment.Status == SD.Approved ? "text-success" : "text-danger")">
-                                    @Appointment.Status.ToString()
+                                    @Appointment.Status
                                 </span>
                             </td>
                         </tr>

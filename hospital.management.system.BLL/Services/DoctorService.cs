@@ -86,23 +86,14 @@ public class DoctorService : IDoctorService
         return query;
     }
 
-    // How --> DoctorCancelingAppointmentModel???????????????????????
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="model"></param>
-    /// <returns></returns>
-    public int ApproveNextAppointment(DoctorCancelingAppointmentModel model)
+    public int ApproveNextAppointment(Guid appointmentId)
     {
-        var sql = $@"
-            UPDATE Patient_Doctor_Appointment
-            SET status = 'Approved'
-            WHERE Id IN (
-	            SELECT A.Id
-	            FROM Patient P, Patient_Doctor_Appointment A
-	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND LOWER(A.status) = 'pending'
-            )";
-        var res = _context.Database.ExecuteSqlRaw(sql, model.SelectedPatientId, model.LoggedDoctorId);
+        var sql = $"""
+                               UPDATE Patient_Doctor_Appointment
+                               SET status = 'Approved'
+                               WHERE Id = @p0
+                   """;
+        var res = _context.Database.ExecuteSqlRaw(sql, appointmentId);
         return res;
     }
 
@@ -123,17 +114,15 @@ public class DoctorService : IDoctorService
         return res;
     }
 
-    public int CancelingAppointment(DoctorCancelingAppointmentModel model)
+    public int CancelingAppointment(Guid Id)
     {
-        var sql = $@"
-            UPDATE Patient_Doctor_Appointment
-            SET status = 'Rejected'
-            WHERE Id IN (
-	            SELECT A.Id
-	            FROM Patient P, Patient_Doctor_Appointment A
-	            WHERE A.patientId = (@p0) AND A.doctorId = (@p1) AND LOWER(A.status) = 'pending'
-            )";
-        var res = _context.Database.ExecuteSqlRaw(sql, model.SelectedPatientId, model.LoggedDoctorId);
+        var sql = $"""
+                               UPDATE Patient_Doctor_Appointment
+                               SET status = 'Rejected'
+                               WHERE Id=@p0
+                               )
+                   """;
+        var res = _context.Database.ExecuteSqlRaw(sql,Id);
         return res;
     }
 
@@ -242,6 +231,7 @@ public class DoctorService : IDoctorService
         //update 
         user.UserName = model.UserName;
         user.PhoneNumber = model.PhoneNumber;
+       await _context.SaveChangesAsync();
         string sqlcommand1 =
             $"""
              Update Doctor 

@@ -8,14 +8,13 @@ namespace hospital.management.system.BLL.Filters
     {
         public string? UserIdPropertyName { get; }
 
-        public UniqueEmailAttribute(string userIdPropertyName = "")
+        public UniqueEmailAttribute(string userIdPropertyName ="")
         {
             UserIdPropertyName = userIdPropertyName;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (UserIdPropertyName == "") return ValidationResult.Success;
             var userManager =
                 (UserManager<ApplicationUser>)validationContext.GetService(typeof(UserManager<ApplicationUser>));
             if (userManager == null)
@@ -30,13 +29,14 @@ namespace hospital.management.system.BLL.Filters
             }
 
             // Get the current user's ID from the specified property
-            var userIdProperty = validationContext.ObjectType.GetProperty("UserId");
-            if (userIdProperty == null)
+            var userIdProperty = validationContext.ObjectType.GetProperty(UserIdPropertyName);
+            Guid userId = Guid.Empty;
+            if (userIdProperty != null)
             {
-                return ValidationResult.Success;
+                var temp = userIdProperty.GetValue(validationContext.ObjectInstance, null) as Guid?;
+                userId = temp ?? Guid.Empty;
             }
 
-            var userId = userIdProperty.GetValue(validationContext.ObjectInstance, null) as Guid?;
 
             // Check if the email is already in use by another user
             var existingUser = userManager.FindByEmailAsync(email).Result;

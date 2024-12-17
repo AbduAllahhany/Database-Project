@@ -13,7 +13,7 @@ public static class DataBaseSeed
         UserManager<ApplicationUser> userManager,
         RoleManager<IdentityRole<Guid>> roleManager)
     {
-      
+
         if (!context.Rooms.Any())
         {
             var roomTypes = new[] { "Single", "Double", "VIP", "Suite" }; // Room types
@@ -134,9 +134,17 @@ public static class DataBaseSeed
             context.Departments.AddRange(departments);
             await context.SaveChangesAsync();
         }
-        
-     /*   if (!userManager.Users.Any())
+
+        var keyValues = context.Departments.ToDictionary(d => d.Name, d => d.Id);
+        SD.Departments = keyValues;
+
+        if (!userManager.Users.Any())
         {
+            await roleManager.CreateAsync(new IdentityRole<Guid>
+            {
+                Name = SD.Nurse,
+                NormalizedName = SD.OfficeBoy.ToUpper(),
+            });
             await roleManager.CreateAsync(new IdentityRole<Guid>
             {
                 Name = SD.Admin,
@@ -167,7 +175,7 @@ public static class DataBaseSeed
                 Name = SD.Patient,
                 NormalizedName = SD.Patient.ToUpper(),
             });
-            /*var admin = new ApplicationUser
+            var admin = new ApplicationUser
             {
                 UserName = "admin",
                 Email = "admin@admin.com",
@@ -176,7 +184,7 @@ public static class DataBaseSeed
                 Gender = Gender.Male,
             };
             await userManager.CreateAsync(admin, "Admin123.?");
-            
+
             var doctor = new ApplicationUser
             {
                 UserName = "doctor",
@@ -186,10 +194,10 @@ public static class DataBaseSeed
                 Gender = Gender.Male,
             };
             await userManager.CreateAsync(doctor, "Admin123.?");
-
             await userManager.AddToRoleAsync(admin, SD.Admin);
             await userManager.AddToRoleAsync(doctor, SD.Doctor);
-            
+
+            await context.SaveChangesAsync();
 
             context.Doctors.Add(new Doctor()
             {
@@ -205,20 +213,7 @@ public static class DataBaseSeed
                 StartSchedule = default,
             });
             await context.SaveChangesAsync();
-        }*/
-        var keyValues = context.Departments.ToDictionary(d => d.Name, d => d.Id);
-        SD.Departments = keyValues;
-        var admin = new ApplicationUser
-        {
-            UserName = "admin",
-            Email = "admin@admin.com",
-            SSN = "123456",
-            EmailConfirmed = true,
-            Gender = Gender.Male,
-        };
-        await userManager.CreateAsync(admin, "Admin123.?");
-        await userManager.AddToRoleAsync(admin, SD.Admin);
-
+        }
     }
 
     public static async Task SeedDatabaseAsync(IServiceProvider services)

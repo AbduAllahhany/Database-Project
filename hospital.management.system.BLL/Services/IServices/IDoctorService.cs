@@ -14,11 +14,11 @@ public interface IDoctorService
     public IEnumerable<DoctorAppoinment> GetDailyAppointments(Guid loggedDoctorId);
 
     //???????????????????????????????????????
-    public int ApproveNextAppointment(DoctorCancelingAppointmentModel loggedDoctorId);
+    public int ApproveNextAppointment(Guid appointmentId);
 
     public int PostponingAppointment(Guid loggedDoctorId);
 
-    public int CancelingAppointment(DoctorCancelingAppointmentModel model);
+    public int CancelingAppointment(Guid Id);
 
     public IEnumerable<DoctorAppoinment> GetNextAppointmentInfo(Guid loggedDoctorId);
 

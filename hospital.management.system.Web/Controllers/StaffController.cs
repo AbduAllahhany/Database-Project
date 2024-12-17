@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using hospital.management.system.BLL.Models.Staff;
+using hospital.management.system.BLL.Services.IServices;
 using hospital.management.system.DAL;
 using hospital.management.system.DAL.Persistence;
 using hospital.management.system.Models.Entities;
@@ -15,13 +16,16 @@ public class StaffController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ApplicationDbContext _context;
+    private readonly IStaffService _staffService;
+
 
     public StaffController(
         IUnitOfWork unitOfWork,
-        ApplicationDbContext context)
+        ApplicationDbContext context, IStaffService staffService)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         _context = context ?? throw new ArgumentNullException(nameof(context));
+        _staffService = staffService;
     }
 
 
@@ -40,7 +44,6 @@ public class StaffController : Controller
         }
 
         var staff = (_context.Staff.FirstOrDefault(e => e.UserId == id));
-        //var staff =_context.Patients.FromSqlInterpolated($@"select * from Staff where UserId={id}").FirstOrDefault();
         if (staff == null || staff.Id == Guid.Empty)
         {
             throw new InvalidOperationException("Patient is not authenticated or the NameIdentifier claim is missing.");
@@ -50,15 +53,12 @@ public class StaffController : Controller
     }
 
     // GET
-    public IActionResult Index()
-    {
-        return View();
-    }
 
-    public IActionResult StaffDashboard(Guid staffId)
+    public IActionResult Dashboard(Guid staffId)
     {
         try
-        { ;
+        {
+            ;
             // Fetch staff details using LINQ
             Staff staff = _context.Staff
                 .FirstOrDefault(s => s.Id == staffId);
@@ -96,6 +96,35 @@ public class StaffController : Controller
             // Log exception (optional)
             return StatusCode(500, "Internal server error: " + ex.Message);
         }
+    }
+
+    public async Task<IActionResult> Profile()
+    {
+        var staff = await _staffService.GetStaffByIdAsync(GetStaffId());
+        var user = await _staffService.GetUserByIdAsync(GetStaffId());
+        return View();
+    }
+
+    public async Task<IActionResult> Edit()
+    {
+        var staff = await _staffService.GetStaffByIdAsync(GetStaffId());
+        var user = await _staffService.GetUserByIdAsync(GetStaffId());
+        var model = new StaffEditModel()
+        {
+            Id = staff.Id,
+            FirstName = staff.FirstName,
+            LastName = staff.LastName,
+            PhoneNumber = user.PhoneNumber,
+            Username = user.UserName,
+        };
+        return View(model);
+    }
+
+    public async Task<IActionResult> Edit(StaffEditModel model)
+    {
+        if (!ModelState.IsValid) return View(model);
+        var res = await _staffService.EditStaffAsync(model);
+        return res == 1 ? RedirectToAction("Profile") : View("Error");
     }
 }
     

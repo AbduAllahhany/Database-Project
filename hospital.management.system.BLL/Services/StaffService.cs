@@ -30,11 +30,12 @@ public class StaffService : IStaffService
         var user = await _userManager.FindByIdAsync(model.Id.ToString());
         //update
         user.UserName = model.Username;
-
+        user.PhoneNumber = model.PhoneNumber;
+        await _context.SaveChangesAsync();
 
         string sqlcommand1 =
             $"""
-              Update Staff SET firstName =@p0,lastName=@p1,role=@p2,
+              Update Staff SET firstName =@p0,lastName=@p1
               where Id=@p3
              """;
         var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,

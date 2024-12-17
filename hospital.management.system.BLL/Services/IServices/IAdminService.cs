@@ -38,7 +38,7 @@ public interface IAdminService
     public Task<int> CreateEmergencyContactAsync(EmergencyContactCreateModel model);
 
     //public Task<int> EditStaffAsync(StaffEditModel model);
-    public Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAppointmentsByUsernamesAsync();
+    public Task<IEnumerable<GetAllAppointmentsResponseModel>>? GetAppointmentsByUsernamesAsync();
     public Task<int> AdminEditPatientAsync(AdminEditPatientModel model);
     public Task<int> AdminEditDoctortAsync(AdminEditDoctorModel model);
     public Task<int> AdminEditStaffAsync(AdminEditStaffModel model);
