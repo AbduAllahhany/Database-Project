@@ -135,7 +135,7 @@ public static class DataBaseSeed
             await context.SaveChangesAsync();
         }
         
-     /*   if (!userManager.Users.Any())
+        if (!userManager.Users.Any())
         {
             await roleManager.CreateAsync(new IdentityRole<Guid>
             {
@@ -154,6 +154,11 @@ public static class DataBaseSeed
             });
             await roleManager.CreateAsync(new IdentityRole<Guid>
             {
+                Name = SD.OfficeBoy,
+                NormalizedName = SD.Intern.ToUpper(),
+            });
+            await roleManager.CreateAsync(new IdentityRole<Guid>
+            {
                 Name = SD.SuperAdmin,
                 NormalizedName = SD.SuperAdmin.ToUpper(),
             });
@@ -167,7 +172,7 @@ public static class DataBaseSeed
                 Name = SD.Patient,
                 NormalizedName = SD.Patient.ToUpper(),
             });
-            /*var admin = new ApplicationUser
+            var admin = new ApplicationUser
             {
                 UserName = "admin",
                 Email = "admin@admin.com",
@@ -189,6 +194,7 @@ public static class DataBaseSeed
 
             await userManager.AddToRoleAsync(admin, SD.Admin);
             await userManager.AddToRoleAsync(doctor, SD.Doctor);
+            await context.SaveChangesAsync();
             
 
             context.Doctors.Add(new Doctor()
@@ -205,20 +211,21 @@ public static class DataBaseSeed
                 StartSchedule = default,
             });
             await context.SaveChangesAsync();
-        }*/
+        }
+        
         var keyValues = context.Departments.ToDictionary(d => d.Name, d => d.Id);
         SD.Departments = keyValues;
-        var admin = new ApplicationUser
-        {
-            UserName = "admin",
-            Email = "admin@admin.com",
-            SSN = "123456",
-            EmailConfirmed = true,
-            Gender = Gender.Male,
-        };
-        await userManager.CreateAsync(admin, "Admin123.?");
-        await userManager.AddToRoleAsync(admin, SD.Admin);
-
+        
+        // var admin = new ApplicationUser
+        // {
+        //     UserName = "admin",
+        //     Email = "admin@admin.com",
+        //     SSN = "123456",
+        //     EmailConfirmed = true,
+        //     Gender = Gender.Male,
+        // };
+        // await userManager.CreateAsync(admin, "Admin123.?");
+        // await userManager.AddToRoleAsync(admin, SD.Admin);
     }
 
     public static async Task SeedDatabaseAsync(IServiceProvider services)

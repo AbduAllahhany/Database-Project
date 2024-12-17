@@ -131,8 +131,19 @@
 else
 {
     <div class="container mt-5">
-        <div class="alert alert-warning">
-            No Staffs found.
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-right mb-3">
+                <form asp-controller="Admin" asp-action="createstaff" method="get">
+                    <button type="submit" class="btn btn-secondary add-new-btn-sm">
+                        <i class="fas fa-user-plus"></i> Add Staff
+                    </button>
+                </form>
+            </div>
+            <div class="col-md-10">
+                <div class="alert alert-warning text-right">
+                    No Doctors found.
+                </div>
+            </div>
         </div>
     </div>
 }

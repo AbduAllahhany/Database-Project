@@ -136,8 +136,19 @@
 else
 {
     <div class="container mt-5">
-        <div class="alert alert-warning">
-            No patients found.
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-right mb-3">
+                <form asp-controller="Admin" asp-action="CreatePatient" method="get">
+                    <button type="submit" class="btn btn-secondary add-new-btn-sm">
+                        <i class="fas fa-user-plus"></i> Add Patient
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="alert alert-warning text-right">
+                No Patients found.
+            </div>
         </div>
     </div>
 }

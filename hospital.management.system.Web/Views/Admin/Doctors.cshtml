@@ -14,7 +14,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-10 text-right mb-3">
                     <form asp-controller="Admin" asp-action="CreateDoctor" method="get">
-                        <button type="submit" class="btn add-new-btn-sm">
+                        <button type="submit" class="btn btn-secondary add-new-btn-sm">
                             <i class="fas fa-user-plus"></i> Add Doctor
                         </button>
                     </form>
@@ -28,7 +28,7 @@
                         <tr>
                             <th scope="col">First Name</th>
                             <th scope="col">Last Name</th>
-                            <th scope="col">Department</th>
+                            @* <th scope="col">Department</th> *@
                             <th scope="col">Specialization</th>
                             <th scope="col">Start Schedule</th>
                             <th scope="col">End Schedule</th>
@@ -42,7 +42,7 @@
                             <tr>
                                 <td>@doctor.FirstName</td>
                                 <td>@doctor.LastName</td>
-                                <td>@doctor.Department</td>
+                                @* <td>@doctor.Department</td> *@
                                 <td>@doctor.Specialization</td>
                                 <td>@doctor.StartSchedule</td>
                                 <td>@doctor.EndSchedule</td>
@@ -128,8 +128,19 @@
 else
 {
     <div class="container mt-5">
-        <div class="alert alert-warning">
-            No Doctors found.
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-right mb-3">
+                <form asp-controller="Admin" asp-action="CreateDoctor" method="get">
+                    <button type="submit" class="btn add-new-btn-sm">
+                        <i class="fas fa-user-plus"></i> Add Doctor
+                    </button>
+                </form>
+            </div>
+            <div class="col-md-10">
+                <div class="alert alert-warning text-right">
+                    No Doctors found.
+                </div>
+            </div>
         </div>
     </div>
 }

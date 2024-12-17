@@ -33,7 +33,6 @@ public class SD
             "Pediatrics",
             "Dermatology",
             "Psychiatry",
-            "General Surgery",
             "Radiology",
             "Anesthesiology",
             "Oncology"

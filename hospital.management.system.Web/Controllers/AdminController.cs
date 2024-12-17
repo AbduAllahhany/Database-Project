@@ -107,6 +107,12 @@ public class AdminController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> CreateDoctor(DoctorCreateModel model)
     {
+        // TimeSpan? timeDifference = model.EndSchedule - model.StartSchedule;
+        // if (timeDifference)
+        // {
+        //     ModelState.AddModelError("EndSchedule", "The End Schedule must be at least 5 hours greater than the Start Schedule.");
+        //     return View(model);
+        // }
         if (!ModelState.IsValid) return View(model);
         var deptid = SD.Departments[model.DepartmentName];
         model.DepartmentId = deptid;
@@ -358,7 +364,7 @@ public class AdminController : Controller
     public IActionResult Patients()
     {
         IEnumerable<Patient> patients = _patientService.GetAllPetient();
-        return !patients.IsNullOrEmpty() ? View(patients) : View("Error");
+        return View(patients);
     }
 
     [HttpGet]
@@ -458,7 +464,7 @@ public class AdminController : Controller
     public IActionResult Doctors()
     {
         IEnumerable<Doctor> doctors = _doctorService.GetAllDoctors();
-        return !doctors.IsNullOrEmpty() ? View(doctors) : View("Error");
+        return View(doctors);
     }
     
     public IActionResult DeleteStaff(Guid staffId)
