@@ -120,7 +120,6 @@ public class DoctorService : IDoctorService
                                UPDATE Patient_Doctor_Appointment
                                SET status = 'Rejected'
                                WHERE Id=@p0
-                               )
                    """;
         var res = _context.Database.ExecuteSqlRaw(sql,Id);
         return res;

@@ -39,7 +39,7 @@ public class DoctorController : Controller
     }
 
     [HttpGet]
-    [Authorize(Roles = SD.Admin + "," + SD.Admin)]
+    [Authorize(Roles = SD.Admin + "," + SD.Doctor)]
     public IActionResult Appointments(Guid? doctorId = null)
     {
         if (doctorId == null)
