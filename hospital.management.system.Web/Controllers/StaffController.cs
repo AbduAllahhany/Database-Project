@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace hospital.management.system.Web.Controllers;
 
-//[Authorize(Roles = SD.Nurse)]     ====>>>> modify this 
+[Authorize(Roles = SD.Nurse+","+SD.OfficeBoy+","+SD.Admin+","+SD.Intern)]  
 public class StaffController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -102,6 +102,18 @@ public class StaffController : Controller
     {
         var staff = await _staffService.GetStaffByIdAsync(GetStaffId());
         var user = await _staffService.GetUserByIdAsync(GetStaffId());
+        var model = new StaffProfileModel()
+        {
+            Name = staff.FirstName + " " + staff.LastName,
+            Email = user.Email,
+            PhoneNumber = user.PhoneNumber,
+            UserName = user.UserName,
+            Role = staff.Role,
+            Gender = user.Gender,
+            IsEmailConfirmed = user.EmailConfirmed,
+            IsTwoFactorEnabled = user.TwoFactorEnabled,
+            NationalIdOrPassport = user.SSN
+        };
         return View();
     }
 

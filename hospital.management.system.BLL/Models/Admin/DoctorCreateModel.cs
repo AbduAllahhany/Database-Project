@@ -26,7 +26,7 @@ public class DoctorCreateModel
 
     [Required] [EgyptianPhoneNumber] 
     [Display(Name = "Phone Number")]
-    [UniquePhoneNumber("")]
+    [UniquePhoneNumber("UserId")]
     public string PhoneNumber { get; set; }
     
     [Display(Name = "National Id")]
@@ -35,7 +35,7 @@ public class DoctorCreateModel
     
     [Required] public Gender Gender { get; set; }
     [Required] [Username] 
-    [UniqueUsername("")]
+    [UniqueUsername("UserId")]
     [Display(Name = "Username")]public string UserName { get; set; }
 
     [Required]

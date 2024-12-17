@@ -8,7 +8,7 @@ namespace hospital.management.system.BLL.Filters
     {
         public string? UserIdPropertyName { get; }
 
-        public UniqueEmailAttribute(string userIdPropertyName ="")
+        public UniqueEmailAttribute(string userIdPropertyName ="UserId")
         {
             UserIdPropertyName = userIdPropertyName;
         }

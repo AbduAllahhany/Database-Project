@@ -65,19 +65,7 @@ public class PatientController : Controller
 
         return patientId.Id;
     }
-
-    public IActionResult Index()
-    {
-        List<Patient> patients = _patientService.GetAllPetient();
-
-        // Check if patients data is null or empty
-        // if (patients == null || !patients.Any())  return Content("No patient Exist"); // Or show a message indicating no patients found
-
-
-        // Pass the list of patients to the view
-        return View("Index", patients);
-    }
-
+    
 // ==> modify links's paramter 
     [Authorize(Roles = SD.Patient)]
     public IActionResult DashBoard()
@@ -190,7 +178,7 @@ public class PatientController : Controller
         return View("Error");
     }
 
-    // [Authorize(Roles = SD.Admin)]
+    [Authorize(Roles = SD.Patient)]
     public IActionResult RoomStatus(Guid patientId)
     {
         PatientRoom RoomStatus = _patientService.GetRoomStatus(patientId);
@@ -213,7 +201,7 @@ public class PatientController : Controller
 
         return View("Error");
     }
-
+    [Authorize(Roles = SD.Patient)]
     [HttpGet]
     public async Task<IActionResult> Profile()
     {
@@ -227,7 +215,7 @@ public class PatientController : Controller
         if (res == null) return View("Error");
         return View(new PatientProfileModel()
         {
-            Id = user.Id,
+            UserId = user.Id,
             Email = user.Email,
             IsEmailConfirmed = user.EmailConfirmed,
             IsTwoFactorEnabled = user.TwoFactorEnabled,
@@ -247,7 +235,6 @@ public class PatientController : Controller
         });
     }
 
-    [Authorize]
     [Authorize(Roles = SD.Admin)]
     public IActionResult DeletePatient(Guid patientId)
     {

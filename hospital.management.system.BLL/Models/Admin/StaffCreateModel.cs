@@ -17,7 +17,7 @@ public class StaffCreateModel
 
     [Display(Name = "Phone Number")]
     [EgyptianPhoneNumber]
-    [UniquePhoneNumber("")]
+    [UniquePhoneNumber("UserId")]
     public string PhoneNumber { get; set; }
 
     [ValidRole(SD.Nurse, SD.Intern, SD.OfficeBoy)]
@@ -26,7 +26,7 @@ public class StaffCreateModel
     [Display(Name = "StartSchedule")] public TimeOnly StartSchedule { get; set; }
     [Display(Name = "EndSchedule")] public TimeOnly EndSchedule { get; set; }
     [Display(Name = "Day of Work")] public byte DayOfWork { get; set; }
-    [UniqueUsername("")] public string Username { get; set; }
+    [UniqueUsername("UserID")] public string Username { get; set; }
     [Display(Name = "Dempartment Name")] public string DepartmentName { get; set; }
     public Guid DepartmentId { get; set; }
     public string SSN { get; set; }

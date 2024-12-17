@@ -1,23 +1,20 @@
-﻿ @model AdminProfileModel 
+﻿@model hospital.management.system.BLL.Models.Staff.StaffProfileModel
 
 @{
-    ViewData["Title"] = "Admin Profile";
+    ViewData["Title"] = "Staff Profile";
 }
 
-<h2 class="mt-5 text-center">Admin Profile</h2>
-<div class=" container col-md-8">
+<h2 class="mt-5 text-center">Staff Profile</h2>
+<div class="container col-md-8">
     <!-- Basic Information Section -->
     <h5 class="mt-3"><i class="fas fa-user"></i> Basic Information</h5>
     <ul class="list-group mb-4">
         <li class="list-group-item">
-            <i class="fas fa-user-circle"></i> Name: @Model.UserName
+            <i class="fas fa-user-circle"></i> Name: @Model.Name
         </li>
         <li class="list-group-item">
             <i class="fas fa-venus-mars"></i> Gender: @Model.Gender
         </li>
-        @* <li class="list-group-item"> *@
-        @*     <i class="fas fa-calendar-alt"></i> Date of Birth: @Model.DateOfBirth?.ToString("dd/MM/yyyy") *@
-        @* </li> *@
         <li class="list-group-item">
             <i class="fas fa-id-card"></i> National ID/Passport: @Model.NationalIdOrPassport
         </li>
@@ -29,10 +26,9 @@
             <span class="badge @(Model.IsEmailConfirmed ? "bg-success" : "bg-danger")">
                 @(Model.IsEmailConfirmed ? "Confirmed" : "Not Confirmed")
             </span>
-            <!-- Button to confirm email -->
             @if (!Model.IsEmailConfirmed)
             {
-                <a class="btn btn-link" href=@Url.Action("ConfirmEmailMessage", "Account")>
+                <a class="btn btn-link" href="@Url.Action("ConfirmEmailMessage", "Account")">
                     <i class="fas fa-envelope-check"></i> Confirm Email
                 </a>
             }
@@ -42,7 +38,6 @@
             <span class="badge @(Model.IsTwoFactorEnabled ? "bg-success" : "bg-danger")">
                 @(Model.IsTwoFactorEnabled ? "Enabled" : "Disabled")
             </span>
-            <!-- Button to enable two-factor authentication -->
             @if (!Model.IsTwoFactorEnabled)
             {
                 <a href="@Url.Action("EnableAuthenticator", "Account")" class="btn btn-link">
@@ -52,15 +47,12 @@
         </li>
     </ul>
     <div class="row mb-4 centered-content">
-        <a class="btn btn-outline-custom" href=@Url.Action("Edit","Admin", new {Id = @Model.UserId})>Edit Profile</a>
-    </div>
-    <div class="row mb-4 centered-content">
-        <a href=@Url.Action("ForgotPassword","Account") class="btn btn-outline-custom">Forget Password</a>
+        <!-- Adjusted Forgot Password Button -->
+        <a class="btn btn-outline-custom" href="@Url.Action("ForgotPassword", "Account")">
+            <i class="fas fa-unlock-alt"></i> Forgot Password
+        </a>
     </div>
 </div>
-
-
-
 
 <style>
     body {
@@ -76,14 +68,8 @@
         transition: box-shadow 0.3s ease;
     }
 
-        .card:hover {
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-
-    .card-title {
-        font-weight: 600;
-        font-size: 1.2rem;
-        color: #2d3748;
+    .card:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
     .btn-custom {
@@ -94,9 +80,22 @@
         font-size: 1rem;
     }
 
-        .btn-custom:hover {
-            background-color: rgba(13, 110, 253, 0.9);
-        }
+    .btn-custom:hover {
+        background-color: rgba(13, 110, 253, 0.9);
+    }
+
+    .btn-outline-custom {
+        background-color: transparent;
+        border: 1px solid rgb(13, 110, 253);
+        color: rgb(13, 110, 253);
+        border-radius: 8px;
+        padding: 0.6rem 1.4rem;
+    }
+
+    .btn-outline-custom:hover {
+        background-color: rgb(13, 110, 253);
+        color: white;
+    }
 
     .icon-circle {
         display: flex;
@@ -126,41 +125,14 @@
         text-align: center;
     }
 
-    .list-unstyled li {
-        margin-bottom: 0.4rem;
-        font-size: 1rem;
-        color: #4a5568;
-    }
-
     h2 {
         font-size: 2rem;
         color: rgb(13, 110, 253);
         font-weight: bold;
         margin-bottom: 2rem;
     }
-
-    .card p {
-        color: #718096;
-    }
-
-    .container {
-        max-width: 960px;
-    }
-
-    .btn-outline-custom {
-        background-color: transparent;
-        border: 1px solid rgb(13, 110, 253);
-        color: rgb(13, 110, 253);
-        border-radius: 8px;
-        padding: 0.6rem 1.4rem;
-    }
-
-        .btn-outline-custom:hover {
-            background-color: rgb(13, 110, 253);
-            color: white;
-        }
 </style>
 
-<!-- Optional: Include Bootstrap JS if needed -->
+<!-- Optional: Include Font Awesome and Bootstrap JS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>

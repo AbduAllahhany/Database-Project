@@ -73,7 +73,7 @@ public class DoctorService : IDoctorService
     public IEnumerable<DoctorMonthlyAppointmentSummary> GetMonthlyAppointmentSummary(Guid loggedDoctorId)
     {
         //var sql = ;
-        IEnumerable<DoctorMonthlyAppointmentSummary> query = _context.Database
+        var query = _context.Database
             .SqlQuery<DoctorMonthlyAppointmentSummary>($@"
             SELECT COUNT(*) AS TotalAppointments,
                 SUM(CASE WHEN LOWER(status) = 'approved' THEN 1 ELSE 0 END) AS ApprovedAppointments,
@@ -81,9 +81,8 @@ public class DoctorService : IDoctorService
                 SUM(CASE WHEN LOWER(status) = 'rejected' THEN 1 ELSE 0 END) AS RejectedAppointments,
                 SUM(CASE WHEN LOWER(status) = 'completed' THEN 1 ELSE 0 END) AS CompletedAppointments
             FROM Patient_Doctor_Appointment A
-            WHERE A.doctorId = {loggedDoctorId} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())")
-            .ToList();
-        return query;
+            WHERE A.doctorId = {loggedDoctorId} AND MONTH(A.date) = MONTH(getDate()) AND YEAR(date) = YEAR(getDate())");
+        return query.ToList();
     }
 
     public int ApproveNextAppointment(Guid appointmentId)

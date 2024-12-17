@@ -20,7 +20,7 @@ public class PatientEditModel
     [Required]
     public DateOnly DateOfBirth { get; set; }
 
-    [UniquePhoneNumber("")]
+    [UniquePhoneNumber("UserId")]
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
 

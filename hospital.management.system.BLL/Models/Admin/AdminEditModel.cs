@@ -6,7 +6,7 @@ namespace hospital.management.system.BLL.Models.Admin;
 
 public class AdminEditModel
 {
-    public Guid? Id { get; set; }
+    public Guid? UserId { get; set; }
 
     [Display(Name = "National Id Or Passpart")]
     [NationalID(ErrorMessage = "Please enter a valid SSN")]
@@ -19,7 +19,7 @@ public class AdminEditModel
 
     [Display(Name = "Username")]
     [Username]
-    [UniqueUsername("")]
+    [UniqueUsername("UserId")]
     public string UserName { get; set; }
 
     [Display(Name = "Email")]
@@ -27,7 +27,7 @@ public class AdminEditModel
     [UniqueEmail]
     public string Email { get; set; }
 
-    [UniquePhoneNumber("")]
+    [UniquePhoneNumber("UserId")]
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
 

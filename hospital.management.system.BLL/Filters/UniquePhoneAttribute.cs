@@ -9,7 +9,7 @@ namespace hospital.management.system.BLL.Filters
     {
         public string UserIdPropertyName { get; }
 
-        public UniquePhoneNumberAttribute(string userIdPropertyName="")
+        public UniquePhoneNumberAttribute(String userIdPropertyName="UserId")
         {
             UserIdPropertyName = userIdPropertyName;
         }

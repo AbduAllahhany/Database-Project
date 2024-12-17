@@ -62,10 +62,13 @@
         <li class="list-group-item">
             <i class="fas fa-stethoscope"></i> Specialization: @Model.Specialization
         </li>
+        <li class="list-group-item">
+            <i class="fas fa-credit-card"></i> Salary: @Model.Salary
+        </li>
     </ul>
 
     <div class="row mb-4 centered-content">
-        <a class="btn btn-outline-custom" href=@Url.Action("Edit", "Doctor", new { Id = @Model.Id })>Edit Profile</a>
+        <a class="btn btn-outline-custom" href=@Url.Action("Edit", "Doctor", new { Id = @Model.UserId })>Edit Profile</a>
     </div>
 
     <div class="row mb-4 centered-content">

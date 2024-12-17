@@ -14,10 +14,10 @@ public class AdminCreateModel
 
     [Required]
     [Username]
-    [UniqueUsername("")]
+    [UniqueUsername("UserId")]
     public string UserName { get; set; }
 
-    [UniquePhoneNumber("")]
+    [UniquePhoneNumber("UserId")]
     [EgyptianPhoneNumber]
     public string PhoneNumber { get; set; }
 

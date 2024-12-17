@@ -9,13 +9,13 @@ public class RegisterModel
 {
     [Required]
     [Display(Name = "Username")]
-    [UniqueUsername("")]
+    [UniqueUsername("UserId")]
     [Username]
     public string UserName { get; set; }
 
     [Required] 
     [EmailAddress] 
-    [UniqueEmail("")]
+    [UniqueEmail]
     public string Email { get; set; }
 
     [Required]

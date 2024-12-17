@@ -207,7 +207,7 @@ public class AdminController : Controller
         if (user == null) return View("Error");
         var model = new AdminEditModel()
         {
-            Id = Id,
+            UserId = Id,
             SSN = user.SSN,
             Email = user.Email,
             UserName = user.UserName,
@@ -254,7 +254,7 @@ public class AdminController : Controller
     {
         if (model == null) return View("Error");
         if (!ModelState.IsValid) return View(model);
-        var user = await _userManager.FindByIdAsync(model.Id.Value.ToString());
+        var user = await _userManager.FindByIdAsync(model.UserId.Value.ToString());
         if (user == null) return View("Error");
 
         user.UserName = model.UserName;
@@ -266,7 +266,7 @@ public class AdminController : Controller
 
         await _userManager.UpdateAsync(user);
         await _unitOfWork.CompleteAsync();
-        if (model.Id.Value.ToString() == User.FindFirstValue(ClaimTypes.Name))
+        if (model.UserId.Value.ToString() == User.FindFirstValue(ClaimTypes.Name))
             return RedirectToAction("Profile", "Admin");
         return RedirectToAction("Index");
     }
@@ -278,7 +278,7 @@ public class AdminController : Controller
         if (user == null) return View("Error");
         return View(new AdminProfileModel()
         {
-            Id = user.Id,
+            UserId = user.Id,
             //Address = user.Address,
             //DateOfBirth = user.DateOfbirth,
             Email = user.Email,
@@ -413,6 +413,7 @@ public class AdminController : Controller
             Email = user.Email,
             UserId = user.Id,
             FirstName = temp.FirstName,
+            Salary = temp.Salary,
             LastName = temp.LastName,
             UserName = user.UserName,
             StartSchedule = temp.StartSchedule,

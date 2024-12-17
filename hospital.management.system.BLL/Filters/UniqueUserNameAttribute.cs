@@ -9,7 +9,7 @@ namespace hospital.management.system.BLL.Filters
     {
         public string UserIdPropertyName { get; }
 
-        public UniqueUsernameAttribute(string userIdPropertyName="")
+        public UniqueUsernameAttribute(string userIdPropertyName)
         {
             UserIdPropertyName = userIdPropertyName;
         }
@@ -18,7 +18,8 @@ namespace hospital.management.system.BLL.Filters
         {
 
             // Get UserManager from the DI container
-            var userManager = (UserManager<ApplicationUser>)validationContext.GetService(typeof(UserManager<ApplicationUser>));
+            var userManager =
+                (UserManager<ApplicationUser>)validationContext.GetService(typeof(UserManager<ApplicationUser>));
             if (userManager == null)
             {
                 throw new InvalidOperationException("UserManager is not available in the validation context.");

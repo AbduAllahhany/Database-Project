@@ -201,13 +201,14 @@ public class DoctorController : Controller
         if (user == null) return View("Error");
         return View(new DoctorProfileModel()
         {
-            Id = user.Id,
+            UserId = user.Id,
             Email = user.Email,
             IsEmailConfirmed = user.EmailConfirmed,
             IsTwoFactorEnabled = user.TwoFactorEnabled,
             NationalIdOrPassport = user.SSN,
             PhoneNumber = user.PhoneNumber,
             UserName = user.UserName,
+            Salary = res.Salary,
             Name = res.FirstName + " " + res.LastName,
             Gender = user.Gender,
             DepartmentName = res.DepartmentName,

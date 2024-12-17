@@ -25,7 +25,7 @@ public class PatientCreateModel
 
     [Required]
     [EgyptianPhoneNumber]
-    [UniquePhoneNumber("")]
+    [UniquePhoneNumber("UserId")]
     [Display(Name = "Phone Number")]
     public string PhoneNumber { get; set; }
 
@@ -40,7 +40,7 @@ public class PatientCreateModel
 
     [Required]
     [Username]
-    [UniqueUsername("")]
+    [UniqueUsername("UserId")]
     [Display(Name = "Username")]
     public string? UserName { get; set; }
 

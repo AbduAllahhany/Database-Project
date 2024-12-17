@@ -2,7 +2,7 @@ namespace hospital.management.system.BLL.Models.Patient;
 
 public class PatientProfileModel : ProfileModel
 {
-    public Guid Id { get; set; }
+    public Guid UserId { get; set; }
     public string Name { get; set; }
     public string? BloodGroup { get; set; }
     public string? Allergies { get; set; }
