@@ -248,7 +248,7 @@ public class AdminService : IAdminService
         return count.FirstOrDefault();
     }
 
-    public async Task<IEnumerable<GetAllAppointmentsResponseModel>> GetAppointmentsByUsernamesAsync()
+    public async Task<IEnumerable<GetAllAppointmentsResponseModel>>? GetAppointmentsByUsernamesAsync()
     {
         var res = _context.Database.SqlQuery<GetAllAppointmentsResponseModel>
         ($"""
@@ -257,7 +257,7 @@ public class AdminService : IAdminService
           FROM (
                   select a.Id as Id, a.date as [date] , a.patientId as pId, a.reason as reason,a.status as [status],a.time as [time],U.UserName as [username]
                   from Patient_Doctor_Appointment as A, AspNetUsers as U, Doctor as D
-                  where D.UserId = U.Id AND A.DoctorId = D.Id AND LOWER(A.Status) = 'pending'
+                  where D.UserId = U.Id AND A.DoctorId = D.Id
           ) as T
           inner join Patient as p
           on p.Id = T.pId
@@ -448,6 +448,7 @@ public class AdminService : IAdminService
             model.StaffId);
         return res;
     }
+
     public async Task<int> AdminEditDoctorAsync(AdminEditDoctorModel model)
     {
         if (model == null || model.DoctorId == Guid.Empty)
@@ -465,8 +466,8 @@ public class AdminService : IAdminService
             $"""
              Update Doctor SET firstName =@p0,lastName=@p1,
                                 workingHours=@p2, 
-                                startSchedule=@p3,endSchedule=@p4
-                                where Id=@p5
+                                startSchedule=@p3,endSchedule=@p4,salary=@p5
+                                where Id=@p6
              """;
         var res = await _context.Database.ExecuteSqlRawAsync(sqlcommand1,
             model.FirstName,
@@ -474,6 +475,7 @@ public class AdminService : IAdminService
             model.WorkingHours,
             model.StartSchedule,
             model.EndSchedule,
+            model.Salary,
             model.DoctorId);
         return res;
     }

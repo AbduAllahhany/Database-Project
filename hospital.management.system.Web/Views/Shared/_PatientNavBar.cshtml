@@ -23,23 +23,17 @@
                     </a>
                 </li>
                 @* <!-- Appointments --> *@
-                @* <li class="nav-item"> *@
-                @*     <a class="nav-link" href=@Url.Action("Appointments","Patient")> *@
-                @*         <i class="bi bi-calendar-check"></i> Appointments *@
-                @*     </a> *@
-                @* </li> *@
+                <li class="nav-item">
+                    <a class="nav-link" href=@Url.Action("PatientAppointments","Patient")>
+                        <i class="bi bi-calendar-check"></i> Appointments
+                    </a>
+                </li>
                 <!-- Medical Records -->
-                @* <li class="nav-item"> *@
-                @*     <a class="nav-link" href=@Url.Action("MedicalRecords","Patient")> *@
-                @*         <i class="bi bi-file-earmark-medical"></i> Medical Records *@
-                @*     </a> *@
-                @* </li> *@
-                <!-- Make Appointment -->
-                @* <li class="nav-item"> *@
-                @*     <a class="nav-link" href="~/patient/makeAppointment"> *@
-                @*         <i class="bi bi-calendar"></i> Make Appointment *@
-                @*     </a> *@
-                @* </li> *@
+                <li class="nav-item">
+                    <a class="nav-link" href=@Url.Action("PatientMedicalRecord","Patient")>
+                        <i class="bi bi-file-earmark-medical"></i> Medical Records
+                    </a>
+                </li>
             </ul>
 
             <!-- Right-side options (Logout) -->

@@ -47,12 +47,12 @@
                                 @* </form> *@
 
                                 <form asp-controller="Doctor" asp-action="ApproveAppointment" method="get" class="d-inline">
-                                    <input type="hidden" name="id" value="@Appointment.PatientId" />
+                                    <input type="hidden" name="id" value="@Appointment.AppId" />
                                     <button type="submit" class="btn btn-success btn-sm">Approve</button>
                                 </form>
 
                                 <form asp-controller="Doctor" asp-action="CancelingAppointment" method="get" class="d-inline">
-                                    <input type="hidden" name="id" value="@Appointment.PatientId" />
+                                    <input type="hidden" name="id" value="@Appointment.AppId" />
                                     <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
                                 </form>
                             </td>

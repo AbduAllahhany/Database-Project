@@ -357,7 +357,7 @@ public class AdminController : Controller
     public async Task<IActionResult> Appointments()
     {
         var appointments = await _adminService.GetAppointmentsByUsernamesAsync();
-        return !appointments.IsNullOrEmpty() ? View(appointments) : View("Error");
+        return appointments != null ? View(appointments) : View("Error");
     }
 
     [HttpGet]

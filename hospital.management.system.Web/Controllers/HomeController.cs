@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using hospital.management.system.DAL;
 using Microsoft.AspNetCore.Mvc;
 using hospital.management.system.Web.Models;
 
@@ -15,6 +16,14 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        if (User.IsInRole(SD.Admin))
+            return RedirectToAction("Dashboard", "Admin");
+        else if (User.IsInRole(SD.Patient))
+            return RedirectToAction("Dashboard", "Patient");
+        else if (User.IsInRole(SD.Doctor))
+            return RedirectToAction("DashBoard", "Doctor");
+        else if (User.IsInRole(SD.Nurse) || User.IsInRole(SD.OfficeBoy) || User.IsInRole(SD.Intern))
+            return RedirectToAction("Dashboard", "Staff");
         return View();
     }
 

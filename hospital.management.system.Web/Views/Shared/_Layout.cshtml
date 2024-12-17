@@ -30,27 +30,25 @@
     {
         <partial name="_DoctorNavBar"/>
     }
-    else if (User.IsInRole(SD.Nurse) || User.IsInRole(SD.Intern))
+    else if (User.IsInRole(SD.Nurse) || User.IsInRole(SD.Intern) || User.IsInRole(SD.OfficeBoy))
     {
         <partial name="_StaffNavBar"/>
     }
-    else
-    {
-        <partial name="_AnonymousNavBar"/>
-
-    }
+  
 </header>
 <div class="container">
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
 </div>
-
-<footer class="border-top footer">
-    <div class="container">
-        &copy; 2024 - hospital.management.system.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-    </div>
-</footer>
+@if (User.IsInRole(SD.Admin) || User.IsInRole(SD.Doctor) || User.IsInRole(SD.Nurse) || User.IsInRole(SD.OfficeBoy) || User.IsInRole(SD.Intern)||User.IsInRole(SD.Patient))
+{
+    <footer class="border-top footer">
+        <div class="container">
+            &copy; 2024 - hospital.management.system.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+}
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

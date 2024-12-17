@@ -23,17 +23,17 @@
                     </a>
                 </li>
                 <!-- Medical Record -->
-                @* <li class="nav-item"> *@
-                @*     <a href=@Url.Action("MedicalRecords","Doctor") class="nav-link active" aria-current="page"> *@
-                @*         <i class="bi bi-file-earmark-medical"></i> Medical Record *@
-                @*     </a> *@
-                @* </li> *@
+                <li class="nav-item">
+                    <a href=@Url.Action("DoctorSummary","Doctor") class="nav-link active" aria-current="page">
+                        <i class="bi bi-journal-text"></i> Summary
+                    </a>
+                </li>
                 <!-- Appointments -->
-                @* <li class="nav-item"> *@
-                @*     <a class="nav-link" href=@Url.Action("Appointments","Doctor")> *@
-                @*         <i class="bi bi-calendar-check"></i> Appointments *@
-                @*     </a> *@
-                @* </li> *@
+                <li class="nav-item">
+                    <a class="nav-link" href=@Url.Action("Appointments","Doctor")>
+                        <i class="bi bi-calendar-check"></i> Appointments
+                    </a>
+                </li>
                 
             </ul>
 

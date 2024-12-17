@@ -9,15 +9,13 @@ namespace hospital.management.system.BLL.Filters
     {
         public string UserIdPropertyName { get; }
 
-        public UniquePhoneNumberAttribute(string userIdPropertyName)
+        public UniquePhoneNumberAttribute(string userIdPropertyName="")
         {
             UserIdPropertyName = userIdPropertyName;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (UserIdPropertyName == "") return ValidationResult.Success;
-
             // Get UserManager from the validation context
             var userManager = (UserManager<ApplicationUser>)validationContext.GetService(typeof(UserManager<ApplicationUser>));
             if (userManager == null)
@@ -33,13 +31,12 @@ namespace hospital.management.system.BLL.Filters
 
             // Get the user ID from the specified property
             var userIdProperty = validationContext.ObjectType.GetProperty(UserIdPropertyName);
-            if (userIdProperty == null)
+            Guid userId = Guid.Empty;
+            if (userIdProperty != null)
             {
-                throw new InvalidOperationException($"Property '{UserIdPropertyName}' was not found on type '{validationContext.ObjectType.FullName}'.");
+                var temp = userIdProperty.GetValue(validationContext.ObjectInstance, null) as Guid?;
+                userId = temp ?? Guid.Empty;
             }
-
-            var userId = userIdProperty.GetValue(validationContext.ObjectInstance, null) as Guid?;
-
             // Check if the phone number already exists and belongs to a different user
             var existingUser = userManager.Users.FirstOrDefault(u => u.PhoneNumber == phoneNumber);
             if (existingUser != null && existingUser.Id != userId)

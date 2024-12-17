@@ -9,14 +9,13 @@ namespace hospital.management.system.BLL.Filters
     {
         public string UserIdPropertyName { get; }
 
-        public UniqueUsernameAttribute(string userIdPropertyName)
+        public UniqueUsernameAttribute(string userIdPropertyName="")
         {
             UserIdPropertyName = userIdPropertyName;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            if (UserIdPropertyName == "") return ValidationResult.Success;
 
             // Get UserManager from the DI container
             var userManager = (UserManager<ApplicationUser>)validationContext.GetService(typeof(UserManager<ApplicationUser>));
@@ -33,12 +32,12 @@ namespace hospital.management.system.BLL.Filters
 
             // Get the user ID from the specified property
             var userIdProperty = validationContext.ObjectType.GetProperty(UserIdPropertyName);
-            if (userIdProperty == null)
+            Guid userId = Guid.Empty;
+            if (userIdProperty != null)
             {
-                throw new InvalidOperationException($"Property '{UserIdPropertyName}' was not found on type '{validationContext.ObjectType.FullName}'.");
+                var temp = userIdProperty.GetValue(validationContext.ObjectInstance, null) as Guid?;
+                userId = temp ?? Guid.Empty;
             }
-
-            var userId = userIdProperty.GetValue(validationContext.ObjectInstance, null) as Guid?;
 
             // Check for existing user with the same username
             var existingUser = userManager.Users.FirstOrDefault(u => u.UserName == username);

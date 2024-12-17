@@ -6,7 +6,7 @@ namespace hospital.management.system.BLL.Models.Admin;
 
 public class AdminEditDoctorModel
 {
-    public decimal Salary;
+    [Required] public decimal? Salary { get; set; }
     [Required] public Guid? DoctorId { get; set; }
 
     [Display(Name = "Doctor First Name")]
@@ -27,10 +27,12 @@ public class AdminEditDoctorModel
     [Username]
     public string? UserName { get; set; }
 
-    [UniquePhoneNumber("UserId")][EgyptianPhoneNumber] public string PhoneNumber { get; set; }
+    [UniquePhoneNumber("UserId")]
+    [EgyptianPhoneNumber]
+    public string PhoneNumber { get; set; }
+
     public Guid UserId { get; set; }
-    [Display(Name = "Working Hours")]
-    public byte WorkingHours { get; set; }
+    [Display(Name = "Working Hours")] public byte WorkingHours { get; set; }
 
     public TimeOnly StartSchedule { get; set; }
     public TimeOnly EndSchedule { get; set; }
